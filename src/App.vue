@@ -1,0 +1,86 @@
+<template>
+  <div id="app" class="container-fluid">
+    <tool-add></tool-add>
+    <div-option v-if="option.is" :name="option.name" :id="option.id"></div-option>
+    <section-basic  v-for="section in getElements.filter( item => item.type === 'section')" :id="section.id" :key="section.id" :styleSec="section.style">
+        <column-basic v-for="col in section.layout" :key="col.index" :columnIndex="col.index" :id="section.id" :size="col.size">
+              <text-box v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == section.id && item.column == col.index)" :id ="text.id" :key="text.id" :styleText="text.style" :position="text.position" :text="text.value"></text-box>
+        </column-basic>
+    </section-basic>
+  </div>
+  <!-- <text-box :id="'1'"></text-box> -->
+  
+</template>
+<script>
+import {bus} from './main'
+export default {
+
+    methods:{
+      resizeStop:function(reg ,startRect){
+        console.log(reg)
+      },
+    },
+        data:function(){
+          return {
+            option :{
+              is : false,
+              name : '',
+              id : ''
+              }
+          }
+        },
+        computed:{
+          getElements:function(){
+            return this.$store.getters.getElementItems
+          }
+        },
+        mounted(){
+          bus.$on('openOption',({name,id})=>{
+            this.option.is = true
+            this.option.name = name
+            this.option.id = id
+          })
+          bus.$on('closeOptionElement',({name,id})=>{
+            this.option.is = false
+            this.option.name = name
+            this.option.id = id
+          })
+        }
+        // mounted(){
+        //   window.addEventListener("mousemove",(ev)=>{
+        //     console.log('x '+ev.clientX+' y '+ev.clientY)
+        //   })
+        // }
+  }
+</script>
+
+
+<style>
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+.drr {
+  z-index: 999;
+}
+
+.col-xl-6,.col-md-12 {
+  z-index: 1;
+}
+
+</style>
