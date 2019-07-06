@@ -24,6 +24,23 @@ var Default = {
                 name : "Align Block",
                 ref : 'alignBlock'
             }
+        ],
+        'Column' : [
+            {
+                name : "Background",
+                ref : 'Columnbackground'
+            },
+            // {
+            //     name : "background Image",
+            //     ref :"backgroundImage"
+            // }
+
+        ],
+        'IMAGE':[
+            {
+                name : 'Image',
+                ref : 'imgUrl'
+            }
         ]
         
 }

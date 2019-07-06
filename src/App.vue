@@ -1,10 +1,11 @@
 <template>
   <div id="app" class="container-fluid">
     <tool-add></tool-add>
-    <div-option v-if="option.is" :name="option.name" :id="option.id"></div-option>
+    <div-option v-if="option.is" :name="option.name" :id="option.id" :index="option.index"></div-option>
     <section-basic  v-for="section in getElements.filter( item => item.type === 'section')" :id="section.id" :key="section.id" :styleSec="section.style">
-        <column-basic v-for="col in section.layout" :key="col.index" :columnIndex="col.index" :id="section.id" :size="col.size">
+        <column-basic v-for="col in section.layout" :key="col.index" :columnIndex="col.index"  :id="section.id" :size="col.size" :bgImg="col.bg">
               <text-box v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == section.id && item.column == col.index)" :id ="text.id" :key="text.id" :styleText="text.style" :position="text.position" :text="text.value"></text-box>
+              <image-component v-for="image in getElements.filter(item => item.type == 'img' && item.parentId == section.id && item.column == col.index)" :id="image.id" :key="image.id" :styleImg="image.style" :position="image.position" :url="image.url"></image-component>
         </column-basic>
     </section-basic>
   </div>
@@ -25,7 +26,8 @@ export default {
             option :{
               is : false,
               name : '',
-              id : ''
+              id : '',
+              index :1
               }
           }
         },
@@ -35,15 +37,19 @@ export default {
           }
         },
         mounted(){
-          bus.$on('openOption',({name,id})=>{
+          bus.$on('openOption',({name,id,index})=>{
             this.option.is = true
             this.option.name = name
             this.option.id = id
+            this.option.index = index
           })
           bus.$on('closeOptionElement',({name,id})=>{
             this.option.is = false
             this.option.name = name
             this.option.id = id
+          })
+          bus.$on('cls',()=>{
+            this.option.is = false
           })
         }
         // mounted(){
@@ -62,6 +68,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  margin-top: 60px;
 }
 #nav {
   padding: 30px;
@@ -81,6 +88,10 @@ export default {
 
 .col-xl-6,.col-md-12 {
   z-index: 1;
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
 }
 
 </style>

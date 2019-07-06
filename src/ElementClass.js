@@ -37,7 +37,7 @@ class TextParagraph{
             letterSpacing : 10, /** (number) px */
             wordSpacing :5 , /** (number) px */
             lineHeight : 20 , /** (number) px */
-            alignBlock : 'center'
+            alignBlock : 'none'
             // textIndent : 0, /** (number) px */
         };
         this.position = {
@@ -47,7 +47,7 @@ class TextParagraph{
             w:400,
             h:50
         };
-        this.value = "this a text";
+        this.value = "this is a text";
         this.link = '';
         this.heading = 'p';/** p, span, h1, h2, h3 ,h4 ,h5 ,h6  */
         
@@ -71,9 +71,7 @@ class TextParagraph{
         }
     } 
     
-    getPosition(){
-        return this.position
-    }
+
 
    
 }
@@ -82,7 +80,7 @@ class TextParagraph{
 
 class Button {
     constructor(value){
-        this.text = new TextSimple('this a button');
+        this.text = new TextSimple('this is a button');
         this.backgroundColor = '#ffffff';
         this.border = {
             width : 0,
@@ -103,8 +101,8 @@ class Button {
 }
 
 class Image {
-    constructor(url){
-        this.url = url ;
+    constructor(){
+        this.url = require('./assets/template.jpg') ;
         this.keepProportion = true;
         this.border = {
             width : 0,
@@ -121,7 +119,16 @@ class Image {
             color : '#cccccc',
             opacity : 1
         };
-        // this.
+        this.position = {
+            x :200,
+            y : 150,
+            angle:0,
+            w:400,
+            h:300
+        };
+        this.style ={
+            alignBlock : 'none'
+        }
     }
 }
 
@@ -164,4 +171,4 @@ class Section {
 }
 
 
-export default {TextSimple,TextParagraph,Button,Section}
+export default {TextSimple,TextParagraph,Button,Section,Image}

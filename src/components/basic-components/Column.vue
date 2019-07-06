@@ -14,7 +14,11 @@
     @deselect="deselect"
     style="width:100%;height:100%;margin:0;position:relative"
     :selected="$store.getters.getSelectID == id"
-    
+    :style="{background : getBackground,
+    backgroundPosition: 'center',
+    backgroundSize: '100% 100%',
+    backgroundRepeat:' no-repeat',
+    }"
     >
     <btnOption v-if="isActive"
         :isGrid="true" 
@@ -47,6 +51,9 @@ import {bus} from '../../main'
             columnIndex:{
                 type : Number,
                 required :true,
+            },
+            bgImg : {
+                type :String,
             }
         },
         data:function(){
@@ -60,6 +67,11 @@ import {bus} from '../../main'
                     top: 0,
                     right:-60 +'px'
                 }
+            }
+        },
+        computed:{
+            getBackground : function(){
+                return this.bgImg.includes('#')?this.bgImg : 'url('+this.bgImg +')';
             }
         },
         methods:{
@@ -77,10 +89,10 @@ import {bus} from '../../main'
                 this.$store.commit('deleteColumn',{index : this.columnIndex , id :this.id })
             },
             edit:function(){
-                
+                bus.$emit('openOption',{name : 'Column',id:this.id,index: this.columnIndex})
             },
             onBlur:function(){
-
+                 bus.$emit('closeOptionElement',{name : 'Column',id:this.id})
             }
             
         }       

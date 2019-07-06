@@ -3,7 +3,7 @@
     <h2 v-html="typeContent.type"></h2>
     <ul v-if="typeContent.type === 'ADD'">
       <li @click="$store.commit('addElement',{type : 'text'})">TEXT</li>
-      <li >Image</li>
+      <li @click="$store.commit('addElement',{type : 'image'})" >IMAGE</li>
       <li>Button</li>
      
     </ul>

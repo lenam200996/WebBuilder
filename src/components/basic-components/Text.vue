@@ -69,7 +69,8 @@ import {bus} from '../../main'
         this.textActive = true
       },
       editOption(){
-         bus.$emit('openOption',{name : 'TEXT',id:this.id})
+        this.textActive  = false
+         bus.$emit('openOption',{name : 'TEXT',id:this.id,index : -1})
       },
       onBlur() {
         // this.isActive = false

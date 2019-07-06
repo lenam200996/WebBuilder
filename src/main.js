@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import divDragResize from '@minogin/vue-drag-resize-rotate'
 import TextBox from './components/basic-components/Text'
+import Image from './components/basic-components/Image'
 import tinymce from "vue-tinymce-editor";
 import Section from './components/basic-components/Section'
 import Column from './components/basic-components/Column'
@@ -19,6 +20,7 @@ Vue.component('dragResize',divDragResize)
 Vue.component('sectionBasic',Section)
 Vue.component('columnBasic',Column)
 Vue.component('textBox',TextBox)
+Vue.component('imageComponent',Image)
 Vue.component('toolAdd',ToolAdd)
 Vue.component('addElement',AddElement)
 Vue.component('btnOption',ButtonOptionElement)

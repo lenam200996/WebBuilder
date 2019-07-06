@@ -17,7 +17,41 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-   
+    setBackgroundImageById:function(state,{id,value}){
+      state.elements.item = state.elements.item.filter(item => {
+        if(item.id == id){
+          item.layout.filter(itemLayout =>{
+            if(itemLayout.index == state.Selectedcolumn){
+              itemLayout.bg = value
+            }
+            return itemLayout
+          })
+        }
+        return item
+      })
+    },
+    setImageUrlById:function(state,{id,value}){
+      state.elements.item = state.elements.item.filter(item =>{
+        if(item.id == id ){
+          item.url = value
+        }
+        return item
+      })
+    },
+    updateColorColumn:function(state,{value}){
+      state.elements.item = state.elements.item.filter(item =>{
+        if(item.id == state.selectId){
+          item.layout = item.layout.filter(itemLayout => {
+            if(itemLayout.index == state.Selectedcolumn){
+              itemLayout.bg = value
+            }
+            return itemLayout
+          })
+        }
+        return item
+      })
+    },
+    
     setSelectColumn:function(state,index){
       state.Selectedcolumn = index
     },
@@ -46,11 +80,13 @@ export default new Vuex.Store({
         layout: [
           {
               index: 1,
-              size : 6
+              size : 7,
+              bg : '#cccccc'
           },
           {
               index : 2,
-              size : 6
+              size : 5,
+              bg : 'none'
           }
         ]
       }
@@ -59,17 +95,41 @@ export default new Vuex.Store({
       this.commit('addItem',item)
     },
     addElement:function(state,{type}){
-      var ObjectText = new Element.TextParagraph()
-      var item = {
-        id : state.indexItem,
-        type : 'text',
-        style : ObjectText.style,
-        parentId : state.selectId != null ? state.selectId : null,
-        column : state.Selectedcolumn,
-        position :ObjectText.position,
-        value : ObjectText.value
+      switch (type) {
+        case 'text':
+            {
+              var ObjectText = new Element.TextParagraph()
+              var item = {
+                id : state.indexItem,
+                type : 'text',
+                style : ObjectText.style,
+                parentId : state.selectId != null ? state.selectId : null,
+                column : state.Selectedcolumn,
+                position :ObjectText.position,
+                value : ObjectText.value
+              }
+              this.commit('addItem',item)
+            }
+          break;
+        case 'image':
+            {
+              var ObjectImg = new Element.Image()
+              var item = {
+                id  :state.indexItem,
+                type : 'img',
+                style : ObjectImg.style,
+                parentId : state.selectId != null ? state.selectId : null,
+                column : state.Selectedcolumn,
+                position: ObjectImg.position,
+                url : ObjectImg.url
+              }    
+              this.commit('addItem',item)
+            }
+        break;
+        default:
+          break;
       }
-      this.commit('addItem',item)
+      
     },
     deleteItemById:function(state,id){
       state.elements.item = state.elements.item.filter(item => item.id != id)
@@ -168,7 +228,11 @@ export default new Vuex.Store({
     },
     getElementItemById: (state) =>(id)=>{
       return state.elements.item.find(item => item.id == id)
+    },
+    getColumnColorColumn:function(state){
+      return state.elements.item.find(item => item.id == state.selectId).layout.find(itemLayout => itemLayout.index == state.Selectedcolumn).bg
     }
+
   },
   actions: {}
 });
