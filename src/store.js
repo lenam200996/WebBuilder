@@ -77,18 +77,7 @@ export default new Vuex.Store({
         type : 'section',
         style: ObjectSection.getStyle(),
         parentId : -1,
-        layout: [
-          {
-              index: 1,
-              size : 7,
-              bg : '#cccccc'
-          },
-          {
-              index : 2,
-              size : 5,
-              bg : 'none'
-          }
-        ]
+        layout:ObjectSection.layout
       }
       state.selectId = state.indexItem
       state.Selectedcolumn = 1

@@ -40,6 +40,26 @@ var Default = {
             {
                 name : 'Image',
                 ref : 'imgUrl'
+            },
+            {
+                name : 'Border Width',
+                ref : 'borderWidth'
+            },
+            {
+                name : 'Border Type',
+                ref : 'borderType'
+            },
+            {
+                name : 'Border Color',
+                ref : 'borderColor'
+            },
+            {
+                name : 'Border Radius',
+                ref : 'borderRadius'
+            },
+            {
+                name: 'Keep Proportion',
+                ref : 'keepProportion'
             }
         ]
         

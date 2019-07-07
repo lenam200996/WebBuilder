@@ -1,8 +1,8 @@
 <template>
  
-    <div class="wrap-option" :style="{top: top+'px', right:right+'px'}" @mousedown="enableDrag" @mouseup="isDrag =false" @mousemove="drag">
+    <div class="wrap-option" :style="{top: top+'px', right:right+'px'}">
         <div class="close" @click="closeOptionElement"><span>x</span></div>
-        <h2>{{name}} OPTIONS</h2>
+        <h2  @mousedown="enableDrag" @mouseup="isDrag =false" @mousemove="drag">{{name}} OPTIONS</h2>
         <div-option-item :name="name" :id="id"></div-option-item>
     </div>
 

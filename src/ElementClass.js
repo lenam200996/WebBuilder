@@ -103,22 +103,6 @@ class Button {
 class Image {
     constructor(){
         this.url = require('./assets/template.jpg') ;
-        this.keepProportion = true;
-        this.border = {
-            width : 0,
-            color: '#ccccccc'
-        };
-        this.borderRadius = {
-            width : 0
-        };
-        this.shadow = {
-            angle : 0,
-            distance : 0,
-            size : 0,
-            blur :  4,
-            color : '#cccccc',
-            opacity : 1
-        };
         this.position = {
             x :200,
             y : 150,
@@ -127,7 +111,23 @@ class Image {
             h:300
         };
         this.style ={
-            alignBlock : 'none'
+            keepProportion: "true",
+            alignBlock : 'none',
+            border : {
+                width : 3,
+                color: '#000000',
+                type : 'solid'
+            },
+            borderRadius : 50,
+            shadow : {
+                angle : 0,
+                distance : 0,
+                size : 0,
+                blur :  4,
+                color : '#cccccc',
+                opacity : 1
+            },
+            
         }
     }
 }
@@ -151,11 +151,13 @@ class Section {
         this.layout = [
             {
                 index: 1,
-                size : 6
+                size : 6,
+                bg: '#ccc'
             },
             {
                 index : 2,
-                size : 6
+                size : 6,
+                bg: 'none'
             }
         ];
         

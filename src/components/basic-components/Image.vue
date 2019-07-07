@@ -9,11 +9,12 @@
             @select="select"
             @deselect="deselect"
             :style="getStyleWrap"
+            :aspectRatio="styleImg.keepProportion == 'true'"
             >
             <!-- :style="getStyleWrap" -->
              <!-- :hasActiveContent="true" -->
         <div class="wrap-img">
-            <img :src="url" alt="">
+            <img :src="url" :style="getStyleImage">
         </div>
         <btnOption v-if="isActive"
             :isGrid="false" 
@@ -100,8 +101,16 @@
                 return '';
                 }
                 return style
+            },
+            getStyleImage:function(){
+            return {
+                border : this.styleImg.border.width+'px '+this.styleImg.border.type +' '+this.styleImg.border.color ,
+                borderRadius: this.styleImg.borderRadius +'%',
+
             }
         }
+        },
+        
      }
  </script>
  
