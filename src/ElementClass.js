@@ -151,12 +151,12 @@ class Section {
         this.layout = [
             {
                 index: 1,
-                size : 6,
+                size : 2,
                 bg: '#ccc'
             },
             {
                 index : 2,
-                size : 6,
+                size : 2,
                 bg: 'none'
             }
         ];

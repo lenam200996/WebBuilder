@@ -93,5 +93,99 @@ export default {
   background-repeat: no-repeat;
 
 }
+.col-xl-2,.col-xl-3,.col-xl-4,.col-xl-6,.col-xl-12,.col-md-12{
+  padding: 0;
+}
+.column-1,.column-2,.column-3,.column-4,.column-5{
+  z-index: 1;
+}
+.column-1{
+  max-width: 100%;
+  display: flex;
+}
+.column-2{
+  max-width: 50%;
+  display: flex;
+}
+.column-3{
+  max-width: 33.33%;
+  display: flex;
+}
+.column-4{
+  max-width: 25%;
+  display: flex;
+}
+.column-5{
+  max-width:20%;
+  display: flex;
+}
+
+@media only screen and (max-width: 992px){
+  .column-1{
+  max-width: 100%;
+  display: flex;
+  }
+  .column-2{
+    max-width: 50%;
+    display: flex;
+  }
+  .column-3{
+    max-width: 33.33%;
+    display: flex;
+  }
+  .column-4{
+    max-width: 33.33%;
+    display: flex;
+  }
+  .column-5{
+    max-width:33.33%;
+    display: flex;
+  }
+}
+@media only screen and (max-width: 768px){
+  .column-1{
+  max-width: 100%;
+  display: flex;
+  }
+  .column-2{
+    max-width: 50%;
+    display: flex;
+  }
+  .column-3{
+    max-width: 50%;
+    display: flex;
+  }
+  .column-4{
+    max-width: 50%;
+    display: flex;
+  }
+  .column-5{
+    max-width:50%;
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 576px){
+  .column-1{
+  max-width: 100%;
+  display: flex;
+  }
+  .column-2{
+    max-width: 100%;
+    display: flex;
+  }
+  .column-3{
+    max-width: 100%;
+    display: flex;
+  }
+  .column-4{
+    max-width: 100%;
+    display: flex;
+  }
+  .column-5{
+    max-width:100%;
+    display: flex;
+  }
+}
 
 </style>

@@ -9,17 +9,20 @@
     :resizable="false"
     :rotatable="false"
     :draggable="false"
-    :class="'col-xl-'+size+' col-md-12'"
+    :class="'column-'+size" 
     @select="select"
     @deselect="deselect"
-    style="width:100%;height:100%;margin:0;position:relative"
+    style="width:100%;height:100%;margin:0;position:relative;"
+    
     :selected="$store.getters.getSelectID == id"
     :style="{background : getBackground,
     backgroundPosition: 'center',
     backgroundSize: '100% 100%',
     backgroundRepeat:' no-repeat',
+    zIndex : isActive? 9999 : 1,
     }"
     >
+    <!-- +' col-md-12'"  -->
     <btnOption v-if="isActive"
         :isGrid="true" 
         @edit="edit" 

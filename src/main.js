@@ -13,6 +13,7 @@ import AddElement from './components/main-option-components/AddElement'
 import ButtonOptionElement from './components/element-option-components/ButtonOption'
 import OptionElement from './components/element-option-components/OptionElement'
 import OptionElementItem from './components/element-option-components/OptionElementItem'
+import ColumnItem from './components/element-option-components/ColumnItem'
 
 
 Vue.component('tinymceText',tinymce)
@@ -26,6 +27,7 @@ Vue.component('addElement',AddElement)
 Vue.component('btnOption',ButtonOptionElement)
 Vue.component('divOption',OptionElement)
 Vue.component('divOptionItem',OptionElementItem)
+Vue.component('itemColumn',ColumnItem)
 
 Vue.config.productionTip = false;
 export const bus = new Vue();

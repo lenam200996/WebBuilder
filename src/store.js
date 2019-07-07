@@ -167,30 +167,16 @@ export default new Vuex.Store({
       state.elements.item = state.elements.item.filter(item => {
         if(item.id == id ){
           if(item.layout.length > 1){
-            var sizeOld = 0;
+            var size = this.getters.getNumColumn - 1;
             item.layout = item.layout.filter(itemLayout => {
-              if(itemLayout.index == index){
-                sizeOld = itemLayout.size 
-              }else{
+              if(itemLayout.index != index){
                 return item
               }
             })
-            if(index > 1){
-              item.layout = item.layout.filter(itemLayout => {
-                if(itemLayout.index == 1){
-                  itemLayout.size = itemLayout.size + sizeOld
-                }
-                return item
-              })
-            }else{
-              item.layout = item.layout.filter(itemLayout => {
-                if(itemLayout.index == (index+1)){
-                  itemLayout.size = itemLayout.size + sizeOld
-                }
-                return item
-              })
-            }
-            
+            item.layout = item.layout.filter(itemLayout => {
+                itemLayout.size = size
+              return item
+            })  
           }
         } return item
       })
@@ -206,11 +192,29 @@ export default new Vuex.Store({
         }
         return item
       })
+    },
+    addColumn:function(state){
+      if(this.getters.getNumColumn < 5){
+        var size = this.getters.getNumColumn + 1
+        state.elements.item = state.elements.item.filter(item =>{
+          if(item.id == state.selectId){
+            item.layout.push({index : this.getters.getNumColumn + 1, size : 0,bg : '#ffffff'})
+            item.layout = item.layout.filter(itemLayout =>{
+              itemLayout.size = size
+              return itemLayout
+            })
+          }
+          return item
+        })
+      }
     }
   },
   getters:{
     getSelectID:function(state){
       return state.selectId
+    },
+    getSelectColumn:function(state){
+      return state.Selectedcolumn
     },
     getElementItems:function(state){
       return state.elements.item
@@ -220,6 +224,9 @@ export default new Vuex.Store({
     },
     getColumnColorColumn:function(state){
       return state.elements.item.find(item => item.id == state.selectId).layout.find(itemLayout => itemLayout.index == state.Selectedcolumn).bg
+    },
+    getNumColumn:function(state){
+      return state.elements.item.find(item => item.id == state.selectId).layout.length
     }
 
   },

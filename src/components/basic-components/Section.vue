@@ -73,10 +73,10 @@ import {bus} from '../../main'
                 this.$store.commit('deleteSection',this.id)
             },
             edit:function(){
-
+                bus.$emit('openOption',{name : 'SECTION',id:this.id,index: -1})
             },
             onBlur:function(){
-                
+                bus.$emit('closeOptionElement',{name : 'SECTION',id:this.id})
             }
 
         }

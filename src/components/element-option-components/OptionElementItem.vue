@@ -1,16 +1,14 @@
 <template>
     <div>
         <ul>
-            <li v-for="(itemOption) in common" :key="itemOption.name">
+            <li v-for="(itemOption) in item" :key="itemOption.name">
                 <span v-if="itemOption.ref == 'alignBlock'" v-html="itemOption.name" ></span>
                 <select v-if="itemOption.ref == 'alignBlock'" v-model="style.alignBlock">
                     <option value="none">Custom</option>
                     <option value="center">Center</option>
                     <option value="left">Left</option>
                     <option value="right">Right</option>
-                </select>
-            </li>
-            <li v-for="(itemOption) in item" :key="itemOption.name">
+                </select> 
                 <span v-if="itemOption.ref == 'fontSize'" v-html="itemOption.name"></span>
                 <input v-if="itemOption.ref == 'fontSize'" type="range" v-model="style.fontSize">
                 <span v-if="itemOption.ref == 'lineHeight'" v-html="itemOption.name"></span>
@@ -65,7 +63,17 @@
                     <input  v-if="itemOption.ref == 'keepProportion'" type="radio" name="keepProportion" value="true" v-model="style.keepProportion"><i v-if="itemOption.ref == 'keepProportion'">True</i>
                     <input  v-if="itemOption.ref == 'keepProportion'" type="radio" name="keepProportion" value="false" v-model="style.keepProportion"><i v-if="itemOption.ref == 'keepProportion'">False</i>
                 </span>
-                
+                <div v-if="itemOption.ref == 'sectionColumnManagement'" class="div-column-manager">
+                    <h2>Column Manager</h2>
+                    <button @click="addColumn">Add Column</button>
+                    <ul>
+                        <item-column v-for="n in getNumColumn" :key="n" :n="n"></item-column>
+                    </ul>
+                    <div style="clear:left;"></div>
+                    <div class="div-column-manager-option">
+                        <button v-if="enableOptionColumn" @click="deleteColumn"><img src="../../assets/delete.svg"/></button>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
@@ -73,6 +81,7 @@
 
 <script>
 import Default from '../../OptionItem'
+import {bus} from '../../main'
     export default {
         props:{
             name : {
@@ -89,11 +98,13 @@ import Default from '../../OptionItem'
             }
             
         },
+        
         data:function(){
             return {
                 item :[],
                 common : [],
-                backgroundColor: 1
+                backgroundColor: 1,
+                enableOptionColumn : false
             }
         },
         computed:{
@@ -102,9 +113,21 @@ import Default from '../../OptionItem'
             },
             getColorColumn:function(){
                 return this.$store.getters.getColumnColorColumn
+            },
+            getNumColumn:function(){
+                return this.$store.getters.getNumColumn
             }
         },
+
         methods:{
+            addColumn:function(){
+                this.$store.commit('addColumn')
+            },
+            deleteColumn:function(){
+                if(this.getNumColumn > 1){
+                    this.$store.commit('deleteColumn',{index : this.$store.getters.getSelectColumn , id :this.$store.getters.getSelectID })
+                }
+            },
             updateColor:function(ev){
                 this.$store.commit('updateColorColumn',{value : ev.target.value })
                 // console.log(ev)
@@ -138,10 +161,19 @@ import Default from '../../OptionItem'
             },
         },
         mounted(){
+            bus.$on('enableOptionColumn',()=>{
+                if(this.getNumColumn > 1){
+                    this.enableOptionColumn = true
+                }
+            })
             this.item = Default.Default[this.name]
-            this.common = Default.Default['Common']
         },
         watch:{
+            getNumColumn:function(val){
+                if(val == 1){
+                    this.enableOptionColumn = false
+                }
+            }
             // styleCache:function(val){
             //     this.$store.commit('updateStyle',{id : this.id, val : val})
             // }
@@ -154,6 +186,7 @@ import Default from '../../OptionItem'
     ul{
         list-style-type: none;
         margin-top: 20px;
+        padding: 10px;
     }
 
     ul>li{
@@ -192,4 +225,46 @@ import Default from '../../OptionItem'
     .group-radio>input,.group-radio>i{
         margin-right: 5px;
     }
+
+    .div-column-manager{
+        width: 100%;
+    }
+
+    .div-column-manager>h2{
+        margin: 20px auto;
+    }
+
+    .div-column-manager>button{
+        width: 300px;
+        height: 30px;
+        margin: auto;
+    }
+    .div-column-manager>ul{
+        width: 100%;
+        margin: auto;
+    }
+     .div-column-manager>ul>li{
+         width: 16.2%;
+         height: 60px;
+         float: left;
+         background-color: green;
+         margin-right: 2px;
+         position: relative;
+         cursor: pointer;
+     }
+     .div-column-manager>ul>li:hover{
+         background-color: red;
+     }
+    .div-column-manager>ul>li.active{
+        background-color: yellow;
+    }
+    .div-column-manager-option{
+        width: 100%;
+        height: 30px;
+    }
+    .div-column-manager-option>button{
+        width: 30px;
+        height: 30px;
+    }
+
 </style>

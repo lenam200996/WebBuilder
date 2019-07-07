@@ -16,15 +16,12 @@ var Default = {
                 {
                 name: "Word Spacing",
                 ref: "wordSpacing"
+                },
+                {
+                    name: 'Align Block',
+                    ref : 'alignBlock'
                 }
             ],
-        'Common':
-        [
-            {
-                name : "Align Block",
-                ref : 'alignBlock'
-            }
-        ],
         'Column' : [
             {
                 name : "Background",
@@ -60,6 +57,16 @@ var Default = {
             {
                 name: 'Keep Proportion',
                 ref : 'keepProportion'
+            },
+            {
+                name: 'Align Block',
+                ref : 'alignBlock'
+            }
+        ],
+        'SECTION':[
+            {
+                name : 'Column',
+                ref : 'sectionColumnManagement'
             }
         ]
         
