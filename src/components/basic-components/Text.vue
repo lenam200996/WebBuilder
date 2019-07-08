@@ -9,6 +9,7 @@
             @select="select"
             @deselect="deselect"
             :style="getStyleWrap"
+            
             >
              <!-- :hasActiveContent="true" -->
       <div class="text" @active="onActive()" v-if="!textActive"  >
@@ -118,24 +119,46 @@ import {bus} from '../../main'
       getStyleWrap:function(){
         if(this.styleText.alignBlock == 'center'){
           var style = {
+            top: this.styleText.top,
+            width: this.styleText.width ,
+            height: this.styleText.height ,
+            transform: 'rotate(' + this.styleText.rotation + 'deg)',
             left : '50%',
             transform : 'translateX(-50%)',
-            maxWidth : '90%'
+            maxWidth : '90%',
+            zIndex : this.textActive? 999999: 1
           }
         }else if( this.styleText.alignBlock == 'left'){
           var style = {
+            top: this.styleText.top,
+            width: this.styleText.width ,
+            height: this.styleText.height ,
+            transform: 'rotate(' + this.styleText.rotation + 'deg)',
             left : 0,
             transform :'none',
-            right : 'auto'
+            right : 'auto',
+             zIndex : this.textActive? 999999: 1
           }
         }else if( this.styleText.alignBlock == 'right'){
           var style = {
+            top: this.styleText.top,
+            width: this.styleText.width ,
+            height: this.styleText.height ,
+            transform: 'rotate(' + this.styleText.rotation + 'deg)',
             right : 0,
             transform :'none',
              left : 'auto',
+              zIndex : this.textActive? 999999: 1
           }
         }else{
-          return '';
+          return {
+            left: this.styleText.left,
+            top: this.styleText.top,
+            width: this.styleText.width ,
+            height: this.styleText.height ,
+            transform: 'rotate(' + this.styleText.rotation + 'deg)',
+            zIndex : this.textActive? 999999: 1
+          };
         }
         return style
       }

@@ -6,7 +6,7 @@ import divDragResize from '@minogin/vue-drag-resize-rotate'
 import TextBox from './components/basic-components/Text'
 import Image from './components/basic-components/Image'
 import Button from './components/basic-components/Button'
-import tinymce from "vue-tinymce-editor";
+import tinymce from 'vue-tinymce-editor'
 import Section from './components/basic-components/Section'
 import Column from './components/basic-components/Column'
 import ToolAdd from './components/main-option-components/ToolAddElement'
@@ -16,6 +16,11 @@ import OptionElement from './components/element-option-components/OptionElement'
 import OptionElementItem from './components/element-option-components/OptionElementItem'
 import ColumnItem from './components/element-option-components/ColumnItem'
 import TopMenu from './components/main-option-components/TopMenu'
+import SectionRender from './components/render-components/Section'
+import ColumnRender from './components/render-components/Column'
+import TextRender from './components/render-components/Text'
+import ImageRender from './components/render-components/Image'
+import ButtonRender from './components/render-components/Button'
 
 
 Vue.component('tinymceText',tinymce)
@@ -32,6 +37,11 @@ Vue.component('divOptionItem',OptionElementItem)
 Vue.component('itemColumn',ColumnItem)
 Vue.component('buttonComponent',Button)
 Vue.component('topMenu',TopMenu)
+Vue.component('sectionRender',SectionRender)
+Vue.component('columnRender',ColumnRender)
+Vue.component('textRender',TextRender)
+Vue.component('imageRender',ImageRender)
+Vue.component('buttonRender',ButtonRender)
 
 Vue.config.productionTip = false;
 export const bus = new Vue();

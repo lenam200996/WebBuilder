@@ -21,6 +21,18 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    updatePositionElement:function(state,{id,val}){
+      state.elements.item = state.elements.item.filter(item =>{
+        if(item.id == id){
+          item.style.top = val.top,
+          item.style.left = val.left
+          item.style.width  =val.width
+          item.style.height = val.height
+          item.style.rotation = val.rotation
+        }
+        return item
+      })
+    },
     setWindowSize :function(state,{height , width}){
       state.window.height = height
       state.window.width = width

@@ -1,21 +1,25 @@
-<template>
-  <div id="app" class="container-fluid" v-if="!isPreview">
-    <top-menu></top-menu>
-    <tool-add></tool-add>
-    <div-option v-if="option.is" :name="option.name" :id="option.id" :index="option.index"></div-option>
-    <section-basic  v-for="section in getElements.filter( item => item.type === 'section')" :id="section.id" :key="section.id" :styleSec="section.style">
-        <column-basic v-for="col in section.layout" :key="col.index" :columnIndex="col.index"  :id="section.id" :size="col.size" :bgImg="col.bg">
-              <text-box v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == section.id && item.column == col.index)" :id ="text.id" :key="text.id" :styleText="text.style" :position="text.position" :text="text.value"></text-box>
-              <image-component v-for="image in getElements.filter(item => item.type == 'img' && item.parentId == section.id && item.column == col.index)" :id="image.id" :key="image.id" :styleImg="image.style" :position="image.position" :url="image.url"></image-component>
-              <button-component v-for="btn in getElements.filter(item => item.type == 'btn' && item.parentId == section.id && item.column == col.index)" :id="btn.id" :key="btn.id" :styleButton="btn.style" :position="btn.position" :text="btn.style.text"></button-component>
-        </column-basic>
-    </section-basic>
-  </div>
-  <div id="app" class="container-fluid" v-else>
-    <top-menu></top-menu>
-    <router-view/>
-  </div>
-  
+<template>    
+<keep-alive v-if="!isPreview">
+  <div id="app" class="container-fluid" >
+      <top-menu></top-menu>
+      <tool-add></tool-add>
+      <div-option v-if="option.is" :name="option.name" :id="option.id" :index="option.index"></div-option>
+      <section-basic  v-for="section in getElements.filter( item => item.type === 'section')" :id="section.id" :key="section.id" :styleSec="section.style">
+          <column-basic v-for="col in section.layout" :key="col.index" :columnIndex="col.index"  :id="section.id" :size="col.size" :bgImg="col.bg">
+                <text-box v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == section.id && item.column == col.index)" :id ="text.id" :key="text.id" :styleText="text.style" :position="text.position" :text="text.value"></text-box>
+                <image-component v-for="image in getElements.filter(item => item.type == 'img' && item.parentId == section.id && item.column == col.index)" :id="image.id" :key="image.id" :styleImg="image.style" :position="image.position" :url="image.url"></image-component>
+                <button-component v-for="btn in getElements.filter(item => item.type == 'btn' && item.parentId == section.id && item.column == col.index)" :id="btn.id" :key="btn.id" :styleButton="btn.style" :position="btn.position" :text="btn.style.text"></button-component>
+          </column-basic>
+      </section-basic>
+    </div>
+    </keep-alive>
+    <keep-alive v-else>
+    <div id="app" class="container-fluid" >
+          <top-menu></top-menu>
+          <router-view/>
+      
+    </div>  
+  </keep-alive>
   <!-- <text-box :id="'1'"></text-box> -->
   
 </template>
@@ -45,7 +49,7 @@ export default {
           getElements:function(){
             return this.$store.getters.getElementItems
           }
-        },
+        }, 
         mounted(){
           bus.$on('openOption',({name,id,index})=>{
             this.option.is = true
@@ -67,14 +71,14 @@ export default {
           bus.$on('backEditor',()=>{
             this.isPreview = false
           })
-        },
-        mounted(){
-          window.addEventListener('resize',(ev)=>{
+           window.addEventListener('resize',(ev)=>{
             this.window.height = ev.currentTarget.innerHeight
             this.window.width = ev.currentTarget.innerWidth
             this.$store.commit('setWindowSize',{height : this.window.height , width : this.window.width})
           })
-        }
+
+        },
+        
   }
 </script>
 
@@ -116,6 +120,9 @@ export default {
 }
 .column-1,.column-2,.column-3,.column-4,.column-5{
   z-index: 1;
+ background-position: center !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
 }
 .column-1{
   max-width: 100%;

@@ -37,7 +37,12 @@ class TextParagraph{
             letterSpacing : 10, /** (number) px */
             wordSpacing :5 , /** (number) px */
             lineHeight : 20 , /** (number) px */
-            alignBlock : 'none'
+            alignBlock : 'none',
+            top: 0,
+            left : 0,
+            width: '400px',
+            height :'50px',
+            rotation : 0
             // textIndent : 0, /** (number) px */
         };
         this.position = {
@@ -108,7 +113,12 @@ class Button {
             color: '#000000',
             textTransform : 'none',
             alignBlock : 'none',
-            text :'Simple Button'
+            text :'Simple Button',
+            top: 0,
+            left : 0,
+            width: '500px',
+            height : '50px',
+            rotation : 0
         }
         
     }
@@ -141,6 +151,11 @@ class Image {
                 color : '#cccccc',
                 opacity : 1
             },
+            top: 0,
+            left : 0,
+            width: '400px',
+            height : '300px',
+            rotation : 0
             
         }
     }
