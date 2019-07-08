@@ -8,6 +8,7 @@ import Image from './components/basic-components/Image'
 import Button from './components/basic-components/Button'
 import tinymce from 'vue-tinymce-editor'
 import Section from './components/basic-components/Section'
+import SectionFooter from './components/basic-components/SectionFooter';
 import Column from './components/basic-components/Column'
 import ToolAdd from './components/main-option-components/ToolAddElement'
 import AddElement from './components/main-option-components/AddElement'
@@ -23,9 +24,11 @@ import ImageRender from './components/render-components/Image'
 import ButtonRender from './components/render-components/Button'
 
 
+
 Vue.component('tinymceText',tinymce)
 Vue.component('dragResize',divDragResize)
 Vue.component('sectionBasic',Section)
+Vue.component('sectionFooter',SectionFooter)
 Vue.component('columnBasic',Column)
 Vue.component('textBox',TextBox)
 Vue.component('imageComponent',Image)

@@ -1,27 +1,26 @@
 <template>    
 <keep-alive v-if="!isPreview">
   <div id="app" class="container-fluid" >
-      <top-menu></top-menu>
-      <tool-add></tool-add>
-      <div-option v-if="option.is" :name="option.name" :id="option.id" :index="option.index"></div-option>
-      <section-basic  v-for="section in getElements.filter( item => item.type === 'section')" :id="section.id" :key="section.id" :styleSec="section.style">
-          <column-basic v-for="col in section.layout" :key="col.index" :columnIndex="col.index"  :id="section.id" :size="col.size" :bgImg="col.bg">
-                <text-box v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == section.id && item.column == col.index)" :id ="text.id" :key="text.id" :styleText="text.style" :position="text.position" :text="text.value"></text-box>
-                <image-component v-for="image in getElements.filter(item => item.type == 'img' && item.parentId == section.id && item.column == col.index)" :id="image.id" :key="image.id" :styleImg="image.style" :position="image.position" :url="image.url"></image-component>
-                <button-component v-for="btn in getElements.filter(item => item.type == 'btn' && item.parentId == section.id && item.column == col.index)" :id="btn.id" :key="btn.id" :styleButton="btn.style" :position="btn.position" :text="btn.style.text"></button-component>
-          </column-basic>
-      </section-basic>
-    </div>
-    </keep-alive>
-    <keep-alive v-else>
-    <div id="app" class="container-fluid" >
-          <top-menu></top-menu>
-          <router-view/>
-      
-    </div>  
-  </keep-alive>
-  <!-- <text-box :id="'1'"></text-box> -->
-  
+    <top-menu></top-menu>
+    <tool-add></tool-add>
+    <div-option v-if="option.is" :name="option.name" :id="option.id" :index="option.index"></div-option>
+    <section-basic  v-for="section in getElements.filter( item => item.type === 'section')" :id="section.id" :key="section.id" :styleSec="section.style">
+        <column-basic v-for="col in section.layout" :key="col.index" :columnIndex="col.index"  :id="section.id" :size="col.size" :bgImg="col.bg">
+              <text-box v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == section.id && item.column == col.index)" :id ="text.id" :key="text.id" :styleText="text.style" :position="text.position" :text="text.value"></text-box>
+              <image-component v-for="image in getElements.filter(item => item.type == 'img' && item.parentId == section.id && item.column == col.index)" :id="image.id" :key="image.id" :styleImg="image.style" :position="image.position" :url="image.url"></image-component>
+              <button-component v-for="btn in getElements.filter(item => item.type == 'btn' && item.parentId == section.id && item.column == col.index)" :id="btn.id" :key="btn.id" :styleButton="btn.style" :position="btn.position" :text="btn.style.text"></button-component>
+        </column-basic>
+    </section-basic>
+    <section-footer></section-footer>
+  </div>
+</keep-alive>
+<keep-alive v-else>
+  <div id="app" class="container-fluid" >
+    <top-menu></top-menu>
+    <router-view/>      
+  </div>  
+</keep-alive>
+
 </template>
 <script>
 import {bus} from './main'
@@ -39,10 +38,6 @@ export default {
                 index :1
               },
               isPreview : false,
-              window : {
-                height : window.innerHeight,
-                width : window.innerWidth
-              }
           }
         },
         computed:{
@@ -72,9 +67,7 @@ export default {
             this.isPreview = false
           })
            window.addEventListener('resize',(ev)=>{
-            this.window.height = ev.currentTarget.innerHeight
-            this.window.width = ev.currentTarget.innerWidth
-            this.$store.commit('setWindowSize',{height : this.window.height , width : this.window.width})
+            this.$store.commit('setWindowSize',{height :  ev.currentTarget.innerHeight , width :  ev.currentTarget.innerWidth})
           })
 
         },

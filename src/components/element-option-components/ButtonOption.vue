@@ -30,7 +30,6 @@
             },
             styleBtn :{
                 type : Object,
-
             },
             elementName : {
                 type : String,
@@ -78,8 +77,9 @@
         height: 25px;
         position: absolute;
         z-index: 99999999;
-        top: -30px;
-        right: -100px;
+        bottom: -30px;
+        right: 0px;
+        opacity: 0.8;
     }
     ul{
         list-style-type: none;
