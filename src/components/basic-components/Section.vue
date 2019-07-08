@@ -1,18 +1,12 @@
 <template>
     <dragResize
     :id="id"
-    :x = 150
-    :y = 100
-    :angle=0
-    :w=300
-    :h=200
     class="row"
     :resizable="false"
     :rotatable="false"
     @select="select"
     @deselect="deselect"
-    :style ="styleSec"
-    
+    :style ="getStyle"
     style="width:100%;margin:0;position:relative"
     >
         <slot></slot>
@@ -54,6 +48,16 @@ import {bus} from '../../main'
                     bottom: 0 + '!important',
                     right: -10 +'px !important',
                     top : 'auto'
+                }
+            }
+        },
+        computed:{
+            getStyle :function(){
+                return{
+                    backgroundColor :this.styleSec.backgroundColor,
+                    boxShadow : this.styleSec.boxShadow,
+                    margin : this.styleSec.margin,
+                    height : this.styleSec.height + 'px'
                 }
             }
         },

@@ -1,14 +1,21 @@
 <template>
-  <div id="app" class="container-fluid">
+  <div id="app" class="container-fluid" v-if="!isPreview">
+    <top-menu></top-menu>
     <tool-add></tool-add>
     <div-option v-if="option.is" :name="option.name" :id="option.id" :index="option.index"></div-option>
     <section-basic  v-for="section in getElements.filter( item => item.type === 'section')" :id="section.id" :key="section.id" :styleSec="section.style">
         <column-basic v-for="col in section.layout" :key="col.index" :columnIndex="col.index"  :id="section.id" :size="col.size" :bgImg="col.bg">
               <text-box v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == section.id && item.column == col.index)" :id ="text.id" :key="text.id" :styleText="text.style" :position="text.position" :text="text.value"></text-box>
               <image-component v-for="image in getElements.filter(item => item.type == 'img' && item.parentId == section.id && item.column == col.index)" :id="image.id" :key="image.id" :styleImg="image.style" :position="image.position" :url="image.url"></image-component>
+              <button-component v-for="btn in getElements.filter(item => item.type == 'btn' && item.parentId == section.id && item.column == col.index)" :id="btn.id" :key="btn.id" :styleButton="btn.style" :position="btn.position" :text="btn.style.text"></button-component>
         </column-basic>
     </section-basic>
   </div>
+  <div id="app" class="container-fluid" v-else>
+    <top-menu></top-menu>
+    <router-view/>
+  </div>
+  
   <!-- <text-box :id="'1'"></text-box> -->
   
 </template>
@@ -17,17 +24,20 @@ import {bus} from './main'
 export default {
 
     methods:{
-      resizeStop:function(reg ,startRect){
-        console.log(reg)
-      },
+      
     },
         data:function(){
           return {
             option :{
-              is : false,
-              name : '',
-              id : '',
-              index :1
+                is : false,
+                name : '',
+                id : '',
+                index :1
+              },
+              isPreview : false,
+              window : {
+                height : window.innerHeight,
+                width : window.innerWidth
               }
           }
         },
@@ -51,12 +61,20 @@ export default {
           bus.$on('cls',()=>{
             this.option.is = false
           })
+          bus.$on('preview',()=>{
+            this.isPreview = true
+          })
+          bus.$on('backEditor',()=>{
+            this.isPreview = false
+          })
+        },
+        mounted(){
+          window.addEventListener('resize',(ev)=>{
+            this.window.height = ev.currentTarget.innerHeight
+            this.window.width = ev.currentTarget.innerWidth
+            this.$store.commit('setWindowSize',{height : this.window.height , width : this.window.width})
+          })
         }
-        // mounted(){
-        //   window.addEventListener("mousemove",(ev)=>{
-        //     console.log('x '+ev.clientX+' y '+ev.clientY)
-        //   })
-        // }
   }
 </script>
 

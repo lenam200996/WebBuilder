@@ -4,9 +4,9 @@
       <li>
         <img src="../../assets/logo.png" />
       </li>
-      <li @click="openOption('BACKGROUND')">
+      <!-- <li @click="openOption('BACKGROUND')">
         <img src="../../assets/square-regular.svg" />
-      </li>
+      </li> -->
       <li @click="openOption('ADD')">
         <img src="../../assets/plus-circle-solid.svg" />
       </li>

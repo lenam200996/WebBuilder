@@ -4,7 +4,7 @@
     <ul v-if="typeContent.type === 'ADD'">
       <li @click="$store.commit('addElement',{type : 'text'})">TEXT</li>
       <li @click="$store.commit('addElement',{type : 'image'})" >IMAGE</li>
-      <li>Button</li>
+      <li @click="$store.commit('addElement',{type : 'button'})" >BUTTON</li>
      
     </ul>
     <ul v-if="typeContent.type === 'BACKGROUND'">

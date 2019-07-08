@@ -6,6 +6,10 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    window : {
+      height : window.innerHeight,
+      width : window.innerWidth
+    },
     selectId : false,
     indexItem : 1,
     Selectedcolumn : null,
@@ -17,6 +21,10 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    setWindowSize :function(state,{height , width}){
+      state.window.height = height
+      state.window.width = width
+    },
     setBackgroundImageById:function(state,{id,value}){
       state.elements.item = state.elements.item.filter(item => {
         if(item.id == id){
@@ -75,7 +83,7 @@ export default new Vuex.Store({
       var item = {
         id : state.indexItem,
         type : 'section',
-        style: ObjectSection.getStyle(),
+        style: ObjectSection.style,
         parentId : -1,
         layout:ObjectSection.layout
       }
@@ -113,6 +121,21 @@ export default new Vuex.Store({
                 url : ObjectImg.url
               }    
               this.commit('addItem',item)
+            }
+        break;
+        case 'button':
+            {
+              var ObjectButton = new Element.Button()
+              var item = {
+                id : state.indexItem,
+                type : 'btn',
+                style : ObjectButton.style,
+                parentId : state.selectId != null ? state.selectId : null,
+                column :state.Selectedcolumn,
+                position : ObjectButton.position,
+                text  : ObjectButton.text
+              } 
+              this.commit('addItem',item)     
             }
         break;
         default:
@@ -227,8 +250,10 @@ export default new Vuex.Store({
     },
     getNumColumn:function(state){
       return state.elements.item.find(item => item.id == state.selectId).layout.length
+    },
+    getWindowSize:function(state){
+      return state.window
     }
-
   },
   actions: {}
 });

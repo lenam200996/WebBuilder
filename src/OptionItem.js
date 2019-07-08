@@ -65,8 +65,55 @@ var Default = {
         ],
         'SECTION':[
             {
+                name : 'Height',
+                ref : 'height'
+            },
+            {
                 name : 'Column',
                 ref : 'sectionColumnManagement'
+            },
+            
+        ],
+        'BUTTON':[
+            {
+                name: 'Align Block',
+                ref : 'alignBlock'
+            }, 
+            {
+                name : 'Border Width',
+                ref : 'borderWidth'
+            },
+            {
+                name : 'Border Type',
+                ref : 'borderType'
+            },
+            {
+                name : 'Border Color',
+                ref : 'borderColor'
+            },
+            {
+                name : 'Border Radius',
+                ref : 'borderRadius'
+            },
+            {
+                name : 'Text color',
+                ref : 'color'
+            },
+            {
+                name: "Font Family",
+                ref: "fontFamily"
+            },
+            {
+                name : 'Text',
+                ref : 'textValue'
+            },
+            {
+                name : 'Text Transform',
+                ref : 'textTransform'
+            },
+            {
+                name : 'Background Color',
+                ref : 'backgroundColor'
             }
         ]
         

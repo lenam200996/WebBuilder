@@ -5,6 +5,7 @@ import store from "./store";
 import divDragResize from '@minogin/vue-drag-resize-rotate'
 import TextBox from './components/basic-components/Text'
 import Image from './components/basic-components/Image'
+import Button from './components/basic-components/Button'
 import tinymce from "vue-tinymce-editor";
 import Section from './components/basic-components/Section'
 import Column from './components/basic-components/Column'
@@ -14,6 +15,7 @@ import ButtonOptionElement from './components/element-option-components/ButtonOp
 import OptionElement from './components/element-option-components/OptionElement'
 import OptionElementItem from './components/element-option-components/OptionElementItem'
 import ColumnItem from './components/element-option-components/ColumnItem'
+import TopMenu from './components/main-option-components/TopMenu'
 
 
 Vue.component('tinymceText',tinymce)
@@ -28,6 +30,8 @@ Vue.component('btnOption',ButtonOptionElement)
 Vue.component('divOption',OptionElement)
 Vue.component('divOptionItem',OptionElementItem)
 Vue.component('itemColumn',ColumnItem)
+Vue.component('buttonComponent',Button)
+Vue.component('topMenu',TopMenu)
 
 Vue.config.productionTip = false;
 export const bus = new Vue();

@@ -11,22 +11,20 @@
             :style="getStyleWrap"
             >
              <!-- :hasActiveContent="true" -->
-      <div class="text" @active="onActive()" v-if="!textActive"  >
-          <span v-html="Value" :style="getStyle"></span>
-          
+      <div class="button" @active="onActive()" >
+          <button :style="getStyle">
+              <span v-html="text" ></span>
+          </button>
       </div>
-      <div v-else class="edit">
-          <tinymceText ref="area" id="d1"  v-model="Value" @editorInit="initEdit" :style="getStyle"></tinymceText>
-      </div>
+     
       <btnOption v-if="isActive"
         :isGrid="false" 
-        @editText="edit"
         @edit="editOption" 
         @disableEdit="onBlur"
         @deleteItem="deleteItem"
         @preColumn="preColumn"
         @nextColumn="nextColumn"
-        :elementName="'TEXT'"
+        :elementName="'BUTTON'"
         ></btnOption>
         
     </dragResize>
@@ -48,7 +46,7 @@ import {bus} from '../../main'
         type :String,
         required: true,
       },
-      styleText :{
+      styleButton :{
         type :Object,
 
       }
@@ -56,26 +54,18 @@ import {bus} from '../../main'
     },
     data() {
       return {
-        textActive: false,
         isActive : false,
       }
     },
 
     methods: {
-      initEdit:function(){
-        this.$refs.area.editor.setContent(this.text);
-      },
-      edit() {
-        this.textActive = true
-      },
+
       editOption(){
         this.textActive  = false
-         bus.$emit('openOption',{name : 'TEXT',id:this.id,index : -1})
+         bus.$emit('openOption',{name : 'BUTTON',id:this.id,index : -1})
       },
       onBlur() {
-        // this.isActive = false
-        this.textActive = false
-        bus.$emit('closeOptionElement',{name : 'TEXT',id:this.id})
+        bus.$emit('closeOptionElement',{name : 'BUTTON',id:this.id})
       },     
       select:function(){
         this.isActive = true
@@ -97,38 +87,30 @@ import {bus} from '../../main'
 
     },
     computed:{
-      Value :{
-        get : function(){
-          return this.text
-        },
-        set: function(val){
-          this.$store.commit('setValueText',{id :this.id , val : val})
-        }
-      },
       getStyle: function(){
         
         return {
-          fontFamily : this.styleText.fontFamily,
-          letterSpacing : this.styleText.letterSpacing+'px',
-          wordSpacing : this.styleText.wordSpacing+'px',
-          lineHeight : this.styleText.lineHeight+'px',
-
+            backgroundColor : this.styleButton.backgroundColor,
+            border: this.styleButton.border.width + 'px '+this.styleButton.border.type+' '+this.styleButton.border.color,
+            borderRadius: this.styleButton.borderRadius + 'px',
+            color: this.styleButton.color,
+            textTransform : this.styleButton.textTransform,
+            fontFamily : this.styleButton.fontFamily,
         }
       },
       getStyleWrap:function(){
-        if(this.styleText.alignBlock == 'center'){
+        if(this.styleButton.alignBlock == 'center'){
           var style = {
             left : '50%',
-            transform : 'translateX(-50%)',
-            maxWidth : '90%'
+            transform : 'translateX(-50%)'
           }
-        }else if( this.styleText.alignBlock == 'left'){
+        }else if( this.styleButton.alignBlock == 'left'){
           var style = {
             left : 0,
             transform :'none',
             right : 'auto'
           }
-        }else if( this.styleText.alignBlock == 'right'){
+        }else if( this.styleButton.alignBlock == 'right'){
           var style = {
             right : 0,
             transform :'none',
@@ -141,28 +123,17 @@ import {bus} from '../../main'
       }
     },
     watch:{
-      // getValue: function(){
-      //   console.log("change text")
-      // }
+
     }
   }
 </script>
 
 <style>
-  .text {
+  .button, .button>button {
     width: 100%;
     height: 100%;
-    /* border: 1px solid lightgrey; */
-    
+    padding: 0;
   }
-  .textarea {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 99999999999;
-  }
-  .edit{
-      position: relative;
-  }
+
 
 </style>

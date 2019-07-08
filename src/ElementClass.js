@@ -79,24 +79,38 @@ class TextParagraph{
 
 
 class Button {
-    constructor(value){
-        this.text = new TextSimple('this is a button');
-        this.backgroundColor = '#ffffff';
-        this.border = {
-            width : 0,
-            color : '#000000'
+    constructor(){
+        
+        this.position = {
+            x :100,
+            y : 25,
+            angle:0,
+            w:200,
+            h:50
         };
-        this.borderRadius = {
-            width : 0
-        };
-        this.shadow = {
-            angle : 0,
-            distance : 0,
-            size : 0,
-            blur :  4,
-            color : '#cccccc',
-            opacity : 1
+        this.style = {
+            fontFamily : 'Roboto',
+            backgroundColor : '#ffffff',
+            border : {
+                width : 0,
+                type : 'solid',
+                color : '#000000'
+            },
+            borderRadius :0,
+            shadow : {
+                angle : 0,
+                distance : 0,
+                size : 0,
+                blur :  4,
+                color : '#cccccc',
+                opacity : 1
+            },
+            color: '#000000',
+            textTransform : 'none',
+            alignBlock : 'none',
+            text :'Simple Button'
         }
+        
     }
 }
 
@@ -162,14 +176,7 @@ class Section {
         ];
         
     }
-    getStyle(){
-        return {
-            backgroundColor : this.style.backgroundColor,
-            height : this.style.height + 'px',
-            boxShadow : this.style.boxShadow,
-            margin : this.style.margin
-        }
-    }
+    
 }
 
 

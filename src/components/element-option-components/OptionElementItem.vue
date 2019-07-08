@@ -65,15 +65,32 @@
                 </span>
                 <div v-if="itemOption.ref == 'sectionColumnManagement'" class="div-column-manager">
                     <h2>Column Manager</h2>
-                    <button @click="addColumn">Add Column</button>
+                    <button class="addColumn" @click="addColumn">Add Column</button>
                     <ul>
                         <item-column v-for="n in getNumColumn" :key="n" :n="n"></item-column>
                     </ul>
-                    <div style="clear:left;"></div>
+                    <!-- <div style="clear:left;"></div> -->
                     <div class="div-column-manager-option">
                         <button v-if="enableOptionColumn" @click="deleteColumn"><img src="../../assets/delete.svg"/></button>
                     </div>
                 </div>
+                <span v-if="itemOption.ref == 'color'" v-html="itemOption.name"></span>
+                <input v-if="itemOption.ref == 'color'" type="color" v-model="style.color">
+                <span v-if="itemOption.ref == 'textValue'" v-html="itemOption.name"></span>
+                <input v-if="itemOption.ref == 'textValue'" type="text" v-model="style.text">
+                <span v-if="itemOption.ref == 'textTransform'" v-html="itemOption.name"></span>
+                <select v-if="itemOption.ref == 'textTransform'" v-model="style.textTransform">
+                    <option value="none" selected>None</option>
+                    <option value="capitalize" >Capitalize</option>
+                    <option value="uppercase">Uppercase</option>
+                    <option value="lowercase">Lowercase</option>
+                    <option value="initial">Initial</option>
+                    <option value="inherit">Inherit</option>
+                </select>
+                <span v-if="itemOption.ref == 'backgroundColor'" v-html="itemOption.name"></span>
+                <input v-if="itemOption.ref == 'backgroundColor'" type="color" v-model="style.backgroundColor">
+                <span v-if="itemOption.ref == 'height'" v-html="itemOption.name"></span>
+                <input v-if="itemOption.ref == 'height'" type="number" v-model="style.height" min="300" max="1000" step="50">
             </li>
         </ul>
     </div>
@@ -202,7 +219,7 @@ import {bus} from '../../main'
         
     }
     
-    ul>li>input[type=range] , ul>li>input[type=text],ul>li>input[type=color], ul>li>select,ul>li>label{
+    ul>li>input[type=range] , ul>li>input[type=text],ul>li>input[type=color], ul>li>select,ul>li>label,ul>li>input[type=number]{
         position: absolute;
         width: 120px;
         height: 30px;
@@ -235,9 +252,17 @@ import {bus} from '../../main'
     }
 
     .div-column-manager>button{
-        width: 300px;
-        height: 30px;
+        width: 150px;
+        height: 40px;
         margin: auto;
+        border-radius: 10px;
+        background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.96) 0%,
+            rgba(238, 238, 238, 0.96) 100%
+        );
+        box-shadow: 0 2px 5px 0 rgba(22, 45, 61, 0.58);
+
     }
     .div-column-manager>ul{
         width: 100%;
@@ -246,7 +271,7 @@ import {bus} from '../../main'
      .div-column-manager>ul>li{
          width: 16.2%;
          height: 60px;
-         float: left;
+         display: inline-flex;
          background-color: green;
          margin-right: 2px;
          position: relative;
@@ -266,5 +291,6 @@ import {bus} from '../../main'
         width: 30px;
         height: 30px;
     }
+    
 
 </style>
