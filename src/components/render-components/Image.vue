@@ -81,6 +81,5 @@
     .wrap-img{
         position: absolute;
         max-width: 90%;
-        
     }
  </style>

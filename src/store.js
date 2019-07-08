@@ -21,6 +21,18 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    bindingPosition:function(state,{id,val}){
+      state.elements.item = state.elements.item.filter(item =>{
+        if(item.id == id){
+          item.position.x = val.x
+          item.position.y = val.y
+          item.position.w = val.w
+          item.position.h = val.h
+          item.position.angle = val.angle
+        }
+        return item
+      })
+    },
     updatePositionElement:function(state,{id,val}){
       state.elements.item = state.elements.item.filter(item =>{
         if(item.id == id){
