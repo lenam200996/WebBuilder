@@ -21,6 +21,26 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    addTemplate:function(state,payload){
+      switch (payload.type) {
+        case 'text':
+            {
+              var ObjectText = new Element.TextParagraph()
+              var item = {
+                id : state.indexItem,
+                type : 'text',
+                style : payload.style,
+                parentId : state.selectId != null ? state.selectId : null,
+                column : state.Selectedcolumn,
+                position :payload.position,
+                value : payload.value
+              }
+              this.commit('addItem',item)
+            }
+          break;
+          
+        }
+    },
     bindingPosition:function(state,{id,val}){
       state.elements.item = state.elements.item.filter(item =>{
         if(item.id == id){

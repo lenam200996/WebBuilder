@@ -56,7 +56,6 @@ import {bus} from '../../main'
     .wrap-option{
         position: fixed;
         z-index: 99999;
-        
         height: 400px;
         overflow-y: scroll;
         width : 25%;

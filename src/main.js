@@ -22,7 +22,9 @@ import ColumnRender from './components/render-components/Column'
 import TextRender from './components/render-components/Text'
 import ImageRender from './components/render-components/Image'
 import ButtonRender from './components/render-components/Button'
-
+import VueTabs from 'vue-nav-tabs/dist/vue-tabs.js'
+import 'vue-nav-tabs/themes/vue-tabs.css'
+Vue.use(VueTabs)
 
 
 Vue.component('tinymceText',tinymce)

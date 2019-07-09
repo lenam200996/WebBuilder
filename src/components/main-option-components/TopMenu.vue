@@ -1,6 +1,7 @@
 <template>
     <div class="top-menu">
         <button class="preview-btn" @click="preview">{{isPreview ? 'BACK' :'PREVIEW'}}</button>
+        <button class="create-template-btn" @click="createTemplate">{{isPreview ? 'BACK' : 'Create Template'}}</button>
     </div>
 </template>
 
@@ -24,6 +25,18 @@ import { bus } from "../../main";
                     this.isPreview = true
                 }
                 
+            },
+            createTemplate:function(){
+                 if(this.isPreview){
+                    this.$router.push({ path: '/' })
+                    bus.$emit('backEditor',true)
+                    this.isPreview = false
+                }else{
+                    this.$router.push({ path: 'createtemplate' })
+                    bus.$emit('preview',true)
+                    this.isPreview = true
+                }
+               
             }
         }
     }
@@ -51,6 +64,17 @@ import { bus } from "../../main";
         width: 200px;
         height: 50px;
         background-color: blue;
+        color: #ffffff;
+        text-align: center;
+        font-size: 20px;
+        border: none;
+    }
+    .create-template-btn{
+        position: absolute;
+        right: 210px;
+        width: 200px;
+        height: 50px;
+        background-color: rgb(15, 143, 4);
         color: #ffffff;
         text-align: center;
         font-size: 20px;
