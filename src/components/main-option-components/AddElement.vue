@@ -49,10 +49,11 @@
             <li @click="$store.commit('addElement',{type : 'button'})" >Simple Button</li>
           </ul>
         </v-tab>
-        <v-tab title="Trips" icon="ti-check">
+        <v-tab title="Strip" icon="ti-check">
           <ul>
             <li @click="$store.commit('addSection')">SECTION</li>
-            <li @click="$store.commit('addSection')">SECTION</li>
+            <li v-for="strip in template['template_strip']" :key="strip.name"  @click="$store.commit('addTemplate',strip)">{{strip.name}}</li>
+            <!-- <li @click="$store.commit('addSection')">SECTION</li> -->
           </ul>
         </v-tab>
     </vue-tabs>

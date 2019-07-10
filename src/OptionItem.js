@@ -69,9 +69,17 @@ var Default = {
                 ref : 'height'
             },
             {
+                name : 'Stretched',
+                ref: 'stretched'
+            },
+            {
                 name : 'Column',
                 ref : 'sectionColumnManagement'
             },
+            {
+                name :'Grid manager',
+                ref:'sectionGrid'
+            }
             
         ],
         'BUTTON':[

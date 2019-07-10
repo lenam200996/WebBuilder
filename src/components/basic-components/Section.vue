@@ -9,16 +9,21 @@
     :style ="getStyle"
     style="width:100%;margin:0;position:relative"
     >
-        <slot></slot>
-        <btnOption v-if="isActive"
-        :isGrid="true" 
-        @edit="edit" 
-        @disableEdit="onBlur"
-        @deleteItem="deleteItem"
-        :styleBtn="styleBtn"
-        :elementName="'SECTION'"
-        ></btnOption>
+    <div :class="getStretched">
+        <div class="row" :style ="getStyle" style="width:100%;margin:0;position:relative">
+            <slot></slot>
+            <btnOption v-if="isActive"
+            :isGrid="true" 
+            @edit="edit" 
+            @disableEdit="onBlur"
+            @deleteItem="deleteItem"
+            :styleBtn="styleBtn"
+            :elementName="'SECTION'"
+            ></btnOption> 
+        </div>
+    </div>
     </dragResize>
+   
 </template>
 
 <script>
@@ -55,10 +60,13 @@ import {bus} from '../../main'
             getStyle :function(){
                 return{
                     backgroundColor :this.styleSec.backgroundColor,
-                    boxShadow : this.styleSec.boxShadow,
+                    // boxShadow : this.styleSec.boxShadow,
                     margin : this.styleSec.margin,
                     height : this.styleSec.height + 'px'
                 }
+            },
+            getStretched:function(){
+                return this.styleSec.stretched
             }
         },
         mounted(){

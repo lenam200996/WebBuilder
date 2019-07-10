@@ -21,11 +21,101 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    swapColumn:function(state,toIndex){
+      switch (toIndex) {
+        case 'toLeft':
+          {
+            if(state.Selectedcolumn == 1)
+            {
+              return
+            }
+            state.elements.item = state.elements.item.filter(item =>{
+              if(item.parentId == state.selectId) {
+                if(item.column == state.Selectedcolumn){
+                  item.column = state.Selectedcolumn - 1
+                  return item
+                }
+                if(item.column == state.Selectedcolumn - 1){
+                  item.column = state.Selectedcolumn
+                  return item
+                }
+                return item
+              }
+              if(item.id == state.selectId){
+                item.layout = item.layout.filter(itemLayout =>{
+                  if(itemLayout.index == state.Selectedcolumn){
+                    itemLayout.index = state.Selectedcolumn-1
+                    return itemLayout
+                  }
+                  if(itemLayout.index == state.Selectedcolumn -1){
+                    itemLayout.index = state.Selectedcolumn
+                    return itemLayout
+                  }
+                  return itemLayout
+                })
+                item.layout = item.layout.sort(function(a,b){return a.index - b.index})
+                return item
+              }
+              return item
+            })
+            
+          }
+          break;
+        case 'toRight':
+        {
+          if(state.Selectedcolumn == state.elements.item.find(item => item.id == state.selectId).layout.length){
+              return
+          }
+          state.elements.item = state.elements.item.filter(item =>{
+            if(item.parentId == state.selectId) {
+              if(item.column == state.Selectedcolumn){
+                item.column = state.Selectedcolumn + 1
+                return item
+              }
+              if(item.column == state.Selectedcolumn + 1){
+                item.column = state.Selectedcolumn
+                return item
+              }
+              return item
+            }
+            if(item.id == state.selectId){
+              item.layout = item.layout.filter(itemLayout =>{
+                if(itemLayout.index == state.Selectedcolumn){
+                  itemLayout.index = state.Selectedcolumn+1
+                  return itemLayout
+                }
+                if(itemLayout.index == state.Selectedcolumn +1){
+                  itemLayout.index = state.Selectedcolumn
+                  return itemLayout
+                }
+                return itemLayout
+              })
+              item.layout = item.layout.sort(function(a,b){return a.index - b.index})
+              return item
+            }
+            return item
+          })
+        }    
+          break;
+        default:
+          break;
+      }
+    },
+    setSizeColumnGrid:function(state,grid){
+      state.elements.item = state.elements.item.filter(item =>{
+        if(item.id == state.selectId){
+          item.layout = item.layout.filter(itemLayout =>{
+            itemLayout.size = grid[itemLayout.index - 1]
+            return itemLayout
+          })
+        }
+        return item
+      })
+    },
     addTemplate:function(state,payload){
       switch (payload.type) {
         case 'text':
             {
-              var ObjectText = new Element.TextParagraph()
               var item = {
                 id : state.indexItem,
                 type : 'text',
@@ -38,7 +128,72 @@ export default new Vuex.Store({
               this.commit('addItem',item)
             }
           break;
-          
+          case 'strip':
+          {
+            payload.elements.map(item=>{
+              
+              switch (item.type) {
+                case 'section':
+                  {
+                    var itemSection = {
+                      id : state.indexItem,
+                      type : 'section',
+                      style: item.style,
+                      parentId : -1,
+                      layout: item.layout
+                    }
+                    state.selectId = state.indexItem
+                    state.Selectedcolumn = 1
+                    this.commit('addItem',itemSection)    
+                  }
+                break;
+                case 'text':
+                  {
+                    var itemText = {
+                      id : state.indexItem,
+                      type : 'text',
+                      style : item.style,
+                      parentId : state.selectId != null ? state.selectId : null,
+                      column : item.column,
+                      position :item.position,
+                      value : item.value
+                    }
+                    this.commit('addItem',itemText)
+                  }
+                  break;  
+                  case 'btn':
+                    {
+                      var itembtn = {
+                        id : state.indexItem,
+                        type : 'btn',
+                        style : item.style,
+                        parentId : state.selectId != null ? state.selectId : null,
+                        column :item.column,
+                        position : item.position,
+                      } 
+                      this.commit('addItem',itembtn)  
+                    }
+                  break;
+                  case 'image':
+                    {
+                      var itemImg = {
+                        id  :state.indexItem,
+                        type : 'img',
+                        style : item.style,
+                        parentId : state.selectId != null ? state.selectId : null,
+                        column : item.column,
+                        position: item.position,
+                        url : item.url
+                      }    
+                      this.commit('addItem',itemImg)
+                    }
+                  break;
+                default:
+                  break;
+              }
+            })
+          }
+          break;
         }
     },
     bindingPosition:function(state,{id,val}){
@@ -129,7 +284,7 @@ export default new Vuex.Store({
         type : 'section',
         style: ObjectSection.style,
         parentId : -1,
-        layout:ObjectSection.layout
+        layout:ObjectSection.layout,
       }
       state.selectId = state.indexItem
       state.Selectedcolumn = 1
@@ -234,7 +389,7 @@ export default new Vuex.Store({
       state.elements.item = state.elements.item.filter(item => {
         if(item.id == id ){
           if(item.layout.length > 1){
-            var size = this.getters.getNumColumn - 1;
+            var size = parseInt(100 / (this.getters.getNumColumn - 1));
             item.layout = item.layout.filter(itemLayout => {
               if(itemLayout.index != index){
                 return item
@@ -261,8 +416,10 @@ export default new Vuex.Store({
       })
     },
     addColumn:function(state){
+      console.log(this.getters.getNumColumn)
       if(this.getters.getNumColumn < 5){
-        var size = this.getters.getNumColumn + 1
+        var size = parseInt(100 / (this.getters.getNumColumn + 1))
+        
         state.elements.item = state.elements.item.filter(item =>{
           if(item.id == state.selectId){
             item.layout.push({index : this.getters.getNumColumn + 1, size : 0,bg : '#ffffff'})

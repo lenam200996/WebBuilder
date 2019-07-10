@@ -46,10 +46,8 @@ import {bus} from '../../main'
             size : {
                 type: Number,
                 required :true,
-                default : 12,
-                validator:function(val){
-                    return (val > 0 && val < 13)
-                }
+                default : 100,
+                
             },
             columnIndex:{
                 type : Number,

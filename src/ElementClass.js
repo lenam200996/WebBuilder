@@ -27,13 +27,6 @@ class TextParagraph{
     constructor(){
         this.style = {
             fontFamily : 'Roboto',
-            // fontSize : 14, /** (number)px */
-            // textAlign: 'left', /** left , center, right , justify */
-            // color : '#000000', /** */
-            // backgroundColor  : 'none', /**  */
-            // fontWeight :500, /** 500,600,700,800,900 */
-            // fontStyle : 'normal', /*italic ,normal */ 
-            // textDecoration : 'none', /* none, overline,line-through,underline,... */
             letterSpacing : 10, /** (number) px */
             wordSpacing :5 , /** (number) px */
             lineHeight : 20 , /** (number) px */
@@ -43,7 +36,6 @@ class TextParagraph{
             width: '400px',
             height :'50px',
             rotation : 0
-            // textIndent : 0, /** (number) px */
         };
         this.position = {
             x :200,
@@ -166,28 +158,29 @@ class Section {
         this.style = {
             backgroundColor : 'linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)',
             boxShadow: '0 2px 5px 0 rgba(22, 45, 61, 0.58)',
-            margin : '20px 0 10px 0',
+            margin : 'auto',
             backgroundImage : {
                 url : './assets/logo.png',
                 position : 'center',
                 size : 'cover',
                 repeat : 'no-repeat'
             },
-            stretched :'container',
+            stretched :'container-fluid',
             height : 500
         }
        
         this.layout = [
             {
                 index: 1,
-                size : 2,
+                size : 40,
                 bg: '#ccc'
             },
             {
                 index : 2,
-                size : 2,
+                size : 60,
                 bg: 'none'
-            }
+            },
+            
         ];
         
     }

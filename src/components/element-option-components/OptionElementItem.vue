@@ -1,7 +1,7 @@
 <template>
     <div>
-        <ul>
-            <li v-for="(itemOption) in item" :key="itemOption.name">
+        <ul class="ul-wrap">
+            <li v-for="(itemOption) in item" :key="itemOption.name" :class="{classItemDiv : itemOption.ref == 'sectionGrid' || itemOption.ref == 'sectionColumnManagement'}">
                 <span v-if="itemOption.ref == 'alignBlock'" v-html="itemOption.name" ></span>
                 <select v-if="itemOption.ref == 'alignBlock'" v-model="style.alignBlock">
                     <option value="none">Custom</option>
@@ -63,16 +63,29 @@
                     <input  v-if="itemOption.ref == 'keepProportion'" type="radio" name="keepProportion" value="true" v-model="style.keepProportion"><i v-if="itemOption.ref == 'keepProportion'">True</i>
                     <input  v-if="itemOption.ref == 'keepProportion'" type="radio" name="keepProportion" value="false" v-model="style.keepProportion"><i v-if="itemOption.ref == 'keepProportion'">False</i>
                 </span>
+                <span v-if="itemOption.ref == 'stretched'" v-html="itemOption.name"></span>
+                <select v-if="itemOption.ref == 'stretched'" v-model="style.stretched">
+                    <option value="container" >Page</option>
+                    <option value="container-fluid" selected>Screen</option>
+                </select>
                 <div v-if="itemOption.ref == 'sectionColumnManagement'" class="div-column-manager">
                     <h2>Column Manager</h2>
                     <button class="addColumn" @click="addColumn">Add Column</button>
                     <ul>
-                        <item-column v-for="n in getNumColumn" :key="n" :n="n"></item-column>
+                        <item-column v-for="(n,index) in getNumColumn" :key="index" :n="n"></item-column>
                     </ul>
-                    <!-- <div style="clear:left;"></div> -->
                     <div class="div-column-manager-option">
                         <button v-if="enableOptionColumn" @click="deleteColumn"><img src="../../assets/delete.svg"/></button>
+                        <button v-if="enableOptionColumn" @click="swapColumn('toLeft')"><img src="../../assets/previous.svg"/></button>
+                        <button v-if="enableOptionColumn" @click="swapColumn('toRight')"><img src="../../assets/next.svg"/></button>
                     </div>
+                </div>
+                <div v-if="itemOption.ref == 'sectionGrid'" class="div-grid-manager">
+                    <h2>Grid Manager</h2>
+                    <ul class="ul-grid" >
+                        <grid-item v-for="(grid,index) in arrayGridManager" :key="index" :grid="grid"></grid-item>
+                    </ul>
+                    
                 </div>
                 <span v-if="itemOption.ref == 'color'" v-html="itemOption.name"></span>
                 <input v-if="itemOption.ref == 'color'" type="color" v-model="style.color">
@@ -99,6 +112,7 @@
 <script>
 import Default from '../../OptionItem'
 import {bus} from '../../main'
+import Grid from '../../data.json'
     export default {
         props:{
             name : {
@@ -121,7 +135,8 @@ import {bus} from '../../main'
                 item :[],
                 common : [],
                 backgroundColor: 1,
-                enableOptionColumn : false
+                enableOptionColumn : false,
+                arrayGridManager : []
             }
         },
         computed:{
@@ -137,6 +152,9 @@ import {bus} from '../../main'
         },
 
         methods:{
+            swapColumn:function(toIndex){
+                this.$store.commit('swapColumn',toIndex)
+            },
             addColumn:function(){
                 this.$store.commit('addColumn')
             },
@@ -184,28 +202,34 @@ import {bus} from '../../main'
                 }
             })
             this.item = Default.Default[this.name]
+            this.arrayGridManager = Grid.grid_manager[this.getNumColumn]
         },
         watch:{
             getNumColumn:function(val){
                 if(val == 1){
                     this.enableOptionColumn = false
                 }
+                this.arrayGridManager = Grid.grid_manager[val]
             }
-            // styleCache:function(val){
-            //     this.$store.commit('updateStyle',{id : this.id, val : val})
-            // }
         }
 
     }
 </script>
 
 <style scoped>
+    
+    .classItemDiv{
+        height: auto !important;
+    }
     ul{
         list-style-type: none;
         margin-top: 20px;
         padding: 10px;
+        
     }
-
+    ul.ul-wrap{
+        height: 400px;
+    }
     ul>li{
         width: 100%;
         height: 30px;

@@ -22,6 +22,7 @@ import ColumnRender from './components/render-components/Column'
 import TextRender from './components/render-components/Text'
 import ImageRender from './components/render-components/Image'
 import ButtonRender from './components/render-components/Button'
+import GridItem from './components/element-option-components/GridItem'
 import VueTabs from 'vue-nav-tabs/dist/vue-tabs.js'
 import 'vue-nav-tabs/themes/vue-tabs.css'
 Vue.use(VueTabs)
@@ -47,6 +48,7 @@ Vue.component('columnRender',ColumnRender)
 Vue.component('textRender',TextRender)
 Vue.component('imageRender',ImageRender)
 Vue.component('buttonRender',ButtonRender)
+Vue.component('gridItem',GridItem)
 
 Vue.config.productionTip = false;
 export const bus = new Vue();

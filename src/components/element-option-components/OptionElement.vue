@@ -66,7 +66,7 @@ import {bus} from '../../main'
         );
         box-shadow: 0 2px 5px 0 rgba(22, 45, 61, 0.58);
         border-radius: 10px 10px 0 0;
-        opacity : 0.8;
+        opacity : 1;
     }
     ::-webkit-scrollbar {
         display: none;

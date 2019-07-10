@@ -77,6 +77,9 @@ export default {
 
 
 <style>
+.container-fluid{
+  padding: 0; 
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -101,109 +104,143 @@ export default {
   z-index: 999;
 }
 
-.col-xl-6,.col-md-12 {
-  z-index: 1;
-  background-position: center;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-
-}
-.col-xl-2,.col-xl-3,.col-xl-4,.col-xl-6,.col-xl-12,.col-md-12{
-  padding: 0;
-}
-.column-1,.column-2,.column-3,.column-4,.column-5{
+.column-25,.column-50,.column-75,.column-33,.column-100,.column-20,
+.column-40,.column-60
+.column-66 ,.column-80
+{
+  display: flex;
   z-index: 1;
  background-position: center !important;
   background-size: 100% 100% !important;
   background-repeat: no-repeat !important;
 }
-.column-1{
+.column-40{
+  max-width: 40%;
+}
+.column-60{
+  max-width: 60%;
+}
+.column-66{
+  max-width: 66.66%;
+}
+.column-80{
+  max-width: 80%;
+}
+.column-100{
   max-width: 100%;
-  display: flex;
 }
-.column-2{
+.column-50{
   max-width: 50%;
-  display: flex;
 }
-.column-3{
+.column-75{
+  max-width: 75%;
+}
+.column-33{
   max-width: 33.33%;
-  display: flex;
 }
-.column-4{
+.column-25{
   max-width: 25%;
-  display: flex;
 }
-.column-5{
+.column-20{
   max-width:20%;
-  display: flex;
 }
 
 @media only screen and (max-width: 992px){
-  .column-1{
+  .column-100{
   max-width: 100%;
-  display: flex;
   }
-  .column-2{
+  .column-75{
+    max-width: 66.66%;
+  }
+  .column-50{
     max-width: 50%;
-    display: flex;
   }
-  .column-3{
+  .column-33{
     max-width: 33.33%;
-    display: flex;
   }
-  .column-4{
+  .column-25{
     max-width: 33.33%;
-    display: flex;
   }
-  .column-5{
+  .column-20{
     max-width:33.33%;
-    display: flex;
+  }
+  .column-40{
+  max-width: 40%;
+  }
+  .column-60{
+    max-width: 60%;
+  }
+  .column-66{
+    max-width: 66.66%;
+  }
+  .column-80{
+    max-width: 80%;
   }
 }
 @media only screen and (max-width: 768px){
-  .column-1{
+  .column-100{
   max-width: 100%;
-  display: flex;
   }
-  .column-2{
+  .column-50{
     max-width: 50%;
-    display: flex;
   }
-  .column-3{
+  .column-75{
+    max-width: 100%;
+  }
+  .column-33{
     max-width: 50%;
-    display: flex;
   }
-  .column-4{
-    max-width: 50%;
-    display: flex;
+  .column-25{
+    max-width: 100%;
   }
-  .column-5{
+  .column-20{
     max-width:50%;
-    display: flex;
+  }
+  .column-40{
+    max-width: 40%;
+  }
+  .column-60{
+    max-width: 60%;
+  }
+  .column-66{
+    max-width: 66.66%;
+  }
+  .column-80{
+    max-width: 80%;
   }
 }
 
 @media only screen and (max-width: 576px){
-  .column-1{
+  .column-100{
   max-width: 100%;
-  display: flex;
   }
-  .column-2{
+  .column-50{
     max-width: 100%;
-    display: flex;
   }
-  .column-3{
+  .column-75{
     max-width: 100%;
-    display: flex;
   }
-  .column-4{
+  .column-33{
     max-width: 100%;
-    display: flex;
   }
-  .column-5{
+  .column-25{
+    max-width: 100%;
+  }
+  .column-20{
     max-width:100%;
-    display: flex;
   }
+  .column-40{
+  max-width: 100%;
+}
+.column-60{
+  max-width: 100%;
+}
+.column-66{
+  max-width: 100%;
+}
+.column-80{
+  max-width: 100%;
+}
 }
 .left-vertical-tabs{
   width: 150px;
