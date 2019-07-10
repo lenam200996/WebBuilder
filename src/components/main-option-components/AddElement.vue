@@ -1,24 +1,6 @@
 <template>
   <div class="wrap-option">
     <h2 v-html="typeContent.type"></h2>
-    <!-- <ul v-if="typeContent.type === 'ADD'"> -->
-      <!-- <li @click="$store.commit('addElement',{type : 'text'})">TEXT</li> -->
-      <!-- <li>TEXT</li>
-      <li @click="$store.commit('addElement',{type : 'image'})" >IMAGE</li>
-      <li @click="$store.commit('addElement',{type : 'button'})" >BUTTON</li>
-    </ul>
-    <ul v-if="typeContent.type === 'BACKGROUND'">
-      <li>Color</li>
-    </ul>
-    <ul v-if="typeContent.type === 'TEMPLATE'">
-      <li @click="$store.commit('addTemplateAbout')">TEMPLATE</li>
-    </ul>
-    <ul v-if="typeContent.type === 'SECTION'">
-      <li @click="$store.commit('addSection')">SECTION</li> -->
-      <!-- <li @click="$store.commit('addTemplate','aboutOne')">About one</li>
-      <li @click="$store.commit('addTemplate','aboutTwo')">About two</li>
-      <li @click="$store.commit('addTemplate','aboutThree')">About three</li> -->
-    <!-- </ul> -->
     <vue-tabs v-if="typeContent.type === 'ADD'" 
               active-tab-color="#e74c3c" 
               active-text-color="white"
@@ -53,7 +35,11 @@
           <ul>
             <li @click="$store.commit('addSection')">SECTION</li>
             <li v-for="strip in template['template_strip']" :key="strip.name"  @click="$store.commit('addTemplate',strip)">{{strip.name}}</li>
-            <!-- <li @click="$store.commit('addSection')">SECTION</li> -->
+          </ul>
+        </v-tab>
+        <v-tab title="Shape" icon="ti-check">
+          <ul>
+              <li @click="$store.commit('addElement',{type : 'line'})">Line Basic</li>
           </ul>
         </v-tab>
     </vue-tabs>

@@ -1,28 +1,25 @@
-class TextSimple{
-    constructor(value){
+class Line {
+    constructor(){
         this.style = {
-            value :value,
-            font :'Robote',
-            fontSize: 14 ,
-            textAlign :'center',
-            fontWeight : 500,
-            color : '#000000',
-            fontStyle : 'normal',
-            textDecoration : 'none',
-        };
+            size: 6,
+            backgroundColor : 'red',
+            alignBlock : 'none',
+            top: 0,
+            left : 0,
+            rotation : 0,
+            width: '400px',
+            height :'50px',
+
+        },
         this.position = {
-            x :150,
-            y : 100,
+            x :200,
+            y : 25,
             angle:0,
-            w:300,
-            h:200
-        }
-    }
-    getStyle(){
-        
+            w:400,
+            h:50
+        };
     }
 }
-
 class TextParagraph{
     constructor(){
         this.style = {
@@ -50,26 +47,6 @@ class TextParagraph{
         
         
     }
-
-    getStyle(){
-        return {
-            fontFamily : 'Roboto',
-            fontSize : 14+ 'px', /** (number)px */
-            textAlign: 'left', /** left , center, right , justify */
-            color : '#000000', /** */
-            backgroundColor  : 'none', /**  */
-            fontWeight :500, /** 500,600,700,800,900 */
-            fontStyle : 'normal', /*italic ,normal */ 
-            textDecoration : 'none', /* none, overline,line-through,underline,... */
-            letterSpacing : 2 +'px', /** (number) px */
-            wordSpacing : 20 +'px', /** (number) px */
-            lineHeight : 20 +'px', /** (number) px */
-            textIndent : 0 +'px', 
-        }
-    } 
-    
-
-
    
 }
 
@@ -188,4 +165,4 @@ class Section {
 }
 
 
-export default {TextSimple,TextParagraph,Button,Section,Image}
+export default {TextParagraph,Button,Section,Image,Line}

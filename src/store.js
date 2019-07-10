@@ -337,6 +337,20 @@ export default new Vuex.Store({
               this.commit('addItem',item)     
             }
         break;
+        case 'line':
+          {
+            var ObjectLine = new Element.Line()
+            var item = {
+              id : state.indexItem,
+              type : 'line',
+              style : ObjectLine.style,
+              parentId : state.selectId != null ? state.selectId : null,
+              column :state.Selectedcolumn,
+              position : ObjectLine.position,
+            }    
+            this.commit('addItem',item) 
+          }
+        break;
         default:
           break;
       }

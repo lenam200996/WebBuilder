@@ -41,6 +41,8 @@
                 <label v-if="itemOption.ref == 'imgUrl'" class="inputFile" style="line-height: 30px; color:red;cursor:pointer;user-select:none;"   for="files">Select</label>
                 <span v-if="itemOption.ref == 'borderWidth'" v-html="itemOption.name"></span>
                 <input v-if="itemOption.ref == 'borderWidth'" type="range" v-model="style.border.width">
+                <span v-if="itemOption.ref == 'sizeLine'" v-html="itemOption.name"></span>
+                <input v-if="itemOption.ref == 'sizeLine'" type="range" v-model="style.size">
                 <span v-if="itemOption.ref == 'borderType'" v-html="itemOption.name"></span>
                 <select v-if="itemOption.ref == 'borderType'" v-model="style.border.type">
                     <option value="none">None</option>

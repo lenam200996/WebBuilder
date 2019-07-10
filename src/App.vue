@@ -9,6 +9,7 @@
               <text-box v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == section.id && item.column == col.index)" :id ="text.id" :key="text.id" :styleText="text.style" :position="text.position" :text="text.value"></text-box>
               <image-component v-for="image in getElements.filter(item => item.type == 'img' && item.parentId == section.id && item.column == col.index)" :id="image.id" :key="image.id" :styleImg="image.style" :position="image.position" :url="image.url"></image-component>
               <button-component v-for="btn in getElements.filter(item => item.type == 'btn' && item.parentId == section.id && item.column == col.index)" :id="btn.id" :key="btn.id" :styleButton="btn.style" :position="btn.position" :text="btn.style.text"></button-component>
+              <line-component v-for="line in getElements.filter(item => item.type == 'line' && item.parentId == section.id && item.column == col.index)" :id="line.id" :key="line.id" :styleLine="line.style" :position="line.position" ></line-component>
         </column-basic>
     </section-basic>
     <!-- <section-footer></section-footer> -->

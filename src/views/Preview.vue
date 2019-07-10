@@ -5,6 +5,7 @@
                 <text-render v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == section.id && item.column == col.index)"  :key="text.id" :styleText="text.style" :position="text.position" :text="text.value"></text-render>
                 <image-render v-for="image in getElements.filter(item => item.type == 'img' && item.parentId == section.id && item.column == col.index)"  :key="image.id" :styleImg="image.style" :position="image.position" :url="image.url"></image-render>
                 <button-render v-for="btn in getElements.filter(item => item.type == 'btn' && item.parentId == section.id && item.column == col.index)" :key="btn.id" :styleButton="btn.style" :position="btn.position" :text="btn.style.text"></button-render>
+                <line-render v-for="line in getElements.filter(item => item.type == 'line' && item.parentId == section.id && item.column == col.index)" :key="line.id" :styleLine="line.style" :position="line.position" ></line-render>
           </column-render>
       </section-render>
   </div>

@@ -123,6 +123,21 @@ var Default = {
                 name : 'Background Color',
                 ref : 'backgroundColor'
             }
+        ],
+        'LINE':[
+            {
+                name: 'Align Block',
+                ref : 'alignBlock'
+            },
+            {
+                name : 'Background Color',
+                ref : 'backgroundColor'
+            },
+            {
+                name: 'Size',
+                ref :'sizeLine'
+            },
+            
         ]
         
 }
