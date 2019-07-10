@@ -1,25 +1,23 @@
 <template>
     <dragResize
     :id="id"
-    :x = 150
-    :y = 100
-    :angle=0
-    :w=300
-    :h=200
     :resizable="false"
     :rotatable="false"
     :draggable="false"
     :class="'column-'+size" 
     @select="select"
     @deselect="deselect"
-    style="width:100%;height:100%;margin:0;position:relative;"
-    
-    :selected="$store.getters.getSelectID == id"
-    :style="{background : getBackground,
-    backgroundPosition: 'center',
-    backgroundSize: '100% 100%',
-    backgroundRepeat:' no-repeat',
-    zIndex : isActive? 9999 : 1,
+    :selected="$store.getters.getSelectID == id" 
+    :style="{
+        background : getBackground,
+        backgroundPosition: 'center',
+        backgroundSize: '100% 100%',
+        backgroundRepeat:' no-repeat',
+        zIndex : isActive? 9999 : 1,
+        width : '100%',
+        height: height + 'px',
+        margin : 0,
+        position: 'relative'
     }"
     >
     <!-- +' col-md-12'"  -->
@@ -55,6 +53,9 @@ import {bus} from '../../main'
             },
             bgImg : {
                 type :String,
+            },
+            height: {
+                type: Number
             }
         },
         data:function(){

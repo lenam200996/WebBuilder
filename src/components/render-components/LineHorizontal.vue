@@ -43,6 +43,7 @@
                 left : 0,
                 transform :'none',
                 right : 'auto',
+                maxWidth : '90%',
             }
             }else if( this.styleLine.alignBlock == 'right'){
             var style = {
@@ -52,6 +53,7 @@
                 right : 0,
                 transform :'none',
                 left : 'auto',
+                maxWidth : '90%',
             }
             }else{
             return {
@@ -59,6 +61,7 @@
                 top: this.styleLine.top,
                 width: this.styleLine.width ,
                 transform: 'rotate(' + this.styleLine.rotation + 'deg)',
+                maxWidth : '90%',
             };
             }
             return style

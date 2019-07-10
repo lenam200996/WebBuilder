@@ -53,6 +53,7 @@
             left : 0,
             transform :'none',
             right : 'auto',
+            maxWidth : '90%',
             zIndex :  1
           }
         }else if( this.styleText.alignBlock == 'right'){
@@ -64,7 +65,8 @@
             right : 0,
             transform :'none',
             left : 'auto',
-            zIndex :  1
+            zIndex :  1,
+            maxWidth : '90%',
           }
         }else{
           var style = {
@@ -73,7 +75,8 @@
             width: this.styleText.width ,
             height: this.styleText.height ,
             transform: 'rotate(' + this.styleText.rotation + 'deg)',
-            zIndex : 1
+            zIndex : 1,
+            maxWidth : '90%',
           };
         }
         return style

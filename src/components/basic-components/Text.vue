@@ -99,7 +99,7 @@ import {bus} from '../../main'
     },
     computed:{
       Value :{
-        get : function(){
+        get : function(){ 
           return this.text
         },
         set: function(val){
@@ -137,6 +137,7 @@ import {bus} from '../../main'
             left : 0,
             transform :'none',
             right : 'auto',
+            maxWidth : '90%',
              zIndex : this.textActive? 999999: 1
           }
         }else if( this.styleText.alignBlock == 'right'){
@@ -148,6 +149,7 @@ import {bus} from '../../main'
             right : 0,
             transform :'none',
              left : 'auto',
+             maxWidth : '90%',
               zIndex : this.textActive? 999999: 1
           }
         }else{
@@ -157,6 +159,7 @@ import {bus} from '../../main'
             width: this.styleText.width ,
             height: this.styleText.height ,
             transform: 'rotate(' + this.styleText.rotation + 'deg)',
+            maxWidth : '90%',
             zIndex : this.textActive? 999999: 1
           };
         }

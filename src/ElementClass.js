@@ -1,4 +1,4 @@
-class Line {
+class LineHorizontal {
     constructor(){
         this.style = {
             size: 6,
@@ -20,6 +20,30 @@ class Line {
         };
     }
 }
+
+class LineVertical{
+    constructor(){
+        this.style = {
+            size: 6,
+            backgroundColor : 'red',
+            alignBlock : 'none',
+            top: 0,
+            left : 0,
+            rotation : 0,
+            width: '30px',
+            height :'300px',
+
+        },
+        this.position = {
+            x :25,
+            y : 200,
+            angle:0,
+            w:50,
+            h:400
+        };
+    }
+}
+
 class TextParagraph{
     constructor(){
         this.style = {
@@ -165,4 +189,4 @@ class Section {
 }
 
 
-export default {TextParagraph,Button,Section,Image,Line}
+export default {TextParagraph,Button,Section,Image,LineHorizontal,LineVertical}

@@ -29,7 +29,8 @@
                         height: this.styleImg.height ,
                         transform: 'rotate(' + this.styleImg.rotation + 'deg)',
                         left : '50%',
-                        transform : 'translateX(-50%)'
+                        transform : 'translateX(-50%)',
+                        maxWidth : '90%',
                     }
                 }else if( this.styleImg.alignBlock == 'left'){
                     var style = {
@@ -39,7 +40,8 @@
                         transform: 'rotate(' + this.styleImg.rotation + 'deg)',
                         left : 0,
                         transform :'none',
-                        right : 'auto'
+                        right : 'auto',
+                        maxWidth : '90%',
                     }
                 }else if( this.styleImg.alignBlock == 'right'){
                     var style = {
@@ -50,6 +52,7 @@
                         right : 0,
                         transform :'none',
                         left : 'auto',
+                        maxWidth : '90%',
                     }
                 }else{
                     var style = {
@@ -58,6 +61,7 @@
                         width: this.styleImg.width ,
                         height: this.styleImg.height ,
                         transform: 'rotate(' + this.styleImg.rotation + 'deg)',
+                        maxWidth : '90%',
                     };
                 }
                 return style

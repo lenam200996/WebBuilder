@@ -106,7 +106,8 @@ import {bus} from '../../main'
             height: this.styleButton.height ,
             transform: 'rotate(' + this.styleButton.rotation + 'deg)',
             left : '50%',
-            transform : 'translateX(-50%)'
+            transform : 'translateX(-50%)',
+            maxWidth : '90%',
           }
         }else if( this.styleButton.alignBlock == 'left'){
           var style = {
@@ -116,7 +117,8 @@ import {bus} from '../../main'
             transform: 'rotate(' + this.styleButton.rotation + 'deg)',
             left : 0,
             transform :'none',
-            right : 'auto'
+            right : 'auto',
+            maxWidth : '90%',
           }
         }else if( this.styleButton.alignBlock == 'right'){
           var style = {
@@ -127,6 +129,7 @@ import {bus} from '../../main'
             right : 0,
             transform :'none',
              left : 'auto',
+             maxWidth : '90%',
           }
         }else{
           var style ={
@@ -135,6 +138,7 @@ import {bus} from '../../main'
             width: this.styleButton.width ,
             height: this.styleButton.height ,
             transform: 'rotate(' + this.styleButton.rotation + 'deg)',
+            maxWidth : '90%',
           };
         }
         return style

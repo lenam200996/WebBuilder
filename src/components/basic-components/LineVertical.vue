@@ -10,7 +10,7 @@
             @deselect="deselect"
             :style="getStyleWrap"
             >
-    <div :style="getStyle" class="re-line">
+    <div :style="getStyle" class="re-line-v">
         
     </div>
         <btnOption v-if="isActive"
@@ -74,7 +74,7 @@ import {bus} from '../../main'
     computed:{
         getStyle: function(){
         return {
-         height : this.styleLine.size +'px',
+         width : this.styleLine.size +'px',
          backgroundColor : this.styleLine.backgroundColor
         }
         },
@@ -98,6 +98,7 @@ import {bus} from '../../main'
                 left : 0,
                 transform :'none',
                 right : 'auto',
+                maxWidth : '90%',
             }
             }else if( this.styleLine.alignBlock == 'right'){
             var style = {
@@ -108,6 +109,7 @@ import {bus} from '../../main'
                 right : 0,
                 transform :'none',
                 left : 'auto',
+                maxWidth : '90%',
             }
             }else{
             return {
@@ -116,6 +118,7 @@ import {bus} from '../../main'
                 width: this.styleLine.width ,
                 height: this.styleLine.height ,
                 transform: 'rotate(' + this.styleLine.rotation + 'deg)',
+                maxWidth : '90%',
             };
             }
             return style
@@ -125,7 +128,7 @@ import {bus} from '../../main'
 </script>
 
 <style  scoped>
-    .re-line{
-        width: 100%;
+    .re-line-v{
+        height: 100%;
     }
 </style>

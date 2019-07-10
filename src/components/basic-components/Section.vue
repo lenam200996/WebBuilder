@@ -53,7 +53,8 @@ import {bus} from '../../main'
                     bottom: 0 + '!important',
                     right: -10 +'px !important',
                     top : 'auto'
-                }
+                },
+               
             }
         },
         computed:{
@@ -61,18 +62,21 @@ import {bus} from '../../main'
                 return{
                     backgroundColor :this.styleSec.backgroundColor,
                     // boxShadow : this.styleSec.boxShadow,
-                    margin : this.styleSec.margin,
-                    height : this.styleSec.height + 'px'
+                    margin : this.styleSec.margin, 
+                    // height : this.getWindowSize.width <= 768 ? (this.styleSec.height*this.$store.getters.getNumColumnById(this.id)) +'px' :this.styleSec.height + 'px'
                 }
             },
             getStretched:function(){
                 return this.styleSec.stretched
-            }
+            },
+
         },
         mounted(){
             bus.$on('gridActive',()=>{
                 this.isActive = true
             })
+           
+            
         },
         methods: {
             select:function(){
@@ -91,6 +95,9 @@ import {bus} from '../../main'
                 bus.$emit('closeOptionElement',{name : 'SECTION',id:this.id})
             }
 
+        },
+        watch:{
+          
         }
     }
 </script>

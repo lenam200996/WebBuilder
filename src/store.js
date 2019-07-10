@@ -337,16 +337,30 @@ export default new Vuex.Store({
               this.commit('addItem',item)     
             }
         break;
-        case 'line':
+        case 'lineHorizontal':
           {
-            var ObjectLine = new Element.Line()
+            var ObjectLine = new Element.LineHorizontal()
             var item = {
               id : state.indexItem,
-              type : 'line',
+              type : 'lineHorizontal',
               style : ObjectLine.style,
               parentId : state.selectId != null ? state.selectId : null,
               column :state.Selectedcolumn,
               position : ObjectLine.position,
+            }    
+            this.commit('addItem',item) 
+          }
+        break;
+        case 'lineVertical':
+          {
+            var ObjectLineVertical = new Element.LineVertical()
+            var item = {
+              id : state.indexItem,
+              type : 'lineVertical',
+              style : ObjectLineVertical.style,
+              parentId : state.selectId != null ? state.selectId : null,
+              column :state.Selectedcolumn,
+              position : ObjectLineVertical.position,
             }    
             this.commit('addItem',item) 
           }
@@ -465,6 +479,9 @@ export default new Vuex.Store({
     },
     getNumColumn:function(state){
       return state.elements.item.find(item => item.id == state.selectId).layout.length
+    },
+    getNumColumnById:(state)=>(id)=>{
+      return state.elements.item.find(item => item.id == id).layout.length
     },
     getWindowSize:function(state){
       return state.window

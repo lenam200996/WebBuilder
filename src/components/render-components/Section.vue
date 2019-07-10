@@ -23,7 +23,7 @@ import {bus} from '../../main'
                     backgroundColor :this.styleSec.backgroundColor,
                     boxShadow : this.styleSec.boxShadow,
                     margin : this.styleSec.margin,
-                    height : this.styleSec.height + 'px'
+                    // height : this.styleSec.height + 'px'
                 }
             }
         },

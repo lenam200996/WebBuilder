@@ -1,5 +1,5 @@
  <template>
-    <div :class="'column-'+size" :style="{background : getBackground,zIndex : 1, width : '100%',position: 'relative',height: '100%'}">
+    <div :class="'column-'+size" :style="{background : getBackground,zIndex : 1, width : '100%',position: 'relative',height: height +'px'}">
         <slot></slot>
     </div>
 </template>
@@ -11,13 +11,12 @@ import {bus} from '../../main'
             size : {
                 type: Number,
                 required :true,
-                validator:function(val){
-                    return (val > 0 && val < 5)
-                }
+                
             },
             bgImg : {
                 type :String,
-            }
+            },
+            height : {type:  Number }
         },
         computed:{
             getBackground : function(){

@@ -10,9 +10,9 @@
       <li @click="openOption('ADD')">
         <img src="../../assets/plus-circle-solid.svg" />
       </li>
-      <li @click="openOption('SECTION')">
+      <!-- <li @click="openOption('SECTION')">
         <img src="../../assets/book-solid.svg" />
-      </li>
+      </li> -->
       <!-- <li  @click="openPrevie()">
               <router-link to="/about">PRE</router-link> <img src="../assets/eye-regular.svg" > -->
       <!-- </li> -->

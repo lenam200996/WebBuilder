@@ -39,7 +39,8 @@
         </v-tab>
         <v-tab title="Shape" icon="ti-check">
           <ul>
-              <li @click="$store.commit('addElement',{type : 'line'})">Line Basic</li>
+              <li @click="$store.commit('addElement',{type : 'lineHorizontal'})">Line Horizontal</li>
+               <li @click="$store.commit('addElement',{type : 'lineVertical'})">Line Vertical</li>
           </ul>
         </v-tab>
     </vue-tabs>

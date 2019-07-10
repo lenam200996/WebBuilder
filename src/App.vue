@@ -5,11 +5,12 @@
     <tool-add></tool-add>
     <div-option v-if="option.is" :name="option.name" :id="option.id" :index="option.index"></div-option>
     <section-basic  v-for="section in getElements.filter( item => item.type === 'section')" :id="section.id" :key="section.id" :styleSec="section.style">
-        <column-basic v-for="col in section.layout" :key="col.index" :columnIndex="col.index"  :id="section.id" :size="col.size" :bgImg="col.bg">
+        <column-basic v-for="col in section.layout" :key="col.index" :columnIndex="col.index"  :id="section.id" :size="col.size" :bgImg="col.bg" :height="section.style.height">
               <text-box v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == section.id && item.column == col.index)" :id ="text.id" :key="text.id" :styleText="text.style" :position="text.position" :text="text.value"></text-box>
               <image-component v-for="image in getElements.filter(item => item.type == 'img' && item.parentId == section.id && item.column == col.index)" :id="image.id" :key="image.id" :styleImg="image.style" :position="image.position" :url="image.url"></image-component>
               <button-component v-for="btn in getElements.filter(item => item.type == 'btn' && item.parentId == section.id && item.column == col.index)" :id="btn.id" :key="btn.id" :styleButton="btn.style" :position="btn.position" :text="btn.style.text"></button-component>
-              <line-component v-for="line in getElements.filter(item => item.type == 'line' && item.parentId == section.id && item.column == col.index)" :id="line.id" :key="line.id" :styleLine="line.style" :position="line.position" ></line-component>
+              <line-horizontal v-for="line in getElements.filter(item => item.type == 'lineHorizontal' && item.parentId == section.id && item.column == col.index)" :id="line.id" :key="line.id" :styleLine="line.style" :position="line.position" ></line-horizontal>
+              <line-vertical v-for="line in getElements.filter(item => item.type == 'lineVertical' && item.parentId == section.id && item.column == col.index)" :id="line.id" :key="line.id" :styleLine="line.style" :position="line.position" ></line-vertical>
         </column-basic>
     </section-basic>
     <!-- <section-footer></section-footer> -->
@@ -105,13 +106,16 @@ export default {
   z-index: 999;
 }
 
-.column-25,.column-50,.column-75,.column-33,.column-100,.column-20,
-.column-40,.column-60
+.column-25,.column-50,
+.column-75,.column-33,
+.column-100,.column-20,
+.column-40,.column-60,
 .column-66 ,.column-80
 {
+  position: relative;
+  height: 100%;
   display: flex;
-  z-index: 1;
- background-position: center !important;
+  background-position: center !important;
   background-size: 100% 100% !important;
   background-repeat: no-repeat !important;
 }
@@ -183,31 +187,31 @@ export default {
   max-width: 100%;
   }
   .column-50{
-    max-width: 50%;
+    max-width: 100%;
   }
   .column-75{
     max-width: 100%;
   }
   .column-33{
-    max-width: 50%;
+    max-width: 100%;
   }
   .column-25{
     max-width: 100%;
   }
   .column-20{
-    max-width:50%;
+    max-width:100%;
   }
   .column-40{
-    max-width: 40%;
+    max-width: 100%;
   }
   .column-60{
-    max-width: 60%;
+    max-width: 100%;
   }
   .column-66{
-    max-width: 66.66%;
+    max-width:100%;
   }
   .column-80{
-    max-width: 80%;
+    max-width: 100%;
   }
 }
 
