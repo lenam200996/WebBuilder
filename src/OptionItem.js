@@ -138,7 +138,35 @@ var Default = {
                 ref :'sizeLine'
             },
             
+        ],
+        'FIELD':[
+            {
+                name: 'Align Block',
+                ref : 'alignBlock'
+            },
+            {
+                name : 'Background Color',
+                ref : 'backgroundColor'
+            },
+            {
+                name : 'Border Width',
+                ref : 'borderWidth'
+            },
+            {
+                name : 'Border Type',
+                ref : 'borderType'
+            },
+            {
+                name : 'Border Color',
+                ref : 'borderColor'
+            },
+            {
+                name : 'Border Radius',
+                ref : 'borderRadius'
+            },
+
         ]
+        
         
 }
 

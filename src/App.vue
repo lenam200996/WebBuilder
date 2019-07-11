@@ -11,10 +11,13 @@
               <button-component v-for="btn in getElements.filter(item => item.type == 'btn' && item.parentId == section.id && item.column == col.index)" :id="btn.id" :key="btn.id" :styleButton="btn.style" :position="btn.position" :text="btn.style.text"></button-component>
               <line-horizontal v-for="line in getElements.filter(item => item.type == 'lineHorizontal' && item.parentId == section.id && item.column == col.index)" :id="line.id" :key="line.id" :styleLine="line.style" :position="line.position" ></line-horizontal>
               <line-vertical v-for="line in getElements.filter(item => item.type == 'lineVertical' && item.parentId == section.id && item.column == col.index)" :id="line.id" :key="line.id" :styleLine="line.style" :position="line.position" ></line-vertical>
+              <slide-show v-for="slide in getElements.filter(item => item.type == 'slider' && item.parentId == section.id && item.column == col.index)"  :key="slide.id" :height="section.style.height" :list="slide.slideItem"></slide-show>
+              <box-component v-for="box in getElements.filter(item => item.type == 'box' && item.parentId == section.id && item.column == col.index)"  :key="box.id" :id ="box.id" :styleBox="box.style" :position="box.position"></box-component>
+              <field-component v-for="field in getElements.filter(item => item.type == 'field' && item.parentId == section.id && item.column == col.index)"  :key="field.id" :id ="field.id" :styleInput="field.style" :position="field.position"></field-component>
         </column-basic>
     </section-basic>
     <!-- <section-footer></section-footer> -->
-  </div>
+   </div>
 </keep-alive>
 <keep-alive v-else>
   <div id="app" class="container-fluid" >
@@ -342,5 +345,18 @@ export default {
  ::-webkit-scrollbar {
         display: none;
         }
+.slider{
+  width : 100% !important;
+  height : 100% !important;
+}
+.vue-tabs .nav-pills > li > a{
+  padding: 0 !important;
+}
+.nav-pills>li{
+  margin-bottom: 0 !important;
+}
 
+input {
+  padding: 0 5px;
+}
 </style>

@@ -43,6 +43,26 @@
                <li @click="$store.commit('addElement',{type : 'lineVertical'})">Line Vertical</li>
           </ul>
         </v-tab>
+        <v-tab title="SlideShow" icon="ti-check">
+          <ul>
+              <li @click="$store.commit('addElement',{type : 'sildeShow'})">Fullwidth SlideShow</li>
+          </ul>
+        </v-tab>
+        <v-tab title="Box" icon="ti-check">
+          <ul>
+              <li @click="$store.commit('addElement',{type : 'box'})">My box</li>
+          </ul>
+        </v-tab>
+        <v-tab title="List&Grid" icon="ti-check">
+          <ul>
+              <li @click="$store.commit('addElement',{type : 'list'})">My List 1</li>
+          </ul>
+        </v-tab>
+        <v-tab title="Contact" icon="ti-check">
+          <ul>
+              <li  v-for="contact in template['template_contact']" :key="contact.name"  @click="$store.commit('addTemplate',contact)">{{contact.name}}</li>
+          </ul>
+        </v-tab>
     </vue-tabs>
     <div class="close" @click="closeOption"><span>x</span></div>
   </div>

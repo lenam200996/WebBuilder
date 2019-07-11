@@ -1,3 +1,90 @@
+class Field {
+    constructor(){
+        this.style = {
+            type : 'text',
+            placeholder : 'Enter your text',
+            required : false,
+            backgroundColor : '#cccccc',
+            alignBlock:'none',
+            top: 0,
+            left : 0,
+            width: '300px',
+            height :'50px',
+            rotation : 0,
+            border : {
+                width : 1,
+                type : 'solid',
+                color : '#000000'
+            },
+            borderRadius :0,
+        }
+        this.position = {
+            x :150,
+            y : 25,
+            angle:0,
+            w:300,
+            h:50
+        };
+    }
+}
+class Box {
+    constructor(){
+        this.style = {
+            top: 0,
+            left : 0,
+            width: '400px',
+            height :'300px',
+            rotation : 0,
+            backgroundColor : '#cccccc',
+            opacity : 1,
+            alignBlock:'none',
+            border : {
+                width : 1,
+                type : 'solid',
+                color : '#000000'
+            },
+            borderRadius :0,
+            shadow : {
+                angle : 0,
+                distance : 0,
+                size : 0,
+                blur :  4,
+                color : '#cccccc',
+                opacity : 1
+            },
+        }
+        this.position = {
+            x :200,
+            y : 150,
+            angle:0,
+            w:400,
+            h:300
+        };
+    }
+}
+
+class SlideShow {
+    constructor(){
+        this.slideItem = [
+            {
+                index : 1,
+                backgroundColor : require('./assets/template.jpg'),
+                text : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
+            },
+            {
+                index : 2,
+                backgroundColor : 'blue',
+                text : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
+            },
+            {
+                index : 3,
+                backgroundColor : 'yellow',
+                text : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
+            }
+        ]
+    }
+}
+
 class LineHorizontal {
     constructor(){
         this.style = {
@@ -189,4 +276,4 @@ class Section {
 }
 
 
-export default {TextParagraph,Button,Section,Image,LineHorizontal,LineVertical}
+export default {TextParagraph,Button,Section,Image,LineHorizontal,LineVertical,SlideShow,Box,Field}

@@ -206,8 +206,174 @@ var Template = {
                         column:1,
                     }
                 ]
+            },
+            {
+                name: 'Meet the team',
+                type:'strip',
+                elements:[
+                    {
+                        type:'section',
+                        layout: [{"index":1,"size":33,"bg":"none"},{"index":2,"size":33,"bg":"#ffffff"},{"index":3,"size":33,"bg":"#ffffff"}],
+                        style: {"backgroundColor":"linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)","boxShadow":"0 2px 5px 0 rgba(22, 45, 61, 0.58)","margin":"auto","backgroundImage":{"url":"./assets/logo.png","position":"center","size":"cover","repeat":"no-repeat"},"stretched":"container","height":"550"}
+                    },
+                    {
+                        type :'text',
+                        position:{"x":330,"y":44,"angle":0,"w":672,"h":48},
+                        style:{"fontFamily":"Roboto Mono","letterSpacing":"0","wordSpacing":"0","lineHeight":"14","alignBlock":"center","top":"20px","left":"-6px","width":"672px","height":"48px","rotation":0},
+                        value:"<h1><span style=\"font-size: 30pt;\">Meet The Team</span></h1>",
+                        column:2 ,
+                    },
+                    {
+                        type : 'lineHorizontal',
+                        position:{"x":157.5,"y":84,"angle":0,"w":77,"h":10},
+                        style:{"size":"3","backgroundColor":"#2c3e50","alignBlock":"center","top":"79px","left":"119px","rotation":0,"width":"77px","height":"10px"},
+                        column : 2
+                    },
+                    {
+                        type : 'image',
+                        position:{"x":101.09082217918088,"y":228.74924149418575,"angle":0,"w":206.18164435836175,"h":195.49848298837145},
+                        style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":50,"shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"131.00000000000003px","left":"-2px","width":"206.18164435836175px","height":"195.49848298837145px","rotation":0},
+                        url:require('./assets/template.jpg'),
+                        column:1,
+                    },
+                    {
+                        type : 'image',
+                        position:{"x":101.09082217918088,"y":228.74924149418575,"angle":0,"w":206.18164435836175,"h":195.49848298837145},
+                        style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":50,"shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"131.00000000000003px","left":"-2px","width":"206.18164435836175px","height":"195.49848298837145px","rotation":0},
+                        url:require('./assets/template.jpg'),
+                        column:2,
+                    },
+                    {
+                        type : 'image',
+                        position:{"x":101.09082217918088,"y":228.74924149418575,"angle":0,"w":206.18164435836175,"h":195.49848298837145},
+                        style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":50,"shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"131.00000000000003px","left":"-2px","width":"206.18164435836175px","height":"195.49848298837145px","rotation":0},
+                        url:require('./assets/template.jpg'),
+                        column:3,
+                    },
+                    {
+                        type :'text',
+                        position:{"x":170,"y":356.5,"angle":0,"w":360,"h":27},
+                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":"21","alignBlock":"center","top":"343px","left":"-10px","width":"360px","height":"27px","rotation":0},
+                        value:"<p style=\"text-align: center;\"><span style=\"color: #003e50; font-size: 14pt;\"><em>Jon&nbsp;Doe</em></span></p>",
+                        column:1 ,
+                    },
+                    {
+                        type :'text',
+                        position:{"x":170,"y":356.5,"angle":0,"w":360,"h":27},
+                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":"21","alignBlock":"center","top":"343px","left":"-10px","width":"360px","height":"27px","rotation":0},
+                        value:"<p style=\"text-align: center;\"><span style=\"color: #003e50; font-size: 14pt;\"><em>Jon&nbsp;Doe</em></span></p>",
+                        column:2 ,
+                    },
+                    {
+                        type :'text',
+                        position:{"x":170,"y":356.5,"angle":0,"w":360,"h":27},
+                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":"21","alignBlock":"center","top":"343px","left":"-10px","width":"360px","height":"27px","rotation":0},
+                        value:"<p style=\"text-align: center;\"><span style=\"color: #003e50; font-size: 14pt;\"><em>Jon&nbsp;Doe</em></span></p>",
+                        column:3 ,
+                    },
+                    {
+                        type : 'image',
+                        position:{"x":168.18919628054496,"y":400.67418727023716,"angle":0,"w":37.098392561089874,"h":33.34837454047431},
+                        style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":"0","shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"384px","left":"149.64000000000001px","width":"37.098392561089874px","height":"33.34837454047431px","rotation":0},
+                        url:require('./assets/in.png'),
+                        column:1,
+                    },
+                    {
+                        type : 'image',
+                        position:{"x":168.18919628054496,"y":400.67418727023716,"angle":0,"w":37.098392561089874,"h":33.34837454047431},
+                        style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":"0","shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"384px","left":"149.64000000000001px","width":"37.098392561089874px","height":"33.34837454047431px","rotation":0},
+                        url:require('./assets/in.png'),
+                        column:2,
+                    },
+                    {
+                        type : 'image',
+                        position:{"x":168.18919628054496,"y":400.67418727023716,"angle":0,"w":37.098392561089874,"h":33.34837454047431},
+                        style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":"0","shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"384px","left":"149.64000000000001px","width":"37.098392561089874px","height":"33.34837454047431px","rotation":0},
+                        url:require('./assets/in.png'),
+                        column:3,
+                    },
+                    {
+                        type :'text',
+                        position:{"x":233.5,"y":478.5,"angle":0,"w":417,"h":71},
+                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":20,"alignBlock":"center","top":"443px","left":"25px","width":"417px","height":"71px","rotation":0},
+                        value:"<p><span style=\"font-size: 12pt; \">I'm a paragraph. Click here to add your own text and edit me. It's easy.</span></p>",
+                        column:1,
+                    },
+                    {
+                        type :'text',
+                        position:{"x":233.5,"y":478.5,"angle":0,"w":417,"h":71},
+                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":20,"alignBlock":"center","top":"443px","left":"25px","width":"417px","height":"71px","rotation":0},
+                        value:"<p><span style=\"font-size: 12pt; \">I'm a paragraph. Click here to add your own text and edit me. It's easy.</span></p>",
+                        column:2,
+                    },
+                    {
+                        type :'text',
+                        position:{"x":233.5,"y":478.5,"angle":0,"w":417,"h":71},
+                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":20,"alignBlock":"center","top":"443px","left":"25px","width":"417px","height":"71px","rotation":0},
+                        value:"<p><span style=\"font-size: 12pt; \">I'm a paragraph. Click here to add your own text and edit me. It's easy.</span></p>",
+                        column:3,
+                    }
+                ]
             }
 
+        ],
+        'template_contact':[
+            {
+                name : 'contact 1',
+                type : 'contact',
+                elements: [
+                    {
+                        type : 'section',
+                        layout : [{"index":1,"size":100,"bg":"none"}],
+                        style: {"backgroundColor":"linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)","boxShadow":"0 2px 5px 0 rgba(22, 45, 61, 0.58)","margin":"auto","backgroundImage":{"url":"./assets/logo.png","position":"center","size":"cover","repeat":"no-repeat"},"stretched":"container-fluid","height":600},
+                    },
+                    {
+                        type: 'text',
+                        position:{"x":345,"y":69,"angle":0,"w":720,"h":88},
+                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":"14","alignBlock":"center","top":"25px","left":"-15px","width":"720px","height":"88px","rotation":0},
+                        value:"<h1 style=\"text-align: center;\"><span style=\"font-size: 56pt; color: #22ce88;\">CONTACT US</span></h1>",
+                        column:1,
+                    },
+                    {
+                        type:'field',
+                        position:{"x":442.5,"y":184.5,"angle":0,"w":575,"h":51},
+                        style:{"type":"text","placeholder":"First name","required":false,"backgroundColor":"#ffffff","alignBlock":"center","top":"159px","left":"155px","width":"575px","height":"51px","rotation":0,"border":{"width":"4","type":"solid","color":"#22ce88"},"borderRadius":"10"},
+                        column : 1,
+                    },
+                    {
+                        type:'field',
+                        position:{"x":690.5,"y":239.5,"angle":0,"w":577,"h":55},
+                        style:{"type":"text","placeholder":"Last name","required":false,"backgroundColor":"#ffffff","alignBlock":"center","top":"212px","left":"402px","width":"575px","height":"56px","rotation":0,"border":{"width":"4","type":"solid","color":"#22ce88"},"borderRadius":"10"},
+                        column : 1,
+                    },
+                    {
+                        type:'field',
+                        position:{"x":798,"y":297,"angle":0,"w":576,"h":56},
+                        style:{"type":"text","placeholder":"Phone","required":false,"backgroundColor":"#ffffff","alignBlock":"center","top":"269px","left":"510px","width":"575px","height":"56px","rotation":0,"border":{"width":"4","type":"solid","color":"#22ce88"},"borderRadius":"10"},
+                        column : 1,
+                    },
+                    {
+                        type:'field',
+                        position:{"x":729.5,"y":355,"angle":0,"w":577,"h":56},
+                        style:{"type":"text","placeholder":"Email","required":false,"backgroundColor":"#ffffff","alignBlock":"center","top":"327px","left":"441px","width":"575px","height":"56px","rotation":0,"border":{"width":"4","type":"solid","color":"#22ce88"},"borderRadius":"10"},
+                        column : 1,
+                    },
+                    {
+                        type:'field',
+                        position:{"x":776.5,"y":441.5,"angle":0,"w":577,"h":111},
+                        style:{"type":"text","placeholder":"Messenger","required":false,"backgroundColor":"#ffffff","alignBlock":"center","top":"386px","left":"488px","width":"575px","height":"111px","rotation":0,"border":{"width":"4","type":"solid","color":"#22ce88"},"borderRadius":"10"},
+                        column : 1,
+                    },
+                    {
+                        type : 'btn',
+                        position: {"x":679,"y":543,"angle":0,"w":200,"h":50},
+                        style :{"fontFamily":"Roboto Slab","backgroundColor":"#22ce88","border":{"width":"0","type":"solid","color":"#22ce88"},"borderRadius":"19","shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"color":"#ffffff","textTransform":"uppercase","alignBlock":"center","text":"Submit","top":"518px","left":"579px","width":"200px","height":"50px","rotation":0},
+                        column : 1,
+                    }
+
+
+                ]
+            }
         ]
     
 }
