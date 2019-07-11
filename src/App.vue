@@ -4,7 +4,7 @@
     <top-menu></top-menu>
     <tool-add></tool-add>
     <div-option v-if="option.is" :name="option.name" :id="option.id" :index="option.index"></div-option>
-    <section-basic  v-for="section in getElements.filter( item => item.type === 'section')" :id="section.id" :key="section.id" :styleSec="section.style">
+    <section-basic  v-for="section in getElements.filter( item => item.type === 'section')" :id="section.id" :key="section.id" :styleSec="section.style" :position="section.position">
         <column-basic v-for="col in section.layout" :key="col.index" :columnIndex="col.index"  :id="section.id" :size="col.size" :bgImg="col.bg" :height="section.style.height">
               <text-box v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == section.id && item.column == col.index)" :id ="text.id" :key="text.id" :styleText="text.style" :position="text.position" :text="text.value"></text-box>
               <image-component v-for="image in getElements.filter(item => item.type == 'img' && item.parentId == section.id && item.column == col.index)" :id="image.id" :key="image.id" :styleImg="image.style" :position="image.position" :url="image.url"></image-component>
@@ -29,6 +29,7 @@
 </template>
 <script>
 import {bus} from './main'
+import { setInterval } from 'timers';
 export default {
 
     methods:{
@@ -50,6 +51,7 @@ export default {
             return this.$store.getters.getElementItems
           }
         }, 
+        
         mounted(){
           bus.$on('openOption',({name,id,index})=>{
             this.option.is = true
@@ -74,7 +76,7 @@ export default {
            window.addEventListener('resize',(ev)=>{
             this.$store.commit('setWindowSize',{height :  ev.currentTarget.innerHeight , width :  ev.currentTarget.innerWidth})
           })
-
+          
         },
         
   }

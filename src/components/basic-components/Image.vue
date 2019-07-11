@@ -83,43 +83,47 @@
                 if(this.styleImg.alignBlock == 'center'){
                 var style = {
                     top: this.styleImg.top,
-                    width: this.styleImg.width ,
-                    height: this.styleImg.height ,
+                    // width: this.styleImg.width ,
+                    // height: this.styleImg.height ,
                     transform: 'rotate(' + this.styleImg.rotation + 'deg)',
                     left : '50%',
                     transform : 'translateX(-50%)',
                     maxWidth : '100%',
+                    zIndex : this.isActive ? 99999 : 1,
                 }
                 }else if( this.styleImg.alignBlock == 'left'){
                 var style = {
                     top: this.styleImg.top,
-                    width: this.styleImg.width ,
-                    height: this.styleImg.height ,
+                    // width: this.styleImg.width ,
+                    // height: this.styleImg.height ,
                     transform: 'rotate(' + this.styleImg.rotation + 'deg)',
                     left : 0,
                     transform :'none',
                     right : 'auto',
                     maxWidth : '100%',
+                    zIndex : this.isActive ? 99999 : 1,
                 }
                 }else if( this.styleImg.alignBlock == 'right'){
                 var style = {
                     top: this.styleImg.top,
-                    width: this.styleImg.width ,
-                    height: this.styleImg.height ,
+                    // width: this.styleImg.width ,
+                    // height: this.styleImg.height ,
                     transform: 'rotate(' + this.styleImg.rotation + 'deg)',
                     right : 0,
                     transform :'none',
                     left : 'auto',
                     maxWidth : '100%',
+                    zIndex : this.isActive ? 99999 : 1,
                 }
                 }else{
                 return {
                     left:this.styleImg.left,
                     top: this.styleImg.top,
-                    width: this.styleImg.width ,
-                    height: this.styleImg.height ,
+                    // width: this.styleImg.width ,
+                    // height: this.styleImg.height ,
                     transform: 'rotate(' + this.styleImg.rotation + 'deg)',
                     maxWidth : '100%',
+                    zIndex : this.isActive ? 99999 : 1,
                 };
                 }
                 return style

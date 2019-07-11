@@ -1,15 +1,23 @@
 <template>
     <dragResize
     :id="id"
+    :x ="position.x"
+    :y ="position.y"
+    :angle="position.angle"
+    :w="position.w"
+    :h="position.h"
     class="row"
     :resizable="false"
     :rotatable="false"
     @select="select"
     @deselect="deselect"
     :style ="getStyle"
-    style="width:100%;margin:0;position:relative"
+    style="width:100%;margin:0;position:absolute;z-index:1"
     >
     <div :class="getStretched">
+        <div v-if="isActive" class="drag-div-top">
+        <img src="../../assets/drag-arrow.svg" alt=""> Drag
+        </div>
         <div class="row" :style ="getStyle" style="width:100%;margin:0;position:relative">
             <slot></slot>
             <btnOption v-if="isActive"
@@ -34,7 +42,7 @@ import {bus} from '../../main'
                 type :Number,
                 required : true
             },
-            attribute : {
+            position : {
                 type : Object,
                 // required : true
             },
@@ -58,11 +66,13 @@ import {bus} from '../../main'
             }
         },
         computed:{
+           
             getStyle :function(){
                 return{
                     backgroundColor :this.styleSec.backgroundColor,
                     // boxShadow : this.styleSec.boxShadow,
                     margin : this.styleSec.margin, 
+                    left:0,
                     // height : this.getWindowSize.width <= 768 ? (this.styleSec.height*this.$store.getters.getNumColumnById(this.id)) +'px' :this.styleSec.height + 'px'
                 }
             },
@@ -79,6 +89,7 @@ import {bus} from '../../main'
             
         },
         methods: {
+           
             select:function(){
                 this.isActive = true
             },
@@ -103,5 +114,26 @@ import {bus} from '../../main'
 </script>
 
 <style scoped>
+    .drag-div-top{
+         width: 80px;
+        height: 30px;
+        border-radius: 15px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 999999;
+        background: linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%);
+        box-shadow: 0 2px 5px 0 rgba(22, 45, 61, 0.58);
+        padding-top: 2px;
+        cursor:ns-resize;
+    }
+    .drag-div-top{ 
+        top: -15px;
+    }
 
+    .drag-div-top>img{
+        height: 20px;
+        width: 20px;
+        opacity: 0.5;
+    }
 </style>

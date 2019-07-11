@@ -76,6 +76,7 @@ var Template = {
                 type : 'strip',
                 elements : [
                     {
+                        position: { x :200,y : 320,angle:0, w:400,h:500},
                         type : 'section',
                         layout : [{"index":1,"size":50,"bg":require('./assets/template.jpg')},{"index":2,"size":50,"bg":"#4bd1a0"}],
                         style : {"backgroundColor":"linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)","boxShadow":"0 2px 5px 0 rgba(22, 45, 61, 0.58)","margin":"auto","backgroundImage":{"url":"./assets/logo.png","position":"center","size":"cover","repeat":"no-repeat"},"stretched":"container-fluid","height":550},
@@ -108,6 +109,7 @@ var Template = {
                 type:'strip',
                 elements:[
                     {
+                        position: { x :200,y : 320,angle:0, w:400,h:500},
                         type:'section',
                         layout:[{"index":1,"size":60,"bg":require('./assets/template.jpg')},{"index":2,"size":40,"bg":"#ffef98"}],
                         style:{"backgroundColor":"linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)","boxShadow":"0 2px 5px 0 rgba(22, 45, 61, 0.58)","margin":"auto","backgroundImage":{"url":"./assets/logo.png","position":"center","size":"cover","repeat":"no-repeat"},"stretched":"container-fluid","height":500},
@@ -140,6 +142,7 @@ var Template = {
                 type: 'strip',
                 elements:[
                     {
+                        position: { x :200,y : 320,angle:0, w:400,h:500},
                         type: 'section',
                         layout:[{"index":1,"size":25,"bg":require('./assets/template.jpg')},{"index":2,"size":50,"bg":"#fcf8ed"},{"index":3,"size":25,"bg":require('./assets/template.jpg')}],
                         style:{"backgroundColor":"linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)","boxShadow":"0 2px 5px 0 rgba(22, 45, 61, 0.58)","margin":"auto","backgroundImage":{"url":"./assets/logo.png","position":"center","size":"cover","repeat":"no-repeat"},"stretched":"container-fluid","height":500},
@@ -180,6 +183,7 @@ var Template = {
                 type: 'strip',
                 elements:[
                     {
+                        position: { x :200,y : 320,angle:0, w:400,h:500},
                         type: 'section',
                         layout:[{"index":1,"size":40,"bg":"#00305b"},{"index":2,"size":60,"bg":require('./assets/template.jpg')}],
                         style:{"backgroundColor":"linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)","boxShadow":"0 2px 5px 0 rgba(22, 45, 61, 0.58)","margin":"auto","backgroundImage":{"url":"./assets/logo.png","position":"center","size":"cover","repeat":"no-repeat"},"stretched":"container-fluid","height":500},
@@ -212,9 +216,10 @@ var Template = {
                 type:'strip',
                 elements:[
                     {
+                        position: { x :200,y : 320,angle:0, w:400,h:500},
                         type:'section',
                         layout: [{"index":1,"size":33,"bg":"none"},{"index":2,"size":33,"bg":"#ffffff"},{"index":3,"size":33,"bg":"#ffffff"}],
-                        style: {"backgroundColor":"linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)","boxShadow":"0 2px 5px 0 rgba(22, 45, 61, 0.58)","margin":"auto","backgroundImage":{"url":"./assets/logo.png","position":"center","size":"cover","repeat":"no-repeat"},"stretched":"container","height":"550"}
+                        style: {"backgroundColor":"linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)","boxShadow":"0 2px 5px 0 rgba(22, 45, 61, 0.58)","margin":"auto","backgroundImage":{"url":"./assets/logo.png","position":"center","size":"cover","repeat":"no-repeat"},"stretched":"container","height":550}
                     },
                     {
                         type :'text',
@@ -323,6 +328,7 @@ var Template = {
                 type : 'contact',
                 elements: [
                     {
+                        position: { x :200,y : 320,angle:0, w:400,h:500},
                         type : 'section',
                         layout : [{"index":1,"size":100,"bg":"none"}],
                         style: {"backgroundColor":"linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)","boxShadow":"0 2px 5px 0 rgba(22, 45, 61, 0.58)","margin":"auto","backgroundImage":{"url":"./assets/logo.png","position":"center","size":"cover","repeat":"no-repeat"},"stretched":"container-fluid","height":600},

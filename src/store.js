@@ -140,7 +140,14 @@ export default new Vuex.Store({
                       type : 'section',
                       style: item.style,
                       parentId : -1,
-                      layout: item.layout
+                      layout: item.layout,
+                      position : {
+                        x : item.position.x,
+                        y : this.getters.getHeightDom  + item.position.y,
+                        angle : item.position.angle,
+                        w : item.position.w,
+                        h : item.position.h
+                      }
                     }
                     state.selectId = state.indexItem
                     state.Selectedcolumn = 1
@@ -218,7 +225,14 @@ export default new Vuex.Store({
                           type : 'section',
                           style: item.style,
                           parentId : -1,
-                          layout: item.layout
+                          layout: item.layout,
+                          position : {
+                            x : item.position.x,
+                            y : this.getters.getHeightDom  + item.position.y,
+                            angle : item.position.angle,
+                            w : item.position.w,
+                            h : item.position.h
+                          }
                         }
                         state.selectId = state.indexItem
                         state.Selectedcolumn = 1
@@ -306,7 +320,7 @@ export default new Vuex.Store({
           item.style.top = val.top,
           item.style.left = val.left
           item.style.width  =val.width
-          item.style.height = val.height
+          // item.style.height = val.height
           item.style.rotation = val.rotation
         }
         return item
@@ -377,6 +391,13 @@ export default new Vuex.Store({
         style: ObjectSection.style,
         parentId : -1,
         layout:ObjectSection.layout,
+        position : {
+              x : ObjectSection.position.x,
+              y : this.getters.getHeightDom  + ObjectSection.position.y,
+              angle : ObjectSection.position.angle,
+              w : ObjectSection.position.w,
+              h : ObjectSection.position.h
+            }
       }
       state.selectId = state.indexItem
       state.Selectedcolumn = 1
@@ -630,6 +651,16 @@ export default new Vuex.Store({
     },
     getWindowSize:function(state){
       return state.window
+    },
+    getHeightDom:function(state){
+      var height = 0;
+      state.elements.item.map(item =>{
+        if(item.type == 'section'){
+          height += item.style.height
+        }
+        return item
+      })
+      return height
     }
   },
   actions: {}

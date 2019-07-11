@@ -102,41 +102,44 @@ import {bus} from '../../main'
         if(this.styleButton.alignBlock == 'center'){
           var style = {
             top: this.styleButton.top,
-            width: this.styleButton.width ,
-            height: this.styleButton.height ,
+            // width: this.styleButton.width ,
+            // height: this.styleButton.height ,
             transform: 'rotate(' + this.styleButton.rotation + 'deg)',
             left : '50%',
             transform : 'translateX(-50%)',
             maxWidth : '90%',
+            zIndex : this.isActive ? 99999 : 1,
           }
         }else if( this.styleButton.alignBlock == 'left'){
           var style = {
             top: this.styleButton.top,
-            width: this.styleButton.width ,
-            height: this.styleButton.height ,
+            // width: this.styleButton.width ,
+            // height: this.styleButton.height ,
             transform: 'rotate(' + this.styleButton.rotation + 'deg)',
             left : 0,
             transform :'none',
             right : 'auto',
             maxWidth : '90%',
+            zIndex : this.isActive ? 99999 : 1,
           }
         }else if( this.styleButton.alignBlock == 'right'){
           var style = {
             top: this.styleButton.top,
-            width: this.styleButton.width ,
-            height: this.styleButton.height ,
+            // width: this.styleButton.width ,
+            // height: this.styleButton.height ,
             transform: 'rotate(' + this.styleButton.rotation + 'deg)',
             right : 0,
             transform :'none',
              left : 'auto',
              maxWidth : '90%',
+             zIndex : this.isActive ? 99999 : 1,
           }
         }else{
           var style ={
             left: this.styleButton.left,
             top: this.styleButton.top,
-            width: this.styleButton.width ,
-            height: this.styleButton.height ,
+            // width: this.styleButton.width ,
+            // height: this.styleButton.height ,
             transform: 'rotate(' + this.styleButton.rotation + 'deg)',
             maxWidth : '90%',
           };

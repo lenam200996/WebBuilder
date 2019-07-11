@@ -84,8 +84,8 @@ import {bus} from '../../main'
             if(this.styleBox.alignBlock == 'center'){
             var style = {
                 top: this.styleBox.top,
-                width: this.styleBox.width ,
-                height: this.styleBox.height ,
+                // width: this.styleBox.width ,
+                // height: this.styleBox.height ,
                 transform: 'rotate(' + this.styleBox.rotation + 'deg)',
                 left : '50%',
                 transform : 'translateX(-50%)',
@@ -94,8 +94,8 @@ import {bus} from '../../main'
             }else if( this.styleBox.alignBlock == 'left'){
             var style = {
                 top: this.styleBox.top,
-                width: this.styleBox.width ,
-                height: this.styleBox.height ,
+                // width: this.styleBox.width ,
+                // height: this.styleBox.height ,
                 transform: 'rotate(' + this.styleBox.rotation + 'deg)',
                 left : 0,
                 transform :'none',
@@ -105,8 +105,8 @@ import {bus} from '../../main'
             }else if( this.styleBox.alignBlock == 'right'){
             var style = {
                 top: this.styleBox.top,
-                width: this.styleBox.width ,
-                height: this.styleBox.height ,
+                // width: this.styleBox.width ,
+                // height: this.styleBox.height ,
                 transform: 'rotate(' + this.styleBox.rotation + 'deg)',
                 right : 0,
                 transform :'none',
@@ -117,8 +117,8 @@ import {bus} from '../../main'
             return {
                 left: this.styleBox.left,
                 top: this.styleBox.top,
-                width: this.styleBox.width ,
-                height: this.styleBox.height ,
+                // width: this.styleBox.width ,
+                // height: this.styleBox.height ,
                 transform: 'rotate(' + this.styleBox.rotation + 'deg)',
                 maxWidth : '90%',
             };

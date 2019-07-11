@@ -84,43 +84,47 @@ import {bus} from '../../main'
             if(this.styleInput.alignBlock == 'center'){
             var style = {
                 top: this.styleInput.top,
-                width: this.styleInput.width ,
-                height: this.styleInput.height ,
+                // width: this.styleInput.width ,
+                // height: this.styleInput.height ,
                 transform: 'rotate(' + this.styleInput.rotation + 'deg)',
                 left : '50%',
                 transform : 'translateX(-50%)',
                 maxWidth : '90%',
+                zIndex : this.isActive ? 99999 : 1,
             }
             }else if( this.styleInput.alignBlock == 'left'){
             var style = {
                 top: this.styleInput.top,
-                width: this.styleInput.width ,
-                height: this.styleInput.height ,
+                // width: this.styleInput.width ,
+                // height: this.styleInput.height ,
                 transform: 'rotate(' + this.styleInput.rotation + 'deg)',
                 left : 0,
                 transform :'none',
                 right : 'auto',
                 maxWidth : '90%',
+                zIndex : this.isActive ? 99999 : 1,
             }
             }else if( this.styleInput.alignBlock == 'right'){
             var style = {
                 top: this.styleInput.top,
-                width: this.styleInput.width ,
-                height: this.styleInput.height ,
+                // width: this.styleInput.width ,
+                // height: this.styleInput.height ,
                 transform: 'rotate(' + this.styleInput.rotation + 'deg)',
                 right : 0,
                 transform :'none',
                 left : 'auto',
                 maxWidth : '90%',
+                zIndex : this.isActive ? 99999 : 1,
             }
             }else{
             return {
                 left: this.styleInput.left,
                 top: this.styleInput.top,
-                width: this.styleInput.width ,
-                height: this.styleInput.height ,
+                // width: this.styleInput.width ,
+                // height: this.styleInput.height ,
                 transform: 'rotate(' + this.styleInput.rotation + 'deg)',
                 maxWidth : '90%',
+                zIndex : this.isActive ? 99999 : 1,
             };
             }
             return style

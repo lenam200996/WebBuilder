@@ -256,6 +256,13 @@ class Section {
             stretched :'container-fluid',
             height : 500
         }
+        this.position = {
+            x :200,
+            y : 320,
+            angle:0,
+            w:400,
+            h:500
+        };
        
         this.layout = [
             {

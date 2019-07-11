@@ -120,8 +120,8 @@ import {bus} from '../../main'
         if(this.styleText.alignBlock == 'center'){
           var style = {
             top: this.styleText.top,
-            width: this.styleText.width ,
-            height: this.styleText.height ,
+            // width: this.styleText.width ,
+            // height: this.styleText.height ,
             transform: 'rotate(' + this.styleText.rotation + 'deg)',
             left : '50%',
             transform : 'translateX(-50%)',
@@ -131,8 +131,8 @@ import {bus} from '../../main'
         }else if( this.styleText.alignBlock == 'left'){
           var style = {
             top: this.styleText.top,
-            width: this.styleText.width ,
-            height: this.styleText.height ,
+            // width: this.styleText.width ,
+            // height: this.styleText.height ,
             transform: 'rotate(' + this.styleText.rotation + 'deg)',
             left : 0,
             transform :'none',
@@ -143,8 +143,8 @@ import {bus} from '../../main'
         }else if( this.styleText.alignBlock == 'right'){
           var style = {
             top: this.styleText.top,
-            width: this.styleText.width ,
-            height: this.styleText.height ,
+            // width: this.styleText.width ,
+            // height: this.styleText.height ,
             transform: 'rotate(' + this.styleText.rotation + 'deg)',
             right : 0,
             transform :'none',
@@ -156,8 +156,8 @@ import {bus} from '../../main'
           return {
             left: this.styleText.left,
             top: this.styleText.top,
-            width: this.styleText.width ,
-            height: this.styleText.height ,
+            // width: this.styleText.width ,
+            // height: this.styleText.height ,
             transform: 'rotate(' + this.styleText.rotation + 'deg)',
             maxWidth : '90%',
             zIndex : this.textActive? 999999: 1
