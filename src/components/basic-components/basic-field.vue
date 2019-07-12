@@ -1,5 +1,5 @@
 <template>
-     <dragResize
+     <divDragResize
             :id="id"
             :x ="position.x"
             :y ="position.y"
@@ -10,19 +10,17 @@
             @deselect="deselect"
             :style="getStyleWrap"
             >
-    <div :style="getStyle" class="re-box">
-        <slot></slot>
-    </div>
-        <btnOption v-if="isActive"
+        <input :type="getType" :placeholder="styleInput.placeholder" :required="styleInput.required" :style="getStyle" class="re-field">
+        <e-option-button-option v-if="isActive"
         :isGrid="false" 
         @edit="editOption" 
         @disableEdit="onBlur"
         @deleteItem="deleteItem"
         @preColumn="preColumn"
         @nextColumn="nextColumn"
-        :elementName="'BOX'"
-        ></btnOption>
-     </dragResize>
+        :elementName="'FIELD'"
+        ></e-option-button-option>
+     </divDragResize>
 </template>
 
 <script>
@@ -37,10 +35,10 @@ import {bus} from '../../main'
         type : Object,
         required :true
       },
-      styleBox :{
+      styleInput :{
         type :Object,
+      },
 
-      }
       
     },
     data() {
@@ -50,15 +48,13 @@ import {bus} from '../../main'
     },
     methods:{
         select:function(){
-            console.log('selected box')
-        // this.$store.commit('setSelectId',this.id)
-        this.isActive = true 
+        this.isActive = true
         },
         editOption(){
-         bus.$emit('openOption',{name : 'BOX',id:this.id,index : -1})
+         bus.$emit('openOption',{name : 'FIELD',id:this.id,index : -1})
         },
         onBlur() {
-            bus.$emit('closeOptionElement',{name : 'BOX',id:this.id})
+            bus.$emit('closeOptionElement',{name : 'FIELD',id:this.id})
         },  
         deselect:function(){
             this.isActive = false
@@ -74,55 +70,53 @@ import {bus} from '../../main'
         }
     },
     computed:{
+        getType:function(){
+            return this.styleInput.type
+        },
         getStyle: function(){
-        return {
-            backgroundColor : this.styleBox.backgroundColor,
-            opacity : this.styleBox.opacity,
-            border : this.styleBox.border.width +'px '+this.styleBox.border.type+' '+this.styleBox.border.color,
-            borderRadius: this.styleBox.borderRadius + 'px',
-        }
+            return {
+                backgroundColor : this.styleInput.backgroundColor,
+                borderRadius: this.styleInput.borderRadius + 'px',
+                border: this.styleInput.border.width + 'px '+this.styleInput.border.type +' '+this.styleInput.border.color
+            }
         },
         getStyleWrap:function(){
-            if(this.styleBox.alignBlock == 'center'){
+            if(this.styleInput.alignBlock == 'center'){
             var style = {
-                top: this.styleBox.top,
-                // width: this.styleBox.width ,
-                // height: this.styleBox.height ,
-                transform: 'rotate(' + this.styleBox.rotation + 'deg)',
+                top: this.styleInput.top,
+                transform: 'rotate(' + this.styleInput.rotation + 'deg)',
                 left : '50%',
                 transform : 'translateX(-50%)',
                 maxWidth : '90%',
+                zIndex : this.isActive ? 99999 : 1,
             }
-            }else if( this.styleBox.alignBlock == 'left'){
+            }else if( this.styleInput.alignBlock == 'left'){
             var style = {
-                top: this.styleBox.top,
-                // width: this.styleBox.width ,
-                // height: this.styleBox.height ,
-                transform: 'rotate(' + this.styleBox.rotation + 'deg)',
+                top: this.styleInput.top,
+                transform: 'rotate(' + this.styleInput.rotation + 'deg)',
                 left : 0,
                 transform :'none',
                 right : 'auto',
                 maxWidth : '90%',
+                zIndex : this.isActive ? 99999 : 1,
             }
-            }else if( this.styleBox.alignBlock == 'right'){
+            }else if( this.styleInput.alignBlock == 'right'){
             var style = {
-                top: this.styleBox.top,
-                // width: this.styleBox.width ,
-                // height: this.styleBox.height ,
-                transform: 'rotate(' + this.styleBox.rotation + 'deg)',
+                top: this.styleInput.top,
+                transform: 'rotate(' + this.styleInput.rotation + 'deg)',
                 right : 0,
                 transform :'none',
                 left : 'auto',
                 maxWidth : '90%',
+                zIndex : this.isActive ? 99999 : 1,
             }
             }else{
             return {
-                left: this.styleBox.left,
-                top: this.styleBox.top,
-                // width: this.styleBox.width ,
-                // height: this.styleBox.height ,
-                transform: 'rotate(' + this.styleBox.rotation + 'deg)',
+                left: this.styleInput.left,
+                top: this.styleInput.top,
+                transform: 'rotate(' + this.styleInput.rotation + 'deg)',
                 maxWidth : '90%',
+                zIndex : this.isActive ? 99999 : 1,
             };
             }
             return style
@@ -132,7 +126,7 @@ import {bus} from '../../main'
 </script>
 
 <style  scoped>
-    .re-box{
+    .re-field{
         width: 100%;
         height: 100%;
     }

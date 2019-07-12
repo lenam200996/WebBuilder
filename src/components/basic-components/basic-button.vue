@@ -1,5 +1,5 @@
 <template>
-    <dragResize
+    <divDragResize
             :id="id"
             :x ="position.x"
             :y ="position.y"
@@ -10,14 +10,13 @@
             @deselect="deselect"
             :style="getStyleWrap"
             >
-             <!-- :hasActiveContent="true" -->
       <div class="button" @active="onActive()" >
           <button :style="getStyle">
               <span v-html="text" ></span>
           </button>
       </div>
      
-      <btnOption v-if="isActive"
+      <e-option-button-option v-if="isActive"
         :isGrid="false" 
         @edit="editOption" 
         @disableEdit="onBlur"
@@ -25,9 +24,9 @@
         @preColumn="preColumn"
         @nextColumn="nextColumn"
         :elementName="'BUTTON'"
-        ></btnOption>
+        ></e-option-button-option>
         
-    </dragResize>
+    </divDragResize>
 </template>
 
 <script>
@@ -102,8 +101,6 @@ import {bus} from '../../main'
         if(this.styleButton.alignBlock == 'center'){
           var style = {
             top: this.styleButton.top,
-            // width: this.styleButton.width ,
-            // height: this.styleButton.height ,
             transform: 'rotate(' + this.styleButton.rotation + 'deg)',
             left : '50%',
             transform : 'translateX(-50%)',
@@ -113,8 +110,6 @@ import {bus} from '../../main'
         }else if( this.styleButton.alignBlock == 'left'){
           var style = {
             top: this.styleButton.top,
-            // width: this.styleButton.width ,
-            // height: this.styleButton.height ,
             transform: 'rotate(' + this.styleButton.rotation + 'deg)',
             left : 0,
             transform :'none',
@@ -125,8 +120,6 @@ import {bus} from '../../main'
         }else if( this.styleButton.alignBlock == 'right'){
           var style = {
             top: this.styleButton.top,
-            // width: this.styleButton.width ,
-            // height: this.styleButton.height ,
             transform: 'rotate(' + this.styleButton.rotation + 'deg)',
             right : 0,
             transform :'none',
@@ -138,8 +131,6 @@ import {bus} from '../../main'
           var style ={
             left: this.styleButton.left,
             top: this.styleButton.top,
-            // width: this.styleButton.width ,
-            // height: this.styleButton.height ,
             transform: 'rotate(' + this.styleButton.rotation + 'deg)',
             maxWidth : '90%',
           };

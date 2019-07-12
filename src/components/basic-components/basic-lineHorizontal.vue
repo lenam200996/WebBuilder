@@ -1,5 +1,5 @@
 <template>
-     <dragResize
+     <divDragResize
             :id="id"
             :x ="position.x"
             :y ="position.y"
@@ -10,17 +10,19 @@
             @deselect="deselect"
             :style="getStyleWrap"
             >
-        <input :type="getType" :placeholder="styleInput.placeholder" :required="styleInput.required" :style="getStyle" class="re-field">
-        <btnOption v-if="isActive"
+    <div :style="getStyle" class="re-line-h">
+        
+    </div>
+        <e-option-button-option v-if="isActive"
         :isGrid="false" 
         @edit="editOption" 
         @disableEdit="onBlur"
         @deleteItem="deleteItem"
         @preColumn="preColumn"
         @nextColumn="nextColumn"
-        :elementName="'FIELD'"
-        ></btnOption>
-     </dragResize>
+        :elementName="'LINE'"
+        ></e-option-button-option>
+     </divDragResize>
 </template>
 
 <script>
@@ -35,10 +37,10 @@ import {bus} from '../../main'
         type : Object,
         required :true
       },
-      styleInput :{
+      styleLine :{
         type :Object,
-      },
 
+      }
       
     },
     data() {
@@ -51,10 +53,10 @@ import {bus} from '../../main'
         this.isActive = true
         },
         editOption(){
-         bus.$emit('openOption',{name : 'FIELD',id:this.id,index : -1})
+         bus.$emit('openOption',{name : 'LINE',id:this.id,index : -1})
         },
         onBlur() {
-            bus.$emit('closeOptionElement',{name : 'FIELD',id:this.id})
+            bus.$emit('closeOptionElement',{name : 'LINE',id:this.id})
         },  
         deselect:function(){
             this.isActive = false
@@ -70,46 +72,36 @@ import {bus} from '../../main'
         }
     },
     computed:{
-        getType:function(){
-            return this.styleInput.type
-        },
         getStyle: function(){
-            return {
-                backgroundColor : this.styleInput.backgroundColor,
-                borderRadius: this.styleInput.borderRadius + 'px',
-                border: this.styleInput.border.width + 'px '+this.styleInput.border.type +' '+this.styleInput.border.color
-            }
+        return {
+         height : this.styleLine.size +'px',
+         backgroundColor : this.styleLine.backgroundColor
+        }
         },
         getStyleWrap:function(){
-            if(this.styleInput.alignBlock == 'center'){
+            if(this.styleLine.alignBlock == 'center'){
             var style = {
-                top: this.styleInput.top,
-                // width: this.styleInput.width ,
-                // height: this.styleInput.height ,
-                transform: 'rotate(' + this.styleInput.rotation + 'deg)',
+                top: this.styleLine.top,
+                transform: 'rotate(' + this.styleLine.rotation + 'deg)',
                 left : '50%',
                 transform : 'translateX(-50%)',
                 maxWidth : '90%',
                 zIndex : this.isActive ? 99999 : 1,
             }
-            }else if( this.styleInput.alignBlock == 'left'){
+            }else if( this.styleLine.alignBlock == 'left'){
             var style = {
-                top: this.styleInput.top,
-                // width: this.styleInput.width ,
-                // height: this.styleInput.height ,
-                transform: 'rotate(' + this.styleInput.rotation + 'deg)',
+                top: this.styleLine.top,
+                transform: 'rotate(' + this.styleLine.rotation + 'deg)',
                 left : 0,
                 transform :'none',
                 right : 'auto',
                 maxWidth : '90%',
                 zIndex : this.isActive ? 99999 : 1,
             }
-            }else if( this.styleInput.alignBlock == 'right'){
+            }else if( this.styleLine.alignBlock == 'right'){
             var style = {
-                top: this.styleInput.top,
-                // width: this.styleInput.width ,
-                // height: this.styleInput.height ,
-                transform: 'rotate(' + this.styleInput.rotation + 'deg)',
+                top: this.styleLine.top,
+                transform: 'rotate(' + this.styleLine.rotation + 'deg)',
                 right : 0,
                 transform :'none',
                 left : 'auto',
@@ -118,11 +110,9 @@ import {bus} from '../../main'
             }
             }else{
             return {
-                left: this.styleInput.left,
-                top: this.styleInput.top,
-                // width: this.styleInput.width ,
-                // height: this.styleInput.height ,
-                transform: 'rotate(' + this.styleInput.rotation + 'deg)',
+                left: this.styleLine.left,
+                top: this.styleLine.top,
+                transform: 'rotate(' + this.styleLine.rotation + 'deg)',
                 maxWidth : '90%',
                 zIndex : this.isActive ? 99999 : 1,
             };
@@ -134,8 +124,7 @@ import {bus} from '../../main'
 </script>
 
 <style  scoped>
-    .re-field{
+    .re-line-h{
         width: 100%;
-        height: 100%;
     }
 </style>

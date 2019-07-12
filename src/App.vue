@@ -1,24 +1,24 @@
 <template>    
 <keep-alive v-if="!isPreview">
   <div id="app" class="container-fluid" >
-    <top-menu></top-menu>
-    <tool-add></tool-add>
-    <div-option v-if="option.is" :name="option.name" :id="option.id" :index="option.index"></div-option>
-    <section-basic  v-for="section in getElements.filter( item => item.type === 'section')" :id="section.id" :key="section.id" :styleSec="section.style" :position="section.position">
-      <row-component v-for="row in section.row" :key="row.index" :id="section.id" :height="row.size" :bg="row.bg" :rowIndex="row.index">
-         <column-basic v-for="col in section.layout.filter(itemCol => itemCol.row == row.index)" :key="col.index" :columnIndex="col.index"  :id="section.id" :size="col.size" :bgImg="col.bg" :height="section.style.height" :sizeRow="row.size" :rowIndex="row.index">
-              <text-box v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :id ="text.id" :key="text.id" :styleText="text.style" :position="text.position" :text="text.value"></text-box>
-              <image-component v-for="image in getElements.filter(item => item.type == 'img' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :id="image.id" :key="image.id" :styleImg="image.style" :position="image.position" :url="image.url"></image-component>
-              <button-component v-for="btn in getElements.filter(item => item.type == 'btn' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :id="btn.id" :key="btn.id" :styleButton="btn.style" :position="btn.position" :text="btn.style.text"></button-component>
-              <line-horizontal v-for="line in getElements.filter(item => item.type == 'lineHorizontal' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :id="line.id" :key="line.id" :styleLine="line.style" :position="line.position" ></line-horizontal>
-              <line-vertical v-for="line in getElements.filter(item => item.type == 'lineVertical' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :id="line.id" :key="line.id" :styleLine="line.style" :position="line.position" ></line-vertical>
-              <slide-show v-for="slide in getElements.filter(item => item.type == 'slider' && item.parentId == section.id && item.column == col.index && item.row == row.index)"  :key="slide.id" :height="section.style.height" :list="slide.slideItem"></slide-show>
-              <box-component v-for="box in getElements.filter(item => item.type == 'box' && item.parentId == section.id && item.column == col.index && item.row == row.index)"  :key="box.id" :id ="box.id" :styleBox="box.style" :position="box.position"></box-component>
-              <field-component v-for="field in getElements.filter(item => item.type == 'field' && item.parentId == section.id && item.column == col.index && item.row == row.index)"  :key="field.id" :id ="field.id" :styleInput="field.style" :position="field.position"></field-component>
-              <video-component v-for="video in getElements.filter(item => item.type == 'video' && item.parentId == section.id && item.column == col.index && item.row == row.index)"  :key="video.id" :id ="video.id" :styleVideo="video.style" :position="video.position"></video-component>
-        </column-basic>
-      </row-component>
-    </section-basic>
+    <main-option-top-menu></main-option-top-menu>
+    <main-option-tool-add-element></main-option-tool-add-element>
+    <e-option-option-element v-if="option.is" :name="option.name" :id="option.id" :index="option.index"></e-option-option-element>
+    <basic-section  v-for="section in getSections" :id="section.id" :key="section.id" :styleSec="section.style" :position="section.position">
+      <basic-row v-for="row in section.row" :key="row.index" :id="section.id" :height="row.size" :bg="row.bg" :rowIndex="row.index">
+         <basic-column v-for="col in section.layout.filter(itemCol => itemCol.row == row.index)" :key="col.index" :properties="getPropertiesColumn(section,row,col)"  >
+              <basic-text v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :properties="getPropertiesText(text)" :key="text.id"></basic-text>
+              <basic-image v-for="image in getElements.filter(item => item.type == 'img' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :key="image.id" :properties="getPropertiesImage(image)"></basic-image>
+              <basic-button v-for="btn in getElements.filter(item => item.type == 'btn' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :id="btn.id" :key="btn.id" :styleButton="btn.style" :position="btn.position" :text="btn.style.text"></basic-button>
+              <basic-line-horizontal v-for="line in getElements.filter(item => item.type == 'lineHorizontal' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :id="line.id" :key="line.id" :styleLine="line.style" :position="line.position" ></basic-line-horizontal>
+              <basic-line-vertical v-for="line in getElements.filter(item => item.type == 'lineVertical' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :id="line.id" :key="line.id" :styleLine="line.style" :position="line.position" ></basic-line-vertical>
+              <basic-slide-show v-for="slide in getElements.filter(item => item.type == 'slider' && item.parentId == section.id && item.column == col.index && item.row == row.index)"  :key="slide.id" :height="section.style.height" :list="slide.slideItem"></basic-slide-show>
+              <basic-box v-for="box in getElements.filter(item => item.type == 'box' && item.parentId == section.id && item.column == col.index && item.row == row.index)"  :key="box.id" :id ="box.id" :styleBox="box.style" :position="box.position"></basic-box>
+              <basic-field v-for="field in getElements.filter(item => item.type == 'field' && item.parentId == section.id && item.column == col.index && item.row == row.index)"  :key="field.id" :id ="field.id" :styleInput="field.style" :position="field.position"></basic-field>
+              <basic-video v-for="video in getElements.filter(item => item.type == 'video' && item.parentId == section.id && item.column == col.index && item.row == row.index)"  :key="video.id" :id ="video.id" :styleVideo="video.style" :position="video.position"></basic-video>
+        </basic-column>
+      </basic-row>
+    </basic-section>
    </div>
 </keep-alive>
 <keep-alive v-else>
@@ -31,7 +31,6 @@
 </template>
 <script>
 import {bus} from './main'
-import { setInterval } from 'timers';
 export default {
     data:function(){
       return {
@@ -48,8 +47,23 @@ export default {
     computed:{
       getElements:function(){
         return this.$store.getters.getElementItems
-      }
+      },
+      getSections:function(){
+        return this.getElements.filter( item => item.type === 'section')
+      },
+
     }, 
+    methods:{
+      getPropertiesColumn:function(section,row,col){
+        return {id: section.id,size:col.size,bgImg:col.bg,height:section.style.height,sizeRow: row.size,rowIndex:row.index,columnIndex:col.index}
+      },
+      getPropertiesText:function(text){
+        return {id :text.id,  styleText:text.style,position:text.position,text:text.value}
+      },
+      getPropertiesImage:function(image){
+        return {id:image.id,styleImg:image.style,position:image.position,url:image.url}
+      }
+    },
     watch:{
       locale:function(val){
         this.$i18n.locale = val

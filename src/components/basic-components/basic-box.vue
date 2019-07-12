@@ -1,5 +1,5 @@
 <template>
-     <dragResize
+     <divDragResize
             :id="id"
             :x ="position.x"
             :y ="position.y"
@@ -10,19 +10,19 @@
             @deselect="deselect"
             :style="getStyleWrap"
             >
-    <div :style="getStyle" class="re-line-v">
-        
+    <div :style="getStyle" class="re-box">
+        <slot></slot>
     </div>
-        <btnOption v-if="isActive"
+        <e-option-button-option v-if="isActive"
         :isGrid="false" 
         @edit="editOption" 
         @disableEdit="onBlur"
         @deleteItem="deleteItem"
         @preColumn="preColumn"
         @nextColumn="nextColumn"
-        :elementName="'LINE'"
-        ></btnOption>
-     </dragResize>
+        :elementName="'BOX'"
+        ></e-option-button-option>
+     </divDragResize>
 </template>
 
 <script>
@@ -37,7 +37,7 @@ import {bus} from '../../main'
         type : Object,
         required :true
       },
-      styleLine :{
+      styleBox :{
         type :Object,
 
       }
@@ -50,13 +50,13 @@ import {bus} from '../../main'
     },
     methods:{
         select:function(){
-        this.isActive = true
+        this.isActive = true 
         },
         editOption(){
-         bus.$emit('openOption',{name : 'LINE',id:this.id,index : -1})
+         bus.$emit('openOption',{name : 'BOX',id:this.id,index : -1})
         },
         onBlur() {
-            bus.$emit('closeOptionElement',{name : 'LINE',id:this.id})
+            bus.$emit('closeOptionElement',{name : 'BOX',id:this.id})
         },  
         deselect:function(){
             this.isActive = false
@@ -74,55 +74,45 @@ import {bus} from '../../main'
     computed:{
         getStyle: function(){
         return {
-         width : this.styleLine.size +'px',
-         backgroundColor : this.styleLine.backgroundColor
+            backgroundColor : this.styleBox.backgroundColor,
+            opacity : this.styleBox.opacity,
+            border : this.styleBox.border.width +'px '+this.styleBox.border.type+' '+this.styleBox.border.color,
+            borderRadius: this.styleBox.borderRadius + 'px',
         }
         },
         getStyleWrap:function(){
-            if(this.styleLine.alignBlock == 'center'){
+            if(this.styleBox.alignBlock == 'center'){
             var style = {
-                top: this.styleLine.top,
-                // width: this.styleLine.width ,
-                // height: this.styleLine.height ,
-                transform: 'rotate(' + this.styleLine.rotation + 'deg)',
+                top: this.styleBox.top,
+                transform: 'rotate(' + this.styleBox.rotation + 'deg)',
                 left : '50%',
                 transform : 'translateX(-50%)',
                 maxWidth : '90%',
-                zIndex : this.isActive ? 99999 : 1,
             }
-            }else if( this.styleLine.alignBlock == 'left'){
+            }else if( this.styleBox.alignBlock == 'left'){
             var style = {
-                top: this.styleLine.top,
-                // width: this.styleLine.width ,
-                // height: this.styleLine.height ,
-                transform: 'rotate(' + this.styleLine.rotation + 'deg)',
+                top: this.styleBox.top,
+                transform: 'rotate(' + this.styleBox.rotation + 'deg)',
                 left : 0,
                 transform :'none',
                 right : 'auto',
                 maxWidth : '90%',
-                zIndex : this.isActive ? 99999 : 1,
             }
-            }else if( this.styleLine.alignBlock == 'right'){
+            }else if( this.styleBox.alignBlock == 'right'){
             var style = {
-                top: this.styleLine.top,
-                // width: this.styleLine.width ,
-                // height: this.styleLine.height ,
-                transform: 'rotate(' + this.styleLine.rotation + 'deg)',
+                top: this.styleBox.top,
+                transform: 'rotate(' + this.styleBox.rotation + 'deg)',
                 right : 0,
                 transform :'none',
                 left : 'auto',
                 maxWidth : '90%',
-                zIndex : this.isActive ? 99999 : 1,
             }
             }else{
             return {
-                left: this.styleLine.left,
-                top: this.styleLine.top,
-                // width: this.styleLine.width ,
-                // height: this.styleLine.height ,
-                transform: 'rotate(' + this.styleLine.rotation + 'deg)',
+                left: this.styleBox.left,
+                top: this.styleBox.top,
+                transform: 'rotate(' + this.styleBox.rotation + 'deg)',
                 maxWidth : '90%',
-                zIndex : this.isActive ? 99999 : 1,
             };
             }
             return style
@@ -132,7 +122,8 @@ import {bus} from '../../main'
 </script>
 
 <style  scoped>
-    .re-line-v{
+    .re-box{
+        width: 100%;
         height: 100%;
     }
 </style>

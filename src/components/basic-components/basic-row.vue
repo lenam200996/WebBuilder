@@ -1,5 +1,5 @@
 <template>
-     <dragResize
+     <divDragResize
             :id="id"
             class="row"
             @select="select"
@@ -10,15 +10,15 @@
     <div :style="getStyle"  class="row" style="width:100%;position:relative">
         <slot></slot>
     </div>
-        <btnOption v-if="isActive"
+        <e-option-button-option v-if="isActive"
         :isGrid="true" 
         @edit="editOption" 
         @disableEdit="onBlur"
         @deleteItem="deleteItem"
         :styleBtn="styleBtn"
         :elementName="'ROW'"
-        ></btnOption>
-     </dragResize>
+        ></e-option-button-option>
+     </divDragResize>
 </template>
 
 <script>
@@ -57,8 +57,6 @@ import {bus} from '../../main'
     },
     methods:{
         select:function(){
-            // this.$store.commit('setSelectId',this.id)
-            // this.$store.commit('setSelectRow',this.rowIndex)
             this.isActive = true
         },
         editOption(){
@@ -74,16 +72,10 @@ import {bus} from '../../main'
             this.$store.commit('deleteItemById',this.id)
         },
     },
-    mounted:function(){
-        // bus.$on('gridActive',()=>{
-        //         this.isActive = true
-        //     })
-    },
     computed:{
         getStyle: function(){
             return {
-            //  height : this.height +'%',
-            backgroundColor : this.bg,
+                backgroundColor : this.bg,
             }
         },
         getActiveRow:function(){

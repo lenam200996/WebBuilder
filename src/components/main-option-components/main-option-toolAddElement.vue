@@ -17,10 +17,10 @@
               <router-link to="/about">PRE</router-link> <img src="../assets/eye-regular.svg" > -->
       <!-- </li> -->
     </ul>
-    <add-element
+    <main-option-add-element
       v-if="isOpen"
       :typeContent="{ type: typeOption }"
-    ></add-element>
+    ></main-option-add-element>
   </div>
 </template>
 

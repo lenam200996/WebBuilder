@@ -355,7 +355,7 @@ export default new Vuex.Store({
       state.elements.item = state.elements.item.filter(item => {
         if(item.id == id){
           item.layout.filter(itemLayout =>{
-            if(itemLayout.index == state.Selectedcolumn){
+            if(itemLayout.index == state.Selectedcolumn && itemLayout.row == state.SelectedRow){
               itemLayout.bg = value
             }
             return itemLayout
@@ -376,7 +376,7 @@ export default new Vuex.Store({
       state.elements.item = state.elements.item.filter(item =>{
         if(item.id == state.selectId){
           item.layout = item.layout.filter(itemLayout => {
-            if(itemLayout.index == state.Selectedcolumn){
+            if(itemLayout.index == state.Selectedcolumn && itemLayout.row == state.SelectedRow){
               itemLayout.bg = value
             }
             return itemLayout
@@ -709,21 +709,23 @@ export default new Vuex.Store({
       }
     },
     addRow:function(state){
-      var size = parseInt(100/(this.getters.getNumRow + 1))
-      state.elements.item = state.elements.item.filter(item =>{
-        if(item.id == state.selectId){
-          item.row.push({index: -1,size : size })
-          item.layout.push({index: 1,row: (this.getters.getNumRow),size: 100,bg:'none'})
-          var index  = 1
-          item.row = item.row.filter(itemRow =>{
-            itemRow.index = index
-            itemRow.size = size
-            index++
-            return itemRow
-          })
-        }
-        return item
-      })
+      if(this.getters.getNumRow < 5){
+        var size = parseInt(100/(this.getters.getNumRow + 1))
+        state.elements.item = state.elements.item.filter(item =>{
+          if(item.id == state.selectId){
+            item.row.push({index: -1,size : size })
+            item.layout.push({index: 1,row: (this.getters.getNumRow),size: 100,bg:'none'})
+            var index  = 1
+            item.row = item.row.filter(itemRow =>{
+              itemRow.index = index
+              itemRow.size = size
+              index++
+              return itemRow
+            })
+          }
+          return item
+        })
+      }
     },
 
 

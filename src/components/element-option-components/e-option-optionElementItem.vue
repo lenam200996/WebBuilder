@@ -3,17 +3,54 @@
         <ul class="ul-wrap">
             <li v-for="(itemOption) in item" :key="itemOption.name" :class="{classItemDiv : itemOption.ref == 'sectionGrid' || itemOption.ref == 'sectionColumnManagement'}">
                 <span v-if="itemOption.ref == 'alignBlock'" v-html="itemOption.name" ></span>
+                <span v-if="itemOption.ref == 'fontSize'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'lineHeight'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'fontFamily'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'letterSpacing'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'videoUrl'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'wordSpacing'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'Columnbackground'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'imgUrl'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'sizeLine'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'borderWidth'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'borderRadius'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'borderColor'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'keepProportion'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'stretched'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'color'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'textValue'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'backgroundColor'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'height'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'borderType'" v-html="itemOption.name"></span>
+                <span v-if="itemOption.ref == 'textTransform'" v-html="itemOption.name"></span>
+
+                <input v-if="itemOption.ref == 'fontSize'" type="range" v-model="style.fontSize">
+                <input v-if="itemOption.ref == 'lineHeight'" type="range" v-model="style.lineHeight">
+                <input v-if="itemOption.ref == 'letterSpacing'" type="range" v-model="style.letterSpacing">
+                <input v-if="itemOption.ref == 'wordSpacing'" type="range" v-model="style.wordSpacing">
+                <input v-if="itemOption.ref == 'borderWidth'" type="range" v-model="style.border.width">
+                <input v-if="itemOption.ref == 'sizeLine'" type="range" v-model="style.size">
+                <input v-if="itemOption.ref == 'borderRadius'" type="range" v-model="style.borderRadius" max="50" min="0" step="1">
+                <input v-if="itemOption.ref == 'videoUrl'" type="text" v-model="style.url">
+                <input v-if="itemOption.ref == 'textValue'" type="text" v-model="style.text">
+                <input v-if="itemOption.ref == 'color'" type="color" v-model="style.color">
+                <input class="bg" v-if="backgroundColor == 1 && itemOption.ref == 'Columnbackground'"  type="color" :value="getColorColumn" @change="updateColor($event)" >
+                <input v-if="itemOption.ref == 'borderColor'" type="color" v-model="style.border.color">
+                <input v-if="itemOption.ref == 'backgroundColor'" type="color" v-model="style.backgroundColor">
+                <input v-if="itemOption.ref == 'height'" type="number" v-model="style.height" min="10" max="1000" step="50">
+                <input type="radio" v-if="itemOption.ref == 'Columnbackground'" name="bgColor" v-model="backgroundColor" value="1"><i v-if="itemOption.ref == 'Columnbackground'">Color</i>
+                <input type="radio" v-if="itemOption.ref == 'Columnbackground'" name="bgColor" v-model="backgroundColor" value="2"><i v-if="itemOption.ref == 'Columnbackground'">Image</i>
+                <input v-if="backgroundColor == 2 && itemOption.ref == 'Columnbackground'" type="file" id="files" @change="onFileChange($event,'bg')" class="hidden">
+                <label v-if="backgroundColor == 2 && itemOption.ref == 'Columnbackground'" class="inputFile bg" style="line-height: 30px; color:red;cursor:pointer;user-select:none;"   for="files">image</label>
+                <input type="file" id="files" @change="onFileChange($event,'url')" class="hidden">
+                <label v-if="itemOption.ref == 'imgUrl'" class="inputFile" style="line-height: 30px; color:red;cursor:pointer;user-select:none;"   for="files">Select</label>
+
                 <select v-if="itemOption.ref == 'alignBlock'" v-model="style.alignBlock">
                     <option value="none">Custom</option>
                     <option value="center">Center</option>
                     <option value="left">Left</option>
                     <option value="right">Right</option>
                 </select> 
-                <span v-if="itemOption.ref == 'fontSize'" v-html="itemOption.name"></span>
-                <input v-if="itemOption.ref == 'fontSize'" type="range" v-model="style.fontSize">
-                <span v-if="itemOption.ref == 'lineHeight'" v-html="itemOption.name"></span>
-                <input v-if="itemOption.ref == 'lineHeight'" type="range" v-model="style.lineHeight">
-                <span v-if="itemOption.ref == 'fontFamily'" v-html="itemOption.name"></span>
                 <select v-if="itemOption.ref == 'fontFamily'" v-model="style.fontFamily">
                     <option value="Roboto">Roboto</option>
                     <option value="Open Sans">Open Sans</option>
@@ -25,26 +62,6 @@
                     <option value="DM Sans">DM Sans</option>
                     <option value="Roboto Slab">Roboto Slab</option>
                 </select>
-                <span v-if="itemOption.ref == 'letterSpacing'" v-html="itemOption.name"></span>
-                <input v-if="itemOption.ref == 'letterSpacing'" type="range" v-model="style.letterSpacing">
-                <span v-if="itemOption.ref == 'videoUrl'" v-html="itemOption.name"></span>
-                <input v-if="itemOption.ref == 'videoUrl'" type="text" v-model="style.url">
-                <span v-if="itemOption.ref == 'wordSpacing'" v-html="itemOption.name"></span>
-                <input v-if="itemOption.ref == 'wordSpacing'" type="range" v-model="style.wordSpacing">
-                <span v-if="itemOption.ref == 'Columnbackground'" v-html="itemOption.name"></span>
-                <input type="radio" v-if="itemOption.ref == 'Columnbackground'" name="bgColor" v-model="backgroundColor" value="1"><i v-if="itemOption.ref == 'Columnbackground'">Color</i>
-                <input type="radio" v-if="itemOption.ref == 'Columnbackground'" name="bgColor" v-model="backgroundColor" value="2"><i v-if="itemOption.ref == 'Columnbackground'">Image</i>
-                <input class="bg" v-if="backgroundColor == 1 && itemOption.ref == 'Columnbackground'"  type="color" :value="getColorColumn" @change="updateColor($event)" >
-                <input v-if="backgroundColor == 2 && itemOption.ref == 'Columnbackground'" type="file" id="files" @change="onFileChange($event,'bg')" class="hidden">
-                <label v-if="backgroundColor == 2 && itemOption.ref == 'Columnbackground'" class="inputFile bg" style="line-height: 30px; color:red;cursor:pointer;user-select:none;"   for="files">image</label>
-                <span v-if="itemOption.ref == 'imgUrl'" v-html="itemOption.name"></span>
-                <input type="file" id="files" @change="onFileChange($event,'url')" class="hidden">
-                <label v-if="itemOption.ref == 'imgUrl'" class="inputFile" style="line-height: 30px; color:red;cursor:pointer;user-select:none;"   for="files">Select</label>
-                <span v-if="itemOption.ref == 'borderWidth'" v-html="itemOption.name"></span>
-                <input v-if="itemOption.ref == 'borderWidth'" type="range" v-model="style.border.width">
-                <span v-if="itemOption.ref == 'sizeLine'" v-html="itemOption.name"></span>
-                <input v-if="itemOption.ref == 'sizeLine'" type="range" v-model="style.size">
-                <span v-if="itemOption.ref == 'borderType'" v-html="itemOption.name"></span>
                 <select v-if="itemOption.ref == 'borderType'" v-model="style.border.type">
                     <option value="none">None</option>
                     <option value="solid" selected>Solid</option>
@@ -57,26 +74,29 @@
                     <option value="dashed">Dashed</option>
                     <option value="hidden">Hidden</option>
                 </select>
-                <span v-if="itemOption.ref == 'borderColor'" v-html="itemOption.name"></span>
-                <input v-if="itemOption.ref == 'borderColor'" type="color" v-model="style.border.color">
-                <span v-if="itemOption.ref == 'borderRadius'" v-html="itemOption.name"></span>
-                <input v-if="itemOption.ref == 'borderRadius'" class="form-control-range" type="range" v-model="style.borderRadius" max="50" min="0" step="1">
-                <span v-if="itemOption.ref == 'keepProportion'" v-html="itemOption.name"></span>
-                <span class="group-radio">
-                    <input  v-if="itemOption.ref == 'keepProportion'" type="radio" name="keepProportion" value="true" v-model="style.keepProportion"><i v-if="itemOption.ref == 'keepProportion'">True</i>
-                    <input  v-if="itemOption.ref == 'keepProportion'" type="radio" name="keepProportion" value="false" v-model="style.keepProportion"><i v-if="itemOption.ref == 'keepProportion'">False</i>
-                </span>
-                <span v-if="itemOption.ref == 'stretched'" v-html="itemOption.name"></span>
                 <select v-if="itemOption.ref == 'stretched'" v-model="style.stretched">
                     <option value="container" >Page</option>
                     <option value="container-fluid" selected>Screen</option>
                 </select>
+                <select v-if="itemOption.ref == 'textTransform'" v-model="style.textTransform">
+                    <option value="none" selected>None</option>
+                    <option value="capitalize" >Capitalize</option>
+                    <option value="uppercase">Uppercase</option>
+                    <option value="lowercase">Lowercase</option>
+                    <option value="initial">Initial</option>
+                    <option value="inherit">Inherit</option>
+                </select>
 
+                <span class="group-radio">
+                    <input  v-if="itemOption.ref == 'keepProportion'" type="radio" name="keepProportion" value="true" v-model="style.keepProportion"><i v-if="itemOption.ref == 'keepProportion'">True</i>
+                    <input  v-if="itemOption.ref == 'keepProportion'" type="radio" name="keepProportion" value="false" v-model="style.keepProportion"><i v-if="itemOption.ref == 'keepProportion'">False</i>
+                </span>
+            
                 <div v-if="itemOption.ref == 'rowManager'" class="div-column-manager">
                     <h2>Row Manager</h2>
                     <button class="addColumn" @click="addRow">Add Row</button>
                     <ul>
-                        <item-row v-for="(n,index) in getNumRow" :key="index" :n="n"></item-row>
+                        <e-option-row-item v-for="(n,index) in getNumRow" :key="index" :n="n"></e-option-row-item>
                     </ul>
                     <div class="div-column-manager-option">
                         <button v-if="enableOptionRow" @click="deleteRow"><img src="../../assets/delete.svg"/></button>
@@ -89,7 +109,7 @@
                     <h2>Column Manager</h2>
                     <button class="addColumn" @click="addColumn">Add Column</button>
                     <ul>
-                        <item-column v-for="(n,index) in getNumColumn" :key="index" :n="n"></item-column>
+                        <e-option-column-item v-for="(n,index) in getNumColumn" :key="index" :n="n"></e-option-column-item>
                     </ul>
                     <div class="div-column-manager-option">
                         <button v-if="enableOptionColumn" @click="deleteColumn"><img src="../../assets/delete.svg"/></button>
@@ -100,27 +120,10 @@
                 <div v-if="itemOption.ref == 'sectionGrid'" class="div-grid-manager">
                     <h2>Grid Manager</h2>
                     <ul class="ul-grid" >
-                        <grid-item v-for="(grid,index) in arrayGridManager" :key="index" :grid="grid"></grid-item>
+                        <e-option-grid-item v-for="(grid,index) in arrayGridManager" :key="index" :grid="grid"></e-option-grid-item>
                     </ul>
                     
                 </div>
-                <span v-if="itemOption.ref == 'color'" v-html="itemOption.name"></span>
-                <input v-if="itemOption.ref == 'color'" type="color" v-model="style.color">
-                <span v-if="itemOption.ref == 'textValue'" v-html="itemOption.name"></span>
-                <input v-if="itemOption.ref == 'textValue'" type="text" v-model="style.text">
-                <span v-if="itemOption.ref == 'textTransform'" v-html="itemOption.name"></span>
-                <select v-if="itemOption.ref == 'textTransform'" v-model="style.textTransform">
-                    <option value="none" selected>None</option>
-                    <option value="capitalize" >Capitalize</option>
-                    <option value="uppercase">Uppercase</option>
-                    <option value="lowercase">Lowercase</option>
-                    <option value="initial">Initial</option>
-                    <option value="inherit">Inherit</option>
-                </select>
-                <span v-if="itemOption.ref == 'backgroundColor'" v-html="itemOption.name"></span>
-                <input v-if="itemOption.ref == 'backgroundColor'" type="color" v-model="style.backgroundColor">
-                <span v-if="itemOption.ref == 'height'" v-html="itemOption.name"></span>
-                <input v-if="itemOption.ref == 'height'" type="number" v-model="style.height" min="10" max="1000" step="50">
             </li>
         </ul>
     </div>

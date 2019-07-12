@@ -1,13 +1,13 @@
 <template>
-    <dragResize
-    :id="id"
+    <divDragResize
+    :id="properties.id"
     :resizable="false"
     :rotatable="false"
     :draggable="false"
-    :class="'column-'+size" 
+    :class="'column-'+properties.size" 
     @select="select"
     @deselect="deselect"
-    :selected="$store.getters.getSelectID == id" 
+    :selected="$store.getters.getSelectID == properties.id" 
     :style="{
         background : getBackground,
         backgroundPosition: 'center',
@@ -15,54 +15,32 @@
         backgroundRepeat:' no-repeat',
         zIndex : isActive? 9999 : 1,
         width : '100%',
-        height: height*sizeRow/100 + 'px',
+        height: properties.height*properties.sizeRow/100 + 'px',
         margin : 0,
         position: 'relative'
     }"
     >
-    <!-- +' col-md-12'"  -->
-    <btnOption v-if="isActive"
+    <e-option-button-option v-if="isActive"
         :isGrid="true" 
         @edit="edit" 
         @disableEdit="onBlur"
         @deleteItem="deleteItem"
         :styleBtn="styleBtn"
         :elementName="'COLUMN'"
-    ></btnOption>
+    ></e-option-button-option>
         <slot></slot>
-    </dragResize>
+    </divDragResize>
 </template>
 
 <script>
 import {bus} from '../../main'
     export default {
         props:{
-            id:{
-                type:Number,
+            properties:{
+                type:Object,
                 required:true
             },
-            size : {
-                type: Number,
-                required :true,
-                default : 100,
-                
-            },
-            columnIndex:{
-                type : Number,
-                required :true,
-            },
-            bgImg : {
-                type :String,
-            },
-            height: {
-                type: Number
-            },
-            sizeRow:{
-                type :Number
-            },
-            rowIndex:{
-                type :Number
-            }
+           
         },
         data:function(){
             return{
@@ -79,7 +57,7 @@ import {bus} from '../../main'
         },
         computed:{
             getBackground : function(){
-                return this.bgImg.includes('#')?this.bgImg : 'url('+this.bgImg +')';
+                return this.properties.bgImg.includes('#')?this.properties.bgImg : 'url('+this.properties.bgImg +')';
             },
             getColumnSelected : function(){
                 return this.$store.getters.getSelectColumn
@@ -88,20 +66,11 @@ import {bus} from '../../main'
             return this.$store.getters.getRowSelected
             }
         },
-        watch:{
-            getColumnSelected:function(val){
-                // if(this.columnIndex == val && this.rowIndex == this.getActiveRow){
-                //     this.select()
-                // }else{
-                //     this.deselect()
-                // }
-            }
-        },
         methods:{
             select : function(){
-                this.$store.commit('setSelectId',this.id)
-                this.$store.commit('setSelectColumn',this.columnIndex)
-                this.$store.commit('setSelectRow',this.rowIndex)
+                this.$store.commit('setSelectId',this.properties.id)
+                this.$store.commit('setSelectColumn',this.properties.columnIndex)
+                this.$store.commit('setSelectRow',this.properties.rowIndex)
                 this.isActive = true
                 bus.$emit('gridActive',true)
             },
@@ -110,13 +79,13 @@ import {bus} from '../../main'
                 
             },
             deleteItem:function(){
-                this.$store.commit('deleteColumn',{index : this.columnIndex , id :this.id ,row : this.rowIndex})
+                this.$store.commit('deleteColumn',{index : this.properties.columnIndex , id :this.properties.id ,row :this.properties.rowIndex})
             },
             edit:function(){
-                bus.$emit('openOption',{name : 'Column',id:this.id,index: this.columnIndex})
+                bus.$emit('openOption',{name : 'Column',id:this.properties.id,index: this.properties.columnIndex})
             },
             onBlur:function(){
-                 bus.$emit('closeOptionElement',{name : 'Column',id:this.id})
+                 bus.$emit('closeOptionElement',{name : 'Column',id:this.properties.id})
             }
             
         }       

@@ -1,5 +1,5 @@
 <template>
-    <dragResize
+    <divDragResize
     :id="id"
     
     class="row"
@@ -11,21 +11,17 @@
     style="width:100%;margin:0;position:relative;z-index:1"
     >
     <div :class="getStretched"> 
-        <!-- <div v-if="isActive" class="drag-div-top">
-            <img src="../../assets/drag-arrow.svg" alt=""> Drag
-        </div> -->
-       
             <slot></slot>
-            <btnOption v-if="isActive"
+            <e-option-button-option v-if="isActive"
             :isGrid="true" 
             @edit="edit" 
             @disableEdit="onBlur"
             @deleteItem="deleteItem"
             :styleBtn="styleBtn"
             :elementName="'SECTION'"
-            ></btnOption> 
+            ></e-option-button-option> 
     </div>
-    </dragResize>
+    </divDragResize>
    
 </template>
 
@@ -65,10 +61,8 @@ import {bus} from '../../main'
             getStyle :function(){
                 return{
                     backgroundColor :this.styleSec.backgroundColor,
-                    // boxShadow : this.styleSec.boxShadow,
                     margin : this.styleSec.margin, 
                     left:0,
-                    // height : this.getWindowSize.width <= 768 ? (this.styleSec.height*this.$store.getters.getNumColumnById(this.id)) +'px' :this.styleSec.height + 'px'
                 }
             },
             getStretched:function(){

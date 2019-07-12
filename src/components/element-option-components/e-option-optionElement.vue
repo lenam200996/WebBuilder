@@ -3,7 +3,7 @@
     <div class="wrap-option" :style="{top: top+'px', right:right+'px'}">
         <div class="close" @click="closeOptionElement"><span>x</span></div>
         <h2  @mousedown="enableDrag" @mouseup="isDrag =false" @mousemove="drag">{{name}} OPTIONS</h2>
-        <div-option-item :name="name" :id="id"></div-option-item>
+        <e-option-option-element-item :name="name" :id="id"></e-option-option-element-item>
     </div>
 
 </template>
