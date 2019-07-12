@@ -15,7 +15,7 @@
         backgroundRepeat:' no-repeat',
         zIndex : isActive? 9999 : 1,
         width : '100%',
-        height: height + 'px',
+        height: height*sizeRow/100 + 'px',
         margin : 0,
         position: 'relative'
     }"
@@ -56,6 +56,12 @@ import {bus} from '../../main'
             },
             height: {
                 type: Number
+            },
+            sizeRow:{
+                type :Number
+            },
+            rowIndex:{
+                type :Number
             }
         },
         data:function(){
@@ -74,12 +80,28 @@ import {bus} from '../../main'
         computed:{
             getBackground : function(){
                 return this.bgImg.includes('#')?this.bgImg : 'url('+this.bgImg +')';
+            },
+            getColumnSelected : function(){
+                return this.$store.getters.getSelectColumn
+            },
+            getActiveRow:function(){
+            return this.$store.getters.getRowSelected
+            }
+        },
+        watch:{
+            getColumnSelected:function(val){
+                // if(this.columnIndex == val && this.rowIndex == this.getActiveRow){
+                //     this.select()
+                // }else{
+                //     this.deselect()
+                // }
             }
         },
         methods:{
             select : function(){
                 this.$store.commit('setSelectId',this.id)
                 this.$store.commit('setSelectColumn',this.columnIndex)
+                this.$store.commit('setSelectRow',this.rowIndex)
                 this.isActive = true
                 bus.$emit('gridActive',true)
             },
@@ -88,7 +110,7 @@ import {bus} from '../../main'
                 
             },
             deleteItem:function(){
-                this.$store.commit('deleteColumn',{index : this.columnIndex , id :this.id })
+                this.$store.commit('deleteColumn',{index : this.columnIndex , id :this.id ,row : this.rowIndex})
             },
             edit:function(){
                 bus.$emit('openOption',{name : 'Column',id:this.id,index: this.columnIndex})

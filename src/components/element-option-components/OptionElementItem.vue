@@ -29,8 +29,8 @@
                 <input v-if="itemOption.ref == 'letterSpacing'" type="range" v-model="style.letterSpacing">
                 <span v-if="itemOption.ref == 'videoUrl'" v-html="itemOption.name"></span>
                 <input v-if="itemOption.ref == 'videoUrl'" type="text" v-model="style.url">
-                <span v-if="itemOption.ref == 'letterSpacing'" v-html="itemOption.name"></span>
-                <input v-if="itemOption.ref == 'letterSpacing'" type="range" v-model="style.letterSpacing">
+                <span v-if="itemOption.ref == 'wordSpacing'" v-html="itemOption.name"></span>
+                <input v-if="itemOption.ref == 'wordSpacing'" type="range" v-model="style.wordSpacing">
                 <span v-if="itemOption.ref == 'Columnbackground'" v-html="itemOption.name"></span>
                 <input type="radio" v-if="itemOption.ref == 'Columnbackground'" name="bgColor" v-model="backgroundColor" value="1"><i v-if="itemOption.ref == 'Columnbackground'">Color</i>
                 <input type="radio" v-if="itemOption.ref == 'Columnbackground'" name="bgColor" v-model="backgroundColor" value="2"><i v-if="itemOption.ref == 'Columnbackground'">Image</i>
@@ -71,6 +71,20 @@
                     <option value="container" >Page</option>
                     <option value="container-fluid" selected>Screen</option>
                 </select>
+
+                <div v-if="itemOption.ref == 'rowManager'" class="div-column-manager">
+                    <h2>Row Manager</h2>
+                    <button class="addColumn" @click="addRow">Add Row</button>
+                    <ul>
+                        <item-row v-for="(n,index) in getNumRow" :key="index" :n="n"></item-row>
+                    </ul>
+                    <div class="div-column-manager-option">
+                        <button v-if="enableOptionRow" @click="deleteRow"><img src="../../assets/delete.svg"/></button>
+                        <!-- <button v-if="enableOptionRow" @click="swapColumn('toLeft')"><img src="../../assets/previous.svg"/></button> -->
+                        <!-- <button v-if="enableOptionRow" @click="swapColumn('toRight')"><img src="../../assets/next.svg"/></button> -->
+                    </div>
+                </div>
+
                 <div v-if="itemOption.ref == 'sectionColumnManagement'" class="div-column-manager">
                     <h2>Column Manager</h2>
                     <button class="addColumn" @click="addColumn">Add Column</button>
@@ -139,7 +153,8 @@ import Grid from '../../data.json'
                 common : [],
                 backgroundColor: 1,
                 enableOptionColumn : false,
-                arrayGridManager : []
+                arrayGridManager : [],
+                enableOptionRow: false
             }
         },
         computed:{
@@ -151,19 +166,28 @@ import Grid from '../../data.json'
             },
             getNumColumn:function(){
                 return this.$store.getters.getNumColumn
+            },
+            getNumRow:function(){
+                return this.$store.getters.getNumRow
             }
         },
 
         methods:{
+            addRow:function(){
+                this.$store.commit('addRow')
+            },
+            deleteRow:function(){
+                this.$store.commit('deleteRow')
+            },
             swapColumn:function(toIndex){
-                this.$store.commit('swapColumn',toIndex)
+                this.$store.commit('swapColumn',toIndex) 
             },
             addColumn:function(){
                 this.$store.commit('addColumn')
             },
             deleteColumn:function(){
                 if(this.getNumColumn > 1){
-                    this.$store.commit('deleteColumn',{index : this.$store.getters.getSelectColumn , id :this.$store.getters.getSelectID })
+                    this.$store.commit('deleteColumn',{index : this.$store.getters.getSelectColumn , id :this.$store.getters.getSelectID, row : this.$store.getters.getRowSelected })
                 }
             },
             updateColor:function(ev){
@@ -204,6 +228,11 @@ import Grid from '../../data.json'
                     this.enableOptionColumn = true
                 }
             })
+            bus.$on('enableOptionRow',()=>{
+                 if(this.getNumRow > 1){
+                    this.enableOptionRow = true
+                }
+            })
             this.item = Default.Default[this.name]
             this.arrayGridManager = Grid.grid_manager[this.getNumColumn]
         },
@@ -213,6 +242,11 @@ import Grid from '../../data.json'
                     this.enableOptionColumn = false
                 }
                 this.arrayGridManager = Grid.grid_manager[val]
+            },
+            getNumRow:function(val){
+                 if(val == 1){
+                    this.enableOptionRow = false
+                }
             }
         }
 

@@ -51,7 +51,7 @@ import {bus} from '../../main'
     methods:{
         select:function(){
             console.log('selected box')
-        this.$store.commit('setSelectId',this.id)
+        // this.$store.commit('setSelectId',this.id)
         this.isActive = true 
         },
         editOption(){

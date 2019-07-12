@@ -1,25 +1,21 @@
 <template>
      <dragResize
             :id="id"
-            :x ="position.x"
-            :y ="position.y"
-            :angle="position.angle"
-            :w="position.w"
-            :h="position.h"
+            class="row"
             @select="select"
             @deselect="deselect"
-            :style="getStyleWrap"
+            :style="{zindex :isActive? 99999 :1}"
+            style="width:100%;position:relative"
             >
-    <div :style="getStyle" class="row">
-        
+    <div :style="getStyle"  class="row" style="width:100%;position:relative">
+        <slot></slot>
     </div>
         <btnOption v-if="isActive"
-        :isGrid="false" 
+        :isGrid="true" 
         @edit="editOption" 
         @disableEdit="onBlur"
         @deleteItem="deleteItem"
-        @preColumn="preColumn"
-        @nextColumn="nextColumn"
+        :styleBtn="styleBtn"
         :elementName="'ROW'"
         ></btnOption>
      </dragResize>
@@ -33,27 +29,37 @@ import {bus} from '../../main'
         type : Number,
         required: true
       },
-      position : {
-        type : Object,
-        required :true
+      height:{
+          type : Number
       },
-      styleRow :{
-        type :Object,
-
+      bg :{
+          type : String
+      },
+      rowIndex:{
+          type: Number
       }
       
     },
     data() {
       return {
         isActive : false,
+        styleBtn:{
+                    width : 215 +'px',
+                    height: 25 +'px',
+                    position: 'absolute',
+                    zIndex: '99999',
+                    bottom: 0 + '!important',
+                    left: 50 +'% !important',
+                    transform : 'translateX(-50%)',
+                    top : 'auto'
+                },
       }
     },
     methods:{
         select:function(){
-            this.$store.commit('setSelectId',this.id)
-            this.$store.commit('setSelectColumn',this.columnIndex)
+            // this.$store.commit('setSelectId',this.id)
+            // this.$store.commit('setSelectRow',this.rowIndex)
             this.isActive = true
-            bus.$emit('gridActive',true)
         },
         editOption(){
          bus.$emit('openOption',{name : 'ROW',id:this.id,index : -1})
@@ -67,70 +73,34 @@ import {bus} from '../../main'
         deleteItem:function(){
             this.$store.commit('deleteItemById',this.id)
         },
-        preColumn:function(){
-            this.$store.commit('preColumn',this.id)
-        },
-        nextColumn:function(){
-            this.$store.commit('nextColumn',this.id)
-        }
+    },
+    mounted:function(){
+        // bus.$on('gridActive',()=>{
+        //         this.isActive = true
+        //     })
     },
     computed:{
         getStyle: function(){
-        return {
-         height : this.styleRow.size +'px',
-         backgroundColor : this.styleRow.backgroundColor
-        }
-        },
-        getStyleWrap:function(){
-            if(this.styleRow.alignBlock == 'center'){
-            var style = {
-                top: this.styleRow.top,
-                // width: this.styleLine.width ,
-                // height: this.styleLine.height ,
-                transform: 'rotate(' + this.styleRow.rotation + 'deg)',
-                left : '50%',
-                transform : 'translateX(-50%)',
-                maxWidth : '90%',
-                zIndex : this.isActive ? 99999 : 1,
-            }
-            }else if( this.styleRow.alignBlock == 'left'){
-            var style = {
-                top: this.styleRow.top,
-                // width: this.styleLine.width ,
-                // height: this.styleLine.height ,
-                transform: 'rotate(' + this.styleRow.rotation + 'deg)',
-                left : 0,
-                transform :'none',
-                right : 'auto',
-                maxWidth : '90%',
-                zIndex : this.isActive ? 99999 : 1,
-            }
-            }else if( this.styleRow.alignBlock == 'right'){
-            var style = {
-                top: this.styleRow.top,
-                // width: this.styleLine.width ,
-                // height: this.styleLine.height ,
-                transform: 'rotate(' + this.styleRow.rotation + 'deg)',
-                right : 0,
-                transform :'none',
-                left : 'auto',
-                maxWidth : '90%',
-                zIndex : this.isActive ? 99999 : 1,
-            }
-            }else{
             return {
-                left: this.styleRow.left,
-                top: this.styleRow.top,
-                // width: this.styleLine.width ,
-                // height: this.styleLine.height ,
-                transform: 'rotate(' + this.styleRow.rotation + 'deg)',
-                maxWidth : '90%',
-                zIndex : this.isActive ? 99999 : 1,
-            };
+            //  height : this.height +'%',
+            backgroundColor : this.bg,
             }
-            return style
-        }
         },
+        getActiveRow:function(){
+            return this.$store.getters.getRowSelected
+        }
+    },
+    watch:{
+        getActiveRow:function(val){
+            console.log(val)
+            if(this.rowIndex == val){
+                this.select()
+            }else{
+                this.deselect()
+            }   
+        }
+    }
+
     }
 </script>
 

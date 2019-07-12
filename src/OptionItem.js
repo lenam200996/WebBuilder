@@ -72,14 +72,10 @@ var Default = {
                 name : 'Stretched',
                 ref: 'stretched'
             },
-            {
-                name : 'Column',
-                ref : 'sectionColumnManagement'
-            },
-            {
-                name :'Grid manager',
-                ref:'sectionGrid'
-            }
+           {
+               name : 'Row',
+               ref:'rowManager'
+           }
             
         ],
         'BUTTON':[
@@ -182,6 +178,20 @@ var Default = {
                 ref : 'backgroundColor'
             },
             
+        ],
+        'ROW':[
+            {
+                name : 'Background Color',
+                ref : 'backgroundColor'
+            },
+            {
+                name : 'Column',
+                ref : 'sectionColumnManagement'
+            },
+            {
+                name :'Grid manager',
+                ref:'sectionGrid'
+            }
         ]
         
         

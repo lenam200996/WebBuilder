@@ -78,8 +78,9 @@ var Template = {
                     {
                         position: { x :200,y : 320,angle:0, w:400,h:500},
                         type : 'section',
-                        layout : [{"index":1,"size":50,"bg":require('./assets/template.jpg')},{"index":2,"size":50,"bg":"#4bd1a0"}],
+                        layout : [{row:1,"index":1,"size":50,"bg":require('./assets/template.jpg')},{row:1,"index":2,"size":50,"bg":"#4bd1a0"}],
                         style : {"backgroundColor":"linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)","boxShadow":"0 2px 5px 0 rgba(22, 45, 61, 0.58)","margin":"auto","backgroundImage":{"url":"./assets/logo.png","position":"center","size":"cover","repeat":"no-repeat"},"stretched":"container-fluid","height":550},
+                        row :[{index:1,size:100}]
 
                     },
                     {
@@ -88,6 +89,7 @@ var Template = {
                         style : {"fontFamily":"Roboto","letterSpacing":"12","wordSpacing":"16","lineHeight":"14","alignBlock":"center","top":"116px","left":"38px","width":"720px","height":"88px","rotation":0},
                         value : "<h1 style=\"text-align: center;\"><strong><span style=\"font-size: 46pt;\"><span style=\"color: #ffffff;\">ABOUT</span> <span style=\"color: #000000;\">US</span></span></strong></h1>",
                         column : 2,
+                        row:1
                     },
                     {
                         type : 'text',
@@ -95,12 +97,14 @@ var Template = {
                         style : {"fontFamily":"Roboto","letterSpacing":"0","wordSpacing":"0","lineHeight":"32","alignBlock":"center","top":"249px","left":"50px","width":"416px","height":"123px","rotation":0},
                         value :"<p><span style=\"font-size: 14pt;\">I&rsquo;m a paragraph. Click here then click Text to add some text of your own or to change the font. Tell your visitors a bit about your services.</span></p>",
                         column : 2,
+                        row:1
                     },
                     {
                         type : 'btn',
                         position: {"x":313,"y":434,"angle":0,"w":200,"h":50},
                         style :{"fontFamily":"Roboto","backgroundColor":"#4bd1a0","border":{"width":"5","type":"solid","color":"#000000"},"borderRadius":0,"shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"color":"#000000","textTransform":"none","alignBlock":"center","text":"LEARN MORE","top":"409px","left":"213px","width":"200px","height":"50px","rotation":0},
                         column : 2,
+                        row:1
                     }
                 ]
             },
@@ -111,8 +115,9 @@ var Template = {
                     {
                         position: { x :200,y : 320,angle:0, w:400,h:500},
                         type:'section',
-                        layout:[{"index":1,"size":60,"bg":require('./assets/template.jpg')},{"index":2,"size":40,"bg":"#ffef98"}],
+                        layout:[{row:1,"index":1,"size":60,"bg":require('./assets/template.jpg')},{row:1,"index":2,"size":40,"bg":"#ffef98"}],
                         style:{"backgroundColor":"linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)","boxShadow":"0 2px 5px 0 rgba(22, 45, 61, 0.58)","margin":"auto","backgroundImage":{"url":"./assets/logo.png","position":"center","size":"cover","repeat":"no-repeat"},"stretched":"container-fluid","height":500},
+                        row:[{index:1,size:100}]
                     },
                     {
                         type:'text',
@@ -120,6 +125,7 @@ var Template = {
                         style:{"fontFamily":"Roboto Mono","letterSpacing":"0","wordSpacing":"0","lineHeight":"14","alignBlock":"left","top":"71.1515029502761px","left":"-132.90480937809124px","width":"507.8096187561825px","height":"62.69699409944779px","rotation":-20.05609473657543},
                         value:"<h1 style=\"text-align: left; padding-left: 40px;\"><span style=\"font-size: 42px;\"><strong><em>Add Your Title</em></strong></span></h1>",
                         column:2,
+                        row:1
                     },
                     {
                         type:'text',
@@ -127,6 +133,7 @@ var Template = {
                         style:{"fontFamily":"Roboto","letterSpacing":"0","wordSpacing":"0","lineHeight":20,"alignBlock":"left","top":"157px","left":"-47px","width":"376px","height":"32px","rotation":0},
                         value:"<p><strong><span style=\"font-size: 14pt;\">This is a great place to add a tagline.</span></strong></p>",
                         column:2,
+                        row:1
                     },
                     {
                         type:'text',
@@ -134,6 +141,7 @@ var Template = {
                         style:{"fontFamily":"Open Sans","letterSpacing":"0","wordSpacing":"0","lineHeight":"25","alignBlock":"left","top":"209px","left":"-45px","width":"396px","height":"204px","rotation":0},
                         value:"<p class=\"font_8\" style=\"text-align: left; padding-left: 40px;\">Tell customers more about you. Add a few words and a stunning pic to grab their attention and get them to click.</p>\n<p class=\"font_8\" style=\"text-align: left; padding-left: 40px;\">This space is ideal for writing a detailed description of your business and&nbsp;the types of services that you provide. Talk about your team and your&nbsp;areas of expertise.&nbsp;</p>",
                         column:2,
+                        row:1
                     }
                 ]
             },
@@ -144,8 +152,9 @@ var Template = {
                     {
                         position: { x :200,y : 320,angle:0, w:400,h:500},
                         type: 'section',
-                        layout:[{"index":1,"size":25,"bg":require('./assets/template.jpg')},{"index":2,"size":50,"bg":"#fcf8ed"},{"index":3,"size":25,"bg":require('./assets/template.jpg')}],
+                        layout:[{row:1,"index":1,"size":25,"bg":require('./assets/template.jpg')},{row:1,"index":2,"size":50,"bg":"#fcf8ed"},{row:1,"index":3,"size":25,"bg":require('./assets/template.jpg')}],
                         style:{"backgroundColor":"linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)","boxShadow":"0 2px 5px 0 rgba(22, 45, 61, 0.58)","margin":"auto","backgroundImage":{"url":"./assets/logo.png","position":"center","size":"cover","repeat":"no-repeat"},"stretched":"container-fluid","height":500},
+                        row:[{index:1,size:100}]
                     },
                     {
                         type:'text',
@@ -153,6 +162,7 @@ var Template = {
                         style:{"fontFamily":"Literata","letterSpacing":"0","wordSpacing":"0","lineHeight":"14","alignBlock":"center","top":"60px","left":"84px","width":"464px","height":"57px","rotation":0},
                         value:"<h1 style=\"text-align: center;\"><span style=\"font-size: 42px; color: #bc9b00;\">ABOUT US</span></h1>",
                         column:2,
+                        row:1
                     },
                     {
                         
@@ -160,7 +170,8 @@ var Template = {
                         position:{"x":137.5,"y":164.5,"angle":0,"w":471,"h":41},
                         style:{"fontFamily":"Oswald","letterSpacing":"2","wordSpacing":"2","lineHeight":20,"alignBlock":"center","top":"144px","left":"-98px","width":"471px","height":"41px","rotation":0},
                         value:"<p style=\"text-align: center;\"><span class=\"color_14\" style=\"font-size: 14pt;\">THIS IS A GREAT PLACE FOR YOUR&nbsp;TAGLINE.</span></p>",
-                        column:2
+                        column:2,
+                        row:1
                     },
                     {
                         
@@ -168,13 +179,15 @@ var Template = {
                         position:{"x":327,"y":279,"angle":0,"w":438,"h":174},
                         style:{"fontFamily":"Open Sans","letterSpacing":"0","wordSpacing":"3","lineHeight":"28","alignBlock":"center","top":"192px","left":"108px","width":"438px","height":"174px","rotation":0},
                         value:"<p style=\"text-align: center;\"><span style=\"font-size: 14pt;\">Tell your visitors your story. Add catchy text to describe what you do, and what you have to offer. The right words can inspire and intrigue your audience, so they&rsquo;re ready to take action on your site. To start telling your story, double click or click Edit Text.</span></p>",
-                        column:2
+                        column:2,
+                        row:1
                     },
                     {
                         type : 'btn',
                         position: {"x":320,"y":412,"angle":0,"w":200,"h":50},
                         style :{"fontFamily":"Literata","backgroundColor":"#fcf8ed","border":{"width":0,"type":"solid","color":"#000000"},"borderRadius":0,"shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"color":"#bc9b5d","textTransform":"none","alignBlock":"center","text":"Book a place ","top":"387px","left":"220px","width":"200px","height":"50px","rotation":0},
                         column : 2,
+                        row:1
                     }
                 ]
             },
@@ -185,8 +198,9 @@ var Template = {
                     {
                         position: { x :200,y : 320,angle:0, w:400,h:500},
                         type: 'section',
-                        layout:[{"index":1,"size":40,"bg":"#00305b"},{"index":2,"size":60,"bg":require('./assets/template.jpg')}],
+                        layout:[{row:1,"index":1,"size":40,"bg":"#00305b"},{row:1,"index":2,"size":60,"bg":require('./assets/template.jpg')}],
                         style:{"backgroundColor":"linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)","boxShadow":"0 2px 5px 0 rgba(22, 45, 61, 0.58)","margin":"auto","backgroundImage":{"url":"./assets/logo.png","position":"center","size":"cover","repeat":"no-repeat"},"stretched":"container-fluid","height":500},
+                        row:[{index:1,size:100}]
                     },
                     {
                         type : 'image',
@@ -194,6 +208,7 @@ var Template = {
                         style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":"0","shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"65px","left":"215px","width":"73.43999999999991px","height":"55.08000000000001px","rotation":0},
                         url:require('./assets/logo.png'),
                         column:1,
+                        row:1
                     },
                     {
                         type: 'text',
@@ -201,6 +216,7 @@ var Template = {
                         style:{"fontFamily":"Open Sans","letterSpacing":"0","wordSpacing":"0","lineHeight":"14","alignBlock":"center","top":"162px","left":"6px","width":"505px","height":"90px","rotation":0},
                         value:"<h1><span style=\"font-size: 60pt; color: #ffffff;\"><strong>OUR</strong> FIRM</span></h1>",
                         column:1,
+                        row:1
                     },
                     {
                         type: 'text',
@@ -208,6 +224,7 @@ var Template = {
                         style:{"fontFamily":"Open Sans","letterSpacing":"0","wordSpacing":"0","lineHeight":"29","alignBlock":"center","top":"266px","left":"24px","width":"404px","height":"56px","rotation":0},
                         value:"<p style=\"text-align: center;\"><span style=\"color: #ffffff; font-size: 14pt;\">I'm a paragraph. Click here to add your own text and edit me. It's easy.</span></p>",
                         column:1,
+                        row:1
                     }
                 ]
             },
@@ -218,105 +235,120 @@ var Template = {
                     {
                         position: { x :200,y : 320,angle:0, w:400,h:500},
                         type:'section',
-                        layout: [{"index":1,"size":33,"bg":"none"},{"index":2,"size":33,"bg":"#ffffff"},{"index":3,"size":33,"bg":"#ffffff"}],
-                        style: {"backgroundColor":"linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)","boxShadow":"0 2px 5px 0 rgba(22, 45, 61, 0.58)","margin":"auto","backgroundImage":{"url":"./assets/logo.png","position":"center","size":"cover","repeat":"no-repeat"},"stretched":"container","height":550}
+                        layout: [{row:1,index:1,size:100,bg:'none'},{row:2,"index":1,"size":33,"bg":"none"},{row:2,"index":2,"size":33,"bg":"#ffffff"},{row:2,"index":3,"size":33,"bg":"#ffffff"}],
+                        style: {"backgroundColor":"linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)","boxShadow":"0 2px 5px 0 rgba(22, 45, 61, 0.58)","margin":"auto","backgroundImage":{"url":"./assets/logo.png","position":"center","size":"cover","repeat":"no-repeat"},"stretched":"container","height":550},
+                        row:[{index:1,size:20},{index:2,size:80}]
                     },
                     {
                         type :'text',
                         position:{"x":330,"y":44,"angle":0,"w":672,"h":48},
                         style:{"fontFamily":"Roboto Mono","letterSpacing":"0","wordSpacing":"0","lineHeight":"14","alignBlock":"center","top":"20px","left":"-6px","width":"672px","height":"48px","rotation":0},
                         value:"<h1><span style=\"font-size: 30pt;\">Meet The Team</span></h1>",
-                        column:2 ,
+                        column:1 ,
+                        row:1
                     },
                     {
                         type : 'lineHorizontal',
                         position:{"x":157.5,"y":84,"angle":0,"w":77,"h":10},
                         style:{"size":"3","backgroundColor":"#2c3e50","alignBlock":"center","top":"79px","left":"119px","rotation":0,"width":"77px","height":"10px"},
-                        column : 2
+                        column : 1,
+                        row:1
                     },
                     {
                         type : 'image',
-                        position:{"x":101.09082217918088,"y":228.74924149418575,"angle":0,"w":206.18164435836175,"h":195.49848298837145},
-                        style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":50,"shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"131.00000000000003px","left":"-2px","width":"206.18164435836175px","height":"195.49848298837145px","rotation":0},
+                        position:{"x":101.09082217918088,"y":128.74924149418575,"angle":0,"w":206.18164435836175,"h":195.49848298837145},
+                        style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":50,"shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"31.00000000000003px","left":"-2px","width":"206.18164435836175px","height":"195.49848298837145px","rotation":0},
                         url:require('./assets/template.jpg'),
                         column:1,
+                        row:2
                     },
                     {
                         type : 'image',
-                        position:{"x":101.09082217918088,"y":228.74924149418575,"angle":0,"w":206.18164435836175,"h":195.49848298837145},
-                        style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":50,"shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"131.00000000000003px","left":"-2px","width":"206.18164435836175px","height":"195.49848298837145px","rotation":0},
+                        position:{"x":101.09082217918088,"y":128.74924149418575,"angle":0,"w":206.18164435836175,"h":195.49848298837145},
+                        style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":50,"shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"31.00000000000003px","left":"-2px","width":"206.18164435836175px","height":"195.49848298837145px","rotation":0},
                         url:require('./assets/template.jpg'),
                         column:2,
+                        row:2
                     },
                     {
                         type : 'image',
-                        position:{"x":101.09082217918088,"y":228.74924149418575,"angle":0,"w":206.18164435836175,"h":195.49848298837145},
-                        style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":50,"shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"131.00000000000003px","left":"-2px","width":"206.18164435836175px","height":"195.49848298837145px","rotation":0},
+                        position:{"x":101.09082217918088,"y":128.74924149418575,"angle":0,"w":206.18164435836175,"h":195.49848298837145},
+                        style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":50,"shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"31.00000000000003px","left":"-2px","width":"206.18164435836175px","height":"195.49848298837145px","rotation":0},
                         url:require('./assets/template.jpg'),
                         column:3,
+                        row:2
                     },
                     {
                         type :'text',
-                        position:{"x":170,"y":356.5,"angle":0,"w":360,"h":27},
-                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":"21","alignBlock":"center","top":"343px","left":"-10px","width":"360px","height":"27px","rotation":0},
+                        position:{"x":170,"y":256.5,"angle":0,"w":360,"h":27},
+                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":"21","alignBlock":"center","top":"243px","left":"-10px","width":"360px","height":"27px","rotation":0},
                         value:"<p style=\"text-align: center;\"><span style=\"color: #003e50; font-size: 14pt;\"><em>Jon&nbsp;Doe</em></span></p>",
                         column:1 ,
+                        row:2
                     },
                     {
                         type :'text',
-                        position:{"x":170,"y":356.5,"angle":0,"w":360,"h":27},
-                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":"21","alignBlock":"center","top":"343px","left":"-10px","width":"360px","height":"27px","rotation":0},
+                        position:{"x":170,"y":256.5,"angle":0,"w":360,"h":27},
+                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":"21","alignBlock":"center","top":"243px","left":"-10px","width":"360px","height":"27px","rotation":0},
                         value:"<p style=\"text-align: center;\"><span style=\"color: #003e50; font-size: 14pt;\"><em>Jon&nbsp;Doe</em></span></p>",
                         column:2 ,
+                        row:2
                     },
                     {
                         type :'text',
-                        position:{"x":170,"y":356.5,"angle":0,"w":360,"h":27},
-                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":"21","alignBlock":"center","top":"343px","left":"-10px","width":"360px","height":"27px","rotation":0},
+                        position:{"x":170,"y":256.5,"angle":0,"w":360,"h":27},
+                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":"21","alignBlock":"center","top":"243px","left":"-10px","width":"360px","height":"27px","rotation":0},
                         value:"<p style=\"text-align: center;\"><span style=\"color: #003e50; font-size: 14pt;\"><em>Jon&nbsp;Doe</em></span></p>",
                         column:3 ,
+                        row:2
                     },
                     {
                         type : 'image',
-                        position:{"x":168.18919628054496,"y":400.67418727023716,"angle":0,"w":37.098392561089874,"h":33.34837454047431},
-                        style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":"0","shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"384px","left":"149.64000000000001px","width":"37.098392561089874px","height":"33.34837454047431px","rotation":0},
+                        position:{"x":168.18919628054496,"y":300.67418727023716,"angle":0,"w":37.098392561089874,"h":33.34837454047431},
+                        style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":"0","shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"284px","left":"149.64000000000001px","width":"37.098392561089874px","height":"33.34837454047431px","rotation":0},
                         url:require('./assets/in.png'),
                         column:1,
+                        row:2
                     },
                     {
                         type : 'image',
-                        position:{"x":168.18919628054496,"y":400.67418727023716,"angle":0,"w":37.098392561089874,"h":33.34837454047431},
-                        style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":"0","shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"384px","left":"149.64000000000001px","width":"37.098392561089874px","height":"33.34837454047431px","rotation":0},
+                        position:{"x":168.18919628054496,"y":300.67418727023716,"angle":0,"w":37.098392561089874,"h":33.34837454047431},
+                        style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":"0","shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"284px","left":"149.64000000000001px","width":"37.098392561089874px","height":"33.34837454047431px","rotation":0},
                         url:require('./assets/in.png'),
                         column:2,
+                        row:2
                     },
                     {
                         type : 'image',
-                        position:{"x":168.18919628054496,"y":400.67418727023716,"angle":0,"w":37.098392561089874,"h":33.34837454047431},
-                        style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":"0","shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"384px","left":"149.64000000000001px","width":"37.098392561089874px","height":"33.34837454047431px","rotation":0},
+                        position:{"x":168.18919628054496,"y":300.67418727023716,"angle":0,"w":37.098392561089874,"h":33.34837454047431},
+                        style:{"keepProportion":"true","alignBlock":"center","border":{"width":"0","color":"#000000","type":"solid"},"borderRadius":"0","shadow":{"angle":0,"distance":0,"size":0,"blur":4,"color":"#cccccc","opacity":1},"top":"284px","left":"149.64000000000001px","width":"37.098392561089874px","height":"33.34837454047431px","rotation":0},
                         url:require('./assets/in.png'),
                         column:3,
+                        row:2
                     },
                     {
                         type :'text',
-                        position:{"x":233.5,"y":478.5,"angle":0,"w":417,"h":71},
-                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":20,"alignBlock":"center","top":"443px","left":"25px","width":"417px","height":"71px","rotation":0},
+                        position:{"x":233.5,"y":378.5,"angle":0,"w":417,"h":71},
+                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":20,"alignBlock":"center","top":"343px","left":"25px","width":"417px","height":"71px","rotation":0},
                         value:"<p><span style=\"font-size: 12pt; \">I'm a paragraph. Click here to add your own text and edit me. It's easy.</span></p>",
                         column:1,
+                        row:2
                     },
                     {
                         type :'text',
-                        position:{"x":233.5,"y":478.5,"angle":0,"w":417,"h":71},
-                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":20,"alignBlock":"center","top":"443px","left":"25px","width":"417px","height":"71px","rotation":0},
+                        position:{"x":233.5,"y":378.5,"angle":0,"w":417,"h":71},
+                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":20,"alignBlock":"center","top":"343px","left":"25px","width":"417px","height":"71px","rotation":0},
                         value:"<p><span style=\"font-size: 12pt; \">I'm a paragraph. Click here to add your own text and edit me. It's easy.</span></p>",
                         column:2,
+                        row:2
                     },
                     {
                         type :'text',
-                        position:{"x":233.5,"y":478.5,"angle":0,"w":417,"h":71},
-                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":20,"alignBlock":"center","top":"443px","left":"25px","width":"417px","height":"71px","rotation":0},
+                        position:{"x":233.5,"y":378.5,"angle":0,"w":417,"h":71},
+                        style:{"fontFamily":"Oswald","letterSpacing":"0","wordSpacing":"0","lineHeight":20,"alignBlock":"center","top":"343px","left":"25px","width":"417px","height":"71px","rotation":0},
                         value:"<p><span style=\"font-size: 12pt; \">I'm a paragraph. Click here to add your own text and edit me. It's easy.</span></p>",
                         column:3,
+                        row:2
                     }
                 ]
             }

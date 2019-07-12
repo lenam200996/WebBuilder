@@ -285,17 +285,37 @@ class Section {
        
         this.layout = [
             {
+                row : 1,
                 index: 1,
-                size : 40,
-                bg: '#ccc'
+                size : 100,
+                bg: 'none'
             },
             {
+                row : 2,
+                index: 1,
+                size : 40,
+                bg: 'none'
+            },
+            {
+                row: 2,
                 index : 2,
                 size : 60,
                 bg: 'none'
             },
             
         ];
+        this.row = [
+            {
+                index : 1,
+                size: 20,
+                bg : '#333333'
+            },
+            {
+                index : 2,
+                size : 80,
+                bg : '#ffffff'
+            }
+        ]
         
     }
     

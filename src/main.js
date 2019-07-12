@@ -16,12 +16,14 @@ import Section from './components/basic-components/Section'
 import SlideShow from './components/basic-components/SlideShow'
 import SectionFooter from './components/basic-components/SectionFooter';
 import Column from './components/basic-components/Column'
+import Row from './components/basic-components/Row'
 import ToolAdd from './components/main-option-components/ToolAddElement'
 import AddElement from './components/main-option-components/AddElement'
 import ButtonOptionElement from './components/element-option-components/ButtonOption'
 import OptionElement from './components/element-option-components/OptionElement'
 import OptionElementItem from './components/element-option-components/OptionElementItem'
 import ColumnItem from './components/element-option-components/ColumnItem'
+import RowItem from './components/element-option-components/RowItem'
 import TopMenu from './components/main-option-components/TopMenu'
 import SectionRender from './components/render-components/Section'
 import ColumnRender from './components/render-components/Column'
@@ -35,6 +37,8 @@ import VueTabs from 'vue-nav-tabs/dist/vue-tabs.js'
 import 'vue-nav-tabs/themes/vue-tabs.css'
 import EasySlider from 'vue-easy-slider'
 import { Slider, SliderItem } from 'vue-easy-slider'
+import VueI18n from 'vue-i18n'
+Vue.use(VueI18n)
 Vue.use(VueTabs)
 Vue.use(EasySlider)
 
@@ -47,6 +51,7 @@ Vue.component('sectionFooter',SectionFooter)
 Vue.component('columnBasic',Column)
 Vue.component('textBox',TextBox)
 Vue.component('boxComponent',Box)
+Vue.component('rowComponent',Row)
 Vue.component('slideShow',SlideShow)
 Vue.component('imageComponent',Image)
 Vue.component('lineHorizontal',LineHorizontal)
@@ -57,6 +62,7 @@ Vue.component('btnOption',ButtonOptionElement)
 Vue.component('divOption',OptionElement)
 Vue.component('divOptionItem',OptionElementItem)
 Vue.component('itemColumn',ColumnItem)
+Vue.component('itemRow',RowItem)
 Vue.component('buttonComponent',Button)
 Vue.component('fieldComponent',Field)
 Vue.component('topMenu',TopMenu)
@@ -72,8 +78,29 @@ Vue.component('videoComponent',Video)
 
 Vue.config.productionTip = false;
 export const bus = new Vue();
+
+const messages = {
+  vn: {
+      mess : {
+        name : 'Xin chao {name}'
+      }
+  },
+  en: {
+      mess : {
+        name : 'hello {name}'
+      }
+  },
+};
+
+const i18n = new VueI18n({
+  locale: 'vn', // set locale
+  messages,
+  fallbackLocale: 'vn'
+});
+
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount("#app");

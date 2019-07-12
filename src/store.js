@@ -13,6 +13,8 @@ export default new Vuex.Store({
     selectId : false,
     indexItem : 1,
     Selectedcolumn : null,
+    SelectedRow : null,
+    SelectedElement: null,
     elements : {
       item :
       [
@@ -21,6 +23,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    setSelectRow:function(state,rowIndex){
+      state.SelectedRow = rowIndex
+    },
     swapColumn:function(state,toIndex){
       switch (toIndex) {
         case 'toLeft':
@@ -105,7 +110,9 @@ export default new Vuex.Store({
       state.elements.item = state.elements.item.filter(item =>{
         if(item.id == state.selectId){
           item.layout = item.layout.filter(itemLayout =>{
-            itemLayout.size = grid[itemLayout.index - 1]
+            if(itemLayout.row == state.SelectedRow){
+              itemLayout.size = grid[itemLayout.index - 1]
+            }
             return itemLayout
           })
         }
@@ -123,7 +130,8 @@ export default new Vuex.Store({
                 parentId : state.selectId != null ? state.selectId : null,
                 column : state.Selectedcolumn,
                 position :payload.position,
-                value : payload.value
+                value : payload.value,
+                row : state.SelectedRow
               }
               this.commit('addItem',item)
             }
@@ -141,7 +149,8 @@ export default new Vuex.Store({
                       style: item.style,
                       parentId : -1,
                       layout: item.layout,
-                      position :item.position
+                      position :item.position,
+                      row : item.row
                       //  {
                       //   x : item.position.x,
                       //   y : this.getters.getHeightDom  + item.position.y,
@@ -164,7 +173,8 @@ export default new Vuex.Store({
                       parentId : state.selectId != null ? state.selectId : null,
                       column : item.column,
                       position :item.position,
-                      value : item.value
+                      value : item.value,
+                      row : item.row
                     }
                     this.commit('addItem',itemText)
                   }
@@ -178,6 +188,7 @@ export default new Vuex.Store({
                         parentId : state.selectId != null ? state.selectId : null,
                         column :item.column,
                         position : item.position,
+                        row : item.row
                       } 
                       this.commit('addItem',itembtn)  
                     }
@@ -191,7 +202,8 @@ export default new Vuex.Store({
                         parentId : state.selectId != null ? state.selectId : null,
                         column : item.column,
                         position: item.position,
-                        url : item.url
+                        url : item.url,
+                        row : item.row
                       }    
                       this.commit('addItem',itemImg)
                     }
@@ -205,6 +217,7 @@ export default new Vuex.Store({
                       parentId : state.selectId != null ? state.selectId : null,
                       column :item.column,
                       position : item.position,
+                      row : item.row
                     }    
                     this.commit('addItem',itemLine) 
                   }
@@ -227,7 +240,8 @@ export default new Vuex.Store({
                           style: item.style,
                           parentId : -1,
                           layout: item.layout,
-                          position : item.position
+                          position : item.position,
+                          row : item.row
                           
                           // {
                           //   x : item.position.x,
@@ -251,7 +265,8 @@ export default new Vuex.Store({
                           parentId : state.selectId != null ? state.selectId : null,
                           column : item.column,
                           position :item.position,
-                          value : item.value
+                          value : item.value,
+                          row : item.row
                         }
                         this.commit('addItem',itemText)
                       }
@@ -265,6 +280,7 @@ export default new Vuex.Store({
                             parentId : state.selectId != null ? state.selectId : null,
                             column :item.column,
                             position : item.position,
+                            row : item.row
                           } 
                           this.commit('addItem',itembtn)  
                         }
@@ -278,7 +294,8 @@ export default new Vuex.Store({
                             parentId : state.selectId != null ? state.selectId : null,
                             column : item.column,
                             position: item.position,
-                            url : item.url
+                            url : item.url,
+                            row : item.row
                           }    
                           this.commit('addItem',itemImg)
                         }
@@ -291,6 +308,7 @@ export default new Vuex.Store({
                             parentId : state.selectId != null ? state.selectId : null,
                             column : item.column,
                             position : item.position,
+                            row : item.row
                           }
                           this.commit('addItem',itemFeild)
                         }
@@ -394,14 +412,8 @@ export default new Vuex.Store({
         style: ObjectSection.style,
         parentId : -1,
         layout:ObjectSection.layout,
-        position :ObjectSection.position
-        //  {
-        //       x : ObjectSection.position.x,
-        //       y : this.getters.getHeightDom  + ObjectSection.position.y,
-        //       angle : ObjectSection.position.angle,
-        //       w : ObjectSection.position.w,
-        //       h : ObjectSection.position.h
-        //     }
+        position :ObjectSection.position,
+        row : ObjectSection.row
       }
       state.selectId = state.indexItem
       state.Selectedcolumn = 1
@@ -418,6 +430,7 @@ export default new Vuex.Store({
                 style : ObjectText.style,
                 parentId : state.selectId != null ? state.selectId : null,
                 column : state.Selectedcolumn,
+                row : state.SelectedRow,
                 position :ObjectText.position,
                 value : ObjectText.value
               }
@@ -433,6 +446,7 @@ export default new Vuex.Store({
                 style : ObjectImg.style,
                 parentId : state.selectId != null ? state.selectId : null,
                 column : state.Selectedcolumn,
+                row : state.SelectedRow,
                 position: ObjectImg.position,
                 url : ObjectImg.url
               }    
@@ -448,6 +462,7 @@ export default new Vuex.Store({
                 style : ObjectButton.style,
                 parentId : state.selectId != null ? state.selectId : null,
                 column :state.Selectedcolumn,
+                row : state.SelectedRow,
                 position : ObjectButton.position,
                 text  : ObjectButton.text
               } 
@@ -463,6 +478,7 @@ export default new Vuex.Store({
               style : ObjectLine.style,
               parentId : state.selectId != null ? state.selectId : null,
               column :state.Selectedcolumn,
+              row : state.SelectedRow,
               position : ObjectLine.position,
             }    
             this.commit('addItem',item) 
@@ -477,6 +493,7 @@ export default new Vuex.Store({
               style : ObjectLineVertical.style,
               parentId : state.selectId != null ? state.selectId : null,
               column :state.Selectedcolumn,
+              row : state.SelectedRow,
               position : ObjectLineVertical.position,
             }    
             this.commit('addItem',item) 
@@ -516,6 +533,7 @@ export default new Vuex.Store({
             style: ObjectBox.style, 
             parentId : state.selectId != null ? state.selectId : null,
             column : state.Selectedcolumn,
+            row : state.SelectedRow,
             position : ObjectBox.position,
           }
           this.commit('addItem',item)
@@ -530,6 +548,7 @@ export default new Vuex.Store({
             style: ObjectField.style, 
             parentId : state.selectId != null ? state.selectId : null,
             column : state.Selectedcolumn,
+            row : state.SelectedRow,
             position : ObjectField.position,
           }
           this.commit('addItem',item)
@@ -544,6 +563,7 @@ export default new Vuex.Store({
             style: ObjectVideo.style, 
             parentId : state.selectId != null ? state.selectId : null,
             column : state.Selectedcolumn,
+            row : state.SelectedRow,
             position : ObjectVideo.position,
           }
           this.commit('addItem',item)
@@ -571,7 +591,7 @@ export default new Vuex.Store({
       state.elements.item = state.elements.item.filter(item =>{
         if(item.id == id){
           var parent = state.elements.item.find(itemP => itemP.id == item.parentId)
-          if(item.column < parent.layout.length){
+          if(item.column < parent.layout.filter(itemLayout => itemLayout.row == state.SelectedRow).length){
             item.column = item.column + 1
           }
         }
@@ -587,8 +607,40 @@ export default new Vuex.Store({
       })
       state.selectId = null
     },
-
-    deleteColumn:function(state ,{index, id}){
+    deleteRow:function(state){
+      state.elements.item = state.elements.item.filter(item =>{
+        if(item.id == state.selectId ){
+          var sizeOld = 0;
+          item.row = item.row.filter(itemRow =>{
+            if(itemRow.index != state.SelectedRow){
+              return itemRow
+            }else{
+              sizeOld = itemRow.size
+            }
+          })
+          item.layout = item.layout.filter(itemLayout =>{
+            if(itemLayout.row != state.SelectedRow){
+              return itemLayout
+            }
+          })
+          var index = 1;
+          item.row = item.row.filter(itemRow =>{
+            item.layout = item.layout.filter(itemLayout =>{
+              if(itemLayout.row == itemRow.index){
+                itemLayout.row = index
+              }
+              return itemLayout
+            })
+            itemRow.index = index
+            index == 1 ? itemRow.size += sizeOld : null
+            index++
+            return itemRow
+          })
+        }
+        return item
+      })
+    },
+    deleteColumn:function(state ,{index, id,row}){
       state.elements.item = state.elements.item.filter(item => {
         if(item.parentId != id || item.column != index){
           return item
@@ -598,19 +650,27 @@ export default new Vuex.Store({
         this.commit('deleteSection',id)
         return
       }
+      if(state.elements.item.find(item => item.id == id ).layout.filter(itemLayout => itemLayout.row == state.SelectedRow).length == 1){
+        console.log('delete Row')
+        this.commit('deleteRow')
+        return
+      }
+
       state.elements.item = state.elements.item.filter(item => {
         if(item.id == id ){
           if(item.layout.length > 1){
             var size = parseInt(100 / (this.getters.getNumColumn - 1));
             item.layout = item.layout.filter(itemLayout => {
-              if(itemLayout.index != index){
-                return item
+              if(itemLayout.index != index || itemLayout.row != state.SelectedRow){
+                return itemLayout // edited
               }
             })
             item.layout = item.layout.filter(itemLayout => {
-                itemLayout.size = size
-              return item
-            })  
+              if(itemLayout.row == state.SelectedRow){
+                 itemLayout.size = size
+              }
+              return itemLayout //edited
+            }) 
           }
         } return item
       })
@@ -619,8 +679,10 @@ export default new Vuex.Store({
         var index = 1
         if(item.id == id){
             item.layout = item.layout.filter(itemLayout =>{
-            itemLayout.index = index
-            index++
+              if(itemLayout.row == state.SelectedRow){
+                itemLayout.index = index
+                index++
+              }
             return itemLayout
           })
         }
@@ -634,18 +696,40 @@ export default new Vuex.Store({
         
         state.elements.item = state.elements.item.filter(item =>{
           if(item.id == state.selectId){
-            item.layout.push({index : this.getters.getNumColumn + 1, size : 0,bg : '#ffffff'})
+            item.layout.push({index : this.getters.getNumColumn + 1, size : 0,bg : '#ffffff',row : state.SelectedRow})
             item.layout = item.layout.filter(itemLayout =>{
-              itemLayout.size = size
+              if(itemLayout.row == state.SelectedRow){
+                itemLayout.size = size
+              }
               return itemLayout
             })
           }
           return item
         })
       }
-    }
+    },
+    addRow:function(state){
+      var size = parseInt(100/(this.getters.getNumRow + 1))
+      state.elements.item = state.elements.item.filter(item =>{
+        if(item.id == state.selectId){
+          item.row.push({index: -1,size : size })
+          item.layout.push({index: 1,row: (this.getters.getNumRow),size: 100,bg:'none'})
+          var index  = 1
+          item.row = item.row.filter(itemRow =>{
+            itemRow.index = index
+            itemRow.size = size
+            index++
+            return itemRow
+          })
+        }
+        return item
+      })
+    },
+
+
   },
   getters:{
+    
     getSelectID:function(state){
       return state.selectId
     },
@@ -661,9 +745,24 @@ export default new Vuex.Store({
     // getColumnColorColumn:function(state){
     //   return state.elements.item.find(item => item.id == state.selectId).layout.find(itemLayout => itemLayout.index == state.Selectedcolumn).bg
     // },
-    // getNumColumn:function(state){
-    //   return state.elements.item.find(item => item.id == state.selectId).layout.length
-    // },
+    getNumColumn:function(state){
+      var length = 0;
+      var section =  state.elements.item.find(item => item.id == state.selectId)
+      var layout = section.layout
+      layout.map(item =>{
+        if(item.row == state.SelectedRow){
+          length++;
+        }
+      })
+      return length
+
+    },
+    getNumRow:function(state){
+      var section  = state.elements.item.find(item => item.id == state.selectId)
+      var row = section.row
+      return row.length
+    }
+    ,
     getNumColumnById:(state)=>(id)=>{
       return state.elements.item.find(item => item.id == id).layout.length
     },
@@ -679,6 +778,9 @@ export default new Vuex.Store({
         return item
       })
       return height
+    },
+    getRowSelected :function(state){
+      return state.SelectedRow
     }
   },
   actions: {}

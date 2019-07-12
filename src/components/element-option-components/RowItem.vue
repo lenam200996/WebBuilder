@@ -21,8 +21,8 @@ import {bus} from '../../main'
         methods:{
             enableActive:function(){
                  this.active = true
-                 this.$store.commit('setSelectColumn',this.n)
-                 bus.$emit('enableOptionColumn',true)
+                 this.$store.commit('setSelectRow',this.n)
+                 bus.$emit('enableOptionRow',true)
             },
             deActive:function(){
                 this.active = false

@@ -14,7 +14,7 @@
         <!-- <div v-if="isActive" class="drag-div-top">
             <img src="../../assets/drag-arrow.svg" alt=""> Drag
         </div> -->
-        <div class="row" :style ="getStyle" style="width:100%;margin:0;position:relative">
+       
             <slot></slot>
             <btnOption v-if="isActive"
             :isGrid="true" 
@@ -24,7 +24,6 @@
             :styleBtn="styleBtn"
             :elementName="'SECTION'"
             ></btnOption> 
-        </div>
     </div>
     </dragResize>
    

@@ -5,21 +5,20 @@
     <tool-add></tool-add>
     <div-option v-if="option.is" :name="option.name" :id="option.id" :index="option.index"></div-option>
     <section-basic  v-for="section in getElements.filter( item => item.type === 'section')" :id="section.id" :key="section.id" :styleSec="section.style" :position="section.position">
-        <column-basic v-for="col in section.layout" :key="col.index" :columnIndex="col.index"  :id="section.id" :size="col.size" :bgImg="col.bg" :height="section.style.height">
-              <text-box v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == section.id && item.column == col.index)" :id ="text.id" :key="text.id" :styleText="text.style" :position="text.position" :text="text.value"></text-box>
-              <image-component v-for="image in getElements.filter(item => item.type == 'img' && item.parentId == section.id && item.column == col.index)" :id="image.id" :key="image.id" :styleImg="image.style" :position="image.position" :url="image.url"></image-component>
-              <button-component v-for="btn in getElements.filter(item => item.type == 'btn' && item.parentId == section.id && item.column == col.index)" :id="btn.id" :key="btn.id" :styleButton="btn.style" :position="btn.position" :text="btn.style.text"></button-component>
-              <line-horizontal v-for="line in getElements.filter(item => item.type == 'lineHorizontal' && item.parentId == section.id && item.column == col.index)" :id="line.id" :key="line.id" :styleLine="line.style" :position="line.position" ></line-horizontal>
-              <line-vertical v-for="line in getElements.filter(item => item.type == 'lineVertical' && item.parentId == section.id && item.column == col.index)" :id="line.id" :key="line.id" :styleLine="line.style" :position="line.position" ></line-vertical>
-              <slide-show v-for="slide in getElements.filter(item => item.type == 'slider' && item.parentId == section.id && item.column == col.index)"  :key="slide.id" :height="section.style.height" :list="slide.slideItem"></slide-show>
-              <box-component v-for="box in getElements.filter(item => item.type == 'box' && item.parentId == section.id && item.column == col.index)"  :key="box.id" :id ="box.id" :styleBox="box.style" :position="box.position">
-                <field-component v-for="field in getElements.filter(item => item.type == 'field' && item.parentId == box.id)" :key="field.id" :id ="field.id" :styleInput="field.style" :position="field.position"></field-component>
-              </box-component>
-              <field-component v-for="field in getElements.filter(item => item.type == 'field' && item.parentId == section.id && item.column == col.index)"  :key="field.id" :id ="field.id" :styleInput="field.style" :position="field.position"></field-component>
-              <video-component v-for="video in getElements.filter(item => item.type == 'video' && item.parentId == section.id && item.column == col.index)"  :key="video.id" :id ="video.id" :styleVideo="video.style" :position="video.position"></video-component>
+      <row-component v-for="row in section.row" :key="row.index" :id="section.id" :height="row.size" :bg="row.bg" :rowIndex="row.index">
+         <column-basic v-for="col in section.layout.filter(itemCol => itemCol.row == row.index)" :key="col.index" :columnIndex="col.index"  :id="section.id" :size="col.size" :bgImg="col.bg" :height="section.style.height" :sizeRow="row.size" :rowIndex="row.index">
+              <text-box v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :id ="text.id" :key="text.id" :styleText="text.style" :position="text.position" :text="text.value"></text-box>
+              <image-component v-for="image in getElements.filter(item => item.type == 'img' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :id="image.id" :key="image.id" :styleImg="image.style" :position="image.position" :url="image.url"></image-component>
+              <button-component v-for="btn in getElements.filter(item => item.type == 'btn' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :id="btn.id" :key="btn.id" :styleButton="btn.style" :position="btn.position" :text="btn.style.text"></button-component>
+              <line-horizontal v-for="line in getElements.filter(item => item.type == 'lineHorizontal' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :id="line.id" :key="line.id" :styleLine="line.style" :position="line.position" ></line-horizontal>
+              <line-vertical v-for="line in getElements.filter(item => item.type == 'lineVertical' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :id="line.id" :key="line.id" :styleLine="line.style" :position="line.position" ></line-vertical>
+              <slide-show v-for="slide in getElements.filter(item => item.type == 'slider' && item.parentId == section.id && item.column == col.index && item.row == row.index)"  :key="slide.id" :height="section.style.height" :list="slide.slideItem"></slide-show>
+              <box-component v-for="box in getElements.filter(item => item.type == 'box' && item.parentId == section.id && item.column == col.index && item.row == row.index)"  :key="box.id" :id ="box.id" :styleBox="box.style" :position="box.position"></box-component>
+              <field-component v-for="field in getElements.filter(item => item.type == 'field' && item.parentId == section.id && item.column == col.index && item.row == row.index)"  :key="field.id" :id ="field.id" :styleInput="field.style" :position="field.position"></field-component>
+              <video-component v-for="video in getElements.filter(item => item.type == 'video' && item.parentId == section.id && item.column == col.index && item.row == row.index)"  :key="video.id" :id ="video.id" :styleVideo="video.style" :position="video.position"></video-component>
         </column-basic>
+      </row-component>
     </section-basic>
-    <!-- <section-footer></section-footer> -->
    </div>
 </keep-alive>
 <keep-alive v-else>
@@ -34,54 +33,53 @@
 import {bus} from './main'
 import { setInterval } from 'timers';
 export default {
-
-    methods:{
-      
+    data:function(){
+      return {
+        option :{
+            is : false,
+            name : '',
+            id : '',
+            index :1
+          },
+          isPreview : false,
+          locale : 'vn'
+      }
     },
-        data:function(){
-          return {
-            option :{
-                is : false,
-                name : '',
-                id : '',
-                index :1
-              },
-              isPreview : false,
-          }
-        },
-        computed:{
-          getElements:function(){
-            return this.$store.getters.getElementItems
-          }
-        }, 
-        
-        mounted(){
-          bus.$on('openOption',({name,id,index})=>{
-            this.option.is = true
-            this.option.name = name
-            this.option.id = id
-            this.option.index = index
-          })
-          bus.$on('closeOptionElement',({name,id})=>{
-            this.option.is = false
-            this.option.name = name
-            this.option.id = id
-          })
-          bus.$on('cls',()=>{
-            this.option.is = false
-          })
-          bus.$on('preview',()=>{
-            this.isPreview = true
-          })
-          bus.$on('backEditor',()=>{
-            this.isPreview = false
-          })
-           window.addEventListener('resize',(ev)=>{
-            this.$store.commit('setWindowSize',{height :  ev.currentTarget.innerHeight , width :  ev.currentTarget.innerWidth})
-          })
-          
-        },
-        
+    computed:{
+      getElements:function(){
+        return this.$store.getters.getElementItems
+      }
+    }, 
+    watch:{
+      locale:function(val){
+        this.$i18n.locale = val
+      }
+    },
+    mounted(){
+      bus.$on('openOption',({name,id,index})=>{
+        this.option.is = true
+        this.option.name = name
+        this.option.id = id
+        this.option.index = index
+      })
+      bus.$on('closeOptionElement',({name,id})=>{
+        this.option.is = false
+        this.option.name = name
+        this.option.id = id
+      })
+      bus.$on('cls',()=>{
+        this.option.is = false
+      })
+      bus.$on('preview',()=>{
+        this.isPreview = true
+      })
+      bus.$on('backEditor',()=>{
+        this.isPreview = false
+      })
+      window.addEventListener('resize',(ev)=>{
+      this.$store.commit('setWindowSize',{height :  ev.currentTarget.innerHeight , width :  ev.currentTarget.innerWidth})
+      })
+    },  
   }
 </script>
 
@@ -112,6 +110,10 @@ export default {
 }
 .drr {
   z-index: 999;
+}
+.row{
+  padding: 0;
+  margin: 0;
 }
 
 .column-25,.column-50,
