@@ -27,9 +27,10 @@
                 </select>
                 <span v-if="itemOption.ref == 'letterSpacing'" v-html="itemOption.name"></span>
                 <input v-if="itemOption.ref == 'letterSpacing'" type="range" v-model="style.letterSpacing">
-                <span v-if="itemOption.ref == 'wordSpacing'" v-html="itemOption.name"></span>
-                <input v-if="itemOption.ref == 'wordSpacing'" type="range" v-model="style.wordSpacing">
-
+                <span v-if="itemOption.ref == 'videoUrl'" v-html="itemOption.name"></span>
+                <input v-if="itemOption.ref == 'videoUrl'" type="text" v-model="style.url">
+                <span v-if="itemOption.ref == 'letterSpacing'" v-html="itemOption.name"></span>
+                <input v-if="itemOption.ref == 'letterSpacing'" type="range" v-model="style.letterSpacing">
                 <span v-if="itemOption.ref == 'Columnbackground'" v-html="itemOption.name"></span>
                 <input type="radio" v-if="itemOption.ref == 'Columnbackground'" name="bgColor" v-model="backgroundColor" value="1"><i v-if="itemOption.ref == 'Columnbackground'">Color</i>
                 <input type="radio" v-if="itemOption.ref == 'Columnbackground'" name="bgColor" v-model="backgroundColor" value="2"><i v-if="itemOption.ref == 'Columnbackground'">Image</i>
@@ -105,7 +106,7 @@
                 <span v-if="itemOption.ref == 'backgroundColor'" v-html="itemOption.name"></span>
                 <input v-if="itemOption.ref == 'backgroundColor'" type="color" v-model="style.backgroundColor">
                 <span v-if="itemOption.ref == 'height'" v-html="itemOption.name"></span>
-                <input v-if="itemOption.ref == 'height'" type="number" v-model="style.height" min="300" max="1000" step="50">
+                <input v-if="itemOption.ref == 'height'" type="number" v-model="style.height" min="10" max="1000" step="50">
             </li>
         </ul>
     </div>

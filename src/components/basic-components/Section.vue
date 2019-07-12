@@ -1,23 +1,19 @@
 <template>
     <dragResize
     :id="id"
-    :x ="position.x"
-    :y ="position.y"
-    :angle="position.angle"
-    :w="position.w"
-    :h="position.h"
+    
     class="row"
     :resizable="false"
     :rotatable="false"
     @select="select"
     @deselect="deselect"
     :style ="getStyle"
-    style="width:100%;margin:0;position:absolute;z-index:1"
+    style="width:100%;margin:0;position:relative;z-index:1"
     >
-    <div :class="getStretched">
-        <div v-if="isActive" class="drag-div-top">
-        <img src="../../assets/drag-arrow.svg" alt=""> Drag
-        </div>
+    <div :class="getStretched"> 
+        <!-- <div v-if="isActive" class="drag-div-top">
+            <img src="../../assets/drag-arrow.svg" alt=""> Drag
+        </div> -->
         <div class="row" :style ="getStyle" style="width:100%;margin:0;position:relative">
             <slot></slot>
             <btnOption v-if="isActive"

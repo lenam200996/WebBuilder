@@ -10,6 +10,7 @@ import LineHorizontal from './components/basic-components/LineHorizontal'
 import LineVertical from './components/basic-components/LineVertical'
 import Box from './components/basic-components/Box'
 import Field from './components/basic-components/Field'
+import Video from './components/basic-components/Video'
 import tinymce from 'vue-tinymce-editor'
 import Section from './components/basic-components/Section'
 import SlideShow from './components/basic-components/SlideShow'
@@ -67,6 +68,7 @@ Vue.component('buttonRender',ButtonRender)
 Vue.component('lineHorizontalRender',LineHorizontalRender)
 Vue.component('lineVerticalRender',LineVerticalRender)
 Vue.component('gridItem',GridItem)
+Vue.component('videoComponent',Video)
 
 Vue.config.productionTip = false;
 export const bus = new Vue();

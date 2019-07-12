@@ -141,13 +141,14 @@ export default new Vuex.Store({
                       style: item.style,
                       parentId : -1,
                       layout: item.layout,
-                      position : {
-                        x : item.position.x,
-                        y : this.getters.getHeightDom  + item.position.y,
-                        angle : item.position.angle,
-                        w : item.position.w,
-                        h : item.position.h
-                      }
+                      position :item.position
+                      //  {
+                      //   x : item.position.x,
+                      //   y : this.getters.getHeightDom  + item.position.y,
+                      //   angle : item.position.angle,
+                      //   w : item.position.w,
+                      //   h : item.position.h
+                      // }
                     }
                     state.selectId = state.indexItem
                     state.Selectedcolumn = 1
@@ -226,13 +227,15 @@ export default new Vuex.Store({
                           style: item.style,
                           parentId : -1,
                           layout: item.layout,
-                          position : {
-                            x : item.position.x,
-                            y : this.getters.getHeightDom  + item.position.y,
-                            angle : item.position.angle,
-                            w : item.position.w,
-                            h : item.position.h
-                          }
+                          position : item.position
+                          
+                          // {
+                          //   x : item.position.x,
+                          //   y : this.getters.getHeightDom  + item.position.y,
+                          //   angle : item.position.angle,
+                          //   w : item.position.w,
+                          //   h : item.position.h
+                          // }
                         }
                         state.selectId = state.indexItem
                         state.Selectedcolumn = 1
@@ -391,13 +394,14 @@ export default new Vuex.Store({
         style: ObjectSection.style,
         parentId : -1,
         layout:ObjectSection.layout,
-        position : {
-              x : ObjectSection.position.x,
-              y : this.getters.getHeightDom  + ObjectSection.position.y,
-              angle : ObjectSection.position.angle,
-              w : ObjectSection.position.w,
-              h : ObjectSection.position.h
-            }
+        position :ObjectSection.position
+        //  {
+        //       x : ObjectSection.position.x,
+        //       y : this.getters.getHeightDom  + ObjectSection.position.y,
+        //       angle : ObjectSection.position.angle,
+        //       w : ObjectSection.position.w,
+        //       h : ObjectSection.position.h
+        //     }
       }
       state.selectId = state.indexItem
       state.Selectedcolumn = 1
@@ -531,6 +535,20 @@ export default new Vuex.Store({
           this.commit('addItem',item)
         }
         break;
+        case 'video':
+        {
+          var ObjectVideo = new Element.Video()
+          var item = {
+            id : state.indexItem,
+            type : 'video',
+            style: ObjectVideo.style, 
+            parentId : state.selectId != null ? state.selectId : null,
+            column : state.Selectedcolumn,
+            position : ObjectVideo.position,
+          }
+          this.commit('addItem',item)
+        }
+        break;
         default:
           break;
       }
@@ -640,12 +658,12 @@ export default new Vuex.Store({
     getElementItemById: (state) =>(id)=>{
       return state.elements.item.find(item => item.id == id)
     },
-    getColumnColorColumn:function(state){
-      return state.elements.item.find(item => item.id == state.selectId).layout.find(itemLayout => itemLayout.index == state.Selectedcolumn).bg
-    },
-    getNumColumn:function(state){
-      return state.elements.item.find(item => item.id == state.selectId).layout.length
-    },
+    // getColumnColorColumn:function(state){
+    //   return state.elements.item.find(item => item.id == state.selectId).layout.find(itemLayout => itemLayout.index == state.Selectedcolumn).bg
+    // },
+    // getNumColumn:function(state){
+    //   return state.elements.item.find(item => item.id == state.selectId).layout.length
+    // },
     getNumColumnById:(state)=>(id)=>{
       return state.elements.item.find(item => item.id == id).layout.length
     },

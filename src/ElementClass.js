@@ -1,3 +1,22 @@
+class Video{
+    constructor(){
+        this.style = {
+            alignBlock : 'none',
+            top: 0,
+            left : 0,
+            width: '300px',
+            height :'200px',
+            url :'https://www.youtube.com/embed/m2gHLijHTQU'
+        }
+        this.position = {
+            x :150,
+            y : 100,
+            angle:0,
+            w:300,
+            h:200
+        };
+    }
+}
 class Field {
     constructor(){
         this.style = {
@@ -283,4 +302,4 @@ class Section {
 }
 
 
-export default {TextParagraph,Button,Section,Image,LineHorizontal,LineVertical,SlideShow,Box,Field}
+export default {TextParagraph,Button,Section,Image,LineHorizontal,LineVertical,SlideShow,Box,Field,Video}

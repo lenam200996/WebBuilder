@@ -165,6 +165,23 @@ var Default = {
                 ref : 'borderRadius'
             },
 
+        ],
+        'VIDEO':[
+            {
+                name: 'Align Block',
+                ref : 'alignBlock'
+            },
+            {
+                name : 'Video Url',
+                ref: 'videoUrl'
+            }
+        ],
+        'BOX':[
+            {
+                name : 'Background Color',
+                ref : 'backgroundColor'
+            },
+            
         ]
         
         

@@ -51,6 +51,7 @@
         <v-tab title="Box" icon="ti-check">
           <ul>
               <li @click="$store.commit('addElement',{type : 'box'})">My box</li>
+              <li @click="$store.commit('addElement',{type : 'field'})">Field</li>
           </ul>
         </v-tab>
         <v-tab title="List&Grid" icon="ti-check">
@@ -61,6 +62,11 @@
         <v-tab title="Contact" icon="ti-check">
           <ul>
               <li  v-for="contact in template['template_contact']" :key="contact.name"  @click="$store.commit('addTemplate',contact)">{{contact.name}}</li>
+          </ul>
+        </v-tab>
+        <v-tab title="Video" icon="ti-check">
+          <ul>
+              <li  @click="$store.commit('addElement',{type : 'video'})">Video</li>
           </ul>
         </v-tab>
     </vue-tabs>

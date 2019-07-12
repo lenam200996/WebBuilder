@@ -10,8 +10,8 @@
             @deselect="deselect"
             :style="getStyleWrap"
             >
-    <div :style="getStyle" class="re-box">
-        <slot></slot>
+    <div :style="getStyle" class="row">
+        
     </div>
         <btnOption v-if="isActive"
         :isGrid="false" 
@@ -20,7 +20,7 @@
         @deleteItem="deleteItem"
         @preColumn="preColumn"
         @nextColumn="nextColumn"
-        :elementName="'BOX'"
+        :elementName="'ROW'"
         ></btnOption>
      </dragResize>
 </template>
@@ -37,7 +37,7 @@ import {bus} from '../../main'
         type : Object,
         required :true
       },
-      styleBox :{
+      styleRow :{
         type :Object,
 
       }
@@ -50,15 +50,16 @@ import {bus} from '../../main'
     },
     methods:{
         select:function(){
-            console.log('selected box')
-        this.$store.commit('setSelectId',this.id)
-        this.isActive = true 
+            this.$store.commit('setSelectId',this.id)
+            this.$store.commit('setSelectColumn',this.columnIndex)
+            this.isActive = true
+            bus.$emit('gridActive',true)
         },
         editOption(){
-         bus.$emit('openOption',{name : 'BOX',id:this.id,index : -1})
+         bus.$emit('openOption',{name : 'ROW',id:this.id,index : -1})
         },
         onBlur() {
-            bus.$emit('closeOptionElement',{name : 'BOX',id:this.id})
+            bus.$emit('closeOptionElement',{name : 'ROW',id:this.id})
         },  
         deselect:function(){
             this.isActive = false
@@ -76,53 +77,55 @@ import {bus} from '../../main'
     computed:{
         getStyle: function(){
         return {
-            backgroundColor : this.styleBox.backgroundColor,
-            opacity : this.styleBox.opacity,
-            border : this.styleBox.border.width +'px '+this.styleBox.border.type+' '+this.styleBox.border.color,
-            borderRadius: this.styleBox.borderRadius + 'px',
+         height : this.styleRow.size +'px',
+         backgroundColor : this.styleRow.backgroundColor
         }
         },
         getStyleWrap:function(){
-            if(this.styleBox.alignBlock == 'center'){
+            if(this.styleRow.alignBlock == 'center'){
             var style = {
-                top: this.styleBox.top,
-                // width: this.styleBox.width ,
-                // height: this.styleBox.height ,
-                transform: 'rotate(' + this.styleBox.rotation + 'deg)',
+                top: this.styleRow.top,
+                // width: this.styleLine.width ,
+                // height: this.styleLine.height ,
+                transform: 'rotate(' + this.styleRow.rotation + 'deg)',
                 left : '50%',
                 transform : 'translateX(-50%)',
                 maxWidth : '90%',
+                zIndex : this.isActive ? 99999 : 1,
             }
-            }else if( this.styleBox.alignBlock == 'left'){
+            }else if( this.styleRow.alignBlock == 'left'){
             var style = {
-                top: this.styleBox.top,
-                // width: this.styleBox.width ,
-                // height: this.styleBox.height ,
-                transform: 'rotate(' + this.styleBox.rotation + 'deg)',
+                top: this.styleRow.top,
+                // width: this.styleLine.width ,
+                // height: this.styleLine.height ,
+                transform: 'rotate(' + this.styleRow.rotation + 'deg)',
                 left : 0,
                 transform :'none',
                 right : 'auto',
                 maxWidth : '90%',
+                zIndex : this.isActive ? 99999 : 1,
             }
-            }else if( this.styleBox.alignBlock == 'right'){
+            }else if( this.styleRow.alignBlock == 'right'){
             var style = {
-                top: this.styleBox.top,
-                // width: this.styleBox.width ,
-                // height: this.styleBox.height ,
-                transform: 'rotate(' + this.styleBox.rotation + 'deg)',
+                top: this.styleRow.top,
+                // width: this.styleLine.width ,
+                // height: this.styleLine.height ,
+                transform: 'rotate(' + this.styleRow.rotation + 'deg)',
                 right : 0,
                 transform :'none',
                 left : 'auto',
                 maxWidth : '90%',
+                zIndex : this.isActive ? 99999 : 1,
             }
             }else{
             return {
-                left: this.styleBox.left,
-                top: this.styleBox.top,
-                // width: this.styleBox.width ,
-                // height: this.styleBox.height ,
-                transform: 'rotate(' + this.styleBox.rotation + 'deg)',
+                left: this.styleRow.left,
+                top: this.styleRow.top,
+                // width: this.styleLine.width ,
+                // height: this.styleLine.height ,
+                transform: 'rotate(' + this.styleRow.rotation + 'deg)',
                 maxWidth : '90%',
+                zIndex : this.isActive ? 99999 : 1,
             };
             }
             return style
@@ -132,8 +135,5 @@ import {bus} from '../../main'
 </script>
 
 <style  scoped>
-    .re-box{
-        width: 100%;
-        height: 100%;
-    }
+
 </style>
