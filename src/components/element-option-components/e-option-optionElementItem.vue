@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul class="ul-wrap">
-            <li v-for="(itemOption) in item" :key="itemOption.name" :class="{classItemDiv : itemOption.ref == 'sectionGrid' || itemOption.ref == 'sectionColumnManagement'}">
+            <li v-for="(itemOption) in item" :key="itemOption.name+itemOption.ref" :class="{classItemDiv : itemOption.ref == 'sectionGrid' || itemOption.ref == 'sectionColumnManagement'}">
                 <span v-html="itemOption.name" ></span>
                 <slider v-if="itemOption.ref == 'fontSize'"  v-model="style.fontSize"></slider>
                 <slider v-if="itemOption.ref == 'lineHeight'"  v-model="style.lineHeight"></slider>
@@ -157,6 +157,9 @@ import Grid from '../../data.json'
             },
             swapColumn:function(toIndex){
                 this.$store.commit('swapColumn',toIndex) 
+            },
+            swapRow:function(toIndex){
+                this.$store.commit('swapRow',toIndex) 
             },
             addColumn:function(){
                 this.$store.commit('addColumn')

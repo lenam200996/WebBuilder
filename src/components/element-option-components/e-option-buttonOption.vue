@@ -10,11 +10,17 @@
             <li>
                 <button @click="deleteItem"><Icon type="md-trash" /></button>
             </li>
-            <li  v-if="!isGrid">
+            <li  v-if="!isGrid && !isSection">
                 <button @click="preColumn"><Icon type="md-arrow-dropleft" /></button>
             </li>
-            <li v-if="!isGrid">
+            <li v-if="!isGrid && !isSection">
                 <button @click="nextColumn"><Icon type="md-arrow-dropright" /></button>
+            </li>
+            <li v-if="isSection">
+                <button @click="swapSection('up')"><Icon type="md-arrow-dropup" /></button>
+            </li>
+            <li v-if="isSection">
+                <button @click="swapSection('down')"><Icon type="md-arrow-dropdown" /></button>
             </li>
         </ul>
     </div>
@@ -26,6 +32,10 @@
             isGrid :{
                 type : Boolean,
                 required : true,
+                default : false
+            },
+            isSection :{
+                type : Boolean,
                 default : false
             },
             styleBtn :{
@@ -42,6 +52,9 @@
             }
         },
         methods:{
+            swapSection:function(toIndex){
+                this.$emit('swapSection',toIndex)
+            },
             edit :function(){
                 if(this.isEdit){
                     this.$emit('edit',true)

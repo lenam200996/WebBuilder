@@ -13,10 +13,12 @@
     <div :class="getStretched"> 
             <slot></slot>
             <e-option-button-option v-if="isActive"
-            :isGrid="true" 
+            :isGrid="false"
+            :isSection="true"
             @edit="edit" 
             @disableEdit="onBlur"
             @deleteItem="deleteItem"
+            @swapSection="swapSection"
             :styleBtn="styleBtn"
             :elementName="'SECTION'"
             ></e-option-button-option> 
@@ -45,12 +47,12 @@ import {bus} from '../../main'
             return {
                 isActive : false,
                 styleBtn:{
-                    width : 215 +'px',
+                    width : 245 +'px',
                     height: 25 +'px',
                     position: 'absolute',
                     zIndex: '99999',
                     bottom: 0 + '!important',
-                    right: -10 +'px !important',
+                    // right: -10 +'px !important',
                     top : 'auto'
                 },
                
@@ -78,7 +80,9 @@ import {bus} from '../../main'
             
         },
         methods: {
-           
+            swapSection:function(ev){
+                this.$store.commit('swapSection',{toIndex : ev})
+            },
             select:function(){
                 this.isActive = true
             },

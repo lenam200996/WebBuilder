@@ -12,6 +12,7 @@ export default new Vuex.Store({
     },
     selectId : false,
     indexItem : 1,
+    indexSection: 1,
     Selectedcolumn : null,
     SelectedRow : null,
     SelectedElement: null,
@@ -21,10 +22,172 @@ export default new Vuex.Store({
         
       ]
     }
-  },
+  },  
   mutations: {
+    swapSection:function(state,{toIndex}){
+      switch (toIndex) {
+        case 'up':
+          {
+            if(state.elements.item.find(item => item.id == state.selectId).indexSection == 1)
+            {
+              return
+            }
+            var indexSwap =state.elements.item.find(item => item.id == state.selectId).indexSection ;
+            state.elements.item = state.elements.item.filter(item =>{
+              if(item.id == state.selectId){
+                item.indexSection = item.indexSection - 1
+                return item
+              }
+              if(item.type == 'section' && item.indexSection == (indexSwap - 1)){
+                item.indexSection = indexSwap
+                return item
+              }
+              return item
+            })
+          }
+          break;
+        case 'down':
+          {
+            if(state.elements.item.find(item => item.id == state.selectId).indexSection == state.indexSection-1 )
+            {
+              return
+            }
+            var indexSwap =state.elements.item.find(item => item.id == state.selectId).indexSection ;
+            state.elements.item = state.elements.item.filter(item =>{
+              if(item.id == state.selectId){
+                item.indexSection= item.indexSection + 1
+                return item
+              }
+              if(item.type == 'section' && item.indexSection == (indexSwap + 1)){
+                item.indexSection= item.indexSection - 1
+                return item
+              }
+              return item
+            })
+          }
+          break;
+        default:
+          break;
+      }
+
+      state.elements.item = state.elements.item.sort(function(a,b){
+        if(typeof a.indexSection ==  'undefined' || typeof b.indexSection ==  'undefined')
+        {
+          return 0
+        }else{
+          return a.indexSection - b.indexSection
+        }
+
+      })
+    },
     setSelectRow:function(state,rowIndex){
       state.SelectedRow = rowIndex
+    },
+    swapRow:function(state,toIndex){
+      switch (toIndex) {
+        case 'toUp':
+          {
+              if(state.SelectedRow == 1){
+                return
+              } 
+              
+             state.elements.item = state.elements.item.filter(item =>{
+               if(item.id != state.selectId && item.parentId != state.selectId) {
+               } 
+               if(item.parentId == state.selectId && item.row == state.SelectedRow){
+                 item.row = state.SelectedRow -1
+               }
+               if(item.parentId == state.selectId && item.row == state.SelectedRow - 1)
+               {
+                 item.row = state.SelectedRow
+               }
+             
+
+             if(item.id == state.selectId){
+
+                item.layout = item.layout.filter(itemLayout =>{
+                  if(itemLayout.row  == state.SelectedRow){
+                    itemLayout.row = state.SelectedRow - 1
+                    return itemLayout
+                  }
+                  if(itemLayout.row == state.SelectedRow - 1){
+                    itemLayout.row = state.SelectedRow
+                    return itemLayout
+                  }
+                  return itemLayout
+                })
+                item.layout = item.layout.sort(function(a,b){return a.index - b.index})
+                item.row = item.row.filter(itemRow =>{
+                  if(itemRow.index == state.SelectedRow){
+                    itemRow.index = state.SelectedRow - 1
+                    return itemRow
+                  }
+                  if(itemRow.index == state.SelectedRow - 1){
+                    itemRow.index = state.SelectedRow
+                    return itemRow
+                  }
+                  return itemRow
+                })
+                item.row = item.row.sort(function(a,b){return a.index - b.index})
+             } 
+             return item
+             
+            })
+          }
+          break;
+          case 'toDown':
+          {
+            if(state.SelectedRow == this.getters.getNumRow){
+                return
+              } 
+              
+             state.elements.item = state.elements.item.filter(item =>{
+               if(item.id != state.selectId && item.parentId != state.selectId) {
+               } 
+               if(item.parentId == state.selectId && item.row == state.SelectedRow){
+                 item.row = state.SelectedRow +1
+               }
+               if(item.parentId == state.selectId && item.row == state.SelectedRow + 1)
+               {
+                 item.row = state.SelectedRow
+               }
+             
+
+             if(item.id == state.selectId){
+
+                item.layout = item.layout.filter(itemLayout =>{
+                  if(itemLayout.row  == state.SelectedRow){
+                    itemLayout.row = state.SelectedRow + 1
+                    return itemLayout
+                  }
+                  if(itemLayout.row == state.SelectedRow +1){
+                    itemLayout.row = state.SelectedRow
+                    return itemLayout
+                  }
+                  return itemLayout
+                })
+                item.layout = item.layout.sort(function(a,b){return a.index - b.index})
+                item.row = item.row.filter(itemRow =>{
+                  if(itemRow.index == state.SelectedRow){
+                    itemRow.index = state.SelectedRow + 1
+                    return itemRow
+                  }
+                  if(itemRow.index == state.SelectedRow + 1){
+                    itemRow.index = state.SelectedRow
+                    return itemRow
+                  }
+                  return itemRow
+                })
+                item.row = item.row.sort(function(a,b){return a.index - b.index})
+             } 
+             return item
+             
+            })
+          }
+          break;
+        default:
+          break;
+      }
     },
     swapColumn:function(state,toIndex){
       switch (toIndex) {
@@ -423,11 +586,14 @@ export default new Vuex.Store({
         parentId : -1,
         layout:ObjectSection.layout,
         position :ObjectSection.position,
-        row : ObjectSection.row
+        row : ObjectSection.row,
+        indexSection : state.indexSection
       }
       state.selectId = state.indexItem
       state.Selectedcolumn = 1
+      state.indexSection++
       this.commit('addItem',item)
+
     },
     addElement:function(state,{type}){
       switch (type) {
@@ -619,19 +785,23 @@ export default new Vuex.Store({
       })
       state.selectId = null
     },
-    deleteRow:function(state,row){
+    deleteRow:function(state){
+      if(this.getters.getNumRow == 1){
+        this.commit('deleteSection',state.selectId)
+        return
+      }
       state.elements.item = state.elements.item.filter(item =>{
         if(item.id == state.selectId ){
           var sizeOld = 0;
           item.row = item.row.filter(itemRow =>{
-            if(itemRow.index != row){
+            if(itemRow.index != state.SelectedRow){
               return itemRow
             }else{
               sizeOld = itemRow.size
             }
           })
           item.layout = item.layout.filter(itemLayout =>{
-            if(itemLayout.row != row){
+            if(itemLayout.row != state.SelectedRow){
               return itemLayout
             }
           })
@@ -664,7 +834,7 @@ export default new Vuex.Store({
       }
       if(state.elements.item.find(item => item.id == id ).layout.filter(itemLayout => itemLayout.row == row).length == 1){
         console.log('delete Row')
-        this.commit('deleteRow',row)
+        this.commit('deleteRow')
         return
       }
       state.elements.item = state.elements.item.filter(item => {

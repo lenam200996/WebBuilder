@@ -412,10 +412,10 @@ input {
 .ivu-icon-ios-brush{
   color: green;
 }
-.ivu-icon-ios-close-circle,.ivu-icon-md-arrow-dropleft,.ivu-icon-md-arrow-dropright{
+.ivu-icon-ios-close-circle,.ivu-icon-md-arrow-dropleft,.ivu-icon-md-arrow-dropright,.ivu-icon-md-arrow-dropup,.ivu-icon-md-arrow-dropdown{
   font-size: 24px;
 }
-.ivu-icon-md-arrow-dropleft,.ivu-icon-md-arrow-dropright{
+.ivu-icon-md-arrow-dropleft,.ivu-icon-md-arrow-dropright,.ivu-icon-md-arrow-dropup,.ivu-icon-md-arrow-dropdown{
   color:blue;
 }
 </style>

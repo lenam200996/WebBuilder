@@ -69,7 +69,7 @@ import {bus} from '../../main'
             this.isActive = false
         },
         deleteItem:function(){
-            // this.$store.commit('deleteItemById',this.id,this.rowIndex)
+            this.$store.commit('deleteRow')
         },
     },
     mounted:function(){
