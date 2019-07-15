@@ -1,11 +1,11 @@
 <template>
      <divDragResize
-            :id="id"
-            :x ="position.x"
-            :y ="position.y"
-            :angle="position.angle"
-            :w="position.w"
-            :h="position.h"
+            :id="properties.id"
+            :x ="properties.position.x"
+            :y ="properties.position.y"
+            :angle="properties.position.angle"
+            :w="properties.position.w"
+            :h="properties.position.h"
             @select="select"
             @deselect="deselect"
             :style="getStyleWrap"
@@ -27,18 +27,10 @@
 import {bus} from '../../main'
     export default {
         props:{
-      id :{
-        type : Number,
-        required: true
-      },
-      position : {
-        type : Object,
-        required :true
-      },
-      styleVideo :{
-        type :Object,
-      },
-      
+            properties:{
+                type:Object,
+                required:true
+            },
     },
     data() {
       return {
@@ -50,28 +42,28 @@ import {bus} from '../../main'
         this.isActive = true
         },
         editOption(){
-         bus.$emit('openOption',{name : 'VIDEO',id:this.id,index : -1})
+         bus.$emit('openOption',{name : 'VIDEO',id:this.properties.id,index : -1})
         },
         onBlur() {
-            bus.$emit('closeOptionElement',{name : 'VIDEO',id:this.id})
+            bus.$emit('closeOptionElement',{name : 'VIDEO',id:this.properties.id})
         },  
         deselect:function(){
             this.isActive = false
         },
         deleteItem:function(){
-            this.$store.commit('deleteItemById',this.id)
+            this.$store.commit('deleteItemById',this.properties.id)
         },
         preColumn:function(){
-            this.$store.commit('preColumn',this.id)
+            this.$store.commit('preColumn',this.properties.id)
         },
         nextColumn:function(){
-            this.$store.commit('nextColumn',this.id)
+            this.$store.commit('nextColumn',this.properties.id)
         }
     },
     computed:{
         getUrl:function() {
             var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-            var match = this.styleVideo.url.match(regExp);
+            var match = this.properties.styleVideo.url.match(regExp);
 
             if (match && match[2].length == 11) {
                 return 'https://www.youtube.com/embed/'+match[2];
@@ -82,35 +74,35 @@ import {bus} from '../../main'
         },
         getStyle: function(){
             return {
-                backgroundColor : this.styleVideo.backgroundColor,
-                borderRadius: this.styleVideo.borderRadius + 'px',
-                border: this.styleVideo.border.width + 'px '+this.styleVideo.border.type +' '+this.styleVideo.border.color
+                backgroundColor : this.properties.styleVideo.backgroundColor,
+                borderRadius: this.properties.styleVideo.borderRadius + 'px',
+                border: this.properties.styleVideo.border.width + 'px '+this.properties.styleVideo.border.type +' '+this.properties.styleVideo.border.color
             }
         },
         getStyleWrap:function(){
-            if(this.styleVideo.alignBlock == 'center'){
+            if(this.properties.styleVideo.alignBlock == 'center'){
             var style = {
-                top: this.styleVideo.top,
-                transform: 'rotate(' + this.styleVideo.rotation + 'deg)',
+                top: this.properties.styleVideo.top,
+                transform: 'rotate(' + this.properties.styleVideo.rotation + 'deg)',
                 left : '50%',
                 transform : 'translateX(-50%)',
                 maxWidth : '90%',
                 zIndex : this.isActive ? 99999 : 1,
             }
-            }else if( this.styleVideo.alignBlock == 'left'){
+            }else if( this.properties.styleVideo.alignBlock == 'left'){
             var style = {
-                top: this.styleVideo.top,
-                transform: 'rotate(' + this.styleVideo.rotation + 'deg)',
+                top: this.properties.styleVideo.top,
+                transform: 'rotate(' + this.properties.styleVideo.rotation + 'deg)',
                 left : 0,
                 transform :'none',
                 right : 'auto',
                 maxWidth : '90%',
                 zIndex : this.isActive ? 99999 : 1,
             }
-            }else if( this.styleVideo.alignBlock == 'right'){
+            }else if( this.properties.styleVideo.alignBlock == 'right'){
             var style = {
-                top: this.styleVideo.top,
-                transform: 'rotate(' + this.styleVideo.rotation + 'deg)',
+                top: this.properties.styleVideo.top,
+                transform: 'rotate(' + this.properties.styleVideo.rotation + 'deg)',
                 right : 0,
                 transform :'none',
                 left : 'auto',
@@ -119,9 +111,9 @@ import {bus} from '../../main'
             }
             }else{
             return {
-                left: this.styleVideo.left,
-                top: this.styleVideo.top,
-                transform: 'rotate(' + this.styleVideo.rotation + 'deg)',
+                left: this.properties.styleVideo.left,
+                top: this.properties.styleVideo.top,
+                transform: 'rotate(' + this.properties.styleVideo.rotation + 'deg)',
                 maxWidth : '90%',
                 zIndex : this.isActive ? 99999 : 1,
             };

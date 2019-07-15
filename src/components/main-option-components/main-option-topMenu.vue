@@ -27,25 +27,7 @@ import { bus } from "../../main";
                 
             },
             createTemplate:function(){
-                //  if(this.isPreview){
-                //     this.$router.push({ path: '/' })
-                //     bus.$emit('backEditor',true)
-                //     this.isPreview = false
-                // }else{
-                //     this.$router.push({ path: 'createtemplate' })
-                //     bus.$emit('preview',true)
-                //     this.isPreview = true
-                // }
-            //    this.$store.commit('saveFile')
-                
-               const jsonfile = require('jsonfile')
 
-                const file = '/tmp/data.json'
-                const obj = { name: 'JP' }
-
-                jsonfile.writeFile(file, obj, function (err) {
-                if (err) console.error(err)
-                })  
             }
         }
     }

@@ -1,18 +1,18 @@
 <template>
     <divDragResize
-            :id="id"
-            :x ="position.x"
-            :y ="position.y"
-            :angle="position.angle"
-            :w="position.w"
-            :h="position.h"
+            :id="properties.id"
+            :x ="properties.position.x"
+            :y ="properties.position.y"
+            :angle="properties.position.angle"
+            :w="properties.position.w"
+            :h="properties.position.h"
             @select="select"
             @deselect="deselect"
             :style="getStyleWrap"
             >
       <div class="button" @active="onActive()" >
           <button :style="getStyle">
-              <span v-html="text" ></span>
+              <span v-html="properties.text" ></span>
           </button>
       </div>
      
@@ -33,22 +33,10 @@
 import {bus} from '../../main'
   export default {
     props:{
-      id :{
-        type : Number,
-        required: true
-      },
-      position : {
-        type : Object,
+      properties:{
+        type:Object,
         required :true
       },
-      text: {
-        type :String,
-        required: true,
-      },
-      styleButton :{
-        type :Object,
-
-      }
       
     },
     data() {
@@ -61,10 +49,10 @@ import {bus} from '../../main'
 
       editOption(){
         this.textActive  = false
-         bus.$emit('openOption',{name : 'BUTTON',id:this.id,index : -1})
+         bus.$emit('openOption',{name : 'BUTTON',id:this.properties.id,index : -1})
       },
       onBlur() {
-        bus.$emit('closeOptionElement',{name : 'BUTTON',id:this.id})
+        bus.$emit('closeOptionElement',{name : 'BUTTON',id:this.properties.id})
       },     
       select:function(){
         this.isActive = true
@@ -73,13 +61,13 @@ import {bus} from '../../main'
         this.isActive = false
       },
       deleteItem:function(){
-        this.$store.commit('deleteItemById',this.id)
+        this.$store.commit('deleteItemById',this.properties.id)
       },
       preColumn:function(){
-        this.$store.commit('preColumn',this.id)
+        this.$store.commit('preColumn',this.properties.id)
       },
       nextColumn:function(){
-        this.$store.commit('nextColumn',this.id)
+        this.$store.commit('nextColumn',this.properties.id)
       }
     },
     mounted(){
@@ -89,38 +77,38 @@ import {bus} from '../../main'
       getStyle: function(){
         
         return {
-            backgroundColor : this.styleButton.backgroundColor,
-            border: this.styleButton.border.width + 'px '+this.styleButton.border.type+' '+this.styleButton.border.color,
-            borderRadius: this.styleButton.borderRadius + 'px',
-            color: this.styleButton.color,
-            textTransform : this.styleButton.textTransform,
-            fontFamily : this.styleButton.fontFamily,
+            backgroundColor : this.properties.styleButton.backgroundColor,
+            border: this.properties.styleButton.border.width + 'px '+this.properties.styleButton.border.type+' '+this.properties.styleButton.border.color,
+            borderRadius: this.properties.styleButton.borderRadius + 'px',
+            color: this.properties.styleButton.color,
+            textTransform : this.properties.styleButton.textTransform,
+            fontFamily : this.properties.styleButton.fontFamily,
         }
       },
       getStyleWrap:function(){
-        if(this.styleButton.alignBlock == 'center'){
+        if(this.properties.styleButton.alignBlock == 'center'){
           var style = {
-            top: this.styleButton.top,
-            transform: 'rotate(' + this.styleButton.rotation + 'deg)',
+            top: this.properties.styleButton.top,
+            transform: 'rotate(' + this.properties.styleButton.rotation + 'deg)',
             left : '50%',
             transform : 'translateX(-50%)',
             maxWidth : '90%',
             zIndex : this.isActive ? 99999 : 1,
           }
-        }else if( this.styleButton.alignBlock == 'left'){
+        }else if( this.properties.styleButton.alignBlock == 'left'){
           var style = {
-            top: this.styleButton.top,
-            transform: 'rotate(' + this.styleButton.rotation + 'deg)',
+            top: this.properties.styleButton.top,
+            transform: 'rotate(' + this.properties.styleButton.rotation + 'deg)',
             left : 0,
             transform :'none',
             right : 'auto',
             maxWidth : '90%',
             zIndex : this.isActive ? 99999 : 1,
           }
-        }else if( this.styleButton.alignBlock == 'right'){
+        }else if( this.properties.styleButton.alignBlock == 'right'){
           var style = {
-            top: this.styleButton.top,
-            transform: 'rotate(' + this.styleButton.rotation + 'deg)',
+            top: this.properties.styleButton.top,
+            transform: 'rotate(' + this.properties.styleButton.rotation + 'deg)',
             right : 0,
             transform :'none',
              left : 'auto',
@@ -129,9 +117,9 @@ import {bus} from '../../main'
           }
         }else{
           var style ={
-            left: this.styleButton.left,
-            top: this.styleButton.top,
-            transform: 'rotate(' + this.styleButton.rotation + 'deg)',
+            left: this.properties.styleButton.left,
+            top: this.properties.styleButton.top,
+            transform: 'rotate(' + this.properties.styleButton.rotation + 'deg)',
             maxWidth : '90%',
           };
         }

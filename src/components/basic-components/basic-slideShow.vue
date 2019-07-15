@@ -4,13 +4,13 @@
         animation="fade"
         >
             <slider-item
-                v-for="(i, index) in list"
+                v-for="(i, index) in properties.list"
                 :key="index"
                 :style="i"
             >
                 <div class="column-100" :style="{
                 width : '100%',
-                height: height + 'px',
+                height: properties.height + 'px',
                 margin : 0,
                 position: 'relative',
                 background : 'url('+i.backgroundColor+')',
@@ -26,13 +26,10 @@
 <script>
     export default {
         props: {
-            height : {
-                type : Number
+            properties:{
+                type:Object,
+                required:true
             },
-            list:{
-                type : Array,
-                required : true
-            }
         },
         data() {
             return {

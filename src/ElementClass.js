@@ -1,3 +1,4 @@
+import Template from './template.json'
 class Video{
     constructor(){
         this.style = {
@@ -15,6 +16,23 @@ class Video{
             w:300,
             h:200
         };
+    }
+    setTemplate(template){
+            this.style ={
+                alignBlock : template.style.alignBlock,
+                top: template.style.top,
+                left : template.style.left,
+                width: template.style.width,
+                height :template.style.height,
+                url :template.style.url
+            } 
+            this.position = {
+                x :template.position.x,
+                y : template.position.y,
+                angle:template.position.angle,
+                w:template.position.w,
+                h:template.position.h
+            };
     }
 }
 class Field {
@@ -44,6 +62,34 @@ class Field {
             w:300,
             h:50
         };
+    }
+    setTemplate(template){
+            this.style = {
+                type :template.style.type,
+                placeholder : template.style.placeholder,
+                required : template.style.required,
+                backgroundColor : template.style.backgroundColor,
+                alignBlock:template.style.alignBlock,
+                top: template.style.top,
+                left : template.style.left,
+                width: template.style.width,
+                height :template.style.height,
+                rotation : template.style.rotation,
+                border : {
+                    width : template.style.border.width,
+                    type : template.style.border.type,
+                    color : template.style.border.color
+                },
+                borderRadius :template.style.borderRadius,
+            } 
+            this.position = {
+                x :template.position.x,
+                y : template.position.y,
+                angle:template.position.angle,
+                w:template.position.w,
+                h:template.position.h
+            };
+        
     }
 }
 class Box {
@@ -79,6 +125,40 @@ class Box {
             w:400,
             h:300
         };
+    }
+    setTemplate(template){
+            this.style = {
+                top: template.style.top,
+                left : template.style.left,
+                width: template.style.width,
+                height :template.style.height,
+                rotation : template.style.rotation,
+                backgroundColor : template.style.backgroundColor,
+                opacity : template.style.opacity,
+                alignBlock:template.style.alignBlock,
+                border : {
+                    width : template.style.border.width,
+                    type : template.style.border.type,
+                    color : template.style.border.color
+                },
+                borderRadius :template.borderRadius,
+                shadow : {
+                    angle : template.style.shadow.angle,
+                    distance : template.style.shadow.distance,
+                    size : template.style.shadow.size,
+                    blur :  template.style.shadow.blur,
+                    color : template.style.shadow.color,
+                    opacity : template.style.shadow.opacity
+                },
+            }
+            this.position= {
+                x :template.position.x,
+                y : template.position.y,
+                angle:template.position.angle,
+                w:template.position.w,
+                h:template.position.h
+            }
+        
     }
 }
 
@@ -125,6 +205,26 @@ class LineHorizontal {
             h:50
         };
     }
+    setTemplate(template){
+            this.style= {
+                size: template.style.size,
+                backgroundColor : template.style.backgroundColor,
+                alignBlock : template.style.alignBlock,
+                top: template.style.top,
+                left : template.style.left,
+                rotation : template.style.rotation,
+                width: template.style.width,
+                height :template.style.height,
+            } 
+            this.position = {
+                x :template.position.x,
+                y : template.position.y,
+                angle:template.position.angle,
+                w:template.position.w,
+                h:template.position.h
+            };
+        
+    }
 }
 
 class LineVertical{
@@ -147,6 +247,27 @@ class LineVertical{
             w:50,
             h:400
         };
+    }
+    setTemplate(template){
+
+        this.style= {
+            size: template.style.size,
+            backgroundColor : template.style.backgroundColor,
+            alignBlock : template.style.alignBlock,
+            top: template.style.top,
+            left : template.style.left,
+            rotation : template.style.rotation,
+            width: template.style.width,
+            height :template.style.height,
+        } 
+        this.position = {
+            x :template.position.x,
+            y : template.position.y,
+            angle:template.position.angle,
+            w:template.position.w,
+            h:template.position.h
+        };
+        
     }
 }
 
@@ -175,6 +296,31 @@ class TextParagraph{
         this.link = '';
         this.heading = 'p';/** p, span, h1, h2, h3 ,h4 ,h5 ,h6  */
         
+        
+    }
+    setTemplate(template){
+        this.style= {
+            fontFamily : template.style.fontFamily,
+            letterSpacing : template.style.letterSpacing, /** (number) px */
+            wordSpacing :template.style.wordSpacing, /** (number) px */
+            lineHeight : template.style.lineHeight, /** (number) px */
+            alignBlock : template.style.alignBlock,
+            top: template.style.top,
+            left : template.style.left,
+            width: template.style.width,
+            height :template.style.height,
+            rotation : template.style.rotation
+        } 
+        this.position = {
+            x :template.position.x,
+            y : template.position.y,
+            angle:template.position.angle,
+            w:template.position.w,
+            h:template.position.h
+        };
+        this.value=template.value
+        this.link=template.link
+        this.heading = template.heading
         
     }
    
@@ -221,6 +367,44 @@ class Button {
         }
         
     }
+    setTemplate(template){
+
+        this.style = {
+            fontFamily : template.style.fontFamily,
+            backgroundColor : template.style.backgroundColor,
+            border : {
+                width : template.style.border.width,
+                type : template.style.border.type,
+                color : template.style.border.color
+            },
+            borderRadius :template.style.borderRadius,
+            shadow : {
+                angle : template.style.shadow.angle,
+                distance : template.style.shadow.distance,
+                size : template.style.shadow.size,
+                blur :  template.style.shadow.blur,
+                color : template.style.shadow.color,
+                opacity : template.style.shadow.opacity
+            },
+            color: template.style.color,
+            textTransform : template.style.textTransform,
+            alignBlock : template.style.alignBlock,
+            text :template.style.text,
+            top: template.style.top,
+            left : template.style.left,
+            width: template.style.width,
+            height : template.style.height,
+            rotation : template.style.rotation
+        } 
+        this.position = {
+            x :template.position.x,
+            y : template.position.y,
+            angle:template.position.angle,
+            w:template.position.w,
+            h:template.position.h
+        };
+        
+    }
 }
 
 class Image {
@@ -257,6 +441,41 @@ class Image {
             rotation : 0
             
         }
+    }
+    setTemplate(template){
+
+            this.style = {
+                keepProportion: template.style.keepProportion,
+                alignBlock : template.style.alignBlock,
+                border : {
+                    width : template.style.border.width,
+                    color: template.style.border.color,
+                    type : template.style.border.type
+                },
+                borderRadius : template.style.borderRadius,
+                shadow : {
+                    angle : template.style.shadow.angle,
+                    distance : template.style.shadow.distance,
+                    size : template.style.shadow.size,
+                    blur :  template.style.shadow.blur,
+                    color : template.style.shadow.color,
+                    opacity : template.style.shadow.opacity
+                },
+                top: template.style.top,
+                left : template.style.left,
+                width: template.style.width,
+                height : template.style.height,
+                rotation : template.style.rotation
+            } 
+            this.position = {
+                x :template.position.x,
+                y : template.position.y,
+                angle:template.position.angle,
+                w:template.position.w,
+                h:template.position.h
+            };
+            this.url =template.url
+
     }
 }
 
@@ -318,8 +537,51 @@ class Section {
         ]
         
     }
+
+    setTemplate(template){
+        this.style = {
+            backgroundColor : template.style.backgroundColor,
+            boxShadow: template.style.boxShadow,
+            margin : template.style.margin,
+            backgroundImage : {
+                url : template.style.backgroundImage.url,
+                position : template.style.backgroundImage.position,
+                size : template.style.backgroundImage.size,
+                repeat : template.style.backgroundImage.repeat
+            },
+            stretched :template.style.stretched,
+            height : template.style.height
+        } 
+        this.layout = new Array()
+        template.layout.forEach((item,index)=> {
+            this.layout[index] = {
+                index : item.index,
+                size : item.size,
+                row : item.row,
+                bg : item.bg
+            }
+
+        })       
+        this.row = new Array()
+        template.row.forEach((item,index) => {
+            this.row[index] = {
+                index: item.index,
+                size : item.size,
+                bg :item.bg
+            }
+        })
+        this.position = {
+            x :template.position.x,
+            y : template.position.y,
+            angle:template.position.angle,
+            w:template.position.w,
+            h:template.position.h
+        };
+        
+    }
     
 }
+
 
 
 export default {TextParagraph,Button,Section,Image,LineHorizontal,LineVertical,SlideShow,Box,Field,Video}

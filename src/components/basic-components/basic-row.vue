@@ -69,8 +69,13 @@ import {bus} from '../../main'
             this.isActive = false
         },
         deleteItem:function(){
-            this.$store.commit('deleteItemById',this.id)
+            // this.$store.commit('deleteItemById',this.id,this.rowIndex)
         },
+    },
+    mounted:function(){
+        bus.$on('gridActive',()=>{
+            this.isActive = true
+        })
     },
     computed:{
         getStyle: function(){

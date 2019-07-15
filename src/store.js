@@ -35,8 +35,8 @@ export default new Vuex.Store({
               return
             }
             state.elements.item = state.elements.item.filter(item =>{
-              if(item.parentId == state.selectId) {
-                if(item.column == state.Selectedcolumn){
+              if(item.parentId == state.selectId && item.row == state.SelectedRow) {
+                if(item.column == state.Selectedcolumn ){
                   item.column = state.Selectedcolumn - 1
                   return item
                 }
@@ -48,11 +48,11 @@ export default new Vuex.Store({
               }
               if(item.id == state.selectId){
                 item.layout = item.layout.filter(itemLayout =>{
-                  if(itemLayout.index == state.Selectedcolumn){
+                  if(itemLayout.index == state.Selectedcolumn  && itemLayout.row == state.SelectedRow){
                     itemLayout.index = state.Selectedcolumn-1
                     return itemLayout
                   }
-                  if(itemLayout.index == state.Selectedcolumn -1){
+                  if(itemLayout.index == state.Selectedcolumn -1  && itemLayout.row == state.SelectedRow){
                     itemLayout.index = state.Selectedcolumn
                     return itemLayout
                   }
@@ -68,11 +68,11 @@ export default new Vuex.Store({
           break;
         case 'toRight':
         {
-          if(state.Selectedcolumn == state.elements.item.find(item => item.id == state.selectId).layout.length){
+          if(state.Selectedcolumn == state.elements.item.find(item => item.id == state.selectId).layout.filter(itemLayout => itemLayout.row == state.SelectedRow).length){
               return
           }
           state.elements.item = state.elements.item.filter(item =>{
-            if(item.parentId == state.selectId) {
+            if(item.parentId == state.selectId && item.row == state.SelectedRow) {
               if(item.column == state.Selectedcolumn){
                 item.column = state.Selectedcolumn + 1
                 return item
@@ -85,11 +85,11 @@ export default new Vuex.Store({
             }
             if(item.id == state.selectId){
               item.layout = item.layout.filter(itemLayout =>{
-                if(itemLayout.index == state.Selectedcolumn){
+                if(itemLayout.index == state.Selectedcolumn && itemLayout.row == state.SelectedRow){
                   itemLayout.index = state.Selectedcolumn+1
                   return itemLayout
                 }
-                if(itemLayout.index == state.Selectedcolumn +1){
+                if(itemLayout.index == state.Selectedcolumn +1 && itemLayout.row == state.SelectedRow){
                   itemLayout.index = state.Selectedcolumn
                   return itemLayout
                 }
@@ -108,7 +108,7 @@ export default new Vuex.Store({
     },
     setSizeColumnGrid:function(state,grid){
       state.elements.item = state.elements.item.filter(item =>{
-        if(item.id == state.selectId){
+        if(item.id == state.selectId ){
           item.layout = item.layout.filter(itemLayout =>{
             if(itemLayout.row == state.SelectedRow){
               itemLayout.size = grid[itemLayout.index - 1]
@@ -120,6 +120,13 @@ export default new Vuex.Store({
       })
     },
     addTemplate:function(state,payload){
+    var template = {}
+      template.ObjectSectionTemplate = new Element.Section()
+      var ObjectTextTemplate = new Element.TextParagraph()
+      var ObjectButtonTemplate = new Element.Button()
+      var ObjectImgTemplate = new Element.Image()
+      var ObjectLineTemplate = new Element.LineHorizontal()
+
       switch (payload.type) {
         case 'text':
             {
@@ -138,42 +145,41 @@ export default new Vuex.Store({
           break;
           case 'strip':
           {
-            payload.elements.map(item=>{
-              
+            payload.elements.forEach(item=>{
               switch (item.type) {
                 case 'section':
                   {
-                    var itemSection = {
+                    
+                    template.ObjectSectionTemplate.setTemplate(item)
+                    var itemSection = new Object()
+                    console.log(itemSection)
+                    itemSection = {
                       id : state.indexItem,
                       type : 'section',
-                      style: item.style,
+                      style: template.ObjectSectionTemplate.style,
                       parentId : -1,
-                      layout: item.layout,
-                      position :item.position,
-                      row : item.row
-                      //  {
-                      //   x : item.position.x,
-                      //   y : this.getters.getHeightDom  + item.position.y,
-                      //   angle : item.position.angle,
-                      //   w : item.position.w,
-                      //   h : item.position.h
-                      // }
+                      layout: template.ObjectSectionTemplate.layout,
+                      position :template.ObjectSectionTemplate.position,
+                      row : template.ObjectSectionTemplate.row
                     }
                     state.selectId = state.indexItem
                     state.Selectedcolumn = 1
-                    this.commit('addItem',itemSection)    
+                    this.commit('addItem',itemSection) 
+                    delete template.ObjectSectionTemplate
                   }
                 break;
                 case 'text':
                   {
+                    
+                    ObjectTextTemplate.setTemplate(item)
                     var itemText = {
                       id : state.indexItem,
                       type : 'text',
-                      style : item.style,
+                      style : ObjectTextTemplate.style,
                       parentId : state.selectId != null ? state.selectId : null,
                       column : item.column,
-                      position :item.position,
-                      value : item.value,
+                      position :ObjectTextTemplate.position,
+                      value : ObjectTextTemplate.value,
                       row : item.row
                     }
                     this.commit('addItem',itemText)
@@ -181,13 +187,15 @@ export default new Vuex.Store({
                   break;  
                   case 'btn':
                     {
+                      
+                      ObjectButtonTemplate.setTemplate(item)
                       var itembtn = {
                         id : state.indexItem,
                         type : 'btn',
-                        style : item.style,
+                        style : ObjectButtonTemplate.style,
                         parentId : state.selectId != null ? state.selectId : null,
                         column :item.column,
-                        position : item.position,
+                        position : ObjectButtonTemplate.position,
                         row : item.row
                       } 
                       this.commit('addItem',itembtn)  
@@ -195,14 +203,15 @@ export default new Vuex.Store({
                   break;
                   case 'image':
                     {
+                      ObjectImgTemplate.setTemplate(item)
                       var itemImg = {
                         id  :state.indexItem,
                         type : 'img',
-                        style : item.style,
+                        style : ObjectImgTemplate.style,
                         parentId : state.selectId != null ? state.selectId : null,
                         column : item.column,
-                        position: item.position,
-                        url : item.url,
+                        position: ObjectImgTemplate.position,
+                        url : ObjectImgTemplate.url,
                         row : item.row
                       }    
                       this.commit('addItem',itemImg)
@@ -210,13 +219,14 @@ export default new Vuex.Store({
                   break;
                   case 'lineHorizontal':
                   {
+                    ObjectLineTemplate.setTemplate(item)
                     var itemLine = {
                       id : state.indexItem,
                       type : 'lineHorizontal',
-                      style : item.style,
+                      style : ObjectLineTemplate.style,
                       parentId : state.selectId != null ? state.selectId : null,
                       column :item.column,
-                      position : item.position,
+                      position : ObjectLineTemplate.position,
                       row : item.row
                     }    
                     this.commit('addItem',itemLine) 
@@ -507,7 +517,8 @@ export default new Vuex.Store({
             type : 'section',
             style: ObjectSection.style,
             parentId : -1,
-            layout:[{index : 1,size : 100, bg:'none'}],
+            layout:[{row:1,index : 1,size : 100, bg:'none'}],
+            row:[{index:1,size:100}]
           }
           state.selectId = state.indexItem
           state.Selectedcolumn = 1
@@ -518,7 +529,8 @@ export default new Vuex.Store({
             type : 'slider',
             parentId : state.selectId,
             column : 1,
-            slideItem : ObjectSlide.slideItem
+            slideItem : ObjectSlide.slideItem,
+            row: 1
             // position 
           }
           this.commit('addItem',itemSlider)
@@ -607,19 +619,19 @@ export default new Vuex.Store({
       })
       state.selectId = null
     },
-    deleteRow:function(state){
+    deleteRow:function(state,row){
       state.elements.item = state.elements.item.filter(item =>{
         if(item.id == state.selectId ){
           var sizeOld = 0;
           item.row = item.row.filter(itemRow =>{
-            if(itemRow.index != state.SelectedRow){
+            if(itemRow.index != row){
               return itemRow
             }else{
               sizeOld = itemRow.size
             }
           })
           item.layout = item.layout.filter(itemLayout =>{
-            if(itemLayout.row != state.SelectedRow){
+            if(itemLayout.row != row){
               return itemLayout
             }
           })
@@ -641,47 +653,62 @@ export default new Vuex.Store({
       })
     },
     deleteColumn:function(state ,{index, id,row}){
-      state.elements.item = state.elements.item.filter(item => {
-        if(item.parentId != id || item.column != index){
-          return item
-        }
-      })
+      // state.elements.item = state.elements.item.filter(item => {
+      //   if(item.id != id || item.column != index || item.row != row){
+      //     return item
+      //   }
+      // })
       if(state.elements.item.find(item => item.id == id).layout.length == 1){
         this.commit('deleteSection',id)
         return
       }
-      if(state.elements.item.find(item => item.id == id ).layout.filter(itemLayout => itemLayout.row == state.SelectedRow).length == 1){
+      if(state.elements.item.find(item => item.id == id ).layout.filter(itemLayout => itemLayout.row == row).length == 1){
         console.log('delete Row')
-        this.commit('deleteRow')
+        this.commit('deleteRow',row)
         return
       }
-
       state.elements.item = state.elements.item.filter(item => {
         if(item.id == id ){
           if(item.layout.length > 1){
             var size = parseInt(100 / (this.getters.getNumColumn - 1));
             item.layout = item.layout.filter(itemLayout => {
-              if(itemLayout.index != index || itemLayout.row != state.SelectedRow){
+              if(itemLayout.index != index || itemLayout.row != row){
                 return itemLayout // edited
               }
             })
+            var itemLayoutNew = [] ;
             item.layout = item.layout.filter(itemLayout => {
-              if(itemLayout.row == state.SelectedRow){
-                 itemLayout.size = size
+              if(itemLayout.row == row){
+                itemLayoutNew.push(itemLayout)
+              }else{
+                return itemLayout //edited
               }
-              return itemLayout //edited
             }) 
+            console.log(itemLayoutNew)
+            itemLayoutNew.forEach(itemNew =>{
+              itemNew.size = size
+              item.layout.push(itemNew)     
+            })
+            console.log(item.layout)
+            
           }
-        } return item
+        } 
+        return item
       })
 
       state.elements.item = state.elements.item.filter(item => {
-        var index = 1
+        var indexColumn = 1
         if(item.id == id){
             item.layout = item.layout.filter(itemLayout =>{
-              if(itemLayout.row == state.SelectedRow){
-                itemLayout.index = index
-                index++
+              if(itemLayout.row == row){
+                state.elements.item = state.elements.item.filter(itemChild =>{
+                  if(itemChild.parentId == id && itemChild.column == itemLayout.index && itemChild.row == row){
+                    itemChild.column = indexColumn
+                  }
+                  return itemChild
+                })
+                itemLayout.index = indexColumn
+                indexColumn++
               }
             return itemLayout
           })
