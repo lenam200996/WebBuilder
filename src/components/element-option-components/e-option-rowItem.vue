@@ -35,6 +35,9 @@ import {bus} from '../../main'
 </script>
 
 <style  scoped>
+    li{
+        width: 100%;
+    }
     span{
         position: absolute;
         left: 50%;

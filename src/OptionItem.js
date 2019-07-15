@@ -73,7 +73,7 @@ var Default = {
                 ref: 'stretched'
             },
            {
-               name : 'Row',
+               name : '',
                ref:'rowManager'
            }
             
@@ -189,11 +189,11 @@ var Default = {
         ],
         'ROW':[
             {
-                name : 'Column',
+                name : '',
                 ref : 'sectionColumnManagement'
             },
             {
-                name :'Grid manager',
+                name :'',
                 ref:'sectionGrid'
             }
         ]

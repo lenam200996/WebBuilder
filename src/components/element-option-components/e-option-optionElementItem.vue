@@ -67,16 +67,16 @@
                     <i-option value="inherit">Inherit</i-option>
                 </i-select>
                 <i-switch v-if="itemOption.ref == 'keepProportion'" v-model="style.keepProportion"/>
-                <div v-if="itemOption.ref == 'rowManager'" class="div-column-manager">
+                <div v-if="itemOption.ref == 'rowManager'" class="div-row-manager">
                     <h2>Row Manager</h2>
                     <i-button type="success"  class="addColumn" @click="addRow">Add Row</i-button>
                     <ul>
                         <e-option-row-item v-for="(n,index) in getNumRow" :key="index" :n="n"></e-option-row-item>
                     </ul>
                     <div class="div-column-manager-option">
-                        <button v-if="enableOptionRow" @click="deleteRow"><img src="../../assets/delete.svg"/></button>
-                        <!-- <button v-if="enableOptionRow" @click="swapColumn('toLeft')"><img src="../../assets/previous.svg"/></button> -->
-                        <!-- <button v-if="enableOptionRow" @click="swapColumn('toRight')"><img src="../../assets/next.svg"/></button> -->
+                        <button v-if="enableOptionRow" @click="deleteRow"><Icon size="26" type="md-trash" /></button>
+                        <button v-if="enableOptionRow" @click="swapRow('toUp')"><Icon  size="26"  type="md-arrow-round-up" /></button>
+                        <button v-if="enableOptionRow" @click="swapRow('toDown')"><Icon  size="26"  type="md-arrow-round-down" /></button>
                     </div>
                 </div>
 
@@ -288,28 +288,20 @@ import Grid from '../../data.json'
         margin-right: 5px;
     }
 
-    .div-column-manager{
+    .div-column-manager,.div-row-manager{
         width: 100%;
     }
 
-    .div-column-manager>h2{
+    .div-column-manager>h2,.div-row-manager>h2{
         margin: 20px auto;
     }
-
-    .div-column-manager>button{
+    .div-column-manager>button,.div-row-manager>button{
         width: 150px;
         height: 40px;
         margin: auto;
         border-radius: 10px;
-        /* background: linear-gradient(
-            to bottom,
-            rgba(255, 255, 255, 0.96) 0%,
-            rgba(238, 238, 238, 0.96) 100%
-        );
-        box-shadow: 0 2px 5px 0 rgba(22, 45, 61, 0.58); */
-
     }
-    .div-column-manager>ul{
+    .div-column-manager>ul,.div-row-manager>ul{
         width: 100%;
         margin: auto;
     }
@@ -322,10 +314,20 @@ import Grid from '../../data.json'
          position: relative;
          cursor: pointer;
      }
-     .div-column-manager>ul>li:hover{
+     .div-row-manager>ul>li{
+         width: 90%;
+         height: 60px;
+         display: inline-flex;
+         background-color: green;
+         margin-right: 2px;
+         position: relative;
+         cursor: pointer;
+         margin-bottom: 0;
+     }
+     .div-column-manager>ul>li:hover,.div-row-manager>ul>li:hover{
          background-color: red;
      }
-    .div-column-manager>ul>li.active{
+    .div-column-manager>ul>li.active,.div-row-manager>ul>li.active{
         background-color: yellow;
     }
     .div-column-manager-option{
