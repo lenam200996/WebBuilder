@@ -402,4 +402,20 @@ export default {
 input {
   padding: 0 5px;
 }
+
+.ivu-icon{
+  font-size: 16px;
+}
+.ivu-icon-md-trash{
+  color: red;
+}
+.ivu-icon-ios-brush{
+  color: green;
+}
+.ivu-icon-ios-close-circle,.ivu-icon-md-arrow-dropleft,.ivu-icon-md-arrow-dropright{
+  font-size: 24px;
+}
+.ivu-icon-md-arrow-dropleft,.ivu-icon-md-arrow-dropright{
+  color:blue;
+}
 </style>

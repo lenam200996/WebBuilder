@@ -170,6 +170,14 @@ var Default = {
             {
                 name : 'Video Url',
                 ref: 'videoUrl'
+            },
+            {
+                name: 'Auto Play',
+                ref : 'autoPlay'
+            },
+            {
+                name: 'Loop',
+                ref : 'loop'
             }
         ],
         'BOX':[
@@ -180,10 +188,6 @@ var Default = {
             
         ],
         'ROW':[
-            {
-                name : 'Background Color',
-                ref : 'backgroundColor'
-            },
             {
                 name : 'Column',
                 ref : 'sectionColumnManagement'

@@ -13,9 +13,14 @@ import './components/basic-components/_basic_components'
 import './components/element-option-components/_element_option_components'
 import './components/main-option-components/_main_option_components'
 import './components/render-components/_render_components'
+import iView from 'iview';
+import lang from 'iview/dist/locale/en-US';
+import 'iview/dist/styles/iview.css';
 Vue.use(VueI18n)
 Vue.use(VueTabs)
 Vue.use(EasySlider)
+Vue.use(iView);
+iView.locale(lang)
 Vue.component('slide',Slider)
 Vue.component('slideItem',SliderItem)
 Vue.component('tinymceText',tinymce)

@@ -5,16 +5,16 @@
                 <button @click="editText">{{elementName}}</button>
             </li>
             <li>
-                <button @click="edit"><img src="../../assets/edit.svg"/></button>
+                <button @click="edit"><Icon type="ios-brush" /></button>
             </li>
             <li>
-                <button @click="deleteItem"><img src="../../assets/delete.svg"/></button>
+                <button @click="deleteItem"><Icon type="md-trash" /></button>
             </li>
             <li  v-if="!isGrid">
-                <button @click="preColumn"><img src="../../assets/previous.svg"/></button>
+                <button @click="preColumn"><Icon type="md-arrow-dropleft" /></button>
             </li>
             <li v-if="!isGrid">
-                <button @click="nextColumn"><img src="../../assets/next.svg"/></button>
+                <button @click="nextColumn"><Icon type="md-arrow-dropright" /></button>
             </li>
         </ul>
     </div>

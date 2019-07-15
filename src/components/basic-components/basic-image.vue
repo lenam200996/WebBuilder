@@ -9,7 +9,7 @@
             @select="select"
             @deselect="deselect"
             :style="getStyleWrap"
-            :aspectRatio="properties.styleImg.keepProportion == 'true'"
+            :aspectRatio="properties.styleImg.keepProportion"
             >
         <div class="wrap-img">
             <img :src="properties.url" :style="getStyleImage">

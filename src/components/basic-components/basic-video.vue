@@ -66,7 +66,7 @@ import {bus} from '../../main'
             var match = this.properties.styleVideo.url.match(regExp);
 
             if (match && match[2].length == 11) {
-                return 'https://www.youtube.com/embed/'+match[2];
+                return 'https://www.youtube.com/embed/'+match[2]+"?autoplay="+this.properties.styleVideo.autoPlay+"&playlist="+match[2]+"&loop="+this.properties.styleVideo.loop;
             } else {
                 return 'error';
             }

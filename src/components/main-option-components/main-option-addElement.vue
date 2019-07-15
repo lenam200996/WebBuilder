@@ -20,8 +20,8 @@
         </v-tab>
         <v-tab title="Image" icon="ti-settings">
           <ul>
-            <li @click="$store.commit('addElement',{type : 'image'})" >Simple Image</li>
-            <li @click="$store.commit('addElement',{type : 'image'})" >Simple Image</li>
+            <li @click="$store.commit('addElement',{type : 'image'})" ><Icon type="ios-image" /> Simple Image</li>
+            <!-- <li @click="$store.commit('addElement',{type : 'image'})" >Simple Image</li> -->
           </ul>
         </v-tab>
 
@@ -66,7 +66,7 @@
         </v-tab>
         <v-tab title="Video" icon="ti-check">
           <ul>
-              <li  @click="$store.commit('addElement',{type : 'video'})">Video</li>
+              <li  @click="$store.commit('addElement',{type : 'video'})"><Icon type="logo-youtube" /> YOUTUBE</li>
           </ul>
         </v-tab>
     </vue-tabs>
@@ -111,7 +111,7 @@ export default {
   top: 30px;
   left: 90px;
   z-index: 9999999;
-  opacity: 0.8;
+  /* opacity: 0.8; */
   /* padding-bottom: 20px; */
   border-radius: 10px;
   animation: ani-option 0.5s forwards;

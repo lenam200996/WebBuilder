@@ -7,7 +7,9 @@ class Video{
             left : 0,
             width: '300px',
             height :'200px',
-            url :'https://www.youtube.com/embed/m2gHLijHTQU'
+            url :'https://www.youtube.com/embed/m2gHLijHTQU',
+            autoPlay : false,
+            loop: false
         }
         this.position = {
             x :150,
@@ -418,7 +420,7 @@ class Image {
             h:300
         };
         this.style ={
-            keepProportion: "true",
+            keepProportion: true,
             alignBlock : 'none',
             border : {
                 width : 3,

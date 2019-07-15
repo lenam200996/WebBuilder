@@ -1,7 +1,7 @@
 <template>
  
     <div class="wrap-option" :style="{top: top+'px', right:right+'px'}">
-        <div class="close" @click="closeOptionElement"><span>x</span></div>
+        <div class="close" @click="closeOptionElement"><Icon type="ios-close-circle" /></div>
         <h2  @mousedown="enableDrag" @mouseup="isDrag =false" @mousemove="drag">{{name}} OPTIONS</h2>
         <e-option-option-element-item :name="name" :id="id"></e-option-option-element-item>
     </div>
@@ -86,22 +86,14 @@ import {bus} from '../../main'
         border-radius: 10px 10px 0 0;
     }
     .close{
-        width: 20px;
-        height: 20px;
-        background: #ffffff;
-        box-shadow: 0 2px 5px 0 rgba(22, 45, 61, 0.58);
-        border-radius: 50%;
-        padding: 5px;
         position: relative;
         cursor: pointer;
     }
-    .close>span{
-        font-size: 15px;
-        position: absolute;
-        top: 50%;
-        transform: translate(-50%,-50%);
-        left: 50%;
-        color:red;
-        cursor: pointer;
+    .close>i{
+        color: red;
+        opacity: 1;
+        text-shadow: none;
     }
+    
+    
 </style>

@@ -15,7 +15,7 @@
           
       </div>
       <div v-else class="edit">
-          <tinymce ref="area" id="d1"  v-model="Value" @editorInit="initEdit" :style="getStyle"></tinymce>
+          <tinymceText ref="area" id="d1"  v-model="Value" @editorInit="initEdit" :style="getStyle"></tinymceText>
       </div>
       <e-option-button-option v-if="isActive"
         :isGrid="false" 
