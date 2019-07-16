@@ -4,7 +4,7 @@
     :resizable="false"
     :rotatable="false"
     :draggable="false"
-    :class="'column-'+properties.size" 
+    :class="' md-layout-item '+classResponsive" 
     @select="select"
     @deselect="deselect"
     :selected="$store.getters.getSelectID == properties.id" 
@@ -41,6 +41,7 @@ import {bus} from '../../main'
                 required:true
             },
            
+           
         },
         data:function(){
             return{
@@ -51,8 +52,9 @@ import {bus} from '../../main'
                     position: 'absolute',
                     zIndex: '99999',
                     top: 0,
-                    right:-60 +'px'
-                }
+                    right:-60 +'px' 
+                },
+                    classResponsive : ''
             }
         },
         computed:{
@@ -64,6 +66,27 @@ import {bus} from '../../main'
             },
             getActiveRow:function(){
             return this.$store.getters.getRowSelected
+            },
+            getSizeColumn:function(){
+                return this.properties.size
+            }
+        },
+        mounted:function(){
+            if(this.properties.size >50){
+                this.classResponsive = 'md-large-size-'+this.properties.size+' md-medium-size-33 md-small-size-50 md-xsmall-size-100'
+            }
+            else{
+                this.classResponsive = 'md-large-size-'+this.properties.size+' md-medium-size-'+this.properties.size+' md-small-size-50 md-xsmall-size-100'
+            }
+        },
+        watch:{
+            getSizeColumn:function(val){
+                if(val >50){
+                    this.classResponsive = 'md-large-size-'+val+' md-medium-size-33 md-small-size-50 md-xsmall-size-100'
+                }
+                else{
+                    this.classResponsive = 'md-large-size-'+val+' md-medium-size-'+val+' md-small-size-50 md-xsmall-size-100'
+                }
             }
         },
         methods:{

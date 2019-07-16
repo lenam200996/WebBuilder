@@ -20,6 +20,10 @@ var Default = {
                 {
                     name: 'Align Block',
                     ref : 'alignBlock'
+                },
+                {
+                    name : 'Shadow',
+                    ref:'shadow'
                 }
             ],
         'Column' : [
@@ -61,6 +65,10 @@ var Default = {
             {
                 name: 'Align Block',
                 ref : 'alignBlock'
+            },
+            {
+                name : 'Shadow',
+                ref:'shadow'
             }
         ],
         'SECTION':[
@@ -154,6 +162,10 @@ var Default = {
             {
                 name :'Border Color Hover',
                 ref:'borderColorHover'
+            },
+            {
+                name : 'Shadow',
+                ref:'shadow'
             }
         ],
         'LINE':[
@@ -169,6 +181,10 @@ var Default = {
                 name: 'Size',
                 ref :'sizeLine'
             },
+            {
+                name : 'Shadow',
+                ref:'shadow'
+            }
             
         ],
         'FIELD':[
@@ -239,6 +255,10 @@ var Default = {
             {
                 name :'Placeholder',
                 ref:'placeholder'
+            },
+            {
+                name : 'Shadow',
+                ref:'shadow'
             }
 
         ],
@@ -258,6 +278,10 @@ var Default = {
             {
                 name: 'Loop',
                 ref : 'loop'
+            },
+            {
+                name : 'Shadow',
+                ref:'shadow'
             }
         ],
         'BOX':[
@@ -288,6 +312,10 @@ var Default = {
             {
                 name: 'Opacity',
                 ref :'opacity'
+            },
+            {
+                name : 'Shadow',
+                ref:'shadow'
             }
             
         ],

@@ -12,7 +12,7 @@
             :aspectRatio="properties.styleImg.keepProportion"
             >
         <div class="wrap-img">
-            <img :src="properties.url" :style="getStyleImage">
+            <img :src="properties.url" :style="getStyleImage" :class="'md-image md-elevation-'+properties.styleImg.shadow">
         </div>
         <e-option-button-option v-if="isActive"
             :isGrid="false" 

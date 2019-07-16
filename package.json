@@ -19,8 +19,10 @@
     "vue-click-outside": "^1.0.7",
     "vue-easy-slider": "^5.2.10",
     "vue-i18n": "^8.12.0",
+    "vue-material": "^1.0.0-beta-11",
     "vue-nav-tabs": "^0.5.7",
     "vue-router": "^3.0.3",
+    "vue-slick": "^1.1.15",
     "vue-tinymce-editor": "^1.6.2",
     "vuex": "^3.0.1",
     "write-json-file": "^4.1.1"

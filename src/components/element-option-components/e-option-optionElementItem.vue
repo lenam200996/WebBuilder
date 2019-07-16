@@ -8,10 +8,11 @@
                 <slider v-if="itemOption.ref == 'fontWeight'"  v-model="style.fontWeight" :min="500" :max="900" :step="100"></slider>
                 <slider v-if="itemOption.ref == 'lineHeight'"  v-model="style.lineHeight"></slider>
                 <slider v-if="itemOption.ref == 'letterSpacing'"  v-model="style.letterSpacing"></slider>
+                <slider v-if="itemOption.ref == 'shadow'"  v-model="style.shadow" :min="0" :step="1" :max="24"></slider>
                 <slider v-if="itemOption.ref == 'wordSpacing'"  v-model="style.wordSpacing"></slider>
                 <slider v-if="itemOption.ref == 'borderWidth'"  v-model="style.border.width"></slider>
                 <slider v-if="itemOption.ref == 'sizeLine'" v-model="style.size"></slider>
-                <slider v-if="itemOption.ref == 'borderRadius'"  v-model="style.borderRadius" :max="parseInt(style.width.replace('px',''))"></slider>
+                <slider v-if="itemOption.ref == 'borderRadius'"  v-model="style.borderRadius" :max="parseInt(style.height.replace('px',''))/2"></slider>
                 <i-input v-if="itemOption.ref == 'videoUrl'" type="text" v-model="style.url"/>
                 <i-switch v-if="itemOption.ref == 'autoPlay'" v-model="style.autoPlay"/>
                 <i-switch v-if="itemOption.ref == 'loop'" v-model="style.loop"/>

@@ -84,6 +84,7 @@ import {bus} from '../../main'
         color: #ffffff;
         text-transform: uppercase;
         border-radius: 10px 10px 0 0;
+        margin: 0 !important;
     }
     .close{
         position: relative;

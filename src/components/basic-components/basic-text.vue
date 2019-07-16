@@ -11,7 +11,7 @@
             :style="getStyleWrap"
         >
       <div class="text" @active="onActive()" v-if="!textActive"  >
-          <span v-html="Value" :style="getStyle"></span>
+          <span v-html="Value" :style="getStyle" :class="'md-elevation-'+properties.styleText.shadow"></span>
           
       </div>
       <div v-else class="edit">

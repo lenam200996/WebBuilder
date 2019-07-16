@@ -10,7 +10,7 @@
             @deselect="deselect"
             :style="getStyleWrap"
             >
-    <div :style="getStyle" class="re-box">
+    <div :style="getStyle" class="re-box" :class="'md-elevation-'+properties.styleBox.shadow">
         <slot></slot>
     </div>
         <e-option-button-option v-if="isActive"

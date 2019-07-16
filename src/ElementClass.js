@@ -9,7 +9,8 @@ class Video{
             height :'200px',
             url :'https://www.youtube.com/embed/m2gHLijHTQU',
             autoPlay : false,
-            loop: false
+            loop: false,
+            shadow : 0,
         }
         this.position = {
             x :150,
@@ -65,6 +66,7 @@ class Field {
                 color : '#000000'
             },
             borderRadius :0,
+            shadow : 0,
         }
         this.position = {
             x :150,
@@ -120,15 +122,16 @@ class Box {
                 color : '#000000'
             },
             borderRadius :0,
-            shadow : {
-                angle : 0,
-                distance : 0,
-                size : 0,
-                blur :  4,
-                color : '#cccccc',
-                opacity : 1
-            },
+            // shadow : {
+            //     angle : 0,
+            //     distance : 0,
+            //     size : 0,
+            //     blur :  4,
+            //     color : '#cccccc',
+            //     opacity : 1
+            // },
             opacity: 1,
+            shadow : 0,
         }
         this.position = {
             x :200,
@@ -207,8 +210,9 @@ class LineHorizontal {
             rotation : 0,
             width: '400px',
             height :'50px',
+            shadow : 0,
 
-        },
+        };
         this.position = {
             x :200,
             y : 25,
@@ -249,9 +253,10 @@ class LineVertical{
             left : 0,
             rotation : 0,
             width: '30px',
+            shadow : 0,
             height :'300px',
 
-        },
+        };
         this.position = {
             x :25,
             y : 200,
@@ -295,7 +300,8 @@ class TextParagraph{
             left : 0,
             width: '400px',
             height :'50px',
-            rotation : 0
+            rotation : 0,
+            shadow : 0,
         };
         this.position = {
             x :200,
@@ -358,15 +364,16 @@ class Button {
                 type : 'solid',
                 color : '#000000'
             },
+            shadow : 0,
             borderRadius :0,
-            shadow : {
-                angle : 0,
-                distance : 0,
-                size : 0,
-                blur :  4,
-                color : '#cccccc',
-                opacity : 1
-            },
+            // shadow : {
+            //     angle : 0,
+            //     distance : 0,
+            //     size : 0,
+            //     blur :  4,
+            //     color : '#cccccc',
+            //     opacity : 1
+            // },
             color: '#000000',
             textTransform : 'none',
             alignBlock : 'none',
@@ -447,14 +454,15 @@ class Image {
                 type : 'solid'
             },
             borderRadius : 50,
-            shadow : {
-                angle : 0,
-                distance : 0,
-                size : 0,
-                blur :  4,
-                color : '#cccccc',
-                opacity : 1
-            },
+            shadow : 0,
+            // shadow : {
+            //     angle : 0,
+            //     distance : 0,
+            //     size : 0,
+            //     blur :  4,
+            //     color : '#cccccc',
+            //     opacity : 1
+            // },
             top: 0,
             left : 0,
             width: '400px',

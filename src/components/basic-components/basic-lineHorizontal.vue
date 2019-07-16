@@ -10,7 +10,7 @@
             @deselect="deselect"
             :style="getStyleWrap"
             >
-    <div :style="getStyle" class="re-line-h">
+    <div :style="getStyle" class="re-line-h" :class="'md-elevation-'+properties.styleLine.shadow">
         
     </div>
         <e-option-button-option v-if="isActive"

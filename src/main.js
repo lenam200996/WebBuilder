@@ -8,15 +8,19 @@ import VueTabs from 'vue-nav-tabs/dist/vue-tabs.js'
 import EasySlider from 'vue-easy-slider'
 import VueI18n from 'vue-i18n'
 import { Slider, SliderItem } from 'vue-easy-slider'
+import VueMaterial from 'vue-material'
+import iView from 'iview';
+import lang from 'iview/dist/locale/en-US';
 import 'vue-nav-tabs/themes/vue-tabs.css'
 import './components/basic-components/_basic_components'
 import './components/element-option-components/_element_option_components'
 import './components/main-option-components/_main_option_components'
 import './components/render-components/_render_components'
-import iView from 'iview';
-import lang from 'iview/dist/locale/en-US';
 import 'iview/dist/styles/iview.css';
 import './assets/css/main.css'
+import 'vue-material/dist/vue-material.min.css'
+
+Vue.use(VueMaterial)
 Vue.use(VueI18n)
 Vue.use(VueTabs)
 Vue.use(EasySlider)

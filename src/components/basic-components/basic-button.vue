@@ -11,7 +11,7 @@
             :style="getStyleWrap"
             >
       <div class="button" @active="onActive()" @mouseover="isHover = true" @mouseleave="isHover = false">
-          <button :style="getStyle">
+          <button :style="getStyle" :class="'md-elevation-'+properties.styleButton.shadow">
               <span v-html="properties.text" ></span>
           </button>
       </div>

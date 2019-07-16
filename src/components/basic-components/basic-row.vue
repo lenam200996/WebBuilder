@@ -1,7 +1,7 @@
 <template>
      <divDragResize
             :id="id"
-            class="row"
+            class="row md-layout"
             @select="select"
             @deselect="deselect"
             :style="{zindex :isActive? 99999 :1}"
