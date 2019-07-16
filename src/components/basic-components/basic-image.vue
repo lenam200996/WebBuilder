@@ -50,6 +50,7 @@
             },
             deleteItem:function(){
                 this.$store.commit('deleteItemById',this.properties.id)
+                bus.$emit('closeOptionElement',{name : 'IMAGE',id:this.properties.id})
             },
             preColumn:function(){
                 this.$store.commit('preColumn',this.properties.id)

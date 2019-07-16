@@ -11,7 +11,7 @@
             :style="getStyleWrap"
             >
         <input :type="getType" :placeholder="properties.styleInput.placeholder" :required="properties.styleInput.required" :style="getStyle" class="re-field">
-        <e-option-button-option v-if="isActive"
+        <e-option-button-option v-if="isActive" 
         :isGrid="false" 
         @edit="editOption" 
         @disableEdit="onBlur"
@@ -52,6 +52,7 @@ import {bus} from '../../main'
         },
         deleteItem:function(){
             this.$store.commit('deleteItemById',this.properties.id)
+             bus.$emit('closeOptionElement',{name : 'FIELD',id:this.properties.id})
         },
         preColumn:function(){
             this.$store.commit('preColumn',this.properties.id)
@@ -60,6 +61,7 @@ import {bus} from '../../main'
             this.$store.commit('nextColumn',this.properties.id)
         }
     },
+   
     computed:{
         getType:function(){
             return this.properties.styleInput.type
@@ -68,7 +70,17 @@ import {bus} from '../../main'
             return {
                 backgroundColor : this.properties.styleInput.backgroundColor,
                 borderRadius: this.properties.styleInput.borderRadius + 'px',
-                border: this.properties.styleInput.border.width + 'px '+this.properties.styleInput.border.type +' '+this.properties.styleInput.border.color
+                borderStyle:this.properties.styleInput.border.type ,
+                borderColor: this.properties.styleInput.border.color,
+                borderWidth: this.properties.styleInput.borderPosition == 'All'?this.properties.styleInput.border.width+'px': '0px 0px '+this.properties.styleInput.border.width+'px 0px',
+                textAlign : this.properties.styleInput.textAlign,
+                paddingLeft:  this.properties.styleInput.textAlign == 'left'?this.properties.styleInput.paddingLeft+'px' : 0,
+                paddingRight:  this.properties.styleInput.textAlign == 'right'?this.properties.styleInput.paddingRight+'px' : 0,
+                fontFamily : this.properties.styleInput.fontFamily,
+                fontStyle: this.properties.styleInput.fontStyle,
+                fontSize:this.properties.styleInput.fontSize+'px',
+                fontWeight: this.properties.styleInput.fontWeight,
+                color:this.properties.styleInput.color
             }
         },
         getStyleWrap:function(){

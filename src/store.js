@@ -283,8 +283,7 @@ export default new Vuex.Store({
       })
     },
     addTemplate:function(state,payload){
-    var template = {}
-      template.ObjectSectionTemplate = new Element.Section()
+      var ObjectSectionTemplate = new Element.Section()
       var ObjectTextTemplate = new Element.TextParagraph()
       var ObjectButtonTemplate = new Element.Button()
       var ObjectImgTemplate = new Element.Image()
@@ -313,22 +312,22 @@ export default new Vuex.Store({
                 case 'section':
                   {
                     
-                    template.ObjectSectionTemplate.setTemplate(item)
+                    ObjectSectionTemplate.setTemplate(item)
                     var itemSection = new Object()
-                    console.log(itemSection)
                     itemSection = {
                       id : state.indexItem,
                       type : 'section',
-                      style: template.ObjectSectionTemplate.style,
+                      style: ObjectSectionTemplate.style,
                       parentId : -1,
-                      layout: template.ObjectSectionTemplate.layout,
-                      position :template.ObjectSectionTemplate.position,
-                      row : template.ObjectSectionTemplate.row
+                      layout: ObjectSectionTemplate.layout,
+                      position :ObjectSectionTemplate.position,
+                      row : ObjectSectionTemplate.row,
+                      indexSection : state.indexSection
                     }
                     state.selectId = state.indexItem
                     state.Selectedcolumn = 1
+                    state.indexSection++
                     this.commit('addItem',itemSection) 
-                    delete template.ObjectSectionTemplate
                   }
                 break;
                 case 'text':
@@ -414,18 +413,12 @@ export default new Vuex.Store({
                           parentId : -1,
                           layout: item.layout,
                           position : item.position,
-                          row : item.row
-                          
-                          // {
-                          //   x : item.position.x,
-                          //   y : this.getters.getHeightDom  + item.position.y,
-                          //   angle : item.position.angle,
-                          //   w : item.position.w,
-                          //   h : item.position.h
-                          // }
+                          row : item.row,
+                          indexSection : state.indexSection
                         }
                         state.selectId = state.indexItem
                         state.Selectedcolumn = 1
+                        state.indexSection++
                         this.commit('addItem',itemSection)    
                       }
                     break;
@@ -514,7 +507,6 @@ export default new Vuex.Store({
           item.style.top = val.top,
           item.style.left = val.left
           item.style.width  =val.width
-          // item.style.height = val.height
           item.style.rotation = val.rotation
         }
         return item

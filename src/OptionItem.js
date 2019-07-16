@@ -118,6 +118,42 @@ var Default = {
             {
                 name : 'Background Color',
                 ref : 'backgroundColor'
+            },
+            {
+                name: 'Text Align',
+                ref:'textAlign'
+            },
+            {
+                name : 'Padding Left',
+                ref:'paddingLeft'
+            },
+            {
+                name : 'Padding Right',
+                ref:'paddingRight'
+            },
+            {
+                name:'Font Size',
+                ref:'fontSize'
+            },
+            {
+                name:'Font Weight',
+                ref:'fontWeight'
+            },
+            {
+                name: 'Font Style',
+                ref:'fontStyle'
+            },
+            {
+                name : 'Fill Hover',
+                ref:'backgroundColorHover'
+            },
+            {
+                name : 'Color Hover',
+                ref:'colorHover'
+            },
+            {
+                name :'Border Color Hover',
+                ref:'borderColorHover'
             }
         ],
         'LINE':[
@@ -160,6 +196,50 @@ var Default = {
                 name : 'Border Radius',
                 ref : 'borderRadius'
             },
+            {
+                name: 'Required',
+                ref:'required'
+            },
+            {
+                name: 'Text Align',
+                ref:'textAlign'
+            },
+            {
+                name : 'Padding Left',
+                ref:'paddingLeft'
+            },
+            {
+                name : 'Padding Right',
+                ref:'paddingRight'
+            },
+            {
+                name : 'Border',
+                ref:'borderPosition'
+            },
+            {
+                name: "Font Family", //new
+                ref: "fontFamily"
+            },
+            {
+                name: 'Font Style',
+                ref:'fontStyle'
+            },
+            {
+                name : 'Text color',
+                ref : 'color'
+            },
+            {
+                name:'Font Size',
+                ref:'fontSize'
+            },
+            {
+                name:'Font Weight',
+                ref:'fontWeight'
+            },
+            {
+                name :'Placeholder',
+                ref:'placeholder'
+            }
 
         ],
         'VIDEO':[
@@ -182,9 +262,33 @@ var Default = {
         ],
         'BOX':[
             {
+                name: 'Align Block',
+                ref : 'alignBlock'
+            },
+            {
                 name : 'Background Color',
                 ref : 'backgroundColor'
             },
+            {
+                name : 'Border Width',
+                ref : 'borderWidth'
+            },
+            {
+                name : 'Border Type',
+                ref : 'borderType'
+            },
+            {
+                name : 'Border Color',
+                ref : 'borderColor'
+            },
+            {
+                name : 'Border Radius',
+                ref : 'borderRadius'
+            },
+            {
+                name: 'Opacity',
+                ref :'opacity'
+            }
             
         ],
         'ROW':[

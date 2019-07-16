@@ -70,6 +70,7 @@ import {bus} from '../../main'
         },
         deleteItem:function(){
             this.$store.commit('deleteRow')
+            bus.$emit('closeOptionElement',{name : 'ROW',id:this.id})
         },
     },
     mounted:function(){

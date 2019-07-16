@@ -10,7 +10,7 @@
             @deselect="deselect"
             :style="getStyleWrap"
             >
-      <div class="button" @active="onActive()" >
+      <div class="button" @active="onActive()" @mouseover="isHover = true" @mouseleave="isHover = false">
           <button :style="getStyle">
               <span v-html="properties.text" ></span>
           </button>
@@ -42,6 +42,7 @@ import {bus} from '../../main'
     data() {
       return {
         isActive : false,
+        isHover :false,
       }
     },
 
@@ -59,9 +60,12 @@ import {bus} from '../../main'
       },
       deselect:function(){
         this.isActive = false
+
       },
       deleteItem:function(){
         this.$store.commit('deleteItemById',this.properties.id)
+        bus.$emit('closeOptionElement',{name : 'BUTTON',id:this.properties.id})
+
       },
       preColumn:function(){
         this.$store.commit('preColumn',this.properties.id)
@@ -77,12 +81,18 @@ import {bus} from '../../main'
       getStyle: function(){
         
         return {
-            backgroundColor : this.properties.styleButton.backgroundColor,
-            border: this.properties.styleButton.border.width + 'px '+this.properties.styleButton.border.type+' '+this.properties.styleButton.border.color,
+            backgroundColor : !this.isHover?this.properties.styleButton.backgroundColor:this.properties.styleButton.backgroundColorHover,
+            border: this.properties.styleButton.border.width + 'px '+this.properties.styleButton.border.type+' '+(!this.isHover?this.properties.styleButton.border.color:this.properties.styleButton.borderColorHover),
             borderRadius: this.properties.styleButton.borderRadius + 'px',
-            color: this.properties.styleButton.color,
+            color: !this.isHover?this.properties.styleButton.color:this.properties.styleButton.colorHover,
             textTransform : this.properties.styleButton.textTransform,
+            paddingLeft:  this.properties.styleButton.textAlign == 'left'?this.properties.styleButton.paddingLeft+'px' : 0,
+            paddingRight:  this.properties.styleButton.textAlign == 'right'?this.properties.styleButton.paddingRight+'px' : 0,
             fontFamily : this.properties.styleButton.fontFamily,
+            textAlign : this.properties.styleButton.textAlign,
+            fontSize : this.properties.styleButton.fontSize+'px',
+            fontWeight :this.properties.styleButton.fontWeight,
+            fontStyle :this.properties.styleButton.fontStyle
         }
       },
       getStyleWrap:function(){

@@ -3,19 +3,28 @@
         <ul class="ul-wrap">
             <li v-for="(itemOption) in item" :key="itemOption.name+itemOption.ref" :class="{classItemDiv : itemOption.ref == 'sectionGrid' || itemOption.ref == 'sectionColumnManagement'}">
                 <span v-html="itemOption.name" ></span>
-                <slider v-if="itemOption.ref == 'fontSize'"  v-model="style.fontSize"></slider>
+                <slider v-if="itemOption.ref == 'opacity'" :min="0.1" :max="1" :step="0.1" v-model="style.opacity"></slider>
+                <slider v-if="itemOption.ref == 'fontSize'"  v-model="style.fontSize" :min="8"></slider>
+                <slider v-if="itemOption.ref == 'fontWeight'"  v-model="style.fontWeight" :min="500" :max="900" :step="100"></slider>
                 <slider v-if="itemOption.ref == 'lineHeight'"  v-model="style.lineHeight"></slider>
                 <slider v-if="itemOption.ref == 'letterSpacing'"  v-model="style.letterSpacing"></slider>
                 <slider v-if="itemOption.ref == 'wordSpacing'"  v-model="style.wordSpacing"></slider>
                 <slider v-if="itemOption.ref == 'borderWidth'"  v-model="style.border.width"></slider>
                 <slider v-if="itemOption.ref == 'sizeLine'" v-model="style.size"></slider>
-                <slider v-if="itemOption.ref == 'borderRadius'"  v-model="style.borderRadius"></slider>
+                <slider v-if="itemOption.ref == 'borderRadius'"  v-model="style.borderRadius" :max="parseInt(style.width.replace('px',''))"></slider>
                 <i-input v-if="itemOption.ref == 'videoUrl'" type="text" v-model="style.url"/>
                 <i-switch v-if="itemOption.ref == 'autoPlay'" v-model="style.autoPlay"/>
                 <i-switch v-if="itemOption.ref == 'loop'" v-model="style.loop"/>
+                <i-switch v-if="itemOption.ref == 'required'" v-model="style.required"/>
+                <slider v-if="itemOption.ref == 'paddingLeft' " v-model="style.paddingLeft" :disabled="style.textAlign != 'left'"></slider>
+                <slider v-if="itemOption.ref == 'paddingRight' " v-model="style.paddingRight" :disabled="style.textAlign != 'right'"></slider>
                 <i-input v-if="itemOption.ref == 'textValue'" type="text" v-model="style.text"/>
+                <i-input v-if="itemOption.ref == 'placeholder'" type="text" v-model="style.placeholder"/>
                 <ColorPicker  v-if="itemOption.ref == 'color'" type="color" v-model="style.color" alpha />
                 <input class="bg" v-if="backgroundColor == 1 && itemOption.ref == 'Columnbackground'"  type="color" :value="getColorColumn" @change="updateColor($event)" />
+                <ColorPicker v-if="itemOption.ref == 'colorHover'" type="color" v-model="style.colorHover" alpha />
+                <ColorPicker v-if="itemOption.ref == 'borderColorHover'" type="color" v-model="style.borderColorHover" alpha />
+                <ColorPicker v-if="itemOption.ref == 'backgroundColorHover'" type="color" v-model="style.backgroundColorHover" alpha />
                 <ColorPicker v-if="itemOption.ref == 'borderColor'" type="color" v-model="style.border.color" alpha />
                 <ColorPicker v-if="itemOption.ref == 'backgroundColor'" type="color" v-model="style.backgroundColor" alpha />
                 <InputNumber  v-if="itemOption.ref == 'height'" type="number" v-model="style.height" :min="10" :max="1000" :step="50"></InputNumber>
@@ -25,10 +34,23 @@
                 <label v-if="backgroundColor == 2 && itemOption.ref == 'Columnbackground'" class="inputFile bg" style="line-height: 30px; color:red;cursor:pointer;user-select:none;"   for="files">image</label>
                 <input type="file" id="files" @change="onFileChange($event,'url')" class="hidden">
                 <label v-if="itemOption.ref == 'imgUrl'" class="inputFile" style="line-height: 30px; color:red;cursor:pointer;user-select:none;"   for="files">Select</label>
+                <RadioGroup v-if="itemOption.ref == 'borderPosition'" v-model="style.borderPosition" type="button">
+                    <Radio label="All" checked>
+                        <span>All</span>
+                    </Radio>
+                    <Radio label="Bottom">
+                        <span>Bottom</span>
+                    </Radio>
+                </RadioGroup>
                 <i-select v-if="itemOption.ref == 'alignBlock'" v-model="style.alignBlock">
                     <i-option value="none">Custom</i-option>
                     <i-option value="center">Center</i-option>
                     <i-option value="left">Left</i-option>
+                    <i-option value="right">Right</i-option>
+                </i-select> 
+                <i-select v-if="itemOption.ref == 'textAlign'" v-model="style.textAlign">
+                    <i-option value="center">Center</i-option>
+                    <i-option value="left" selected>Left</i-option>
                     <i-option value="right">Right</i-option>
                 </i-select> 
                 <i-select v-if="itemOption.ref == 'fontFamily'" v-model="style.fontFamily">
@@ -66,6 +88,14 @@
                     <i-option value="initial">Initial</i-option>
                     <i-option value="inherit">Inherit</i-option>
                 </i-select>
+                <i-select v-if="itemOption.ref == 'fontStyle'" v-model="style.fontStyle">
+                    <i-option value="normal" selected>Normal</i-option>
+                    <i-option value="italic" >Italic</i-option>
+                    <i-option value="oblique">oblique</i-option>
+                    <i-option value="initial">Initial</i-option>
+                    <i-option value="inherit">Inherit</i-option>
+                </i-select>
+
                 <i-switch v-if="itemOption.ref == 'keepProportion'" v-model="style.keepProportion"/>
                 <div v-if="itemOption.ref == 'rowManager'" class="div-row-manager">
                     <h2>Row Manager</h2>
@@ -259,7 +289,7 @@ import Grid from '../../data.json'
         
     }
     
-    ul>li>input[type=range] , .ivu-input-wrapper.ivu-input-wrapper-default.ivu-input-type,ul>li>input[type=color], ul>li>select,ul>li>label,ul>li>input[type=number],.ivu-select.ivu-select-single.ivu-select-default{
+    ul>li>input[type=range] ,.ivu-radio-group.ivu-radio-group-default.ivu-radio-default, .ivu-input-wrapper.ivu-input-wrapper-default.ivu-input-type,ul>li>input[type=color], ul>li>select,ul>li>label,ul>li>input[type=number],.ivu-select.ivu-select-single.ivu-select-default{
         position: absolute;
         width: 200px;
         height: 30px;

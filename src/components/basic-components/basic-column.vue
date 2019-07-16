@@ -76,10 +76,10 @@ import {bus} from '../../main'
             },
             deselect:function(){
                 this.isActive = false
-                
             },
             deleteItem:function(){
                 this.$store.commit('deleteColumn',{index : this.properties.columnIndex , id :this.properties.id ,row :this.properties.rowIndex})
+                 bus.$emit('closeOptionElement',{name : 'Column',id:this.properties.id})
             },
             edit:function(){
                 bus.$emit('openOption',{name : 'Column',id:this.properties.id,index: this.properties.columnIndex})

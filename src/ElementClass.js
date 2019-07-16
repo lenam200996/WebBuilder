@@ -43,6 +43,15 @@ class Field {
             type : 'text',
             placeholder : 'Enter your text',
             required : false,
+            textAlign: 'left',
+            paddingLeft: 0,
+            paddingRight: 0,
+            borderPosition:'All',
+            fontFamily : 'Roboto',
+            fontStyle: 'normal',
+            color: '#000000',
+            fontSize: 14,
+            fontWeight: 500,
             backgroundColor : '#cccccc',
             alignBlock:'none',
             top: 0,
@@ -119,6 +128,7 @@ class Box {
                 color : '#cccccc',
                 opacity : 1
             },
+            opacity: 1,
         }
         this.position = {
             x :200,
@@ -365,7 +375,16 @@ class Button {
             left : 0,
             width: '500px',
             height : '50px',
-            rotation : 0
+            rotation : 0,
+            textAlign : 'center', //new
+            fontSize:14,
+            fontWeight: 500,
+            fontStyle:'normal',
+            paddingLeft: 0,
+            paddingRight: 0,
+            backgroundColorHover: 'green',
+            colorHover:'#ffffff',
+            borderColorHover :'green'
         }
         
     }

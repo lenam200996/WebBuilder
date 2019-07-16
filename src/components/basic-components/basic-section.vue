@@ -91,6 +91,7 @@ import {bus} from '../../main'
             },
             deleteItem:function(){
                 this.$store.commit('deleteSection',this.id)
+                bus.$emit('closeOptionElement',{name : 'SECTION',id:this.id})
             },
             edit:function(){
                 bus.$emit('openOption',{name : 'SECTION',id:this.id,index: -1})

@@ -16,6 +16,7 @@ import './components/render-components/_render_components'
 import iView from 'iview';
 import lang from 'iview/dist/locale/en-US';
 import 'iview/dist/styles/iview.css';
+import './assets/css/main.css'
 Vue.use(VueI18n)
 Vue.use(VueTabs)
 Vue.use(EasySlider)
