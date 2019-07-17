@@ -1,22 +1,20 @@
 <template>
   <div class="wrap-option">
-    <ul>
-      <li>
-        <img src="../../assets/logo.png" />
-      </li>
-      <!-- <li @click="openOption('BACKGROUND')">
-        <img src="../../assets/square-regular.svg" />
-      </li> -->
-      <li @click="openOption('ADD')">
-        <img src="../../assets/plus-circle-solid.svg" />
-      </li>
-      <!-- <li @click="openOption('SECTION')">
-        <img src="../../assets/book-solid.svg" />
-      </li> -->
-      <!-- <li  @click="openPrevie()">
-              <router-link to="/about">PRE</router-link> <img src="../assets/eye-regular.svg" > -->
-      <!-- </li> -->
-    </ul>
+    <md-speed-dial md-direction="bottom">
+      <md-speed-dial-target class="md-primary">
+        <md-icon>reorder</md-icon>
+      </md-speed-dial-target>
+
+      <md-speed-dial-content>
+        <md-button @click="openOption('ADD')" class="md-icon-button">
+          <md-icon>add_circle_outline</md-icon>
+        </md-button>
+
+        <md-button class="md-icon-button">
+          <md-icon>streetview</md-icon>
+        </md-button>
+      </md-speed-dial-content>
+    </md-speed-dial>
     <main-option-add-element
       v-if="isOpen"
       :typeContent="{ type: typeOption }"

@@ -670,3 +670,7 @@ template {
   .mce-statusbar.mce-container.mce-panel.mce-stack-layout-item.mce-last,.mce-container.mce-menubar.mce-toolbar.mce-first{
     display: none;
   }
+
+  .slick-initialized.slick-slider{
+    width: 100%;
+  }

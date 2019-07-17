@@ -1,40 +1,70 @@
 <template>
-    
-        <slider 
-        animation="fade"
-        >
-            <slider-item
-                v-for="(i, index) in properties.list"
-                :key="index"
-                :style="i"
-            >
-                <div class="column-100" :style="{
-                width : '100%',
-                height: properties.height + 'px',
-                margin : 0,
-                position: 'relative',
-                background : 'url('+i.backgroundColor+')',
+<div class="row md-layout">
+    <slick
+    ref="slick"
+    :options="{
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    autoplay: true,
                 }">
-                <div class="blur-div"></div>
-                    <span v-html="i.text"></span>
-                </div>
-            </slider-item>
-        </slider>
-
+                <slot></slot>
+    </slick>
+        <e-option-button-option v-if="isActive"
+        :isGrid="false"
+        :isSection="true"
+        @edit="edit" 
+        @disableEdit="onBlur"
+        @deleteItem="deleteItem"
+        @swapSection="swapSection"
+        :styleBtn="styleBtn"
+        :elementName="'SLIDE'"
+        ></e-option-button-option> 
+</div>
 </template>
 
 <script>
+import { bus } from "../../main";
     export default {
         props: {
-            properties:{
-                type:Object,
-                required:true
+            id:{
+                type :Number,
+                required : true
             },
+            // properties:{
+            //     type:Object,
+            //     required:true
+            // },
         },
         data() {
             return {
+                isActive : true,
+                styleBtn:{
+                    width : 245 +'px',
+                    height: 25 +'px',
+                    position: 'absolute',
+                    zIndex: '99999',
+                    bottom: -30 + 'px!important',
+                    // right: -10 +'px !important',
+                    top : 'auto',
+                    left: 0
+                },
             }
         },
+        methods:{
+            deleteItem:function(){
+                this.$store.commit('deleteSection',this.id)
+                bus.$emit('closeOptionElement',{name : 'SLIDE',id:this.id})
+            },
+            edit:function(){
+                bus.$emit('openOption',{name : 'SLIDE',id:this.id,index: -1})
+            },
+            onBlur:function(){
+                bus.$emit('closeOptionElement',{name : 'SLIDE',id:this.id})
+            },
+            swapSection:function(ev){
+                this.$store.commit('swapSection',{toIndex : ev})
+            },
+        }
     }
 </script>
 

@@ -322,7 +322,8 @@ export default new Vuex.Store({
                       layout: ObjectSectionTemplate.layout,
                       position :ObjectSectionTemplate.position,
                       row : ObjectSectionTemplate.row,
-                      indexSection : state.indexSection
+                      indexSection : state.indexSection,
+                      idSlideshow : null,
                     }
                     state.selectId = state.indexItem
                     state.Selectedcolumn = 1
@@ -579,7 +580,8 @@ export default new Vuex.Store({
         layout:ObjectSection.layout,
         position :ObjectSection.position,
         row : ObjectSection.row,
-        indexSection : state.indexSection
+        indexSection : state.indexSection,
+        idSlideshow : null,
       }
       state.selectId = state.indexItem
       state.Selectedcolumn = 1
@@ -670,28 +672,71 @@ export default new Vuex.Store({
         case 'sildeShow':
         {
           var ObjectSection = new Element.Section();
-          var itemS = {
+          var item = {
             id : state.indexItem,
             type : 'section',
             style: ObjectSection.style,
             parentId : -1,
-            layout:[{row:1,index : 1,size : 100, bg:'none'}],
-            row:[{index:1,size:100}]
+            layout:ObjectSection.layout,
+            position :ObjectSection.position,
+            row : ObjectSection.row,
+            indexSection : state.indexSection,
+            idSlideshow : null,
           }
           state.selectId = state.indexItem
           state.Selectedcolumn = 1
-          this.commit('addItem',itemS)
-          var ObjectSlide = new Element.SlideShow()
-          var itemSlider = {
-            id :state.indexItem,
-            type : 'slider',
-            parentId : state.selectId,
-            column : 1,
-            slideItem : ObjectSlide.slideItem,
-            row: 1
-            // position 
+          this.commit('addItem',item)
+          
+          var idSlide = null;
+          var itemS = {
+            id : state.indexItem,
+            type : 'slideshow',
+            parentId : state.selectId != null ? (state.selectId) : null,
           }
-          this.commit('addItem',itemSlider)
+          idSlide = state.indexItem;
+          this.commit('addItem',itemS)
+
+          var ObjectSection = new Element.Section();
+          var item = {
+            id : state.indexItem,
+            type : 'section',
+            style: ObjectSection.style,
+            parentId : -1,
+            layout:ObjectSection.layout,
+            position :ObjectSection.position,
+            row : ObjectSection.row,
+            indexSection : state.indexSection,
+            idSlideshow : idSlide,
+          }
+          this.commit('addItem',item)
+
+          var ObjectSection = new Element.Section();
+          var item = {
+            id : state.indexItem,
+            type : 'section',
+            style: ObjectSection.style,
+            parentId : -1,
+            layout:ObjectSection.layout,
+            position :ObjectSection.position,
+            row : ObjectSection.row,
+            indexSection : state.indexSection,
+            idSlideshow : idSlide,
+          }
+          this.commit('addItem',item)
+          var ObjectSection = new Element.Section();
+          var item = {
+            id : state.indexItem,
+            type : 'section',
+            style: ObjectSection.style,
+            parentId : -1,
+            layout:ObjectSection.layout,
+            position :ObjectSection.position,
+            row : ObjectSection.row,
+            indexSection : state.indexSection,
+            idSlideshow : idSlide,
+          }
+          this.commit('addItem',item)
+          state.indexSection++
         }
         break;
         case 'box':

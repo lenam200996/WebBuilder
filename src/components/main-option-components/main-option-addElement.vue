@@ -109,7 +109,7 @@ export default {
   position: fixed;
   width: 500px;
   top: 30px;
-  left: 90px;
+  left: 90px !important;
   z-index: 9999999;
   /* opacity: 0.8; */
   /* padding-bottom: 20px; */
