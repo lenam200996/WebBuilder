@@ -536,7 +536,9 @@ class Section {
                 row : 1,
                 index: 1,
                 size : 100,
-                bg: 'none'
+                bg: 'none',
+                bgPosition : 'center',
+                bgSize: 'auto'
             }
         ];
         this.row = [
@@ -589,6 +591,42 @@ class Section {
             h:template.position.h
         };
         
+    }
+
+    setItemSlideshow(itemAttribute){
+        this.style = {
+            backgroundColor : itemAttribute.style.backgroundColor,
+            boxShadow: itemAttribute.style.boxShadow,
+            margin : itemAttribute.style.margin,
+            stretched :itemAttribute.style.stretched,
+            height : itemAttribute.style.height
+        }
+        this.layout = new Array()
+        itemAttribute.layout.forEach((item,index)=> {
+            this.layout[index] = {
+                index : item.index,
+                size : item.size,
+                row : item.row,
+                bg : item.bg
+            }
+
+        })       
+        this.row = new Array()
+        itemAttribute.row.forEach((item,index) => {
+            this.row[index] = {
+                index: item.index,
+                size : item.size,
+                bg :item.bg
+            }
+        })
+        this.position = {
+            x :itemAttribute.position.x,
+            y : itemAttribute.position.y,
+            angle:itemAttribute.position.angle,
+            w:itemAttribute.position.w,
+            h:itemAttribute.position.h
+        };
+
     }
     
 }

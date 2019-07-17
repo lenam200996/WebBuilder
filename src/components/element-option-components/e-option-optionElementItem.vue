@@ -96,6 +96,24 @@
                     <i-option value="initial">Initial</i-option>
                     <i-option value="inherit">Inherit</i-option>
                 </i-select>
+                <i-select v-if="itemOption.ref == 'backgroundSize'" v-model="bgSize">
+                    <i-option value="auto" selected>Auto</i-option>
+                    <i-option value="cover" >Cover</i-option>
+                    <i-option value="contain" >Contain</i-option>
+                    <i-option value="100% 100%" >Full</i-option>
+
+                </i-select>
+                <i-select v-if="itemOption.ref == 'backgroundPosition'" v-model="bgPosition">
+                    <i-option value="center center" selected>center center</i-option>
+                    <i-option value="center bottom" >center bottom</i-option>
+                    <i-option value="center top">center top</i-option>
+                    <i-option value="right bottom">right bottom</i-option>
+                    <i-option value="right center">right center</i-option>
+                    <i-option value="right top" >right top</i-option>
+                    <i-option value="left bottom">left bottom</i-option>
+                    <i-option value="left center">left center</i-option>
+                    <i-option value="left top">left top</i-option>
+                </i-select>
 
                 <i-switch v-if="itemOption.ref == 'keepProportion'" v-model="style.keepProportion"/>
                 <div v-if="itemOption.ref == 'rowManager'" class="div-row-manager">
@@ -110,7 +128,18 @@
                         <button v-if="enableOptionRow" @click="swapRow('toDown')"><Icon  size="26"  type="md-arrow-round-down" /></button>
                     </div>
                 </div>
-
+                <div v-if="itemOption.ref == 'itemSlideManager'" class="div-row-manager">
+                    <h2>Item Manager</h2>
+                    <i-button type="success"  class="addColumn" @click="addRow">Add Row</i-button>
+                    <ul>
+                        <e-option-row-item v-for="(n,index) in getNumItemSlide" :key="index" :n="n"></e-option-row-item>
+                    </ul>
+                    <div class="div-column-manager-option">
+                        <button v-if="enableOptionRow" @click="deleteRow"><Icon size="26" type="md-trash" /></button>
+                        <button v-if="enableOptionRow" @click="swapRow('toUp')"><Icon  size="26"  type="md-arrow-round-up" /></button>
+                        <button v-if="enableOptionRow" @click="swapRow('toDown')"><Icon  size="26"  type="md-arrow-round-down" /></button>
+                    </div>
+                </div>
                 <div v-if="itemOption.ref == 'sectionColumnManagement'" class="div-column-manager">
                     <h2>Column Manager</h2>
                     <i-button type="success" class="addColumn" @click="addColumn">Add Column</i-button>
@@ -176,6 +205,31 @@ import Grid from '../../data.json'
             },
             getNumRow:function(){
                 return this.$store.getters.getNumRow
+            },
+            getNumItemSlide:function(){
+                return this.$store.getters.getNumItemSlide(this.id) 
+            },
+            bgPosition:{
+                get:function(){
+                    this.$store.getters.getColumnBgPosition
+                },
+                set:function(val){
+                    this.$store.commit('setBackgroundPosition',{
+                        id : this.id,
+                        value :  val
+                    })
+                }
+            },
+            bgSize:{
+                get:function(){
+                    this.$store.getters.getColumnBgSize
+                },
+                set:function(val){
+                    this.$store.commit('setBackgroundSize',{
+                        id : this.id,
+                        value :  val
+                    })
+                }
             }
         },
 
@@ -200,9 +254,12 @@ import Grid from '../../data.json'
                     this.$store.commit('deleteColumn',{index : this.$store.getters.getSelectColumn , id :this.$store.getters.getSelectID, row : this.$store.getters.getRowSelected })
                 }
             },
-            updateColor:function(ev){
-                this.$store.commit('updateColorColumn',{value : ev.target.value })
-                // console.log(ev)
+            changePositionBg:function(ev){
+                console.log(ev)
+                this.$store.commit('setBackgroundPosition',{
+                    id : this.id,
+                    value :  ev
+                })
             },
             onFileChange(e,type) {
                 var files = e.target.files || e.dataTransfer.files;
@@ -210,6 +267,7 @@ import Grid from '../../data.json'
                     return;
                 this.createImage(files[0],type);
             },
+            
             createImage(file,type) {
                 var image = new Image();
                 var reader = new FileReader();

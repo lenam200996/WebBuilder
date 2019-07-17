@@ -10,7 +10,7 @@
     <div :style="getStyle"  class="row" style="width:100%;position:relative">
         <slot></slot>
     </div>
-        <e-option-button-option v-if="isActive"
+        <e-option-button-option v-if="isActive && !swapSlide"
         :isGrid="true" 
         @edit="editOption" 
         @disableEdit="onBlur"
@@ -37,7 +37,11 @@ import {bus} from '../../main'
       },
       rowIndex:{
           type: Number
-      }
+      },
+      swapSlide:{
+                type : Boolean,
+                default :false
+            }
       
     },
     data() {

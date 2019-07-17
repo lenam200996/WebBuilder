@@ -16,10 +16,10 @@
             <li v-if="!isGrid && !isSection">
                 <button @click="nextColumn"><Icon type="md-arrow-dropright" /></button>
             </li>
-            <li v-if="isSection">
+            <li v-if="isSection && !isItemSlide">
                 <button @click="swapSection('up')"><Icon type="md-arrow-dropup" /></button>
             </li>
-            <li v-if="isSection">
+            <li v-if="isSection && !isItemSlide">
                 <button @click="swapSection('down')"><Icon type="md-arrow-dropdown" /></button>
             </li>
         </ul>
@@ -44,6 +44,10 @@
             elementName : {
                 type : String,
                 required: true
+            },
+            isItemSlide:{
+                type:Boolean,
+                default: false
             }
         },
         data:function(){

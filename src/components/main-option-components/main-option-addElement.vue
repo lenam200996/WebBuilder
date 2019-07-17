@@ -45,7 +45,7 @@
         </v-tab>
         <v-tab title="SlideShow" icon="ti-check">
           <ul>
-              <li @click="$store.commit('addElement',{type : 'sildeShow'})">Fullwidth SlideShow</li>
+              <li @click="$store.commit('addElement',{type : 'sildeShow',name:'slide basic'})">Fullwidth SlideShow</li>
           </ul>
         </v-tab>
         <v-tab title="Box" icon="ti-check">

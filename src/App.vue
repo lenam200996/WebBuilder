@@ -4,9 +4,9 @@
     <main-option-top-menu></main-option-top-menu>
     <main-option-tool-add-element></main-option-tool-add-element>
     <e-option-option-element v-if="option.is" :name="option.name" :id="option.id" :index="option.index"></e-option-option-element>
-    <basic-section  v-for="section in getSections" :id="section.id" :key="section.id" :styleSec="section.style" :position="section.position">
-      <basic-row v-for="row in section.row" :key="row.index" :id="section.id" :height="row.size" :bg="row.bg" :rowIndex="row.index">
-         <basic-column v-for="col in section.layout.filter(itemCol => itemCol.row == row.index)" :key="col.index" :properties="getPropertiesColumn(section,row,col)"  >
+    <basic-section  v-for="section in getSections" :id="section.id" :key="section.id" :styleSec="section.style" :position="section.position" :swapSlide="section.swapSlide">
+      <basic-row v-for="row in section.row" :key="row.index" :id="section.id" :height="row.size" :bg="row.bg" :rowIndex="row.index" :swapSlide="section.swapSlide">
+         <basic-column v-for="col in section.layout.filter(itemCol => itemCol.row == row.index)" :key="col.index" :properties="getPropertiesColumn(section,row,col)"  :swapSlide="section.swapSlide">
               <basic-text v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :properties="getPropertiesText(text)" :key="text.id"></basic-text>
               <basic-image v-for="image in getElements.filter(item => item.type == 'img' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :key="image.id" :properties="getPropertiesImage(image)"></basic-image>
               <basic-button v-for="btn in getElements.filter(item => item.type == 'btn' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :key="btn.id" :properties="getPropertiesButton(btn)"></basic-button>
@@ -14,8 +14,8 @@
               <basic-line-vertical v-for="line in getElements.filter(item => item.type == 'lineVertical' && item.parentId == section.id && item.column == col.index && item.row == row.index)" :key="line.id" :properties="getPropertiesLineVertical(line)"></basic-line-vertical>
               
               <!-- <basic-slide-show v-for="slide in getElements.filter(item => item.type == 'slider' && item.parentId == section.id && item.column == col.index && item.row == row.index)"  :key="slide.id" :properties="getPropertiesSlide(section,slide)"></basic-slide-show> -->
-              <basic-slide-show v-for="slide in getElements.filter(item => item.type == 'slideshow' && item.parentId == section.id)" :key="slide.id" :id="section.id">
-                <basic-section  v-for="sectionC in getElements.filter(item => item.type == 'section' && item.idSlideshow == slide.id)" :id="sectionC.id" :key="sectionC.id" :styleSec="sectionC.style" :position="sectionC.position">
+              <basic-slide-show v-for="slide in getElements.filter(item => item.type == 'slideshow' && item.parentId == section.id)" :key="slide.id" :id="slide.id">
+                <basic-section  v-for="sectionC in getElements.filter(item => item.type == 'section' && item.idSlideshow == slide.id)" :id="sectionC.id" :key="sectionC.id" :styleSec="sectionC.style" :position="sectionC.position" isItemSlide>
                   <basic-row v-for="row in sectionC.row" :key="row.index" :id="sectionC.id" :height="row.size" :bg="row.bg" :rowIndex="row.index">
                     <basic-column v-for="col in sectionC.layout.filter(itemCol => itemCol.row == row.index)" :key="col.index" :properties="getPropertiesColumn(sectionC,row,col)"  >
                           <basic-text v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == sectionC.id && item.column == col.index && item.row == row.index)" :properties="getPropertiesText(text)" :key="text.id"></basic-text>
@@ -75,7 +75,7 @@ export default {
     }, 
     methods:{
       getPropertiesColumn:function(section,row,col){
-        return {id: section.id,size:col.size,bgImg:col.bg,height:section.style.height,sizeRow: row.size,rowIndex:row.index,columnIndex:col.index}
+        return {id: section.id,size:col.size,bgImg:col.bg,height:section.style.height,sizeRow: row.size,rowIndex:row.index,columnIndex:col.index, bgPos : col.bgPosition,bgSize:col.bgSize}
       },
       getPropertiesText:function(text){
         return {id :text.id,  styleText:text.style,position:text.position,text:text.value}

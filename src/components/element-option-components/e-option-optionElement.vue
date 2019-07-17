@@ -3,7 +3,7 @@
     <div class="wrap-option" :style="{top: top+'px', right:right+'px'}">
         <div class="close" @click="closeOptionElement"><Icon type="ios-close-circle" /></div>
         <h2  @mousedown="enableDrag" @mouseup="isDrag =false" @mousemove="drag">{{name}} OPTIONS</h2>
-        <e-option-option-element-item :name="name" :id="id"></e-option-option-element-item>
+        <e-option-option-element-item :name="name" :id="id" :index="index"></e-option-option-element-item>
     </div>
 
 </template>
@@ -29,6 +29,9 @@ import {bus} from '../../main'
             id: {
                 type: Number,
                 required:true
+            },
+            index : {
+                type : Number
             }
         },
         methods:{

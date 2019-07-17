@@ -31,6 +31,14 @@ var Default = {
                 name : "Background",
                 ref : 'Columnbackground'
             },
+            {
+                name : 'Position Fill',
+                ref :'backgroundPosition'
+            },
+            {
+                name :'BG Size',
+                ref : 'backgroundSize'
+            }
             // {
             //     name : "background Image",
             //     ref :"backgroundImage"
@@ -327,6 +335,12 @@ var Default = {
             {
                 name :'',
                 ref:'sectionGrid'
+            }
+        ],
+        'SLIDE':[
+            {
+                name :'',
+                ref: 'itemSlideManager'
             }
         ]
         

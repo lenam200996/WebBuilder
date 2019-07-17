@@ -12,9 +12,10 @@
     >
     <div :class="getStretched"> 
             <slot></slot>
-            <e-option-button-option v-if="isActive"
+            <e-option-button-option v-if="isActive && !swapSlide"
             :isGrid="false"
             :isSection="true"
+            :isItemSlide="true"
             @edit="edit" 
             @disableEdit="onBlur"
             @deleteItem="deleteItem"
@@ -41,13 +42,21 @@ import {bus} from '../../main'
             },
             styleSec : {
                 type : Object
+            },
+            isItemSlide : {
+                type : Boolean,
+                default : false
+            },
+            swapSlide:{
+                type : Boolean,
+                default :false
             }
         },
         data:function(){
             return {
                 isActive : false,
                 styleBtn:{
-                    width : 245 +'px',
+                    width : this.$props.isItemSlide?(145 +'px'):(245 +'px'),
                     height: 25 +'px',
                     position: 'absolute',
                     zIndex: '99999',
@@ -81,6 +90,7 @@ import {bus} from '../../main'
         },
         methods: {
             swapSection:function(ev){
+                if(isItemSlide){return}
                 this.$store.commit('swapSection',{toIndex : ev})
             },
             select:function(){

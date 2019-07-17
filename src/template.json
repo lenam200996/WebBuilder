@@ -1,4 +1,111 @@
 {
+    "slideshow":[
+        {
+            "name" : "slide basic",
+            "type" : "slide",
+            "elements" : [
+                {
+                    "index" : 1,
+                    "style" : {
+                        "backgroundColor" : "linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)",
+                        "boxShadow": "0 2px 5px 0 rgba(22, 45, 61, 0.58)",
+                        "margin" : "auto",
+                        "stretched" :"container-fluid",
+                        "height" : 500
+                    },
+                    "position" : {
+                        "x" :200,
+                        "y" : 320,
+                        "angle":0,
+                        "w":400,
+                        "h":500
+                    },
+                   
+                    "layout" : [
+                        {
+                            "row" : 1,
+                            "index": 1,
+                            "size" : 100,
+                            "bg": "none"
+                        }
+                    ],
+                    "row" : [
+                        {
+                            "index" : 1,
+                            "size": 100,
+                            "bg" : "#333333"
+                        }
+                    ]
+                },
+                {
+                    "index" : 1,
+                    "style" : {
+                        "backgroundColor" : "linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)",
+                        "boxShadow": "0 2px 5px 0 rgba(22, 45, 61, 0.58)",
+                        "margin" : "auto",
+                        "stretched" :"container-fluid",
+                        "height" : 500
+                    },
+                    "position" : {
+                        "x" :200,
+                        "y" : 320,
+                        "angle":0,
+                        "w":400,
+                        "h":500
+                    },
+                   
+                    "layout" : [
+                        {
+                            "row" : 1,
+                            "index": 1,
+                            "size" : 100,
+                            "bg": "none"
+                        }
+                    ],
+                    "row" : [
+                        {
+                            "index" : 1,
+                            "size": 100,
+                            "bg" : "red"
+                        }
+                    ]
+                },
+                {
+                    "index" : 1,
+                    "style" : {
+                        "backgroundColor" : "linear-gradient(to bottom,rgba(255, 255, 255, 0.96) 0%,rgba(238, 238, 238, 0.96) 100%)",
+                        "boxShadow": "0 2px 5px 0 rgba(22, 45, 61, 0.58)",
+                        "margin" : "auto",
+                        "stretched" :"container-fluid",
+                        "height" : 500
+                    },
+                    "position" : {
+                        "x" :200,
+                        "y" : 320,
+                        "angle":0,
+                        "w":400,
+                        "h":500
+                    },
+                   
+                    "layout" : [
+                        {
+                            "row" : 1,
+                            "index": 1,
+                            "size" : 100,
+                            "bg": "none"
+                        }
+                    ],
+                    "row" : [
+                        {
+                            "index" : 1,
+                            "size": 100,
+                            "bg" : "yellow"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
     "themed_text":[
         {
             "name" : "themed_text_heading_1",

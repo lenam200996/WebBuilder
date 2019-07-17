@@ -10,8 +10,8 @@
     :selected="$store.getters.getSelectID == properties.id" 
     :style="{
         background : getBackground,
-        backgroundPosition: 'center',
-        backgroundSize: '100% 100%',
+        backgroundPosition: properties.bgPos,
+        backgroundSize:  properties.bgSize,
         backgroundRepeat:' no-repeat',
         zIndex : isActive? 9999 : 1,
         width : '100%',
@@ -20,7 +20,8 @@
         position: 'relative'
     }"
     >
-    <e-option-button-option v-if="isActive"
+     <!-- backgroundSize: '100% 100%', -->
+    <e-option-button-option v-if="isActive && !swapSlide"
         :isGrid="true" 
         @edit="edit" 
         @disableEdit="onBlur"
@@ -40,7 +41,10 @@ import {bus} from '../../main'
                 type:Object,
                 required:true
             },
-           
+           swapSlide:{
+                type : Boolean,
+                default :false
+            }
            
         },
         data:function(){
@@ -72,7 +76,10 @@ import {bus} from '../../main'
             }
         },
         mounted:function(){
-            if(this.properties.size >50){
+            if(this.properties.size == 100){
+                this.classResponsive = 'md-large-size-'+this.properties.size
+            }
+            else if(this.properties.size >50){
                 this.classResponsive = 'md-large-size-'+this.properties.size+' md-medium-size-33 md-small-size-50 md-xsmall-size-100'
             }
             else{
@@ -81,7 +88,10 @@ import {bus} from '../../main'
         },
         watch:{
             getSizeColumn:function(val){
-                if(val >50){
+                if(val == 100){
+                    this.classResponsive = 'md-large-size-'+this.properties.size
+                }
+                else if(val >50){
                     this.classResponsive = 'md-large-size-'+val+' md-medium-size-33 md-small-size-50 md-xsmall-size-100'
                 }
                 else{

@@ -5,7 +5,8 @@
     :options="{
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                    autoplay: true,
+                    autoplay: false,
+                     adaptiveHeight: true
                 }">
                 <slot></slot>
     </slick>
@@ -19,6 +20,11 @@
         :styleBtn="styleBtn"
         :elementName="'SLIDE'"
         ></e-option-button-option> 
+        <div class="navSlide">
+            <md-button class="md-icon-button" @click="prev"><md-icon>skip_previous</md-icon></md-button>
+            <md-button class="md-icon-button" @click="next"><md-icon>skip_next</md-icon></md-button>
+        </div>
+        
 </div>
 </template>
 
@@ -43,7 +49,7 @@ import { bus } from "../../main";
                     height: 25 +'px',
                     position: 'absolute',
                     zIndex: '99999',
-                    bottom: -30 + 'px!important',
+                    bottom: 0+ 'px!important',
                     // right: -10 +'px !important',
                     top : 'auto',
                     left: 0
@@ -63,6 +69,13 @@ import { bus } from "../../main";
             },
             swapSection:function(ev){
                 this.$store.commit('swapSection',{toIndex : ev})
+            },
+             next() {
+            this.$refs.slick.next();
+            },
+    
+            prev() {
+                this.$refs.slick.prev();
             },
         }
     }
@@ -88,5 +101,18 @@ import { bus } from "../../main";
         left: 50%;
         top: 50%;
         transform: translate(-50%,-50%);
+    }
+    .navSlide{
+        position: absolute;
+        left: 50%;
+        z-index: 999999;
+        transform: translateX(-50%);
+        top: 0px;
+        border-radius: 20px;
+    }
+    .navSlide>button{
+        color: green;
+        margin: 5px;
+        background-color: #ffffff;
     }
 </style>

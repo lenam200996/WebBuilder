@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import Element from './ElementClass'
+import Template from './template.json'
 
 Vue.use(Vuex);
 
@@ -517,6 +518,32 @@ export default new Vuex.Store({
       state.window.height = height
       state.window.width = width
     },
+    setBackgroundSize:function(state,{id,value}){
+      state.elements.item = state.elements.item.filter(item => {
+        if(item.id == id){
+          item.layout.filter(itemLayout =>{
+            if(itemLayout.index == state.Selectedcolumn && itemLayout.row == state.SelectedRow){
+              itemLayout.bgSize = value
+            }
+            return itemLayout
+          })
+        }
+        return item
+      })
+    },
+    setBackgroundPosition:function(state,{id,value}){
+      state.elements.item = state.elements.item.filter(item => {
+        if(item.id == id){
+          item.layout.filter(itemLayout =>{
+            if(itemLayout.index == state.Selectedcolumn && itemLayout.row == state.SelectedRow){
+              itemLayout.bgPosition = value
+            }
+            return itemLayout
+          })
+        }
+        return item
+      })
+    },
     setBackgroundImageById:function(state,{id,value}){
       state.elements.item = state.elements.item.filter(item => {
         if(item.id == id){
@@ -582,6 +609,7 @@ export default new Vuex.Store({
         row : ObjectSection.row,
         indexSection : state.indexSection,
         idSlideshow : null,
+        swapSlide: false
       }
       state.selectId = state.indexItem
       state.Selectedcolumn = 1
@@ -589,7 +617,7 @@ export default new Vuex.Store({
       this.commit('addItem',item)
 
     },
-    addElement:function(state,{type}){
+    addElement:function(state,{type, name}){
       switch (type) {
         case 'text':
             {
@@ -671,6 +699,7 @@ export default new Vuex.Store({
         break;
         case 'sildeShow':
         {
+          var templateSlide = Template["slideshow"].find(item => item.name == name).elements
           var ObjectSection = new Element.Section();
           var item = {
             id : state.indexItem,
@@ -682,6 +711,7 @@ export default new Vuex.Store({
             row : ObjectSection.row,
             indexSection : state.indexSection,
             idSlideshow : null,
+            swapSlide:true
           }
           state.selectId = state.indexItem
           state.Selectedcolumn = 1
@@ -696,46 +726,23 @@ export default new Vuex.Store({
           idSlide = state.indexItem;
           this.commit('addItem',itemS)
 
-          var ObjectSection = new Element.Section();
-          var item = {
-            id : state.indexItem,
-            type : 'section',
-            style: ObjectSection.style,
-            parentId : -1,
-            layout:ObjectSection.layout,
-            position :ObjectSection.position,
-            row : ObjectSection.row,
-            indexSection : state.indexSection,
-            idSlideshow : idSlide,
-          }
-          this.commit('addItem',item)
-
-          var ObjectSection = new Element.Section();
-          var item = {
-            id : state.indexItem,
-            type : 'section',
-            style: ObjectSection.style,
-            parentId : -1,
-            layout:ObjectSection.layout,
-            position :ObjectSection.position,
-            row : ObjectSection.row,
-            indexSection : state.indexSection,
-            idSlideshow : idSlide,
-          }
-          this.commit('addItem',item)
-          var ObjectSection = new Element.Section();
-          var item = {
-            id : state.indexItem,
-            type : 'section',
-            style: ObjectSection.style,
-            parentId : -1,
-            layout:ObjectSection.layout,
-            position :ObjectSection.position,
-            row : ObjectSection.row,
-            indexSection : state.indexSection,
-            idSlideshow : idSlide,
-          }
-          this.commit('addItem',item)
+          templateSlide.forEach(itemSlide => {
+            var ObjectSection = new Element.Section();
+            ObjectSection.setItemSlideshow(itemSlide)
+            var item = {
+              id : state.indexItem,
+              type : 'section',
+              style: ObjectSection.style,
+              parentId : -1,
+              layout:ObjectSection.layout,
+              position :ObjectSection.position,
+              row : ObjectSection.row,
+              indexSection : state.indexSection,
+              idSlideshow : idSlide,
+              swapSlide:false
+            }
+            this.commit('addItem',item)
+          })
           state.indexSection++
         }
         break;
@@ -997,8 +1004,17 @@ export default new Vuex.Store({
       var section  = state.elements.item.find(item => item.id == state.selectId)
       var row = section.row
       return row.length
-    }
-    ,
+    },
+    getNumItemSlide:state => id => {
+      console.log("id ="+id) 
+      var itemSlide = []
+      state.elements.item.forEach(item =>{
+        if(item.type == 'section' && item.idSlideshow == id)
+        itemSlide.push(item)
+      })
+      console.log(itemSlide)
+      return itemSlide.length
+    },
     getNumColumnById:(state)=>(id)=>{
       return state.elements.item.find(item => item.id == id).layout.length
     },
@@ -1017,6 +1033,12 @@ export default new Vuex.Store({
     },
     getRowSelected :function(state){
       return state.SelectedRow
+    },
+    getColumnBgPosition:function(state){
+      return state.elements.item.find(item => item.id == state.selectId).layout.find(itemLayout => itemLayout.index == state.Selectedcolumn && itemLayout.row == state.SelectedRow).bgPosition
+    },
+    getColumnBgSize:function(state){
+      return state.elements.item.find(item => item.id == state.selectId).layout.find(itemLayout => itemLayout.index == state.Selectedcolumn && itemLayout.row == state.SelectedRow).bgSize
     }
   },
   actions: {}
