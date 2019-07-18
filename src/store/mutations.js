@@ -1,30 +1,21 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import Element from './ElementClass'
-import Template from './template.json'
-
-Vue.use(Vuex);
-
-export default new Vuex.Store({
-  state: {
-    window : {
-      height : window.innerHeight,
-      width : window.innerWidth
+import Element from '../api/ElementClass'
+import Template from '../api/template.json'
+export default {
+    deleteItemSlide:function(state){
+      this.commit('deleteSection',state.selectId)
     },
-    selectId : false,
-    indexItem : 1,
-    indexSection: 1,
-    Selectedcolumn : null,
-    SelectedRow : null,
-    SelectedElement: null,
-    elements : {
-      item :
-      [
-        
-      ]
-    }
-  },  
-  mutations: {
+    setSelectSlideId:function(state){
+      var slideshowId = state.elements.item.find(item => item.parentId == state.selectId).id
+      state.selectSlideId = slideshowId
+      // // console.log("ss id" + slideshowId)
+      // var itemSelected = state.elements.item.find(item => (item.type == 'section' && item.indexSlide == index && item.idSlideshow == state.selectSlideId))
+      // // console.log("item select " +itemSelected)
+      // this.commit('setSelectId',itemSelected.id)
+    },
+    setSelectSlideItem:function(state,index){
+      var itemSelected = state.elements.item.find(item => (item.type == 'section' && item.indexSlide == index && item.idSlideshow == state.selectSlideId))
+      this.commit('setSelectId',itemSelected.id)
+    },
     swapSection:function(state,{toIndex}){
       switch (toIndex) {
         case 'up':
@@ -325,6 +316,7 @@ export default new Vuex.Store({
                       row : ObjectSectionTemplate.row,
                       indexSection : state.indexSection,
                       idSlideshow : null,
+                      indexSlide:null
                     }
                     state.selectId = state.indexItem
                     state.Selectedcolumn = 1
@@ -609,13 +601,13 @@ export default new Vuex.Store({
         row : ObjectSection.row,
         indexSection : state.indexSection,
         idSlideshow : null,
-        swapSlide: false
+        swapSlide: false,
+        indexSlide: null
       }
       state.selectId = state.indexItem
       state.Selectedcolumn = 1
       state.indexSection++
       this.commit('addItem',item)
-
     },
     addElement:function(state,{type, name}){
       switch (type) {
@@ -726,7 +718,7 @@ export default new Vuex.Store({
           idSlide = state.indexItem;
           this.commit('addItem',itemS)
 
-          templateSlide.forEach(itemSlide => {
+          templateSlide.forEach((itemSlide,index) => {
             var ObjectSection = new Element.Section();
             ObjectSection.setItemSlideshow(itemSlide)
             var item = {
@@ -739,7 +731,8 @@ export default new Vuex.Store({
               row : ObjectSection.row,
               indexSection : state.indexSection,
               idSlideshow : idSlide,
-              swapSlide:false
+              swapSlide:false,
+              indexSlide : index+1
             }
             this.commit('addItem',item)
           })
@@ -970,76 +963,4 @@ export default new Vuex.Store({
     },
 
 
-  },
-  getters:{
-    
-    getSelectID:function(state){
-      return state.selectId
-    },
-    getSelectColumn:function(state){
-      return state.Selectedcolumn
-    },
-    getElementItems:function(state){
-      return state.elements.item
-    },
-    getElementItemById: (state) =>(id)=>{
-      return state.elements.item.find(item => item.id == id)
-    },
-    // getColumnColorColumn:function(state){
-    //   return state.elements.item.find(item => item.id == state.selectId).layout.find(itemLayout => itemLayout.index == state.Selectedcolumn).bg
-    // },
-    getNumColumn:function(state){
-      var length = 0;
-      var section =  state.elements.item.find(item => item.id == state.selectId)
-      var layout = section.layout
-      layout.map(item =>{
-        if(item.row == state.SelectedRow){
-          length++;
-        }
-      })
-      return length
-
-    },
-    getNumRow:function(state){
-      var section  = state.elements.item.find(item => item.id == state.selectId)
-      var row = section.row
-      return row.length
-    },
-    getNumItemSlide:state => id => {
-      console.log("id ="+id) 
-      var itemSlide = []
-      state.elements.item.forEach(item =>{
-        if(item.type == 'section' && item.idSlideshow == id)
-        itemSlide.push(item)
-      })
-      console.log(itemSlide)
-      return itemSlide.length
-    },
-    getNumColumnById:(state)=>(id)=>{
-      return state.elements.item.find(item => item.id == id).layout.length
-    },
-    getWindowSize:function(state){
-      return state.window
-    },
-    getHeightDom:function(state){
-      var height = 0;
-      state.elements.item.map(item =>{
-        if(item.type == 'section'){
-          height += item.style.height
-        }
-        return item
-      })
-      return height
-    },
-    getRowSelected :function(state){
-      return state.SelectedRow
-    },
-    getColumnBgPosition:function(state){
-      return state.elements.item.find(item => item.id == state.selectId).layout.find(itemLayout => itemLayout.index == state.Selectedcolumn && itemLayout.row == state.SelectedRow).bgPosition
-    },
-    getColumnBgSize:function(state){
-      return state.elements.item.find(item => item.id == state.selectId).layout.find(itemLayout => itemLayout.index == state.Selectedcolumn && itemLayout.row == state.SelectedRow).bgSize
-    }
-  },
-  actions: {}
-});
+  }

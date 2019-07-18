@@ -1,4 +1,3 @@
-import Template from './template.json'
 class Video{
     constructor(){
         this.style = {
@@ -182,7 +181,7 @@ class SlideShow {
         this.slideItem = [
             {
                 index : 1,
-                backgroundColor : require('./assets/template.jpg'),
+                backgroundColor : require('../assets/template.jpg'),
                 text : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
             },
             {
@@ -366,14 +365,6 @@ class Button {
             },
             shadow : 0,
             borderRadius :0,
-            // shadow : {
-            //     angle : 0,
-            //     distance : 0,
-            //     size : 0,
-            //     blur :  4,
-            //     color : '#cccccc',
-            //     opacity : 1
-            // },
             color: '#000000',
             textTransform : 'none',
             alignBlock : 'none',
@@ -437,7 +428,7 @@ class Button {
 
 class Image {
     constructor(){
-        this.url = require('./assets/template.jpg') ;
+        this.url = require('../assets/template.jpg') ;
         this.position = {
             x :200,
             y : 150,
@@ -455,14 +446,6 @@ class Image {
             },
             borderRadius : 50,
             shadow : 0,
-            // shadow : {
-            //     angle : 0,
-            //     distance : 0,
-            //     size : 0,
-            //     blur :  4,
-            //     color : '#cccccc',
-            //     opacity : 1
-            // },
             top: 0,
             left : 0,
             width: '400px',
@@ -515,7 +498,7 @@ class Section {
             boxShadow: '0 2px 5px 0 rgba(22, 45, 61, 0.58)',
             margin : 'auto',
             backgroundImage : {
-                url : './assets/logo.png',
+                url : '../assets/logo.png',
                 position : 'center',
                 size : 'cover',
                 repeat : 'no-repeat'
@@ -545,7 +528,7 @@ class Section {
             {
                 index : 1,
                 size: 100,
-                bg : '#333333'
+                bg : '#e0e0e0'
             }
         ]
         

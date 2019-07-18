@@ -1,16 +1,22 @@
 <template>
     <div class="top-menu">
-        <button class="preview-btn" @click="preview">{{isPreview ? 'BACK' :'PREVIEW'}}</button>
-        <button class="create-template-btn" @click="createTemplate">{{isPreview ? 'BACK' : 'Create Template'}}</button>
+        <button class="preview-btn" @click="preview">{{isPreview ? $t('public.back') :$t('top_menu_editor.preview_site')}}</button>
+        <button class="create-template-btn" @click="createTemplate">{{isPreview ? $t('public.back') : $t('top_menu_editor.create_template')}}</button>
+        <RadioGroup v-model="locale" type="button">
+            <Radio label="vn" checked><flag iso="vn" /></Radio>
+            <Radio label="en"><flag iso="us" /></Radio>
+        </RadioGroup>
     </div>
 </template>
 
 <script>
 import { bus } from "../../main";
     export default {
+       
         data:function(){
             return{
-                isPreview  : false
+                isPreview  : false,
+                locale : 'vn'
             }
         },
         methods:{
@@ -29,7 +35,12 @@ import { bus } from "../../main";
             createTemplate:function(){
 
             }
-        }
+        },
+        watch:{
+        locale:function(val){
+            this.$i18n.locale = val
+        },
+    },
     }
 </script>
 

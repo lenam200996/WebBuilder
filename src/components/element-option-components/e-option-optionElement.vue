@@ -2,7 +2,7 @@
  
     <div class="wrap-option" :style="{top: top+'px', right:right+'px'}">
         <div class="close" @click="closeOptionElement"><Icon type="ios-close-circle" /></div>
-        <h2  @mousedown="enableDrag" @mouseup="isDrag =false" @mousemove="drag">{{name}} OPTIONS</h2>
+        <h2  @mousedown="enableDrag" @mouseup="isDrag =false" @mousemove="drag">{{name}} - {{$t('public.setting')}}</h2>
         <e-option-option-element-item :name="name" :id="id" :index="index"></e-option-option-element-item>
     </div>
 
@@ -61,7 +61,7 @@ import {bus} from '../../main'
         z-index: 99999;
         height: 400px;
         overflow-y: scroll;
-        width : 25%;
+        width : 400px;
         background: linear-gradient(
             to bottom,
             rgba(255, 255, 255, 0.96) 0%,

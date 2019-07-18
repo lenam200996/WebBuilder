@@ -1,0 +1,28 @@
+import {bus} from '../main'
+var mixin= {
+    methods:{
+        select:function(){
+            this.isActive = true 
+        },
+        editOption(){
+            bus.$emit('openOption',{name : this.name,id:this.properties.id,index : -1})
+        },
+        onBlur() {
+            bus.$emit('closeOptionElement',{name : this.name,id:this.properties.id})
+        },  
+        deselect:function(){
+            this.isActive = false
+        },
+        deleteItem:function(){
+            this.$store.commit('deleteItemById',this.properties.id)
+            bus.$emit('closeOptionElement',{name : this.name,id:this.properties.id})
+        },
+        preColumn:function(){
+            this.$store.commit('preColumn',this.properties.id)
+        },
+        nextColumn:function(){
+            this.$store.commit('nextColumn',this.properties.id)
+        }
+    },
+}
+export default {mixin}

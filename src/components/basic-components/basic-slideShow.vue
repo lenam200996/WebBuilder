@@ -34,12 +34,8 @@ import { bus } from "../../main";
         props: {
             id:{
                 type :Number,
-                required : true
+                required : true 
             },
-            // properties:{
-            //     type:Object,
-            //     required:true
-            // },
         },
         data() {
             return {
@@ -63,6 +59,7 @@ import { bus } from "../../main";
             },
             edit:function(){
                 bus.$emit('openOption',{name : 'SLIDE',id:this.id,index: -1})
+                this.$store.commit('setSelectSlideId',this.id)
             },
             onBlur:function(){
                 bus.$emit('closeOptionElement',{name : 'SLIDE',id:this.id})

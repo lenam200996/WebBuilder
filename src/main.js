@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
+import store from "./store/store";
 import divDragResize from '@minogin/vue-drag-resize-rotate'
 import tinymce from 'vue-tinymce-editor'
 import VueTabs from 'vue-nav-tabs/dist/vue-tabs.js'
@@ -12,6 +12,8 @@ import VueMaterial from 'vue-material'
 import iView from 'iview';
 import lang from 'iview/dist/locale/en-US';
 import Slick from 'vue-slick';
+import en from './lang/en.json'
+import vn from './lang/vn.json'
 import 'vue-nav-tabs/themes/vue-tabs.css'
 import './components/basic-components/_basic_components'
 import './components/element-option-components/_element_option_components'
@@ -22,7 +24,9 @@ import './assets/css/main.css'
 import 'vue-material/dist/vue-material.min.css'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import FlagIcon from 'vue-flag-icon'
 
+Vue.use(FlagIcon);
 Vue.use(VueMaterial)
 Vue.use(VueI18n)
 Vue.use(VueTabs)
@@ -34,21 +38,12 @@ Vue.component('slideItem',SliderItem)
 Vue.component('tinymceText',tinymce)
 Vue.component('divDragResize',divDragResize) 
 Vue.component('slick',Slick) 
-
 Vue.config.productionTip = false;
 export const bus = new Vue();
 
 const messages = {
-  vn: {
-      mess : {
-        name : 'Xin chao {name}'
-      }
-  },
-  en: {
-      mess : {
-        name : 'hello {name}'
-      }
-  },
+  vn: vn,
+  en: en
 };
 
 const i18n = new VueI18n({

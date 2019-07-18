@@ -1,0 +1,227 @@
+{
+    "grid_manager":{
+        "1":[[100]],
+        "2":[[50,50],[20,80],[80,20],[25,75],[75,25],[33,66],[66,33],[40,60],[60,40]],
+        "3":[[33,33,33],[25,25,50],[25,50,25],[50,25,25]],
+        "4":[[25,25,25,25],[20,20,25,33]],
+        "5":[[20,20,20,20,20]]
+    },
+    "static_option_select":{
+        "align_block" : [
+            {
+                "name" : "Custom",
+                "value" : "none"
+            },
+            {
+                "name" : "Center",
+                "value" : "center"
+            },
+            {
+                "name" : "Left",
+                "value" : "left"
+            },
+            {
+                "name" : "Right",
+                "value" : "right"
+            }
+        ],
+        "text_align" :[
+            {
+                "name" : "Center",
+                "value" : "center"
+            },
+            {
+                "name" : "Left",
+                "value" : "left"
+            },
+            {
+                "name" : "Right",
+                "value" : "right"
+            }
+        ],
+        "border_type": [
+            {
+                "name" : "None",
+                "value" : "none"
+            },
+            {
+                "name" : "Solid",
+                "value" : "solid"
+            },
+            {
+                "name" : "Dotted",
+                "value" : "dotted"
+            },
+            {
+                "name" : "Inset",
+                "value" : "inset"
+            },
+            {
+                "name" : "Double",
+                "value" : "double"
+            },
+            {
+                "name" : "Groove",
+                "value" : "groove"
+            },
+            {
+                "name" : "Outset",
+                "value" : "outset"
+            },
+            {
+                "name" : "Ridge",
+                "value" : "ridge"
+            },
+            {
+                "name" : "Dashed",
+                "value" : "dashed"
+            },
+            {
+                "name" : "Hidden",
+                "value" : "hidden"
+            }
+        ],
+        "text_transform":[
+            {
+                "name" : "None",
+                "value" : "none"
+            },
+            {
+                "name" : "Capitalize",
+                "value" : "capitalize"
+            },
+            {
+                "name" : "Uppercase",
+                "value" : "uppercase"
+            },
+            {
+                "name" : "Lowercase",
+                "value" : "lowercase"
+            },
+            {
+                "name" : "Initial",
+                "value" : "initial"
+            },
+            {
+                "name" : "Inherit",
+                "value" : "inherit"
+            }
+        ],
+        "font_style":[
+            {
+                "name" : "Normal",
+                "value" : "normal"
+            },
+            {
+                "name" : "Italic",
+                "value" : "italic"
+            },
+            {
+                "name" : "Oblique",
+                "value" : "oblique"
+            },
+            {
+                "name" : "Initial",
+                "value" : "initial"
+            },
+            {
+                "name" : "Inherit",
+                "value" : "inherit"
+            }
+        ],
+        "background_size":[
+            {
+                "name" : "Auto",
+                "value": "auto"
+            },
+            {
+                "name" : "Full",
+                "value": "full"
+            },
+            {
+                "name" : "Contain",
+                "value": "contain"
+            },
+            {
+                "name" : "Cover",
+                "value": "cover"
+            }
+        ],
+        "background_position":[
+            {
+                "name" : "Center-Center",
+                "value" : "center center"
+            },
+            {
+                "name" : "Center-Bottom",
+                "value" : "center bottom"
+            },
+            {
+                "name" : "Center-Top",
+                "value" : "center top"
+            },
+            {
+                "name" : "Right-Bttom",
+                "value" : "right bottom"
+            },
+            {
+                "name" : "Right-Center",
+                "value" : "right center"
+            },
+            {
+                "name" : "Right-Top",
+                "value" : "right top"
+            },
+            {
+                "name" : "Left-Bottom",
+                "value" : "left bottom"
+            },
+            {
+                "name" : "Left-Center",
+                "value" : "left center"
+            },
+            {
+                "name" : "Left-Top",
+                "value" : "left top"
+            }
+        ],
+        "font_family":[
+            {
+                "name" : "Roboto",
+                "value" : "Roboto"
+            },
+            {
+                "name" : "Open Sans",
+                "value" : "Open Sans"
+            },
+            {
+                "name" : "Literata",
+                "value" : "Literata"
+            },
+            {
+                "name" : "Oswald",
+                "value" : "Oswald"
+            },
+            {
+                "name" : "Source Sans Pro",
+                "value" : "Source Sans Pro"
+            },
+            {
+                "name" : "Merriweather",
+                "value" : "Merriweather"
+            },
+            {
+                "name" : "Roboto Mono",
+                "value" : "Roboto Mono"
+            },
+            {
+                "name" : "DM Sans",
+                "value" : "DM Sans"
+            },
+            {
+                "name" : "Roboto Slab",
+                "value" : "Roboto Slab"
+            }
+        ]
+    }
+}

@@ -23,7 +23,7 @@
         @deleteItem="deleteItem"
         @preColumn="preColumn"
         @nextColumn="nextColumn"
-        :elementName="'BUTTON'"
+        :elementName="name"
         ></e-option-button-option>
         
     </divDragResize>
@@ -31,6 +31,7 @@
 
 <script>
 import {bus} from '../../main'
+import mixins from '../mixins.js'
   export default {
     props:{
       properties:{
@@ -43,40 +44,10 @@ import {bus} from '../../main'
       return {
         isActive : false,
         isHover :false,
+        name : 'BUTTON'
       }
     },
-
-    methods: {
-
-      editOption(){
-        this.textActive  = false
-         bus.$emit('openOption',{name : 'BUTTON',id:this.properties.id,index : -1})
-      },
-      onBlur() {
-        bus.$emit('closeOptionElement',{name : 'BUTTON',id:this.properties.id})
-      },     
-      select:function(){
-        this.isActive = true
-      },
-      deselect:function(){
-        this.isActive = false
-
-      },
-      deleteItem:function(){
-        this.$store.commit('deleteItemById',this.properties.id)
-        bus.$emit('closeOptionElement',{name : 'BUTTON',id:this.properties.id})
-
-      },
-      preColumn:function(){
-        this.$store.commit('preColumn',this.properties.id)
-      },
-      nextColumn:function(){
-        this.$store.commit('nextColumn',this.properties.id)
-      }
-    },
-    mounted(){
-
-    },
+    extends:mixins.mixin,
     computed:{
       getStyle: function(){
         
@@ -136,9 +107,7 @@ import {bus} from '../../main'
         return style
       }
     },
-    watch:{
 
-    }
   }
 </script>
 

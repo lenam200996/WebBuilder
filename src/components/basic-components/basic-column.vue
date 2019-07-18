@@ -63,7 +63,7 @@ import {bus} from '../../main'
         },
         computed:{
             getBackground : function(){
-                return this.properties.bgImg.includes('#')?this.properties.bgImg : 'url('+this.properties.bgImg +')';
+                return this.properties.bgImg.indexOf('#') != -1 ?this.properties.bgImg : 'url('+this.properties.bgImg +')';
             },
             getColumnSelected : function(){
                 return this.$store.getters.getSelectColumn

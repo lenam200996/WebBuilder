@@ -25,7 +25,7 @@
         @deleteItem="deleteItem"
         @preColumn="preColumn"
         @nextColumn="nextColumn"
-        :elementName="'TEXT'"
+        :elementName="name"
         ></e-option-button-option>
         
     </divDragResize>
@@ -33,6 +33,8 @@
 
 <script>
 import {bus} from '../../main'
+import mixins from '../mixins.js'
+
   export default {
     props:{
       properties:{
@@ -45,9 +47,10 @@ import {bus} from '../../main'
       return {
         textActive: false,
         isActive : false,
+        name :'TEXT'
       }
     },
-
+    extends: mixins.mixin,
     methods: {
       initEdit:function(){
         this.$refs.area.editor.setContent(this.properties.text);
@@ -62,26 +65,7 @@ import {bus} from '../../main'
       onBlur() {
         this.textActive = false
         bus.$emit('closeOptionElement',{name : 'TEXT',id:this.properties.id})
-      },     
-      select:function(){
-        this.isActive = true
-      },
-      deselect:function(){
-        this.isActive = false
-      },
-      deleteItem:function(){
-        this.$store.commit('deleteItemById',this.properties.id)
-        bus.$emit('closeOptionElement',{name : 'TEXT',id:this.properties.id})
-      },
-      preColumn:function(){
-        this.$store.commit('preColumn',this.properties.id)
-      },
-      nextColumn:function(){
-        this.$store.commit('nextColumn',this.properties.id)
-      }
-    },
-    mounted(){
-
+      },  
     },
     computed:{
       Value :{

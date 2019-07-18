@@ -59,6 +59,10 @@ export default {
   top: 80px;
   left: 20px;
 }
+.wrap-option>div>button,.wrap-option>div>div>button{
+  background: red;
+  color: #ffffff;
+}
 .wrap-option > ul {
   list-style-type: none;
   width: 100%;

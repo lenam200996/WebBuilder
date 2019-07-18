@@ -17,7 +17,7 @@
         <e-option-button-option v-if="isActive"
             :isGrid="false" 
             @edit="editOption" 
-            @disableEdit="closeEdit"
+            @disableEdit="onBlur"
             @deleteItem="deleteItem"
             @preColumn="preColumn"
             @nextColumn="nextColumn"
@@ -29,6 +29,7 @@
  
  <script>
  import {bus} from '../../main'
+ import mixins from '../mixins.js'
      export default {
          props:{
              properties:{
@@ -38,33 +39,11 @@
         },
         data:function(){
             return {
-                isActive :false
+                isActive :false,
+                name : 'IMAGE'
             }
         },
-        methods:{
-            select:function(){
-                this.isActive = true
-            },
-            deselect:function(){
-                this.isActive = false
-            },
-            deleteItem:function(){
-                this.$store.commit('deleteItemById',this.properties.id)
-                bus.$emit('closeOptionElement',{name : 'IMAGE',id:this.properties.id})
-            },
-            preColumn:function(){
-                this.$store.commit('preColumn',this.properties.id)
-            },
-            nextColumn:function(){
-                this.$store.commit('nextColumn',this.properties.id)
-            },
-            editOption(){
-                bus.$emit('openOption',{name : 'IMAGE',id:this.properties.id,index : -1})
-            },
-            closeEdit() {
-                bus.$emit('closeOptionElement',{name : 'IMAGE',id:this.properties.id})
-            },    
-        },
+        extends :mixins.mixin,
         computed:{
             getStyleWrap:function(){
                 if(this.properties.styleImg.alignBlock == 'center'){

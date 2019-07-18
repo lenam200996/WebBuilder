@@ -1,345 +1,286 @@
+import Static from './static-data.json'
 var Default = {
-    "TEXT" : [
-                
+    "TEXT" : [ 
                 {
-                name: "Line Height",
                 ref: "lineHeight"
                 },
                 {
-                name: "Font Family",
-                ref: "fontFamily"
+                ref: "fontFamily",
+                item :Static.static_option_select.font_family
                 },
                 {
-                name: "Letter Spacing",
                 ref: "letterSpacing"
                 },
                 {
-                name: "Word Spacing",
                 ref: "wordSpacing"
                 },
                 {
-                    name: 'Align Block',
-                    ref : 'alignBlock'
+                    ref : 'alignBlock',
+                    item :Static.static_option_select.align_block
                 },
                 {
-                    name : 'Shadow',
                     ref:'shadow'
                 }
             ],
         'Column' : [
             {
-                name : "Background",
                 ref : 'Columnbackground'
             },
             {
-                name : 'Position Fill',
-                ref :'backgroundPosition'
+                ref :'backgroundPosition',
+                item: Static.static_option_select.background_position
             },
             {
-                name :'BG Size',
-                ref : 'backgroundSize'
+                ref : 'backgroundSize',
+                item: Static.static_option_select.background_size
             }
-            // {
-            //     name : "background Image",
-            //     ref :"backgroundImage"
-            // }
 
         ],
         'IMAGE':[
             {
-                name : 'Image',
                 ref : 'imgUrl'
             },
             {
-                name : 'Border Width',
                 ref : 'borderWidth'
             },
             {
-                name : 'Border Type',
-                ref : 'borderType'
+                ref : 'borderType',
+                item: Static.static_option_select.border_type
             },
             {
-                name : 'Border Color',
                 ref : 'borderColor'
             },
             {
-                name : 'Border Radius',
                 ref : 'borderRadius'
             },
             {
-                name: 'Keep Proportion',
                 ref : 'keepProportion'
             },
             {
-                name: 'Align Block',
-                ref : 'alignBlock'
+                ref : 'alignBlock',
+                item :Static.static_option_select.align_block
             },
             {
-                name : 'Shadow',
                 ref:'shadow'
             }
         ],
         'SECTION':[
             {
-                name : 'Height',
                 ref : 'height'
             },
             {
-                name : 'Stretched',
                 ref: 'stretched'
             },
            {
-               name : '',
                ref:'rowManager'
            }
             
         ],
         'BUTTON':[
             {
-                name: 'Align Block',
-                ref : 'alignBlock'
+                ref : 'alignBlock',
+                item :Static.static_option_select.align_block
             }, 
             {
-                name : 'Border Width',
                 ref : 'borderWidth'
             },
             {
-                name : 'Border Type',
-                ref : 'borderType'
+                ref : 'borderType',
+                item: Static.static_option_select.border_type
             },
             {
-                name : 'Border Color',
                 ref : 'borderColor'
             },
             {
-                name : 'Border Radius',
                 ref : 'borderRadius'
             },
             {
-                name : 'Text color',
                 ref : 'color'
             },
             {
-                name: "Font Family",
-                ref: "fontFamily"
+                ref: "fontFamily",
+                item :Static.static_option_select.font_family
             },
             {
-                name : 'Text',
                 ref : 'textValue'
             },
             {
-                name : 'Text Transform',
-                ref : 'textTransform'
+                ref : 'textTransform',
+                item : Static.static_option_select.text_transform
             },
             {
-                name : 'Background Color',
                 ref : 'backgroundColor'
             },
             {
-                name: 'Text Align',
-                ref:'textAlign'
+                ref:'textAlign',
+                item : Static.static_option_select.text_align
             },
             {
-                name : 'Padding Left',
                 ref:'paddingLeft'
             },
             {
-                name : 'Padding Right',
                 ref:'paddingRight'
             },
             {
-                name:'Font Size',
                 ref:'fontSize'
             },
             {
-                name:'Font Weight',
                 ref:'fontWeight'
             },
             {
-                name: 'Font Style',
-                ref:'fontStyle'
+                ref:'fontStyle',
+                item : Static.static_option_select.font_style
             },
             {
-                name : 'Fill Hover',
                 ref:'backgroundColorHover'
             },
             {
-                name : 'Color Hover',
                 ref:'colorHover'
             },
             {
-                name :'Border Color Hover',
                 ref:'borderColorHover'
             },
             {
-                name : 'Shadow',
                 ref:'shadow'
             }
         ],
         'LINE':[
             {
-                name: 'Align Block',
-                ref : 'alignBlock'
+                ref : 'alignBlock',
+                item : Static.static_option_select.align_block
             },
             {
-                name : 'Background Color',
                 ref : 'backgroundColor'
             },
             {
-                name: 'Size',
                 ref :'sizeLine'
             },
             {
-                name : 'Shadow',
+
                 ref:'shadow'
             }
             
         ],
         'FIELD':[
             {
-                name: 'Align Block',
-                ref : 'alignBlock'
+                ref : 'alignBlock',
+                item : Static.static_option_select.align_block
             },
             {
-                name : 'Background Color',
                 ref : 'backgroundColor'
             },
             {
-                name : 'Border Width',
                 ref : 'borderWidth'
             },
             {
-                name : 'Border Type',
-                ref : 'borderType'
+                ref : 'borderType',
+                item: Static.static_option_select.border_type
             },
             {
-                name : 'Border Color',
                 ref : 'borderColor'
             },
             {
-                name : 'Border Radius',
                 ref : 'borderRadius'
             },
             {
-                name: 'Required',
                 ref:'required'
             },
             {
-                name: 'Text Align',
-                ref:'textAlign'
+                ref:'textAlign',
+                item :  Static.static_option_select.text_align
             },
             {
-                name : 'Padding Left',
                 ref:'paddingLeft'
             },
             {
-                name : 'Padding Right',
                 ref:'paddingRight'
             },
             {
-                name : 'Border',
                 ref:'borderPosition'
             },
             {
-                name: "Font Family", //new
-                ref: "fontFamily"
+                ref: "fontFamily",
+                item :Static.static_option_select.font_family
             },
             {
-                name: 'Font Style',
-                ref:'fontStyle'
+                ref:'fontStyle',
+                item : Static.static_option_select.font_style
             },
             {
-                name : 'Text color',
                 ref : 'color'
             },
             {
-                name:'Font Size',
                 ref:'fontSize'
             },
             {
-                name:'Font Weight',
                 ref:'fontWeight'
             },
             {
-                name :'Placeholder',
                 ref:'placeholder'
             },
             {
-                name : 'Shadow',
                 ref:'shadow'
             }
 
         ],
         'VIDEO':[
             {
-                name: 'Align Block',
-                ref : 'alignBlock'
+                ref : 'alignBlock',
+                item :Static.static_option_select.align_block
             },
             {
-                name : 'Video Url',
                 ref: 'videoUrl'
             },
             {
-                name: 'Auto Play',
                 ref : 'autoPlay'
             },
             {
-                name: 'Loop',
                 ref : 'loop'
             },
             {
-                name : 'Shadow',
                 ref:'shadow'
             }
         ],
         'BOX':[
             {
-                name: 'Align Block',
-                ref : 'alignBlock'
+                ref : 'alignBlock',
+                item : Static.static_option_select.align_block
             },
             {
-                name : 'Background Color',
                 ref : 'backgroundColor'
             },
             {
-                name : 'Border Width',
                 ref : 'borderWidth'
             },
             {
-                name : 'Border Type',
-                ref : 'borderType'
+
+                ref : 'borderType',
+                item:Static.static_option_select.border_type
             },
             {
-                name : 'Border Color',
                 ref : 'borderColor'
             },
             {
-                name : 'Border Radius',
                 ref : 'borderRadius'
             },
             {
-                name: 'Opacity',
                 ref :'opacity'
             },
             {
-                name : 'Shadow',
                 ref:'shadow'
             }
             
         ],
         'ROW':[
             {
-                name : '',
                 ref : 'sectionColumnManagement'
             },
             {
-                name :'',
                 ref:'sectionGrid'
             }
         ],
         'SLIDE':[
             {
-                name :'',
                 ref: 'itemSlideManager'
             }
         ]

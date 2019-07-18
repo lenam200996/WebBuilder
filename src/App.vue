@@ -61,7 +61,6 @@ export default {
             index :1
           },
           isPreview : false,
-          locale : 'vn'
       }
     },
     computed:{
@@ -106,11 +105,7 @@ export default {
       }
 
     },
-    watch:{
-      locale:function(val){
-        this.$i18n.locale = val
-      },
-    },
+    
     mounted(){
       bus.$on('openOption',({name,id,index})=>{
         this.option.is = true
