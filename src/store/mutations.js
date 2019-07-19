@@ -1,20 +1,75 @@
 import Element from '../api/ElementClass'
 import Template from '../api/template.json'
 export default {
+    swapItem:function(state,toIndex){
+      switch (toIndex) {
+        case 'toLeft':
+          {
+            if(state.selectItemSlideIndex == 1) {return}
+            state.elements.item = state.elements.item.filter(item =>{
+              if(item.idSlideshow == state.selectSlideId){
+                if(item.indexSlide == state.selectItemSlideIndex){
+                  item.indexSlide = state.selectItemSlideIndex - 1
+                  return item
+                }
+                if(item.indexSlide == state.selectItemSlideIndex - 1){
+                  item.indexSlide = state.selectItemSlideIndex 
+                  return item
+                }
+                return item
+              }
+              return item
+            })
+
+            // state.elements.item = state.elements.item.sort(function(a,b){
+            //   return a.indexSlide - b.indexSlide
+            // })
+          }
+          break;
+        case 'toRight':
+          {
+            if(state.selectItemSlideIndex == this.getters.getNumItemSlide(state.selectSlideId)){return}
+            state.elements.item = state.elements.item.filter(item =>{
+              if(item.idSlideshow == state.selectSlideId){
+                if(item.indexSlide == state.selectItemSlideIndex){
+                  item.indexSlide = state.selectItemSlideIndex + 1
+                  return item
+                }
+                if(item.indexSlide == state.selectItemSlideIndex + 1){
+                  item.indexSlide = state.selectItemSlideIndex 
+                  return item
+                }
+                return item
+              }
+              return item
+            })
+
+            // state.elements.item = state.elements.item.sort(function(a,b){
+            //   return a.indexSlide - b.indexSlide
+            // })
+          }
+          break;
+        default:
+          break;
+      }
+    },
     deleteItemSlide:function(state){
       this.commit('deleteSection',state.selectId)
+      state.elements.item = state.elements.item.filter(item => {
+        if(item.id == state.selectSlideId){
+          item.itemList = item.itemList.filter(itemList => itemList.index != state.selectItemSlideIndex)
+        }
+        return item
+      })
     },
     setSelectSlideId:function(state){
       var slideshowId = state.elements.item.find(item => item.parentId == state.selectId).id
       state.selectSlideId = slideshowId
-      // // console.log("ss id" + slideshowId)
-      // var itemSelected = state.elements.item.find(item => (item.type == 'section' && item.indexSlide == index && item.idSlideshow == state.selectSlideId))
-      // // console.log("item select " +itemSelected)
-      // this.commit('setSelectId',itemSelected.id)
     },
     setSelectSlideItem:function(state,index){
       var itemSelected = state.elements.item.find(item => (item.type == 'section' && item.indexSlide == index && item.idSlideshow == state.selectSlideId))
       this.commit('setSelectId',itemSelected.id)
+      state.selectItemSlideIndex = index
     },
     swapSection:function(state,{toIndex}){
       switch (toIndex) {
@@ -714,11 +769,11 @@ export default {
             id : state.indexItem,
             type : 'slideshow',
             parentId : state.selectId != null ? (state.selectId) : null,
+            itemList :  templateSlide
           }
           idSlide = state.indexItem;
           this.commit('addItem',itemS)
-
-          templateSlide.forEach((itemSlide,index) => {
+          state.elements.item.find(item => item.id == (state.indexItem -1)).itemList.forEach((itemSlide,index) => {
             var ObjectSection = new Element.Section();
             ObjectSection.setItemSlideshow(itemSlide)
             var item = {

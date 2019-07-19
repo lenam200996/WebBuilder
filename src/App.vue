@@ -15,20 +15,22 @@
               
               <!-- <basic-slide-show v-for="slide in getElements.filter(item => item.type == 'slider' && item.parentId == section.id && item.column == col.index && item.row == row.index)"  :key="slide.id" :properties="getPropertiesSlide(section,slide)"></basic-slide-show> -->
               <basic-slide-show v-for="slide in getElements.filter(item => item.type == 'slideshow' && item.parentId == section.id)" :key="slide.id" :id="slide.id">
-                <basic-section  v-for="sectionC in getElements.filter(item => item.type == 'section' && item.idSlideshow == slide.id)" :id="sectionC.id" :key="sectionC.id" :styleSec="sectionC.style" :position="sectionC.position" isItemSlide>
-                  <basic-row v-for="row in sectionC.row" :key="row.index" :id="sectionC.id" :height="row.size" :bg="row.bg" :rowIndex="row.index">
-                    <basic-column v-for="col in sectionC.layout.filter(itemCol => itemCol.row == row.index)" :key="col.index" :properties="getPropertiesColumn(sectionC,row,col)"  >
-                          <basic-text v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == sectionC.id && item.column == col.index && item.row == row.index)" :properties="getPropertiesText(text)" :key="text.id"></basic-text>
-                          <basic-image v-for="image in getElements.filter(item => item.type == 'img' && item.parentId == sectionC.id && item.column == col.index && item.row == row.index)" :key="image.id" :properties="getPropertiesImage(image)"></basic-image>
-                          <basic-button v-for="btn in getElements.filter(item => item.type == 'btn' && item.parentId == sectionC.id && item.column == col.index && item.row == row.index)" :key="btn.id" :properties="getPropertiesButton(btn)"></basic-button>
-                          <basic-line-horizontal v-for="line in getElements.filter(item => item.type == 'lineHorizontal' && item.parentId == sectionC.id && item.column == col.index && item.row == row.index)" :key="line.id" :properties="getPropertiesLineHorizontal(line)" ></basic-line-horizontal>
-                          <basic-line-vertical v-for="line in getElements.filter(item => item.type == 'lineVertical' && item.parentId == sectionC.id && item.column == col.index && item.row == row.index)" :key="line.id" :properties="getPropertiesLineVertical(line)"></basic-line-vertical>
-                          <basic-box v-for="box in getElements.filter(item => item.type == 'box' && item.parentId == sectionC.id && item.column == col.index && item.row == row.index)"  :key="box.id" :properties="getPropertiesBox(box)"></basic-box>
-                          <basic-field v-for="field in getElements.filter(item => item.type == 'field' && item.parentId == sectionC.id && item.column == col.index && item.row == row.index)"  :key="field.id" :properties="getPropertiesField(field)"></basic-field>
-                          <basic-video v-for="video in getElements.filter(item => item.type == 'video' && item.parentId == sectionC.id && item.column == col.index && item.row == row.index)"  :key="video.id" :properties="getPropertiesVideo(video)"></basic-video>
-                      </basic-column>
-                    </basic-row>
-                  </basic-section>
+                  <swiper-slide v-for="sectionC in getElements.filter(item => item.type == 'section' && item.idSlideshow == slide.id).sort(function(a,b){return a.indexSlide - b.indexSlide})" :key="sectionC.id" >
+                    <basic-section :id="sectionC.id"  :styleSec="sectionC.style" :position="sectionC.position" isItemSlide>
+                      <basic-row v-for="row in sectionC.row" :key="row.index" :id="sectionC.id" :height="row.size" :bg="row.bg" :rowIndex="row.index">
+                        <basic-column v-for="col in sectionC.layout.filter(itemCol => itemCol.row == row.index)" :key="col.index" :properties="getPropertiesColumn(sectionC,row,col)"  >
+                              <basic-text v-for="text in getElements.filter(item => item.type == 'text' && item.parentId == sectionC.id && item.column == col.index && item.row == row.index)" :properties="getPropertiesText(text)" :key="text.id"></basic-text>
+                              <basic-image v-for="image in getElements.filter(item => item.type == 'img' && item.parentId == sectionC.id && item.column == col.index && item.row == row.index)" :key="image.id" :properties="getPropertiesImage(image)"></basic-image>
+                              <basic-button v-for="btn in getElements.filter(item => item.type == 'btn' && item.parentId == sectionC.id && item.column == col.index && item.row == row.index)" :key="btn.id" :properties="getPropertiesButton(btn)"></basic-button>
+                              <basic-line-horizontal v-for="line in getElements.filter(item => item.type == 'lineHorizontal' && item.parentId == sectionC.id && item.column == col.index && item.row == row.index)" :key="line.id" :properties="getPropertiesLineHorizontal(line)" ></basic-line-horizontal>
+                              <basic-line-vertical v-for="line in getElements.filter(item => item.type == 'lineVertical' && item.parentId == sectionC.id && item.column == col.index && item.row == row.index)" :key="line.id" :properties="getPropertiesLineVertical(line)"></basic-line-vertical>
+                              <basic-box v-for="box in getElements.filter(item => item.type == 'box' && item.parentId == sectionC.id && item.column == col.index && item.row == row.index)"  :key="box.id" :properties="getPropertiesBox(box)"></basic-box>
+                              <basic-field v-for="field in getElements.filter(item => item.type == 'field' && item.parentId == sectionC.id && item.column == col.index && item.row == row.index)"  :key="field.id" :properties="getPropertiesField(field)"></basic-field>
+                              <basic-video v-for="video in getElements.filter(item => item.type == 'video' && item.parentId == sectionC.id && item.column == col.index && item.row == row.index)"  :key="video.id" :properties="getPropertiesVideo(video)"></basic-video>
+                          </basic-column>
+                        </basic-row>
+                      </basic-section>
+                    </swiper-slide>
               </basic-slide-show>
               <!-- <basic-slide-show v-for="slide in getElements.filter(item => item.type == 'slider' && item.parentId == section.id && item.column == col.index && item.row == row.index)"  :key="slide.id" :properties="getPropertiesSlide(section,slide)"></basic-slide-show> -->
 
@@ -50,6 +52,7 @@
 
 </template>
 <script>
+import { slider, slideritem } from 'vue-concise-slider'
 import {bus} from './main'
 export default {
     data:function(){
@@ -73,6 +76,7 @@ export default {
 
     }, 
     methods:{
+     
       getPropertiesColumn:function(section,row,col){
         return {id: section.id,size:col.size,bgImg:col.bg,height:section.style.height,sizeRow: row.size,rowIndex:row.index,columnIndex:col.index, bgPos : col.bgPosition,bgSize:col.bgSize}
       },

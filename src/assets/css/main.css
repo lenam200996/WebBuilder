@@ -689,3 +689,10 @@ template {
   .md-icon.md-icon-font.md-theme-default{
     /* margin-right: 5px !important; */
   }
+
+  .VueCarousel{
+    width: 100%;
+  }
+  .swiper-container.swiper-container-initialized.swiper-container-horizontal{
+    width: 100%;
+  }

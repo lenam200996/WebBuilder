@@ -1,6 +1,6 @@
 <template>
 <div class="row md-layout">
-    <slick
+    <!-- <slick
     ref="slick"
     :options="{
                     slidesToShow: 1,
@@ -9,33 +9,49 @@
                      adaptiveHeight: true
                 }">
                 <slot></slot>
-    </slick>
+    </slick> -->
+    <swiper  ref="slider" :options="{
+        effect:'coverflow',
+          thresholdDistance: 500,
+          thresholdTime: 100,
+          autoplay:1000,
+          loop:true,
+          loopedSlides:1,
+          slidesToScroll:1,
+          timingFunction: 'ease',
+          speed: 300
+    }">
+        <slot></slot>
+    </swiper >
         <e-option-button-option v-if="isActive"
-        :isGrid="false"
-        :isSection="true"
-        @edit="edit" 
-        @disableEdit="onBlur"
-        @deleteItem="deleteItem"
-        @swapSection="swapSection"
-        :styleBtn="styleBtn"
-        :elementName="'SLIDE'"
+            :isGrid="false"
+            :isSection="true"
+            @edit="edit" 
+            @disableEdit="onBlur"
+            @deleteItem="deleteItem"
+            @swapSection="swapSection"
+            :styleBtn="styleBtn"
+            :elementName="'SLIDE'"
         ></e-option-button-option> 
-        <div class="navSlide">
+        <!-- <div class="navSlide">
             <md-button class="md-icon-button" @click="prev"><md-icon>skip_previous</md-icon></md-button>
             <md-button class="md-icon-button" @click="next"><md-icon>skip_next</md-icon></md-button>
-        </div>
+        </div> -->
         
 </div>
 </template>
 
 <script>
 import { bus } from "../../main";
+
     export default {
+        
         props: {
             id:{
                 type :Number,
                 required : true 
             },
+           
         },
         data() {
             return {
@@ -51,6 +67,9 @@ import { bus } from "../../main";
                     left: 0
                 },
             }
+        },
+        mounted(){
+            this.$refs.slider.$emit('autoplayStart',1000)
         },
         methods:{
             deleteItem:function(){

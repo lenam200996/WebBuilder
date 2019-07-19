@@ -14,6 +14,7 @@ export default new Vuex.Store({
     },
     selectId : false,
     selectSlideId : null,
+    selectItemSlideIndex: null,
     indexItem : 1,
     indexSection: 1,
     Selectedcolumn : null,

@@ -163,8 +163,8 @@ import Grid from '../../api/static-data.json'
             deleteItem:function(){
                 this.$store.commit('deleteItemSlide')
             },
-            swapItem:function(){
-
+            swapItem:function(ev){
+                 this.$store.commit('swapItem',ev.toIndex)
             },
             addRow:function(){
                 this.$store.commit('addRow')

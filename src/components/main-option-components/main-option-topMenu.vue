@@ -3,7 +3,7 @@
         <button class="preview-btn" @click="preview">{{isPreview ? $t('public.back') :$t('top_menu_editor.preview_site')}}</button>
         <button class="create-template-btn" @click="createTemplate">{{isPreview ? $t('public.back') : $t('top_menu_editor.create_template')}}</button>
         <RadioGroup v-model="locale" type="button">
-            <Radio label="vn" checked><flag iso="vn" /></Radio>
+            <Radio label="vn" ><flag iso="vn" /></Radio>
             <Radio label="en"><flag iso="us" /></Radio>
         </RadioGroup>
     </div>
@@ -16,7 +16,7 @@ import { bus } from "../../main";
         data:function(){
             return{
                 isPreview  : false,
-                locale : 'vn'
+                locale : 'en'
             }
         },
         methods:{

@@ -134,4 +134,7 @@
         user-select: none;
         
     }
+    .name>button{
+        cursor: all-scroll;
+    }
 </style>

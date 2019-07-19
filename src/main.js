@@ -5,9 +5,7 @@ import store from "./store/store";
 import divDragResize from '@minogin/vue-drag-resize-rotate'
 import tinymce from 'vue-tinymce-editor'
 import VueTabs from 'vue-nav-tabs/dist/vue-tabs.js'
-import EasySlider from 'vue-easy-slider'
 import VueI18n from 'vue-i18n'
-import { Slider, SliderItem } from 'vue-easy-slider'
 import VueMaterial from 'vue-material'
 import iView from 'iview';
 import lang from 'iview/dist/locale/en-US';
@@ -25,16 +23,19 @@ import 'vue-material/dist/vue-material.min.css'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import FlagIcon from 'vue-flag-icon'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 
+// require styles
+import 'swiper/dist/css/swiper.css'
+
+Vue.use(VueAwesomeSwiper, /* { default global options } */)
 Vue.use(FlagIcon);
 Vue.use(VueMaterial)
 Vue.use(VueI18n)
 Vue.use(VueTabs)
-Vue.use(EasySlider)
 Vue.use(iView);
 iView.locale(lang)
-Vue.component('slide',Slider)
-Vue.component('slideItem',SliderItem)
+
 Vue.component('tinymceText',tinymce)
 Vue.component('divDragResize',divDragResize) 
 Vue.component('slick',Slick) 
@@ -47,9 +48,9 @@ const messages = {
 };
 
 const i18n = new VueI18n({
-  locale: 'vn', // set locale
+  locale: 'en', // set locale
   messages,
-  fallbackLocale: 'vn'
+  fallbackLocale: 'en'
 });
 
 new Vue({

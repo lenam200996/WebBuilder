@@ -1,5 +1,11 @@
 import {bus} from '../main'
 var mixin= {
+    mounted() {
+        // window.addEventListener('contextmenu',()=>{return false})
+        window.oncontextmenu = function(){
+            return false
+        }
+    },
     methods:{
         select:function(){
             this.isActive = true 

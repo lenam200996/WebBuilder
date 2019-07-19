@@ -3,12 +3,13 @@
     :id="id"
     
     class="row"
+    :class="classS"
     :resizable="false"
     :rotatable="false"
     @select="select"
     @deselect="deselect"
     :style ="getStyle"
-    style="width:100%;margin:0;position:relative;z-index:1"
+    style="width:100%;margin:0;z-index:1"
     >
     <div :class="getStretched"> 
             <slot></slot>
@@ -50,6 +51,9 @@ import {bus} from '../../main'
             swapSlide:{
                 type : Boolean,
                 default :false
+            },
+            classS:{
+                type:String
             }
         },
         data:function(){
@@ -74,6 +78,7 @@ import {bus} from '../../main'
                     backgroundColor :this.styleSec.backgroundColor,
                     margin : this.styleSec.margin, 
                     left:0,
+                    position : this.isItemSlide ? 'static' : 'relative'
                 }
             },
             getStretched:function(){
