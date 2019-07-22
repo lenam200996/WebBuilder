@@ -73,7 +73,8 @@ import {bus} from '../../main'
             },
             getSizeColumn:function(){
                 return this.properties.size
-            }
+            },
+
         },
         mounted:function(){
             if(this.properties.size == 100){
@@ -84,6 +85,10 @@ import {bus} from '../../main'
             }
             else{
                 this.classResponsive = 'md-large-size-'+this.properties.size+' md-medium-size-'+this.properties.size+' md-small-size-50 md-xsmall-size-100'
+            }
+            // window.addEventListener('contextmenu',()=>{return false})
+            window.oncontextmenu = function(){
+                return false
             }
         },
         watch:{

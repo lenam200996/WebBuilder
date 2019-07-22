@@ -25,6 +25,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import FlagIcon from 'vue-flag-icon'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
+
 // require styles
 import 'swiper/dist/css/swiper.css'
 

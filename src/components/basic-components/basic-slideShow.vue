@@ -1,17 +1,7 @@
 <template>
 <div class="row md-layout">
-    <!-- <slick
-    ref="slick"
-    :options="{
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    autoplay: false,
-                     adaptiveHeight: true
-                }">
-                <slot></slot>
-    </slick> -->
     <swiper  ref="slider" :options="{
-        effect:'coverflow',
+        effect:'slide',
           thresholdDistance: 500,
           thresholdTime: 100,
           autoplay:1000,

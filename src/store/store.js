@@ -22,7 +22,9 @@ export default new Vuex.Store({
     SelectedElement: null,
     elements : {
       item :[]
-    }
+    },
+    canUndo : false,
+    canRedo : false
   },  
   mutations,
   getters,

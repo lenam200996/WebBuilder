@@ -81,6 +81,9 @@ import {bus} from '../../main'
         bus.$on('gridActive',()=>{
             this.isActive = true
         })
+        window.oncontextmenu = function(){
+                return false
+            }
     },
     computed:{
         getStyle: function(){

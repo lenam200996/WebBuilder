@@ -6,6 +6,11 @@
             <Radio label="vn" ><flag iso="vn" /></Radio>
             <Radio label="en"><flag iso="us" /></Radio>
         </RadioGroup>
+        <button v-if="canUndo" @click="undoState">Undo</button>
+        <button v-else disabled>Undo</button>
+
+        <button v-if="canRedo" @click="redoState">Redo</button>
+        <button v-else disabled>Redo</button>
     </div>
 </template>
 
@@ -16,10 +21,17 @@ import { bus } from "../../main";
         data:function(){
             return{
                 isPreview  : false,
-                locale : 'en'
+                locale : 'en',
+               
             }
         },
         methods:{
+        undoState(){
+            this.$store.dispatch('actionUndo')
+        },
+        redoState(){
+            this.$store.commit('redo')
+        },
             preview:function(){
                 if(this.isPreview){
                     this.$router.push({ path: '/' })
@@ -36,10 +48,20 @@ import { bus } from "../../main";
 
             }
         },
+        computed:{
+            canUndo(){
+                return this.$store.getters.getCanUndo
+            },
+            canRedo(){
+                return this.$store.getters.getCanRedo
+            }
+        }
+        ,
         watch:{
         locale:function(val){
             this.$i18n.locale = val
         },
+        
     },
     }
 </script>

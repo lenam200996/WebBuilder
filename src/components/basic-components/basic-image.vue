@@ -80,6 +80,7 @@
                     left:this.properties.styleImg.left,
                     top: this.properties.styleImg.top,
                     transform: 'rotate(' + this.properties.styleImg.rotation + 'deg)',
+                    transform: 'rotate(' + this.properties.position.angle + 'deg)',
                     maxWidth : '100%',
                     zIndex : this.isActive ? 99999 : 1,
                 };

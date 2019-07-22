@@ -66,5 +66,11 @@ export default {
     },
     getColumnBgSize:function(state){
       return state.elements.item.find(item => item.id == state.selectId).layout.find(itemLayout => itemLayout.index == state.Selectedcolumn && itemLayout.row == state.SelectedRow).bgSize
+    },
+    getCanUndo:function(state){
+      return state.canUndo
+    },
+    getCanRedo:function(state){
+      return state.canRedo
     }
   }

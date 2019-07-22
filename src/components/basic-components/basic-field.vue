@@ -10,7 +10,7 @@
             @deselect="deselect"
             :style="getStyleWrap"
             >
-        <input :type="getType" :placeholder="properties.styleInput.placeholder" :class="'md-elevation-'+properties.styleInput.shadow" :required="properties.styleInput.required" :style="getStyle" class="re-field">
+        <md-input :type="getType" :placeholder="properties.styleInput.placeholder" :class="'md-elevation-'+properties.styleInput.shadow" :required="properties.styleInput.required" :style="getStyle" class="re-field"></md-input>
         <e-option-button-option v-if="isActive" 
         :isGrid="false" 
         @edit="editOption" 

@@ -1,7 +1,7 @@
 {
     "top_menu_editor" : {
         "create_template" : "Create Template",
-        "preview_site" : "Priview"
+        "preview_site" : "Preview"
     },
     "public" :{
         "back" : "Back",

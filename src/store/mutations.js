@@ -1,7 +1,40 @@
 import Element from '../api/ElementClass'
 import Template from '../api/template.json'
+let snapshotState  = []
+let snapShotStateRedo = []
 export default {
+ 
+  undo(state){
+    if(snapshotState.length > 0){
+      var snapshotLast = snapshotState[snapshotState.length - 1]
+      {snapShotStateRedo.push(JSON.stringify(state))}
+      snapshotState.pop()
+      this.replaceState(JSON.parse(snapshotLast))
+    }
+    
+  },
+  redo(state){
+      if(snapShotStateRedo.length > 0){
+        var snapshotLast = snapShotStateRedo[snapShotStateRedo.length - 1]
+        snapshotState.push(JSON.stringify(state))
+        snapShotStateRedo.pop()
+        this.replaceState(JSON.parse(snapshotLast))
+        if(snapShotStateRedo.length == 0) {state.canRedo = false}
+      }
+        
+     
+  },
+  enableUndo:function(state){
+    snapshotState.push(JSON.stringify(state))
+    snapShotStateRedo = []
+    state.canUndo = true
+  },
+  enableRedo:function(state){
+    state.canRedo = true
+  },
     swapItem:function(state,toIndex){
+    this.commit('enableUndo')
+
       switch (toIndex) {
         case 'toLeft':
           {
@@ -54,6 +87,8 @@ export default {
       }
     },
     deleteItemSlide:function(state){
+      this.commit('enableUndo')
+
       this.commit('deleteSection',state.selectId)
       state.elements.item = state.elements.item.filter(item => {
         if(item.id == state.selectSlideId){
@@ -72,6 +107,8 @@ export default {
       state.selectItemSlideIndex = index
     },
     swapSection:function(state,{toIndex}){
+      this.commit('enableUndo')
+
       switch (toIndex) {
         case 'up':
           {
@@ -131,6 +168,8 @@ export default {
       state.SelectedRow = rowIndex
     },
     swapRow:function(state,toIndex){
+      this.commit('enableUndo')
+
       switch (toIndex) {
         case 'toUp':
           {
@@ -237,6 +276,8 @@ export default {
       }
     },
     swapColumn:function(state,toIndex){
+      this.commit('enableUndo')
+
       switch (toIndex) {
         case 'toLeft':
           {
@@ -330,6 +371,7 @@ export default {
       })
     },
     addTemplate:function(state,payload){
+
       var ObjectSectionTemplate = new Element.Section()
       var ObjectTextTemplate = new Element.TextParagraph()
       var ObjectButtonTemplate = new Element.Button()
@@ -551,11 +593,13 @@ export default {
       })
     },
     updatePositionElement:function(state,{id,val}){
+      // this.commit('enableUndo')
       state.elements.item = state.elements.item.filter(item =>{
         if(item.id == id){
           item.style.top = val.top,
           item.style.left = val.left
           item.style.width  =val.width
+          item.style.height = val.height
           item.style.rotation = val.rotation
         }
         return item
@@ -566,6 +610,8 @@ export default {
       state.window.width = width
     },
     setBackgroundSize:function(state,{id,value}){
+      this.commit('enableUndo')
+
       state.elements.item = state.elements.item.filter(item => {
         if(item.id == id){
           item.layout.filter(itemLayout =>{
@@ -579,6 +625,8 @@ export default {
       })
     },
     setBackgroundPosition:function(state,{id,value}){
+      this.commit('enableUndo')
+
       state.elements.item = state.elements.item.filter(item => {
         if(item.id == id){
           item.layout.filter(itemLayout =>{
@@ -592,6 +640,8 @@ export default {
       })
     },
     setBackgroundImageById:function(state,{id,value}){
+      this.commit('enableUndo')
+
       state.elements.item = state.elements.item.filter(item => {
         if(item.id == id){
           item.layout.filter(itemLayout =>{
@@ -605,6 +655,8 @@ export default {
       })
     },
     setImageUrlById:function(state,{id,value}){
+      this.commit('enableUndo')
+
       state.elements.item = state.elements.item.filter(item =>{
         if(item.id == id ){
           item.url = value
@@ -613,6 +665,8 @@ export default {
       })
     },
     updateColorColumn:function(state,{value}){
+      this.commit('enableUndo')
+
       state.elements.item = state.elements.item.filter(item =>{
         if(item.id == state.selectId){
           item.layout = item.layout.filter(itemLayout => {
@@ -630,6 +684,8 @@ export default {
       state.Selectedcolumn = index
     },
     setValueText:function(state, {id,val}){
+      this.commit('enableUndo')
+
       state.elements.item = state.elements.item.filter(item => {
         if(item.id == id){
           item.value = val
@@ -641,6 +697,7 @@ export default {
       state.selectId = id
     },
     addItem:function(state,item){
+      this.commit('enableUndo')
       state.elements.item.push(item)
       state.indexItem++
     },
@@ -848,6 +905,8 @@ export default {
       state.elements.item = state.elements.item.filter(item => item.id != id)
     },
     preColumn:function(state,id){
+      this.commit('enableUndo')
+
       state.elements.item = state.elements.item.filter(item =>{
         if(item.id == id){
           if(item.column > 1){
@@ -858,6 +917,8 @@ export default {
       })
     },
     nextColumn:function(state,id){
+      this.commit('enableUndo')
+
       state.elements.item = state.elements.item.filter(item =>{
         if(item.id == id){
           var parent = state.elements.item.find(itemP => itemP.id == item.parentId)
@@ -870,6 +931,8 @@ export default {
     },
 
     deleteSection:function(state,id){
+      this.commit('enableUndo')
+
       state.elements.item  = state.elements.item.filter(item => {
         if(item.id != id && item.parentId != id){
           return item
@@ -878,6 +941,8 @@ export default {
       state.selectId = null
     },
     deleteRow:function(state){
+      this.commit('enableUndo')
+
       if(this.getters.getNumRow == 1){
         this.commit('deleteSection',state.selectId)
         return
@@ -915,6 +980,8 @@ export default {
       })
     },
     deleteColumn:function(state ,{index, id,row}){
+      this.commit('enableUndo')
+
       // state.elements.item = state.elements.item.filter(item => {
       //   if(item.id != id || item.column != index || item.row != row){
       //     return item
@@ -979,6 +1046,8 @@ export default {
       })
     },
     addColumn:function(state){
+      this.commit('enableUndo')
+
       console.log(this.getters.getNumColumn)
       if(this.getters.getNumColumn < 5){
         var size = parseInt(100 / (this.getters.getNumColumn + 1))
@@ -998,6 +1067,8 @@ export default {
       }
     },
     addRow:function(state){
+      this.commit('enableUndo')
+
       if(this.getters.getNumRow < 5){
         var size = parseInt(100/(this.getters.getNumRow + 1))
         state.elements.item = state.elements.item.filter(item =>{
