@@ -3,11 +3,14 @@
             :id="properties.id"
             :x ="properties.position.x"
             :y ="properties.position.y"
+            :parentId="properties.parentId"
             :angle="properties.position.angle"
             :w="properties.position.w"
             :h="properties.position.h"
             @select="select"
             @deselect="deselect"
+             v-click-outside="deselect"
+            :selected="isActive"
             :style="getStyleWrap"
         >
       <div class="text" @active="onActive()" v-if="!textActive"  >

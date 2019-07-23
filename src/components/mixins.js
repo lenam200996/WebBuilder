@@ -18,6 +18,7 @@ var mixin= {
         },  
         deselect:function(){
             this.isActive = false
+            this.$store.commit('setAutoAlignBlockId',null)
         },
         deleteItem:function(){
             this.$store.commit('deleteItemById',this.properties.id)

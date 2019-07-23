@@ -87,82 +87,13 @@
           </md-list>
         </md-list-item>
       </md-list>
-<!--  -->
-    <!-- <vue-tabs  v-if="typeContent.type === 'ADD'" 
-              active-tab-color="#e74c3c" 
-              active-text-color="white"
-              type="pills"
-              :start-index="1"
-              direction="vertical"
-        > -->
-        <!-- <v-tab  title="Text" icon="ti-user">
-          <ul>
-            <li class="group-list"><span>themed text</span></li>
-            <li v-for="(text) in template['themed_text']" :key="text.name"><span v-html="text.preview" @click="$store.commit('addTemplate',text)"></span></li>
-            <li class="item-group-list" @click="$store.commit('addElement',{type : 'text'})">Blank text</li>
-            <li class="group-list"><span>Title</span></li>
-            <li v-for="(text) in template['title_text']" :key="text.name"><span v-html="text.preview" @click="$store.commit('addTemplate',text)"></span></li>
-            
-          </ul>
-        </v-tab> -->
-        <!-- <v-tab title="Image" icon="ti-settings">
-          <ul>
-            <li @click="$store.commit('addElement',{type : 'image'})" ><Icon type="ios-image" /> Simple Image</li>
-          </ul>
-        </v-tab> -->
 
-        <!-- <v-tab title="Button" icon="ti-check">
-          <ul>
-            <li @click="$store.commit('addElement',{type : 'button'})" >Simple Button</li>
-            <li @click="$store.commit('addElement',{type : 'button'})" >Simple Button</li>
-          </ul>
-        </v-tab> -->
-        <!-- <v-tab title="Strip" icon="ti-check">
-          <ul>
-            <li @click="$store.commit('addSection')">SECTION</li>
-            <li v-for="strip in template['template_strip']" :key="strip.name"  @click="$store.commit('addTemplate',strip)">{{strip.name}}</li>
-          </ul>
-        </v-tab> -->
-        <!-- <v-tab title="Shape" icon="ti-check">
-          <ul>
-              <li @click="$store.commit('addElement',{type : 'lineHorizontal'})">Line Horizontal</li>
-               <li @click="$store.commit('addElement',{type : 'lineVertical'})">Line Vertical</li>
-          </ul>
-        </v-tab> -->
-        <!-- <v-tab title="SlideShow" icon="ti-check">
-          <ul>
-              <li @click="$store.commit('addElement',{type : 'sildeShow',name:'slide basic'})">Fullwidth SlideShow</li>
-          </ul>
-        </v-tab> -->
-        <!-- <v-tab title="Box" icon="ti-check">
-          <ul>
-              <li @click="$store.commit('addElement',{type : 'box'})">My box</li>
-              <li @click="$store.commit('addElement',{type : 'field'})">Field</li>
-          </ul>
-        </v-tab> -->
-        <!-- <v-tab title="List&Grid" icon="ti-check">
-          <ul>
-              <li @click="$store.commit('addElement',{type : 'list'})">My List 1</li>
-          </ul>
-        </v-tab> -->
-        <!-- <v-tab title="Contact" icon="ti-check">
-          <ul>
-              <li  v-for="contact in template['template_contact']" :key="contact.name"  @click="$store.commit('addTemplate',contact)">{{contact.name}}</li>
-          </ul>
-        </v-tab> -->
-        <!-- <v-tab title="Video" icon="ti-check">
-          <ul>
-              <li  @click="$store.commit('addElement',{type : 'video'})"><Icon type="logo-youtube" /> YOUTUBE</li>
-          </ul>
-        </v-tab> -->
-    <!-- </vue-tabs> -->
     <div class="close" @click="closeOption"><span>x</span></div>
   </div>
 </template>
 
 <script>
 import { bus } from "../../main";
-import TemplateList from '../../DefaultTemplate'
 export default {
   name: "OptionContent",
   props: {
@@ -183,7 +114,7 @@ export default {
     }
   },
   mounted:function(){
-    this.template = TemplateList.Template;
+    // this.template = TemplateList.Template;
   }
 };
 </script>

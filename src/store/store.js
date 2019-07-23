@@ -12,6 +12,7 @@ export default new Vuex.Store({
       height : window.innerHeight,
       width : window.innerWidth
     },
+    autoAlignBlockId:null,
     selectId : false,
     selectSlideId : null,
     selectItemSlideIndex: null,

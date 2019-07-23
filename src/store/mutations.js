@@ -3,7 +3,9 @@ import Template from '../api/template.json'
 let snapshotState  = []
 let snapShotStateRedo = []
 export default {
- 
+  setAutoAlignBlockId:function(state,id){
+    state.autoAlignBlockId = id
+  },
   undo(state){
     if(snapshotState.length > 0){
       var snapshotLast = snapshotState[snapshotState.length - 1]

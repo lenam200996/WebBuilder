@@ -1,6 +1,7 @@
 <template>
      <divDragResize
             :id="properties.id"
+            :parentId="properties.parentId"
             :x ="properties.position.x"
             :y ="properties.position.y"
             :angle="properties.position.angle"
@@ -8,6 +9,8 @@
             :h="properties.position.h"
             @select="select"
             @deselect="deselect"
+             v-click-outside="deselect"
+            :selected="isActive"
             :style="getStyleWrap"
             >
     <div :style="getStyle" class="re-box" :class="'md-elevation-'+properties.styleBox.shadow">

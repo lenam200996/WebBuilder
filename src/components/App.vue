@@ -53,7 +53,7 @@
 </template>
 <script>
 import { slider, slideritem } from 'vue-concise-slider'
-import {bus} from './main'
+import {bus} from '../main'
 export default {
     data:function(){
       return {
@@ -81,31 +81,31 @@ export default {
         return {id: section.id,size:col.size,bgImg:col.bg,height:section.style.height,sizeRow: row.size,rowIndex:row.index,columnIndex:col.index, bgPos : col.bgPosition,bgSize:col.bgSize}
       },
       getPropertiesText:function(text){
-        return {id :text.id,  styleText:text.style,position:text.position,text:text.value}
+        return {id :text.id,  styleText:text.style,position:text.position,text:text.value,parentId : text.parentId}
       },
       getPropertiesImage:function(image){
-        return {id:image.id,styleImg:image.style,position:image.position,url:image.url}
+        return {id:image.id,styleImg:image.style,position:image.position,url:image.url,parentId : image.parentId}
       },
       getPropertiesButton :function(btn){
-        return { id:btn.id,styleButton:btn.style,position:btn.position,text:btn.style.text}
+        return { id:btn.id,styleButton:btn.style,position:btn.position,text:btn.style.text,parentId:btn.parentId}
       },
       getPropertiesLineHorizontal:function(line){
-        return {  id:line.id,styleLine:line.style,position:line.position}
+        return {  id:line.id,styleLine:line.style,position:line.position,parentId:line.parentId}
       },
       getPropertiesLineVertical:function(line){
-        return {id:line.id,styleLine:line.style,position:line.position}
+        return {id:line.id,styleLine:line.style,position:line.position,parentId:line.parentId}
       },
       getPropertiesSlide:function(section,slide){
         return {height:section.style.height,list:slide.slideItem}
       },
       getPropertiesBox:function(box){
-        return {id:box.id,styleBox:box.style,position:box.position}
+        return {id:box.id,styleBox:box.style,position:box.position,parentId:box.parentId}
       },
       getPropertiesField:function(field){
-        return {id:field.id,styleInput:field.style,position:field.position}
+        return {id:field.id,styleInput:field.style,position:field.position,parentId:field.parentId}
       },
       getPropertiesVideo:function(video){
-        return {id:video.id,styleVideo:video.style,position:video.position}
+        return {id:video.id,styleVideo:video.style,position:video.position,parentId:video.parentId}
       }
 
     },

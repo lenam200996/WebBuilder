@@ -7,7 +7,8 @@
     :class="' md-layout-item '+classResponsive" 
     @select="select"
     @deselect="deselect"
-    :selected="$store.getters.getSelectID == properties.id" 
+    v-click-outside="deselect"
+    :selected="isActive"
     :style="{
         background : getBackground,
         backgroundPosition: properties.bgPos,

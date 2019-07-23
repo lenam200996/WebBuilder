@@ -1,5 +1,5 @@
 import Vue from "vue";
-import App from "./App.vue";
+import App from "./components/App.vue";
 import router from "./router";
 import store from "./store/store";
 import divDragResize from '@minogin/vue-drag-resize-rotate'
@@ -24,11 +24,10 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import FlagIcon from 'vue-flag-icon'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-
-
+import vClickOutside from 'v-click-outside'
 // require styles
 import 'swiper/dist/css/swiper.css'
-
+Vue.use(vClickOutside)
 Vue.use(VueAwesomeSwiper, /* { default global options } */)
 Vue.use(FlagIcon);
 Vue.use(VueMaterial)

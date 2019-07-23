@@ -1,6 +1,7 @@
 <template>
      <divDragResize
             :id="properties.id"
+            :parentId="properties.parentId"
             :x ="properties.position.x"
             :y ="properties.position.y"
             :angle="properties.position.angle"
@@ -8,6 +9,8 @@
             :h="properties.position.h"
             @select="select"
             @deselect="deselect"
+             v-click-outside="deselect"
+            :selected="isActive"
             :style="getStyleWrap"
             >
         <md-input :type="getType" :placeholder="properties.styleInput.placeholder" :class="'md-elevation-'+properties.styleInput.shadow" :required="properties.styleInput.required" :style="getStyle" class="re-field"></md-input>

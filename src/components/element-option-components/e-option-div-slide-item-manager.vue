@@ -1,7 +1,7 @@
 <template>
     <div class="div-column-manager">
         <h2>{{$t('option.item_manager')}}</h2>
-        <i-button type="success" class="addColumn" @click="addItem">{{$t('option.add_item')}}</i-button>
+        <!-- <i-button type="success" class="addColumn" @click="addItem">{{$t('option.add_item')}}</i-button> -->
         <ul>
             <e-option-slide-item v-for="(n,index) in getNumItemSlide" :key="index" :n="n"></e-option-slide-item>
         </ul>

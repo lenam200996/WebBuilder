@@ -6,6 +6,7 @@
     :class="classS"
     :resizable="false"
     :rotatable="false"
+    :draggable="false"
     @select="select"
     @deselect="deselect"
     :style ="getStyle"
