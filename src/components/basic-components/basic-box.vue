@@ -12,8 +12,9 @@
              v-click-outside="deselect"
             :selected="isActive"
             :style="getStyleWrap"
+            :class="{autoAlign : isAutoAlign}"
             >
-    <div :style="getStyle" class="re-box" :class="'md-elevation-'+properties.styleBox.shadow">
+    <div :style="getStyle" class="re-box" :class="'md-elevation-'+properties.styleBox.shadow" >
         <slot></slot>
     </div>
         <e-option-button-option v-if="isActive"
@@ -42,11 +43,12 @@ import mixins from '../mixins.js'
     data() {
       return {
         isActive : false,
-        name : 'BOX'
+        name : 'BOX',
       }
     },
     extends: mixins.mixin,
     computed:{
+        
         getStyle: function(){
         return {
             backgroundColor : this.properties.styleBox.backgroundColor,
@@ -93,6 +95,7 @@ import mixins from '../mixins.js'
             return style
         }
         },
+         
       
     }
 </script>

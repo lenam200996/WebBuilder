@@ -12,6 +12,8 @@
              v-click-outside="deselect"
             :selected="isActive"
             :style="getStyleWrap"
+            :class="{autoAlign : isAutoAlign}"
+
         >
       <div class="text" @active="onActive()" v-if="!textActive"  >
           <span v-html="Value" :style="getStyle" :class="'md-elevation-'+properties.styleText.shadow"></span>

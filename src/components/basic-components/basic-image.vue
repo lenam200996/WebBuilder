@@ -12,6 +12,7 @@
              v-click-outside="deselect"
             :selected="isActive"
             :style="getStyleWrap"
+            :class="{autoAlign : isAutoAlign}"
             :aspectRatio="properties.styleImg.keepProportion"
             >
         <div class="wrap-img">

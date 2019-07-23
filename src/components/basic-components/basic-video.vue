@@ -12,6 +12,8 @@
              v-click-outside="deselect"
             :selected="isActive"
             :style="getStyleWrap"
+            :class="{autoAlign : isAutoAlign}"
+
             >
         <iframe :class="'md-elevation-'+properties.styleVideo.shadow" class="re-iframe-video" :src="getUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <e-option-button-option v-if="isActive"

@@ -12,6 +12,7 @@
              v-click-outside="deselect"
             :selected="isActive"
             :style="getStyleWrap"
+            :class="{autoAlign : isAutoAlign}"
             >
         <md-input :type="getType" :placeholder="properties.styleInput.placeholder" :class="'md-elevation-'+properties.styleInput.shadow" :required="properties.styleInput.required" :style="getStyle" class="re-field"></md-input>
         <e-option-button-option v-if="isActive" 
@@ -39,11 +40,13 @@ import mixins from '../mixins.js'
     data() {
       return {
         isActive : false,
-        name :'FIELD'
+        name :'FIELD',
+
       }
     },
     extends: mixins.mixin,
     computed:{
+
         getType:function(){
             return this.properties.styleInput.type
         },

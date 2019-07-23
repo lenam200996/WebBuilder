@@ -12,8 +12,9 @@
             v-click-outside="deselect"
             :selected="isActive"
             :style="getStyleWrap"
+            :class="{autoAlign : isAutoAlign}"
             >
-      <div class="button" @active="onActive()" @mouseover="isHover = true" @mouseleave="isHover = false" :class="{autoAlign : isAutoAlign}">
+      <div class="button" @active="onActive()" @mouseover="isHover = true" @mouseleave="isHover = false" >
           <button :style="getStyle" :class="'md-elevation-'+properties.styleButton.shadow">
               <span v-html="properties.text" ></span>
           </button>
@@ -48,14 +49,10 @@ import mixins from '../mixins.js'
         isActive : false,
         isHover :false,
         name : 'BUTTON',
-        isAutoAlign:false
       }
     },
     extends:mixins.mixin,
     computed:{
-      getAutoAlignBlockId:function(){
-        return this.$store.getters.getAutoAlignBlockId
-      },
       getStyle: function(){
         
         return {
@@ -114,15 +111,7 @@ import mixins from '../mixins.js'
         return style
       }
     },
-    watch:{
-      getAutoAlignBlockId:function(val){
-        if(this.properties.id === val){
-          this.isAutoAlign = true
-        }else{
-          this.isAutoAlign = false
-        }
-      }
-    }
+   
 
   }
 </script>
@@ -133,9 +122,7 @@ import mixins from '../mixins.js'
     height: 100%;
     padding: 0;
   }
-  .autoAlign{
-    border: 1px solid red;
-  }
+  
 
 
 

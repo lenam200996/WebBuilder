@@ -12,6 +12,8 @@
              v-click-outside="deselect"
             :selected="isActive"
             :style="getStyleWrap"
+            :class="{autoAlign : isAutoAlign}"
+
             >
     <div :style="getStyle" class="re-line-v" :class="'md-elevation-'+properties.styleLine.shadow">
         

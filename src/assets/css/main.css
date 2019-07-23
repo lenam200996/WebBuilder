@@ -696,3 +696,6 @@ template {
   .swiper-container.swiper-container-initialized.swiper-container-horizontal{
     width: 100%;
   }
+  .autoAlign{
+    border: 1px solid red;
+  }

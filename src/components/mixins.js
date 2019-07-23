@@ -1,11 +1,30 @@
 import {bus} from '../main'
 var mixin= {
+    data() {
+        return {
+            isAutoAlign:false
+        }
+    },
     mounted() {
         // window.addEventListener('contextmenu',()=>{return false})
         window.oncontextmenu = function(){
             return false
         }
     },
+    computed:{
+        getAutoAlignBlockId:function(){
+            return this.$store.getters.getAutoAlignBlockId
+        },
+    },
+    watch:{
+        getAutoAlignBlockId:function(val){
+          if(this.properties.id === val){
+            this.isAutoAlign = true
+          }else{
+            this.isAutoAlign = false
+          }
+        }
+      },
     methods:{
         select:function(){
             this.isActive = true 
