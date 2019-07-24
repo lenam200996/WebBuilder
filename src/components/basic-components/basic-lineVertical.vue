@@ -5,7 +5,7 @@
             :x ="properties.position.x"
             :y ="properties.position.y"
             :angle="properties.position.angle"
-            :w="properties.position.w"
+            :w="properties.styleLine.size"
             :h="properties.position.h"
             @select="select"
             @deselect="deselect"
@@ -18,6 +18,7 @@
     <div :style="getStyle" class="re-line-v" :class="'md-elevation-'+properties.styleLine.shadow">
         
     </div>
+<transition name="bounce">
         <e-option-button-option v-if="isActive"
         :isGrid="false" 
         @edit="editOption" 
@@ -27,6 +28,7 @@
         @nextColumn="nextColumn"
         :elementName="name"
         ></e-option-button-option>
+</transition>
      </divDragResize>
 </template>
 

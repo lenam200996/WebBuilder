@@ -19,7 +19,7 @@
               <span v-html="properties.text" ></span>
           </button>
       </div>
-     
+<transition name="bounce">
       <e-option-button-option v-if="isActive"
         :isGrid="false" 
         @edit="editOption" 
@@ -29,7 +29,7 @@
         @nextColumn="nextColumn"
         :elementName="name"
         ></e-option-button-option>
-        
+</transition>
     </divDragResize>
 </template>
 
@@ -123,8 +123,5 @@ import mixins from '../mixins.js'
     padding: 0;
   }
   
-
-
-
-
+   
 </style>

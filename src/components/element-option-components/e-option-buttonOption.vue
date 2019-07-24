@@ -1,28 +1,28 @@
 <template>
     <div :style="styleBtn">
-        <ul>
-            <li class="name">
-                <button @click="editText">{{elementName}}</button>
-            </li>
-            <li>
-                <button @click="edit"><Icon type="ios-brush" /></button>
-            </li>
-            <li>
-                <button @click="deleteItem"><Icon type="md-trash" /></button>
-            </li>
-            <li  v-if="!isGrid && !isSection">
-                <button @click="preColumn"><Icon type="md-arrow-dropleft" /></button>
-            </li>
-            <li v-if="!isGrid && !isSection">
-                <button @click="nextColumn"><Icon type="md-arrow-dropright" /></button>
-            </li>
-            <li v-if="isSection && !isItemSlide">
-                <button @click="swapSection('up')"><Icon type="md-arrow-dropup" /></button>
-            </li>
-            <li v-if="isSection && !isItemSlide">
-                <button @click="swapSection('down')"><Icon type="md-arrow-dropdown" /></button>
-            </li>
-        </ul>
+            <ul>
+                <li class="name">
+                    <button @click="editText">{{elementName}}</button>
+                </li>
+                <li>
+                    <button @click="edit"><Icon type="ios-brush" /></button>
+                </li>
+                <li>
+                    <button @click="deleteItem"><Icon type="md-trash" /></button>
+                </li>
+                <li  v-if="!isGrid && !isSection">
+                    <button @click="preColumn"><Icon type="md-arrow-dropleft" /></button>
+                </li>
+                <li v-if="!isGrid && !isSection">
+                    <button @click="nextColumn"><Icon type="md-arrow-dropright" /></button>
+                </li>
+                <li v-if="isSection && !isItemSlide">
+                    <button @click="swapSection('up')"><Icon type="md-arrow-dropup" /></button>
+                </li>
+                <li v-if="isSection && !isItemSlide">
+                    <button @click="swapSection('down')"><Icon type="md-arrow-dropdown" /></button>
+                </li>
+            </ul>
     </div>
 </template>
 
@@ -48,7 +48,8 @@
             isItemSlide:{
                 type:Boolean,
                 default: false
-            }
+            },
+
         },
         data:function(){
             return{
@@ -59,9 +60,9 @@
             swapSection:function(toIndex){
                 this.$emit('swapSection',toIndex)
             },
-            edit :function(){
+            edit :function(ev){
                 if(this.isEdit){
-                    this.$emit('edit',true)
+                    this.$emit('edit',{x:ev.clientX})
                     this.isEdit = false
                 }else{
                     this.$emit('disableEdit',true)
@@ -137,4 +138,6 @@
     .name>button{
         cursor: all-scroll;
     }
+ 
+
 </style>

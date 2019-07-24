@@ -17,6 +17,7 @@
     <div :style="getStyle" class="re-line-h" :class="'md-elevation-'+properties.styleLine.shadow">
         
     </div>
+<transition name="bounce">
         <e-option-button-option v-if="isActive"
         :isGrid="false" 
         @edit="editOption" 
@@ -26,6 +27,7 @@
         @nextColumn="nextColumn"
         :elementName="name"
         ></e-option-button-option>
+</transition>
      </divDragResize>
 </template>
 

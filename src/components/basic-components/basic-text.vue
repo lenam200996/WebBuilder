@@ -22,6 +22,7 @@
       <div v-else class="edit">
           <tinymceText ref="area" id="d1"  v-model="Value" @editorInit="initEdit" :style="getStyle"></tinymceText>
       </div>
+<transition name="bounce">
       <e-option-button-option v-if="isActive"
         :isGrid="false" 
         @editText="edit"
@@ -32,7 +33,7 @@
         @nextColumn="nextColumn"
         :elementName="name"
         ></e-option-button-option>
-        
+</transition> 
     </divDragResize>
 </template>
 

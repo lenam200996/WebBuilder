@@ -440,11 +440,11 @@ class Image {
             keepProportion: true,
             alignBlock : 'none',
             border : {
-                width : 3,
+                width : 0,
                 color: '#000000',
                 type : 'solid'
             },
-            borderRadius : 50,
+            borderRadius : 0,
             shadow : 0,
             top: 0,
             left : 0,

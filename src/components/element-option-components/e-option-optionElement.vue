@@ -1,11 +1,9 @@
 <template>
- 
-    <div class="wrap-option" :style="{top: top+'px', right:right+'px'}">
-        <div class="close" @click="closeOptionElement"><Icon type="ios-close-circle" /></div>
-        <h2  @mousedown="enableDrag" @mouseup="isDrag =false" @mousemove="drag">{{name}} - {{$t('public.setting')}}</h2>
-        <e-option-option-element-item :name="name" :id="id" :index="index"></e-option-option-element-item>
-    </div>
-
+        <div class="wrap-option" :style="{top: top+'px', left:left+'px'}">
+            <div class="close" @click="closeOptionElement"><Icon type="ios-close-circle" /></div>
+            <h2  @mousedown="enableDrag" @mouseup="isDrag =false" @mousemove="drag">{{name}} - {{$t('public.setting')}}</h2>
+            <e-option-option-element-item :name="name" :id="id" :index="index"></e-option-option-element-item>
+        </div>
 </template>
 
 <script>
@@ -17,7 +15,7 @@ import {bus} from '../../main'
                 x : 0,
                 y : 0,
                 top : 70,
-                right: 20,   
+                left: ((this.$props.xPointer + 500) < (window.innerWidth))?(this.$props.xPointer+100):(window.innerWidth-400),   
             }
            
         },
@@ -32,6 +30,10 @@ import {bus} from '../../main'
             },
             index : {
                 type : Number
+            },
+            xPointer:{
+                type:Number,
+                default: 300
             }
         },
         methods:{
@@ -46,7 +48,7 @@ import {bus} from '../../main'
             drag:function(ev){
                 if(this.isDrag){
                     this.top += ev.clientY - this.y
-                    this.right -= ev.clientX -this.x
+                    this.left += ev.clientX -this.x
                     this.x = ev.clientX
                     this.y = ev.clientY
                 }

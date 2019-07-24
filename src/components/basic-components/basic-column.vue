@@ -22,6 +22,7 @@
     }"
     >
      <!-- backgroundSize: '100% 100%', -->
+<transition name="bounce">    
     <e-option-button-option v-if="isActive && !swapSlide"
         :isGrid="true" 
         @edit="edit" 
@@ -30,6 +31,7 @@
         :styleBtn="styleBtn"
         :elementName="'COLUMN'"
     ></e-option-button-option>
+</transition>
         <slot></slot>
     </divDragResize>
 </template>
@@ -120,8 +122,8 @@ import {bus} from '../../main'
                 this.$store.commit('deleteColumn',{index : this.properties.columnIndex , id :this.properties.id ,row :this.properties.rowIndex})
                  bus.$emit('closeOptionElement',{name : 'Column',id:this.properties.id})
             },
-            edit:function(){
-                bus.$emit('openOption',{name : 'Column',id:this.properties.id,index: this.properties.columnIndex})
+            edit:function(ev){
+                bus.$emit('openOption',{name : 'Column',id:this.properties.id,index: this.properties.columnIndex,x:ev.x})
             },
             onBlur:function(){
                  bus.$emit('closeOptionElement',{name : 'Column',id:this.properties.id})

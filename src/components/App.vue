@@ -3,7 +3,7 @@
   <div id="app" class="container-fluid" >
     <main-option-top-menu></main-option-top-menu>
     <main-option-tool-add-element></main-option-tool-add-element>
-    <e-option-option-element v-if="option.is" :name="option.name" :id="option.id" :index="option.index"></e-option-option-element>
+     <transition name="slide-fade"><e-option-option-element v-if="option.is" :name="option.name" :id="option.id" :index="option.index" :xPointer="option.x"></e-option-option-element></transition>
     <basic-section  v-for="section in getSections" :id="section.id" :key="section.id" :styleSec="section.style" :position="section.position" :swapSlide="section.swapSlide">
       <basic-row v-for="row in section.row" :key="row.index" :id="section.id" :height="row.size" :bg="row.bg" :rowIndex="row.index" :swapSlide="section.swapSlide">
          <basic-column v-for="col in section.layout.filter(itemCol => itemCol.row == row.index)" :key="col.index" :properties="getPropertiesColumn(section,row,col)"  :swapSlide="section.swapSlide">
@@ -61,7 +61,8 @@ export default {
             is : false,
             name : '',
             id : '',
-            index :1
+            index :1,
+            x:200
           },
           isPreview : false,
       }
@@ -111,11 +112,12 @@ export default {
     },
     
     mounted(){
-      bus.$on('openOption',({name,id,index})=>{
+      bus.$on('openOption',({name,id,index,x})=>{
         this.option.is = true
         this.option.name = name
         this.option.id = id
-        this.option.index = index
+        this.option.index = index,
+        this.option.x = x
       })
       bus.$on('closeOptionElement',({name,id})=>{
         this.option.is = false

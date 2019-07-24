@@ -29,8 +29,8 @@ var mixin= {
         select:function(){
             this.isActive = true 
         },
-        editOption(){
-            bus.$emit('openOption',{name : this.name,id:this.properties.id,index : -1})
+        editOption(ev){
+            bus.$emit('openOption',{name : this.name,id:this.properties.id,index : -1,x:ev.x})
         },
         onBlur() {
             bus.$emit('closeOptionElement',{name : this.name,id:this.properties.id})

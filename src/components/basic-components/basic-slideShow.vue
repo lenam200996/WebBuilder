@@ -13,6 +13,7 @@
     }">
         <slot></slot>
     </swiper >
+<transition name="bounce">
         <e-option-button-option v-if="isActive"
             :isGrid="false"
             :isSection="true"
@@ -23,6 +24,7 @@
             :styleBtn="styleBtn"
             :elementName="'SLIDE'"
         ></e-option-button-option> 
+</transition>
         <!-- <div class="navSlide">
             <md-button class="md-icon-button" @click="prev"><md-icon>skip_previous</md-icon></md-button>
             <md-button class="md-icon-button" @click="next"><md-icon>skip_next</md-icon></md-button>

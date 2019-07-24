@@ -699,3 +699,13 @@ template {
   .autoAlign{
     border: 1px solid red;
   }
+  .drr-stick{
+    border-radius: 50%;
+    width: 10px !important;
+    height: 10px !important;
+  }
+
+  .drr-stick-ro{
+    top: -26px !important;
+    margin-left: -4px !important;
+  }

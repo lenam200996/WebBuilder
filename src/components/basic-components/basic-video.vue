@@ -16,6 +16,7 @@
 
             >
         <iframe :class="'md-elevation-'+properties.styleVideo.shadow" class="re-iframe-video" :src="getUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<transition name="bounce">    
         <e-option-button-option v-if="isActive"
         :isGrid="false" 
         @edit="editOption" 
@@ -25,6 +26,7 @@
         @nextColumn="nextColumn"
         :elementName="name"
         ></e-option-button-option>
+</transition>
      </divDragResize>
 </template>
 

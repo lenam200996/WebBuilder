@@ -18,6 +18,7 @@
         <div class="wrap-img">
             <img :src="properties.url" :style="getStyleImage" :class="'md-image md-elevation-'+properties.styleImg.shadow">
         </div>
+<transition name="bounce">    
         <e-option-button-option v-if="isActive"
             :isGrid="false" 
             @edit="editOption" 
@@ -27,7 +28,7 @@
             @nextColumn="nextColumn"
             :elementName="'IMAGE'"
         ></e-option-button-option>
-        
+</transition>
     </divDragResize>
  </template>
  
@@ -84,7 +85,6 @@
                     left:this.properties.styleImg.left,
                     top: this.properties.styleImg.top,
                     transform: 'rotate(' + this.properties.styleImg.rotation + 'deg)',
-                    transform: 'rotate(' + this.properties.position.angle + 'deg)',
                     maxWidth : '100%',
                     zIndex : this.isActive ? 99999 : 1,
                 };

@@ -14,6 +14,7 @@
     >
     <div :class="getStretched"> 
             <slot></slot>
+<transition name="bounce">
             <e-option-button-option v-if="isActive && !swapSlide"
             :isGrid="false"
             :isSection="true"
@@ -25,6 +26,7 @@
             :styleBtn="styleBtn"
             :elementName="'SECTION'"
             ></e-option-button-option> 
+</transition>
     </div>
     </divDragResize>
    
@@ -111,8 +113,8 @@ import {bus} from '../../main'
                 this.$store.commit('deleteSection',this.id)
                 bus.$emit('closeOptionElement',{name : 'SECTION',id:this.id})
             },
-            edit:function(){
-                bus.$emit('openOption',{name : 'SECTION',id:this.id,index: -1})
+            edit:function(ev){
+                bus.$emit('openOption',{name : 'SECTION',id:this.id,index: -1,x:ev.x})
             },
             onBlur:function(){
                 bus.$emit('closeOptionElement',{name : 'SECTION',id:this.id})

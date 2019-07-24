@@ -10,6 +10,7 @@
     <div :style="getStyle"  class="row" style="width:100%;position:relative">
         <slot></slot>
     </div>
+<transition name="bounce">
         <e-option-button-option v-if="isActive && !swapSlide"
         :isGrid="true" 
         @edit="editOption" 
@@ -18,6 +19,7 @@
         :styleBtn="styleBtn"
         :elementName="'ROW'"
         ></e-option-button-option>
+</transition>
      </divDragResize>
 </template>
 
@@ -63,8 +65,8 @@ import {bus} from '../../main'
         select:function(){
             this.isActive = true
         },
-        editOption(){
-         bus.$emit('openOption',{name : 'ROW',id:this.id,index : -1})
+        editOption(ev){
+         bus.$emit('openOption',{name : 'ROW',id:this.id,index : -1,x:ev.x})
         },
         onBlur() {
             bus.$emit('closeOptionElement',{name : 'ROW',id:this.id})
