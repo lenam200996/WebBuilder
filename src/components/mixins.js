@@ -28,6 +28,7 @@ var mixin= {
     methods:{
         select:function(){
             this.isActive = true 
+            this.$store.commit('setSelectedElement',this.properties.id)
         },
         editOption(ev){
             bus.$emit('openOption',{name : this.name,id:this.properties.id,index : -1,x:ev.x})

@@ -1,5 +1,16 @@
 export default {
-    
+    getStyleSelectedElement:(state)=>(val) =>{
+      var style;
+      state.elements.item.map(item=>{
+        if(item.id == val){
+          style = item.style
+        }
+      })
+      return style
+    },
+    getSelectedElement:function(state){
+      return state.SelectedElement
+    },
     getSelectID:function(state){
       return state.selectId
     },

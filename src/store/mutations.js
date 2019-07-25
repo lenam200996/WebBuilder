@@ -1,8 +1,12 @@
 import Element from '../api/ElementClass'
 import Template from '../api/template.json'
+import {bus} from '../main.js'
 let snapshotState  = []
 let snapShotStateRedo = []
 export default {
+  setSelectedElement:function(state,id){
+    state.SelectedElement = id
+  },
   setAutoAlignBlockId:function(state,id){
     state.autoAlignBlockId = id
   },
@@ -699,11 +703,13 @@ export default {
       state.selectId = id
     },
     addItem:function(state,item){
+      bus.$emit('close',true)
       this.commit('enableUndo')
       state.elements.item.push(item)
       state.indexItem++
     },
     addSection:function(state){
+      bus.$emit('close',true)
       var ObjectSection = new Element.Section();
       var item = {
         id : state.indexItem,
@@ -904,6 +910,7 @@ export default {
       
     },
     deleteItemById:function(state,id){
+      state.SelectedElement = null
       state.elements.item = state.elements.item.filter(item => item.id != id)
     },
     preColumn:function(state,id){

@@ -1,12 +1,15 @@
 {
     "top_menu_editor" : {
         "create_template" : "Tạo mẫu",
-        "preview_site" : "Xem trước"
+        "preview_site" : "Xem trước",
+        "publish" : "Đăng"
     },
     "public" :{
         "back" : "Trở về",
         "setting" : "Cài đặt",
-        "add" : "Thêm" 
+        "add" : "Thêm",
+        "menu" : "Thực đơn và trang",
+        "background" :"Nền"
     },
     "option": {
         "color" : "Màu",

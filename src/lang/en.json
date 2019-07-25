@@ -1,12 +1,15 @@
 {
     "top_menu_editor" : {
         "create_template" : "Create Template",
-        "preview_site" : "Preview"
+        "preview_site" : "Preview",
+        "publish" : "Publish"
     },
     "public" :{
         "back" : "Back",
         "setting" : "Setting",
-        "add" : "ADD"
+        "add" : "ADD",
+        "menu" : "Menu & Pages",
+        "background" : "Background"
     },
     "option": {
         "color" : "Color",
