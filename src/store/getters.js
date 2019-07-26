@@ -84,10 +84,10 @@ export default {
     getCanRedo:function(state){
       return state.canRedo
     },
-    getArrayGridElement:state=>({id,parentId})=>{
+    getArrayGridElement:state=>({id,parentId,column})=>{
       var arrayGrid = []
       state.elements.item.forEach(item =>{
-        if(item.id != id && item.type != 'section' && item.parentId == parentId){
+        if(item.id != id && item.type != 'section' && item.parentId == parentId ){
           var gridItem = {
             id : item.id,
             x_left : ((typeof item.style.left)=='string'?parseInt(item.style.left.replace('px','')):item.style.left),

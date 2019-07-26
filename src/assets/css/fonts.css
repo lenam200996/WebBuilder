@@ -1,0 +1,165 @@
+@font-face {
+    font-family: Gotham-Medium;
+    src: url("../fonts/Gotham-Medium.woff");
+}
+@font-face {
+    font-family: Gotham-Thin;
+    src: url("../fonts/Gotham-Thin.woff");
+}
+@font-face {
+    font-family: Gotham-Ultra;
+    src: url("../fonts/Gotham-Ultra.woff");
+}
+
+@font-face {
+    font-family: 'icomoon';
+    src:  url('../fonts/icomoon.eot?930doz');
+    src:  url('../fonts/icomoon.eot?930doz#iefix') format('embedded-opentype'),
+      url('../fonts/icomoon.ttf?930doz') format('truetype'),
+      url('../fonts/icomoon.woff?930doz') format('woff'),
+      url('../fonts/icomoon.svg?930doz#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  [class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    cursor: pointer;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-add:before {
+    content: "\e907";
+    color: #54657e;
+  }
+  .icon-align-center:before {
+    content: "\e909";
+    color: #8493a8;
+  }
+  .icon-align-left:before {
+    content: "\e90a";
+    color: #8493a8;
+  }
+  .icon-align-right:before {
+    content: "\e90b";
+    color: #8493a8;
+  }
+  .icon-background:before {
+    content: "\e90c";
+    color: red;
+  }
+  .icon-book-solid:before {
+    content: "\e91f";
+  }
+  .icon-close:before {
+    content: "\e920";
+    color: #eb6641;
+  }
+  .icon-copy:before {
+    content: "\e921";
+    color: #8493a8;
+  }
+  .icon-deg:before {
+    content: "\e922";
+    color: #8493a8;
+  }
+  .icon-delete:before {
+    content: "\e923";
+    color: #8493a8;
+  }
+  .icon-deleteOption:before {
+    content: "\e924";
+    color: #ebedf3;
+  }
+  .icon-desktop:before {
+    content: "\e925";
+    color: #8493a8;
+  }
+  .icon-desktop-active:before {
+    content: "\e926";
+    color: #eb6641;
+  }
+  .icon-drag-arrow:before {
+    content: "\e927";
+  }
+  .icon-draging:before {
+    content: "\e928";
+    color: #eb6641;
+    cursor: all-scroll;
+  }
+  .icon-duplicate:before {
+    content: "\e929";
+    color: rgb(132, 147, 168);
+  }
+  .icon-duplicate .path2:before {
+    content: "\e92a";
+    margin-left: -1em;
+    color: rgb(255, 255, 255);
+  }
+  .icon-duplicate .path3:before {
+    content: "\e92b";
+    margin-left: -1em;
+    color: rgb(255, 255, 255);
+  }
+  .icon-edit:before {
+    content: "\e92c";
+  }
+  .icon-eye-regular:before {
+    content: "\e92d";
+  }
+  .icon-help:before {
+    content: "\e92e";
+    color: #eb6641;
+    cursor: help;
+  }
+  .icon-mobile:before {
+    content: "\e92f";
+    color: #8493a8;
+  }
+  .icon-next:before {
+    content: "\e930";
+  }
+  .icon-none:before {
+    content: "\e931";
+    color: #8493a8;
+  }
+  .icon-page:before {
+    content: "\e932";
+    color: #54657e;
+  }
+  .icon-paste:before {
+    content: "\e933";
+    color: #8493a8;
+  }
+  .icon-plus-circle-solid:before {
+    content: "\e934";
+  }
+  .icon-previous:before {
+    content: "\e935";
+  }
+  .icon-redo:before {
+    content: "\e936";
+    color: #8493a8;
+  }
+  .icon-setting:before {
+    content: "\e937";
+    color: #ebedf3;
+  }
+  .icon-square-regular:before {
+    content: "\e938";
+    color: #8493a8;
+  }
+  .icon-undo:before {
+    content: "\e939";
+    color: #8493a8;
+  }
+  

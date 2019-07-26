@@ -5,10 +5,16 @@
                     <button @click="editText">{{elementName}}</button>
                 </li>
                 <li>
-                    <button @click="edit"><Icon type="ios-brush" /></button>
+                    <button @click="edit">
+                        <!-- <img class="svg-button-toolbar" src="../../assets/setting.svg" width="15" height="15" >                                                 -->
+                        <span class="icon-setting"></span>
+                    </button>
                 </li>
                 <li>
-                    <button @click="deleteItem"><Icon type="md-trash" /></button>
+                    <button @click="deleteItem">
+                        <!-- <img class="svg-button-toolbar" src="../../assets/deleteOption.svg" width="15" height="15" >                         -->
+                        <span class="icon-deleteOption"></span>
+                    </button>
                 </li>
                 <li  v-if="!isGrid && !isSection">
                     <button @click="preColumn"><Icon type="md-arrow-dropleft" /></button>
@@ -71,7 +77,7 @@
                
             },
             editText:function(){
-                if(this.elementName == 'TEXT'){
+                if(this.elementName == 'EDIT TEXT'){
                     this.$emit('editText',true)
                 }
                 return
@@ -91,50 +97,67 @@
 
 <style scoped>
     div{ 
-        width : 265px;
-        height: 25px;
+        width : 248px;
+        height: 40px;
         position: absolute;
         z-index: 99999999;
-        bottom: -30px;
+        bottom: -42px;
         right: 0px;
         opacity: 0.8;
+        border-radius: 5px;
     }
     ul{
         list-style-type: none;
+        width: 100%;
+        height: 100%;
     }
     ul > li {
-        width : 25px;
-        height: 25px;
+        width : 37px;
+        height: 40px;
         float: left;
-        border-radius: 50%;
-        margin-right: 5px;
-        background: linear-gradient(
-            to bottom,
-            rgba(255, 255, 255, 0.96) 0%,
-            rgba(238, 238, 238, 0.96) 100%
-        );
-        box-shadow: 0 2px 5px 0 rgba(22, 45, 61, 0.58);
+        /* border-radius: 50%; */
+        /* margin-right: 5px; */
+        background: #374355;
+        position: relative;
+        /* box-shadow: 0 2px 5px 0 rgba(22, 45, 61, 0.58); */
+    }
+    ul > li:first-child{
+        border-radius: 5px 0 0 5px;
+    }
+    ul>li:last-child{
+        border-radius: 0 5px 5px 0;
+    }
+    ul > li::after{
+        position: absolute;
+        content: "";
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 1px;
+        background-color: #ffffff;
     }
     ul > li >button {
-        width:25px;
-        height:25px;
-        border-radius: 50%;
+        width: 100%;
+        height:40px;
+        /* border-radius: 50%; */
         border:none;
-        background-color: none;
+        background-color: #374355;
+        color: #ffffff;
     }
 
-    button > img {
+    button > li {
         width: 100%;
         height: 100%;
     }
 
     li.name, li.name>button{
         width : 100px;
-        height: 25px;
+        height: 40px;
         border-radius: 10px;
         user-select: none;
-        
+        letter-spacing: 2px;    
     }
+    
     .name>button{
         cursor: all-scroll;
     }

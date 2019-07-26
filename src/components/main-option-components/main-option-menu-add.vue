@@ -1,9 +1,9 @@
 <template>
     <div class="wrap-menu-add">
         <ul class="ul-list-menu-add-button">
-           <main-option-menu-add-item :isOpenOption="isOpenOption" :typeOption="typeOption" :title="'Menu & Page'" :src="'page.svg'" @openOption="openOption" :name="'menu'"></main-option-menu-add-item>
-           <main-option-menu-add-item :isOpenOption="isOpenOption" :typeOption="typeOption" :title="'Background'" :src="'background.svg'" @openOption="openOption" :name="'background'"></main-option-menu-add-item>
-           <main-option-menu-add-item :isOpenOption="isOpenOption" :typeOption="typeOption" :title="'ADD'" :src="'add.svg'" @openOption="openOption" :name="'add'"></main-option-menu-add-item>
+           <main-option-menu-add-item :isOpenOption="isOpenOption" :typeOption="typeOption" :title="'Menu & Page'" :icon="'page'" @openOption="openOption" :name="'menu'"></main-option-menu-add-item>
+           <main-option-menu-add-item :isOpenOption="isOpenOption" :typeOption="typeOption" :title="'Background'" :icon="'square-regular'" @openOption="openOption" :name="'background'"></main-option-menu-add-item>
+           <main-option-menu-add-item :isOpenOption="isOpenOption" :typeOption="typeOption" :title="'ADD'" :icon="'add'" @openOption="openOption" :name="'add'"></main-option-menu-add-item>
         </ul>
         <main-option-menu-add-options :y="y" v-if="isOpenOption" :typeOption="typeOption"></main-option-menu-add-options>
     </div>

@@ -2,6 +2,7 @@
      <divDragResize
             :id="properties.id"
             :parentId="properties.parentId"
+            :column="properties.columnIndex"
             :x ="properties.position.x"
             :y ="properties.position.y"
             :angle="properties.position.angle"

@@ -19,8 +19,10 @@
         </div>
         <div v-if="typeOption == 'menu'" class="wrap-option-content">
             <h2 class="wrap-option-content-header">{{$t('public.'+typeOption.toLowerCase())}}
-                <img class="svg-button-toolbar btn-close-option" src="../../assets/close.svg" width="18" height="18"  @click="close">                                
-                <img class="svg-button-toolbar btn-help-option" src="../../assets/help.svg" width="18" height="18">
+                <!-- <img class="svg-button-toolbar btn-close-option" src="../../assets/close.svg" width="18" height="18"  @click="close">                                 -->
+                    <span class="icon-close" @click="close"></span>
+                    <span class="icon-help"></span>
+                <!-- <img class="svg-button-toolbar btn-help-option" src="../../assets/help.svg" width="18" height="18"> -->
             </h2>
             <div class="option-content">
                 
@@ -28,8 +30,8 @@
         </div>
         <div v-if="typeOption == 'background'" class="wrap-option-content">
             <h2 class="wrap-option-content-header">{{$t('public.'+typeOption.toLowerCase())}}
-                <img class="svg-button-toolbar btn-close-option" src="../../assets/close.svg" width="18" height="18"  @click="close">                                
-                <img class="svg-button-toolbar btn-help-option" src="../../assets/help.svg" width="18" height="18">
+                <span class="icon-close" @click="close"></span>
+                <span class="icon-help"></span>
             </h2>
             <div class="option-content">
                 
@@ -37,8 +39,8 @@
         </div>
         <div v-if="typeOption == 'add'" class="wrap-option-content">
             <h2 class="wrap-option-content-header">{{$t('public.'+typeOption.toLowerCase())}}
-                <img class="svg-button-toolbar btn-close-option" src="../../assets/close.svg" width="18" height="18"  @click="close">                                
-                <img class="svg-button-toolbar btn-help-option" src="../../assets/help.svg" width="18" height="18">
+                <span class="icon-close" @click="close"></span>
+                <span class="icon-help"></span>
             </h2>
             <div class="option-content">
                 <ul>

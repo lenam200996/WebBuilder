@@ -54,7 +54,7 @@ import {bus} from '../../main'
             return{
                 isActive : false,
                 styleBtn:{
-                     width : 275 +'px',
+                    width : 275 +'px',
                     height: 25 +'px',
                     position: 'absolute',
                     zIndex: '99999',

@@ -2,20 +2,20 @@
     <div class="wrap-toolbar" :style="styles">
         <div class="head-toolbar">
             <div class="help-toolbar">
-                <img class="svg-button-toolbar" src="../../assets/help.svg" width="15" height="15" >
+                <span class="icon-help"></span>
             </div>
             <div class="handle-drag" @mousedown="enableDrag"  >
-                <img  @mousedown="enableDrag" class="svg-button-toolbar" src="../../assets/draging.svg" width="18" height="18" >
+                <span class="icon-draging" @mousedown="enableDrag"></span>
             </div>
             <div class="close-toolbar">
-                <img class="svg-button-toolbar" src="../../assets/close.svg" width="15" height="15" >                
+                <span class="icon-close"></span>
             </div>
         </div>
         <div class="group-toolbar-button">
             <div class="group-toolbar-button-grid">
                 <span class="toolbar-button" :class="[!selected ?'disabled':'']">
                     <Tooltip placement="top">
-                        <img class="svg-button-toolbar" src="../../assets/copy.svg" width="15" height="15" >
+                        <span class="icon-copy"></span>
                         <div slot="content">
                             <p><i>Copy Element</i></p>
                         </div>
@@ -23,7 +23,7 @@
                 </span>
                 <span class="toolbar-button" :class="[!selected?'disabled':'']">
                     <Tooltip placement="top">
-                        <img class="svg-button-toolbar" src="../../assets/paste.svg" width="15" height="15" >
+                        <span class="icon-paste"></span>
                         <div slot="content">
                             <p><i>Paste Element</i></p>
                         </div>
@@ -31,7 +31,7 @@
                 </span>
                 <span class="toolbar-button" :class="[!selected ?'disabled':'']">
                     <Tooltip placement="top">
-                        <img class="svg-button-toolbar" src="../../assets/duplicate.svg" width="15" height="15">
+                        <span class="icon-duplicate"></span>
                         <div slot="content">
                             <p><i>Duplicate</i></p>
                         </div>
@@ -39,7 +39,7 @@
                 </span>
                 <span class="toolbar-button"  :class="[!selected ?'disabled':'']" @click="deleteElement">
                     <Tooltip placement="top">
-                        <img class="svg-button-toolbar" src="../../assets/delete.svg" width="15" height="15">
+                        <span class="icon-delete"></span>
                         <div slot="content">
                             <p><i>Delete</i></p>
                         </div>
@@ -48,33 +48,33 @@
             </div>
             <div class="group-toolbar-button-grid">
                  <RadioGroup v-model="getStyleElement.alignBlock" type="button" checked>
-                    <Radio label="none">
+                    <Radio label="none" :class="[!selected ?'disabled':'']">
                         <Tooltip placement="top">
-                            <img class="svg-button-toolbar" src="../../assets/none.svg" width="16" height="16" >
+                            <span class="icon-none"></span>
                             <div slot="content">
                                 <p><i>None</i></p>
                             </div>
                         </Tooltip>
                     </Radio>
-                    <Radio label="center">
+                    <Radio label="center" :class="[!selected ?'disabled':'']">
                         <Tooltip placement="top">
-                            <img class="svg-button-toolbar" src="../../assets/align-center.svg" width="18" height="18" >
+                            <span class="icon-align-center"></span>
                             <div slot="content">
                                 <p><i>Align center</i></p>
                             </div>
                         </Tooltip>
                     </Radio>
-                    <Radio label="right">
+                    <Radio label="right" :class="[!selected ?'disabled':'']">
                         <Tooltip placement="top">
-                            <img class="svg-button-toolbar" src="../../assets/align-right.svg" width="18" height="18" >
+                            <span class="icon-align-right"></span>
                             <div slot="content">
                                 <p><i>Align right</i></p>
                             </div>
                         </Tooltip>
                     </Radio>
-                    <Radio label="left">
+                    <Radio label="left" :class="[!selected ?'disabled':'']">
                         <Tooltip placement="top">
-                            <img class="svg-button-toolbar" src="../../assets/align-left.svg" width="18" height="18" >
+                            <span class="icon-align-left"></span>
                             <div slot="content">
                                 <p><i>Align left</i></p>
                             </div>
@@ -85,6 +85,7 @@
             <div class="group-toolbar-button-grid">
                 <span class="toolbar-button disabled">
                     <img class="svg-button-toolbar" src="../../assets/deg.svg" width="15" height="15">                    
+                    <!-- <span class="icon-deg"></span> -->
                 </span>
                 <span class="toolbar-button toolbar-value disabled">
                     {{getStyleElement.rotation.toFixed(1)}}<span class="units">°</span>

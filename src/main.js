@@ -19,6 +19,7 @@ import './components/main-option-components/_main_option_components'
 import './components/render-components/_render_components'
 import 'iview/dist/styles/iview.css';
 import './assets/css/main.css'
+import './assets/css/fonts.css'
 import './assets/css/animated.css'
 import 'vue-material/dist/vue-material.min.css'
 import 'slick-carousel/slick/slick.css';

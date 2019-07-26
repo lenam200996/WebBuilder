@@ -64,7 +64,7 @@ import {bus} from '../../main'
                 isActive : false,
                 styleBtn:{
                     width : this.$props.isItemSlide?(145 +'px'):(245 +'px'),
-                    height: 25 +'px',
+                    height: 45 +'px',
                     position: 'absolute',
                     zIndex: '99999',
                     bottom: 0 + '!important',

@@ -1,6 +1,7 @@
 <template>
      <divDragResize
             :id="properties.id"
+            :column="properties.columnIndex"
             :parentId="properties.parentId"
             :x ="properties.position.x"
             :y ="properties.position.y"

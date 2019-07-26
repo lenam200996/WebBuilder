@@ -83,31 +83,31 @@ export default {
         return {id: section.id,size:col.size,bgImg:col.bg,height:section.style.height,sizeRow: row.size,rowIndex:row.index,columnIndex:col.index, bgPos : col.bgPosition,bgSize:col.bgSize}
       },
       getPropertiesText:function(text){
-        return {id :text.id,  styleText:text.style,position:text.position,text:text.value,parentId : text.parentId}
+        return {id :text.id,  styleText:text.style,position:text.position,text:text.value,parentId : text.parentId,columnIndex : text.column}
       },
       getPropertiesImage:function(image){
-        return {id:image.id,styleImg:image.style,position:image.position,url:image.url,parentId : image.parentId}
+        return {id:image.id,styleImg:image.style,position:image.position,url:image.url,parentId : image.parentId,columnIndex : image.column}
       },
       getPropertiesButton :function(btn){
-        return { id:btn.id,styleButton:btn.style,position:btn.position,text:btn.style.text,parentId:btn.parentId}
+        return { id:btn.id,styleButton:btn.style,position:btn.position,text:btn.style.text,parentId:btn.parentId,columnIndex : btn.column}
       },
       getPropertiesLineHorizontal:function(line){
-        return {  id:line.id,styleLine:line.style,position:line.position,parentId:line.parentId}
+        return {  id:line.id,styleLine:line.style,position:line.position,parentId:line.parentId,columnIndex : line.column}
       },
       getPropertiesLineVertical:function(line){
-        return {id:line.id,styleLine:line.style,position:line.position,parentId:line.parentId}
+        return {id:line.id,styleLine:line.style,position:line.position,parentId:line.parentId,columnIndex : line.column}
       },
       getPropertiesSlide:function(section,slide){
         return {height:section.style.height,list:slide.slideItem}
       },
       getPropertiesBox:function(box){
-        return {id:box.id,styleBox:box.style,position:box.position,parentId:box.parentId}
+        return {id:box.id,styleBox:box.style,position:box.position,parentId:box.parentId,columnIndex : box.column}
       },
       getPropertiesField:function(field){
-        return {id:field.id,styleInput:field.style,position:field.position,parentId:field.parentId}
+        return {id:field.id,styleInput:field.style,position:field.position,parentId:field.parentId,columnIndex : v.column}
       },
       getPropertiesVideo:function(video){
-        return {id:video.id,styleVideo:video.style,position:video.position,parentId:video.parentId}
+        return {id:video.id,styleVideo:video.style,position:video.position,parentId:video.parentId,columnIndex : video.column}
       }
 
     },

@@ -19,20 +19,21 @@
             </li>
             <li class="wrap-select">
                 <span>Page</span>
-                <i-select :class="'select-single-page'">
-                    <i-option :value="1">item 1</i-option>
-                    <i-option :value="2">item 1</i-option>
-                    <i-option :value="3">item 1</i-option>
-                    <i-option :value="4">item 1</i-option>
+                <i-select v-model="pageIndex" :class="'select-single-page'">
+                    <i-option :value="1">Trang chủ</i-option>
+                    <i-option :value="2">Giới thiệu</i-option>
+                    <i-option :value="3">Liên hệ</i-option>
                 </i-select>
             </li>
             <li class="wrap-responsive">
-                 <RadioGroup type="button" size="large">
+                 <RadioGroup v-model="responsive" type="button" size="large">
                     <Radio label="desktop">
-                        <img class="svg-button-toolbar" src="../../assets/desktop.svg" width="22" height="22" >
+                        <!-- <img class="svg-button-toolbar" src="../../assets/desktop.svg" width="22" height="22" > -->
+                        <span class="icon-desktop"></span>
                     </Radio>
                     <Radio label="mobile">
-                        <img class="svg-button-toolbar" src="../../assets/mobile.svg" width="22" height="22" >
+                        <!-- <img class="svg-button-toolbar" src="../../assets/mobile.svg" width="22" height="22" > -->
+                        <span class="icon-mobile"></span>
                     </Radio>
                 </RadioGroup>
             </li>
@@ -40,11 +41,13 @@
 
             </li>
             <li class="wrap-undo-redo">
-                <span @click="undoState" class="btn-undo">
-                    <img class="svg-button-toolbar" src="../../assets/undo.svg" width="22" height="22" >
+                <span @click="undoState" class="btn-undo active">
+                    <!-- <img class="svg-button-toolbar" src="../../assets/undo.svg" width="22" height="22" > -->
+                        <span class="icon-undo"></span>
                 </span>
                 <span @click="redoState" class="btn-redo">
-                    <img class="svg-button-toolbar" src="../../assets/redo.svg" width="22" height="22" >
+                    <!-- <img class="svg-button-toolbar" src="../../assets/redo.svg" width="22" height="22" > -->
+                        <span class="icon-redo"></span>
                 </span>
             </li>
             <li class="wrap-btn-save">
@@ -69,7 +72,8 @@ import { bus } from "../../main";
             return{
                 isPreview  : false,
                 locale : 'en',
-               
+                responsive : 'desktop',
+                pageIndex: 1
             }
         },
         methods:{

@@ -1,6 +1,6 @@
 <template>
      <li class="menu-add-button" :class="{active : isActive&&!isOpenOption,opened:isOpen&&typeOption==name}" @click="openOption(name)" @mousemove="active" @mouseout="deActive">
-        <img class="svg-button-toolbar" :src="require('../../assets/'+src)" width="22" height="22" >
+        <span :class="'icon-'+icon"></span>
         <p>{{title}}</p>
     </li>
 </template>
@@ -16,7 +16,7 @@ import {bus} from '../../main.js'
             title :{
                 type:String,
             },
-            src:{
+            icon:{
                 type : String
             },
             name : {

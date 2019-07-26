@@ -22,6 +22,7 @@
 
 body {
   margin: 0;
+  font-family: Gotham-Medium !important;
 }
 
 /**
@@ -373,7 +374,7 @@ template {
     padding: 0; 
   }
   #app {
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    /* font-family: "Avenir", Helvetica, Arial, sans-serif; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
@@ -655,16 +656,16 @@ template {
     font-size: 16px;
   }
   .ivu-icon-md-trash{
-    color: red;
+    /* color: red; */
   }
   .ivu-icon-ios-brush{
-    color: green;
+    /* color: green; */
   }
   .ivu-icon-ios-close-circle,.ivu-icon-md-arrow-dropleft,.ivu-icon-md-arrow-dropright,.ivu-icon-md-arrow-dropup,.ivu-icon-md-arrow-dropdown{
-    font-size: 24px;
+    font-size: 30px;
   }
   .ivu-icon-md-arrow-dropleft,.ivu-icon-md-arrow-dropright,.ivu-icon-md-arrow-dropup,.ivu-icon-md-arrow-dropdown{
-    color:blue;
+    /* color:blue; */
   }
 
   .mce-statusbar.mce-container.mce-panel.mce-stack-layout-item.mce-last,.mce-container.mce-menubar.mce-toolbar.mce-first{
@@ -728,11 +729,12 @@ ul.ul-top-menu-wrap>li{
     text-align: center;
 }
 li.wrap-logo{
-    width: 195px;
+    width: 13%;
     position: relative;
 }
 li.wrap-responsive{
     position: relative;
+    width: 6.3%;
 }
 li.wrap-responsive>div>label>img{
   height: 22px !important;
@@ -747,7 +749,7 @@ li.wrap-logo::after,li.wrap-select::after,li.wrap-responsive::after,li.wrap-menu
     background-color: #EBEDF3;
 }
 li.wrap-select{
-    width: 185px;
+    width: 14%;
     position: relative;
 }
 
@@ -838,6 +840,9 @@ li.wrap-select{
     cursor: help;
     user-select: none;
 }
+.help-toolbar>.icon-help{
+  font-size: 16px;
+}
 
 .handle-drag{
     font-size: 18px;
@@ -896,11 +901,11 @@ li.wrap-select{
     cursor: no-drop;
     pointer-events: none;
 }
-.toolbar-button>div>div>img{
-  filter: invert(.5) sepia(2) saturate(5) hue-rotate(-35deg)
+.toolbar-button>div>div>span::before{
+  color: #EB6641;
 }
-.disabled>div>div>img{
-    filter: invert(.5);
+.disabled>div>div>span::before{
+  color: #8493a8;
 }
 .ivu-radio-wrapper.ivu-radio-group-item{
     padding: 0 !important;
@@ -925,9 +930,7 @@ li.wrap-select{
 .ivu-radio-group-button .ivu-radio-wrapper-checked,.ivu-radio-group-button .ivu-radio-wrapper-checked.ivu-radio-wrapper:first-child,.ivu-radio-group-button .ivu-radio-wrapper-checked.ivu-radio-wrapper:last-child{
     border-left: none !important;
 }
-li.wrap-responsive>div>label.ivu-radio-wrapper.ivu-radio-group-item.ivu-radio-wrapper-checked.ivu-radio-default>img{
-  filter: invert(.5) sepia(1) saturate(5) hue-rotate(-35deg);
-}
+
 li.wrap-responsive>div>label.ivu-radio-wrapper.ivu-radio-group-item.ivu-radio-wrapper-checked.ivu-radio-default{
   border-bottom: 1px solid #EB6641 !important;
 }
@@ -937,17 +940,17 @@ li.wrap-responsive>div>label{
   padding: 0 !important;
 }
 
-.ivu-radio-wrapper-checked>div>div>img{
-    filter: invert(.5) sepia(1) saturate(5) hue-rotate(-35deg);
+.ivu-radio-wrapper-checked>div>div>span::before{
+  color: #EB6641;
 }
 .toolbar-laber,.toolbar-value{
     font-size: 14px;
     pointer-events: none;
-    color:#469bd2;
+    color:#162d3d;
     height:25px;
 }
 .title-toolbar{
-    color:#286f74;
+    color:#EB6641;
 }
 .wrap-menu-add{
     position: fixed;
@@ -983,18 +986,18 @@ ul.ul-list-menu-add-button{
     background-color: #162d3d;
     color: #162d3d;
 }
-.menu-add-button.opened>img{
-    filter: invert(2) brightness(2);
+.menu-add-button.opened>span::before{
+  color: #ffffff;
 }
-.menu-add-button>img{
+/* .menu-add-button>img{
     position: absolute;
     left: 14px;
     top: 14px;
     filter: invert(.4);
 }
-
-.menu-add-button:hover>img{
-    filter: invert(.5) sepia(1) saturate(5) hue-rotate(175deg);
+ */
+.menu-add-button:hover>span::before{
+  color: #EB6641;
 }
 .menu-add-button>p{
     position: absolute;
@@ -1017,29 +1020,37 @@ i.ivu-icon.ivu-icon-ios-arrow-down.ivu-select-arrow{
     height: 100%;
     position: relative;
 }
-.ivu-radio-group.ivu-radio-group-large.ivu-radio-large.ivu-radio-group-button>label>img{
+.ivu-radio-group.ivu-radio-group-large.ivu-radio-large.ivu-radio-group-button>label>span{
     position: absolute;
     top: 50%;
     left: 4px;
-    transform: translateY(-50%)
+    transform: translateY(-50%);
+    font-size: 22px;
+    border-bottom: 1px solid transparent;
 }
-
+.wrap-responsive>div>.ivu-radio-wrapper-checked>span::before{
+  color: #EB6641;
+}
 .wrap-menu{
-    width: 500px;
+    width: 38.7%;
     position: relative;
 }
 .wrap-undo-redo{
     position: relative;
-    width: 95px;
+    width: 7%;
+    font-size: 22px;
+}
+.wrap-undo-redo>span.active>span::before{
+  color: #EB6641;
 }
 
-.wrap-undo-redo>.btn-undo>img{
+.wrap-undo-redo>.btn-undo>span{
     position: absolute;
     top: 50%;
     left: 15px;
     transform: translateY(-50%);
 }
-.wrap-undo-redo>.btn-redo>img{
+.wrap-undo-redo>.btn-redo>span{
     position: absolute;
     top: 50%;
     left: 57px;
@@ -1047,7 +1058,7 @@ i.ivu-icon.ivu-icon-ios-arrow-down.ivu-select-arrow{
 }
 .wrap-btn-save,.wrap-btn-preview,.wrap-publish{
     position: relative;
-    width: 95px;
+    width: 6%;
 }
 .wrap-btn-save>span,.wrap-btn-preview>span,.wrap-publish>span{
     position: absolute;
@@ -1059,7 +1070,7 @@ i.ivu-icon.ivu-icon-ios-arrow-down.ivu-select-arrow{
     font-weight: 600;
 }
 .wrap-publish{
-    width: 115px;
+    width: 9%;
     background-color: #EB6641;
 }
 .wrap-publish>span{
@@ -1113,14 +1124,15 @@ i.ivu-icon.ivu-icon-ios-arrow-down.ivu-select-arrow{
     color: #374355;
     position: relative;
 }
-.btn-close-option,.btn-help-option{
+.wrap-option-content-header>.icon-close,.wrap-option-content-header>.icon-help{
     position: absolute;
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
 }
-.btn-help-option{
+.wrap-option-content-header>.icon-help{
     right: 40px;
+    font-size: 16px;
 }
 .option-content{
     width: 100%;
@@ -1149,4 +1161,32 @@ i.ivu-icon.ivu-icon-ios-arrow-down.ivu-select-arrow{
 .svg-button-toolbar{
     cursor: pointer;
 }
+.drr.active::before{
+  outline: 2px dashed #EB6641 !important;
+}
+.ro-stick-handle{
+  /* left: -9px !important;
+  top: -16px !important; */
+  border: 1px solid #EB6641 !important;
+  /* transform: rotate(-45deg); */
+}
+.drr-stick{
+  background-color: #162d3d !important;
+}
 
+.menu-add-button>span{
+  font-size: 30px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+.menu-add-button>span.icon-square-regular{
+  left: 12px !important;
+}
+.mce-container-body.mce-flow-layout{
+  background-color: #162d3d;
+}
+.mce-tinymce.mce-container.mce-panel{
+  height: 100%;
+}
