@@ -1,17 +1,4 @@
 <template>
-    <!-- <div class="top-menu">
-        <button class="preview-btn" @click="preview">{{isPreview ? $t('public.back') :$t('top_menu_editor.preview_site')}}</button>
-        <button class="create-template-btn" @click="createTemplate">{{isPreview ? $t('public.back') : $t('top_menu_editor.create_template')}}</button>
-        <RadioGroup v-model="locale" type="button">
-            <Radio label="vn" ><flag iso="vn" /></Radio>
-            <Radio label="en"><flag iso="us" /></Radio>
-        </RadioGroup>
-        <button v-if="canUndo" @click="undoState">Undo</button>
-        <button v-else disabled>Undo</button>
-
-        <button v-if="canRedo" @click="redoState">Redo</button>
-        <button v-else disabled>Redo</button>
-    </div> -->
     <section class="top-menu-wrap">
         <ul class="ul-top-menu-wrap">
             <li class="wrap-logo">
@@ -28,25 +15,46 @@
             <li class="wrap-responsive">
                  <RadioGroup v-model="responsive" type="button" size="large">
                     <Radio label="desktop">
-                        <!-- <img class="svg-button-toolbar" src="../../assets/desktop.svg" width="22" height="22" > -->
                         <span class="icon-desktop"></span>
                     </Radio>
                     <Radio label="mobile">
-                        <!-- <img class="svg-button-toolbar" src="../../assets/mobile.svg" width="22" height="22" > -->
                         <span class="icon-mobile"></span>
                     </Radio>
                 </RadioGroup>
             </li>
             <li class="wrap-menu">
+                <ul class="menu" 
+                v-click-outside="closeSubMenu"                
+                >
+                        <li @click="openSubMenu($event,'Site')">
+                            Site
+                        </li>
+                        <li @click="openSubMenu($event,'Setting')">
+                            Setting
+                        </li>
+                        <li @click="openSubMenu($event,'Tools')">
+                            Tools
+                        </li>
+                        <li @click="openSubMenu($event,'DevMode')">
+                            Dev Mode
+                        </li>
+                        <li @click="openSubMenu($event,'Help')">
+                            Help
+                        </li>
+                        <li @click="openSubMenu($event,'Upgrade')">
+                            Upgrade
+                        </li>
+                   
+                </ul>
+
+            <main-option-sub-menu :class="{activeSub:openedSubMenu}" :x="x" :name="name" :item="{toolbar: getOpenedToolbar}"></main-option-sub-menu>
 
             </li>
             <li class="wrap-undo-redo">
-                <span @click="undoState" class="btn-undo active">
-                    <!-- <img class="svg-button-toolbar" src="../../assets/undo.svg" width="22" height="22" > -->
+                <span @click="undoState" class="btn-undo" :class="{active : canUndo}">
                         <span class="icon-undo"></span>
                 </span>
-                <span @click="redoState" class="btn-redo">
-                    <!-- <img class="svg-button-toolbar" src="../../assets/redo.svg" width="22" height="22" > -->
+                <span @click="redoState" class="btn-redo" :class="{active : canRedo}">
                         <span class="icon-redo"></span>
                 </span>
             </li>
@@ -66,38 +74,64 @@
 
 <script>
 import { bus } from "../../main";
+import { setTimeout } from 'timers';
     export default {
-       
+        props:{
+            openedToolbar :{
+                type:Boolean
+            }
+        },
         data:function(){
             return{
                 isPreview  : false,
                 locale : 'en',
                 responsive : 'desktop',
-                pageIndex: 1
+                pageIndex: 1,
+                openedSubMenu:false,
+                name: '',
+                x : 0
             }
         },
         methods:{
+        openSubMenu(ev,name){
+            if(this.openedSubMenu){
+                if(this.name == name){
+                        this.openedSubMenu = false
+                }
+                this.name = name
+                this.x = ev.clientX
+            }else{
+                this.name = name
+                this.x = ev.clientX
+                this.openedSubMenu = true
+            }
+            
+        },
+
         undoState(){
             this.$store.dispatch('actionUndo')
         },
         redoState(){
             this.$store.commit('redo')
         },
-            preview:function(){
-                if(this.isPreview){
-                    this.$router.push({ path: '/' })
-                    bus.$emit('backEditor',true)
-                    this.isPreview = false
-                }else{
-                    this.$router.push({ path: 'preview' })
-                    bus.$emit('preview',true)
-                    this.isPreview = true
-                }
-                
-            },
-            createTemplate:function(){
-
+        preview:function(){
+            if(this.isPreview){
+                this.$router.push({ path: '/' })
+                bus.$emit('backEditor',true)
+                this.isPreview = false
+            }else{
+                this.$router.push({ path: 'preview' })
+                bus.$emit('preview',true)
+                this.isPreview = true
             }
+            
+        },
+        createTemplate:function(){
+
+        },
+        closeSubMenu:function(){
+                this.openedSubMenu = false
+        }
         },
         computed:{
             canUndo(){
@@ -105,13 +139,23 @@ import { bus } from "../../main";
             },
             canRedo(){
                 return this.$store.getters.getCanRedo
+            },
+            getOpenedToolbar(){
+                return this.openedToolbar
             }
         }
         ,
-    //     watch:{
-    //     locale:function(val){
-    //         this.$i18n.locale = val
-    //     },
+        mounted(){
+           
+        },
+        watch:{
+        // locale:function(val){
+        //     this.$i18n.locale = val
+           name:function(val,old){
+                
+               
+           }
+        },
         
     // },
     }

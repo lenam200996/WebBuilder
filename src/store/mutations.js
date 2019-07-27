@@ -1,4 +1,4 @@
-import Element from '../api/ElementClass'
+import Element from '../api/ElementClass.js'
 import Template from '../api/template.json'
 import {bus} from '../main.js'
 let snapshotState  = []

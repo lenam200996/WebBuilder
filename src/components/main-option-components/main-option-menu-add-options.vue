@@ -1,5 +1,5 @@
 <template>
-    <div class="wrap-menu-add-option" :style="getStyle">
+    <div class="wrap-menu-add-option" :style="getStyle" v-click-outside="close">
         <div class="menu-add-option-tabs">
             <ul v-if="typeOption == 'menu'">
                 <li class="active">Menu</li>

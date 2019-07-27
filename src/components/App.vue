@@ -1,10 +1,10 @@
 <template>    
 <keep-alive v-if="!isPreview">
   <div id="app" class="container-fluid" >
-    <main-option-top-menu></main-option-top-menu>
+    <main-option-top-menu :openedToolbar="openToolbar"></main-option-top-menu>
     <main-option-menu-add></main-option-menu-add>
-    <main-option-toolbar></main-option-toolbar>
-     <transition name="slide-fade"><e-option-option-element v-if="option.is" :name="option.name" :id="option.id" :index="option.index" :xPointer="option.x"></e-option-option-element></transition>
+    <main-option-toolbar :open="openToolbar"></main-option-toolbar>
+    <transition name="slide-fade"><e-option-option-element v-if="option.is" :name="option.name" :id="option.id" :index="option.index" :xPointer="option.x"></e-option-option-element></transition>
     <basic-section  v-for="section in getSections" :id="section.id" :key="section.id" :styleSec="section.style" :position="section.position" :swapSlide="section.swapSlide">
       <basic-row v-for="row in section.row" :key="row.index" :id="section.id" :height="row.size" :bg="row.bg" :rowIndex="row.index" :swapSlide="section.swapSlide">
          <basic-column v-for="col in section.layout.filter(itemCol => itemCol.row == row.index)" :key="col.index" :properties="getPropertiesColumn(section,row,col)"  :swapSlide="section.swapSlide">
@@ -66,6 +66,7 @@ export default {
             x:200
           },
           isPreview : false,
+          openToolbar : true
       }
     },
     computed:{
@@ -133,6 +134,12 @@ export default {
       })
       bus.$on('backEditor',()=>{
         this.isPreview = false
+      })
+      bus.$on('closeToolbar',()=>{
+        this.openToolbar = false
+      })
+      bus.$on('switchToolbar',(ev)=>{
+        this.openToolbar = ev.value
       })
       window.addEventListener('resize',(ev)=>{
       this.$store.commit('setWindowSize',{height :  ev.currentTarget.innerHeight , width :  ev.currentTarget.innerWidth})

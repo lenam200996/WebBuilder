@@ -7,7 +7,7 @@
             <div class="handle-drag" @mousedown="enableDrag"  >
                 <span class="icon-draging" @mousedown="enableDrag"></span>
             </div>
-            <div class="close-toolbar">
+            <div class="close-toolbar" @click="close">
                 <span class="icon-close"></span>
             </div>
         </div>
@@ -130,7 +130,13 @@
 </template>
 
 <script>
+import { bus } from "../../main";
     export default {
+        props:{
+            open:{
+                type:Boolean
+            }
+        },
         data:function(){
             return{
                 isDraging : false,
@@ -138,6 +144,7 @@
                 y : 0,
                 top : 70,
                 right: 20,
+                transition: '1s all',
                 style:{
                     rotation: 0,
                     top : "0",
@@ -149,6 +156,9 @@
             }
         },
         methods:{
+            close:function(){
+                bus.$emit('closeToolbar',true)
+            },
             deleteElement:function(){
                 this.selected = false
                 this.$store.commit('deleteItemById',this.getSelectedElement)
@@ -164,9 +174,11 @@
                 this.isDraging = true
                 this.x = ev.clientX
                 this.y = ev.clientY
+                this.transition = 'none'
             },
             denableDrag:function(){
                 this.isDraging = false
+                this.transition = '1s all'
             },
             drag:function(ev){
                 if(this.isDraging){
@@ -183,7 +195,8 @@
             styles:function(){
                 return {
                     height : 550+ 'px',
-                    right : this.right +'px'
+                    right : this.right +'px',
+                    transition :this.transition
                 }
             },
             getStyleElement:function(){
@@ -217,6 +230,13 @@
                     this.style = this.$store.getters.getStyleSelectedElement(val)
                 }
                
+            },
+            open:function(val){
+                if(!val){
+                    this.right = -999
+                }else{
+                    this.right = 20
+                }
             }
         }
     }

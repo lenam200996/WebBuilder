@@ -888,7 +888,7 @@ li.wrap-select{
     border: 0;
     border-radius: 6px;
     color: #2d4150;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 33px;
     margin: 3px;
     padding: 0;
@@ -912,7 +912,6 @@ li.wrap-select{
     margin: 0 5px 0 5px !important;
     border:none !important;
     border-left: none !important;
-    border-radius: 5px;
     border-bottom: 1px solid transparent;
 }
 .ivu-radio-group-button .ivu-radio-wrapper:after, .ivu-radio-group-button .ivu-radio-wrapper:before {
@@ -923,8 +922,8 @@ li.wrap-select{
     box-shadow: none !important;
 }
 .ivu-radio-group-button .ivu-radio-wrapper:first-child,.ivu-radio-group-button .ivu-radio-wrapper:last-child{
-    border-radius: 5px !important;
     border-left: none !important;
+    border-radius: 0 !important;
 }
 
 .ivu-radio-group-button .ivu-radio-wrapper-checked,.ivu-radio-group-button .ivu-radio-wrapper-checked.ivu-radio-wrapper:first-child,.ivu-radio-group-button .ivu-radio-wrapper-checked.ivu-radio-wrapper:last-child{
@@ -954,11 +953,29 @@ li.wrap-responsive>div>label{
 }
 .wrap-menu-add{
     position: fixed;
-    left: 20px;
+    left: -999px;
     width: 60px;
-    /* background: #286f74; */
+    opacity: 0;
     top: 80px;
     z-index: 9999999999;
+    animation: init-menu-add 1.5s forwards;
+}
+@keyframes init-menu-add{
+  0%{
+      left: -999px;
+      opacity: 0;
+  }
+  40%{
+    opacity: 1;
+  }
+  80%{
+      left: 30px;
+      opacity: 1;
+  }
+  100%{
+      left: 20px;
+      opacity: 1;
+  }
 }
 ul.ul-list-menu-add-button{
     width: 60px;
@@ -989,13 +1006,6 @@ ul.ul-list-menu-add-button{
 .menu-add-button.opened>span::before{
   color: #ffffff;
 }
-/* .menu-add-button>img{
-    position: absolute;
-    left: 14px;
-    top: 14px;
-    filter: invert(.4);
-}
- */
 .menu-add-button:hover>span::before{
   color: #EB6641;
 }
@@ -1023,9 +1033,9 @@ i.ivu-icon.ivu-icon-ios-arrow-down.ivu-select-arrow{
 .ivu-radio-group.ivu-radio-group-large.ivu-radio-large.ivu-radio-group-button>label>span{
     position: absolute;
     top: 50%;
-    left: 4px;
+    left: 7px;
     transform: translateY(-50%);
-    font-size: 22px;
+    font-size: 18px;
     border-bottom: 1px solid transparent;
 }
 .wrap-responsive>div>.ivu-radio-wrapper-checked>span::before{
@@ -1034,6 +1044,40 @@ i.ivu-icon.ivu-icon-ios-arrow-down.ivu-select-arrow{
 .wrap-menu{
     width: 38.7%;
     position: relative;
+    position: relative;
+}
+.wrap-menu>ul{
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.wrap-menu>ul>li{
+  float: left;
+  width: 15%;
+  cursor: pointer;
+  user-select: none;
+}
+.wrap-sub-menu{
+  width: 250px;
+  height: 300px;
+  position: fixed;
+  top: 66px;
+  background-color: #ffffff;
+  z-index: 9999999999;
+  box-shadow: 0px 3px 15px rgba(55, 67, 85, 0.15);
+  border-radius: 10px;
+  transition: 1s all;
+  transform: scale(0,0);
+  opacity: 0;
+  padding-top: 20px;
+}
+.ivu-switch-checked{
+  background-color: #EB6641 !important;
+}
+.activeSub{
+  transform: scale(1,1);
+  opacity: 1;
 }
 .wrap-undo-redo{
     position: relative;
@@ -1120,8 +1164,8 @@ i.ivu-icon.ivu-icon-ios-arrow-down.ivu-select-arrow{
     padding-left: 15px;
     height: 40px;
     padding-top: 9px;
-    font-size: 14px;
-    color: #374355;
+    font-size: 18px;
+    color: #EB6641;
     position: relative;
 }
 .wrap-option-content-header>.icon-close,.wrap-option-content-header>.icon-help{
@@ -1129,16 +1173,23 @@ i.ivu-icon.ivu-icon-ios-arrow-down.ivu-select-arrow{
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
+    font-size: 16px;
 }
 .wrap-option-content-header>.icon-help{
     right: 40px;
-    font-size: 16px;
+    font-size: 18px;
 }
 .option-content{
     width: 100%;
-    height: 410px;
+    height: 386px;
     background-color: #F7F8FA;
     border-radius: 0 0 10px 0;
+    padding-top: 15px;
+}
+.option-content>ul>li{
+  text-align: left;
+  padding: 5px 0 5px 15px;
+  cursor: pointer;
 }
 .arrow-option{
     position: fixed;
@@ -1179,8 +1230,11 @@ i.ivu-icon.ivu-icon-ios-arrow-down.ivu-select-arrow{
   position: absolute;
   left: 10px;
   top: 10px;
+  font-weight: 600;
 }
-
+.icon-square-regular{
+  font-weight: 500 !important;
+}
 .menu-add-button>span.icon-square-regular{
   left: 12px !important;
 }
@@ -1189,4 +1243,13 @@ i.ivu-icon.ivu-icon-ios-arrow-down.ivu-select-arrow{
 }
 .mce-tinymce.mce-container.mce-panel{
   height: 100%;
+}
+
+.wrap-sub-menu>.ivu-icon{
+  position: absolute;
+  top: -30px;
+  transform: rotate(90deg);
+  left: 0px;
+  color: #ffffff;
+  font-size: 50px;
 }
