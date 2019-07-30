@@ -17,7 +17,7 @@
             :resizable="!textActive"
             :rotatable="!textActive"
             :draggable="!textActive"
-
+            :typeName="name"
         >
       <div class="text" @active="onActive()" v-if="!textActive"  >
           <span v-html="Value" :style="getStyle" :class="'md-elevation-'+properties.styleText.shadow"></span>
@@ -39,7 +39,7 @@
         @deleteItem="deleteItem"
         @preColumn="preColumn"
         @nextColumn="nextColumn"
-        :elementName="name"
+        :elementName="'EDIT TEXT'"
         :styleBtn="styleBtn"
         ></e-option-button-option>
 </transition> 
@@ -62,7 +62,7 @@ import mixins from '../mixins.js'
       return {
         textActive: false,
         isActive : false,
-        name :'EDIT TEXT'
+        name :'TEXT'
       }
     },
     extends: mixins.mixin,
@@ -77,11 +77,11 @@ import mixins from '../mixins.js'
       },
       editOption(){
         this.textActive  = false
-         bus.$emit('openOption',{name : 'TEXT',id:this.properties.id,index : -1})
+         bus.$emit('openOption',{name :this.name,id:this.properties.id,index : -1})
       },
       onBlur() {
         this.textActive = false
-        bus.$emit('closeOptionElement',{name : 'TEXT',id:this.properties.id})
+        bus.$emit('closeOptionElement',{name : this.name,id:this.properties.id})
       },  
       closeEditText(){
         this.textActive = false

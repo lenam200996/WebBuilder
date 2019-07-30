@@ -7,9 +7,9 @@
             <li class="wrap-select">
                 <span>Page</span>
                 <i-select v-model="pageIndex" :class="'select-single-page'">
-                    <i-option :value="1">Trang chủ</i-option>
-                    <i-option :value="2">Giới thiệu</i-option>
-                    <i-option :value="3">Liên hệ</i-option>
+                    <i-option :value="'home'">Trang chủ</i-option>
+                    <i-option :value="'about'">Giới thiệu</i-option>
+                    <i-option :value="'contact'">Liên hệ</i-option>
                 </i-select>
             </li>
             <li class="wrap-responsive">
@@ -86,7 +86,6 @@ import { setTimeout } from 'timers';
                 isPreview  : false,
                 locale : 'en',
                 responsive : 'desktop',
-                pageIndex: 1,
                 openedSubMenu:false,
                 name: '',
                 x : 0
@@ -142,6 +141,14 @@ import { setTimeout } from 'timers';
             },
             getOpenedToolbar(){
                 return this.openedToolbar
+            },
+            pageIndex : {
+                get(){
+                    return this.$store.getters.getPageIndex
+                },
+                set(val){
+                    this.$store.commit('setPageIndex',{val})
+                }
             }
         }
         ,

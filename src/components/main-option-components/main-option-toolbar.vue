@@ -13,7 +13,7 @@
         </div>
         <div class="group-toolbar-button">
             <div class="group-toolbar-button-grid">
-                <span class="toolbar-button" :class="[!selected ?'disabled':'']">
+                <span class="toolbar-button" :class="[!selected ?'disabled':'']" @click="copyElement">
                     <Tooltip placement="top">
                         <span class="icon-copy"></span>
                         <div slot="content">
@@ -21,7 +21,7 @@
                         </div>
                     </Tooltip>
                 </span>
-                <span class="toolbar-button" :class="[!selected?'disabled':'']">
+                <span class="toolbar-button" :class="[!canPaste?'disabled':'']" @click="pasteElement">
                     <Tooltip placement="top">
                         <span class="icon-paste"></span>
                         <div slot="content">
@@ -29,7 +29,7 @@
                         </div>
                     </Tooltip>
                 </span>
-                <span class="toolbar-button" :class="[!selected ?'disabled':'']">
+                <span class="toolbar-button" :class="[!selected ?'disabled':'']" @click="duplicateElement">
                     <Tooltip placement="top">
                         <span class="icon-duplicate"></span>
                         <div slot="content">
@@ -152,10 +152,20 @@ import { bus } from "../../main";
                     width : "0",
                     height: "0"
                 },
-                selected :false
+                selected :false,
+                canPaste : false
             }
         },
         methods:{
+            copyElement:function(){
+                this.$store.commit('copyElement')
+            },
+            pasteElement:function(){
+                this.$store.commit('pasteElement')
+            },
+            duplicateElement:function(){
+                this.$store.commit('duplicateElement')
+            },
             close:function(){
                 bus.$emit('closeToolbar',true)
             },
@@ -204,6 +214,9 @@ import { bus } from "../../main";
             },
             getSelectedElement:function(){
                 return this.$store.getters.getSelectedElement
+            },
+            getClipboard:function(){
+                return this.$store.getters.getClipboard
             }
         },
         mounted:function(){
@@ -213,8 +226,17 @@ import { bus } from "../../main";
             window.addEventListener('mouseup',(ev)=>{
                 this.denableDrag()
             })
+            
         },
         watch:{
+            getClipboard:function(val){
+                // console.log(Object.keys(val).length)
+                if(val  == null){
+                    this.canPaste = false
+                }else{
+                    this.canPaste = true
+                }
+            },
             getSelectedElement:function(val){
                 if(val == null) {
                     this.selected = false

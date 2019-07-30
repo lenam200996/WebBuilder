@@ -4,6 +4,34 @@ import {bus} from '../main.js'
 let snapshotState  = []
 let snapShotStateRedo = []
 export default {
+  copyElement:function(state){
+    state.clipboard = new Object()
+    Object.assign(state.clipboard, state.elements.item.find(item => item.id === state.SelectedElement))
+  },
+  pasteElement:function(state){
+    var position = {}
+    var border = {}
+    var style = {}
+    var item = {}
+    Object.assign(position,state.clipboard.position)
+    Object.assign(style,state.clipboard.style)
+    Object.assign(border,state.clipboard.style.border)
+    Object.assign(item,state.clipboard)
+    item.id = state.indexItem;
+    item.parentId = state.selectId;
+    item.column = state.Selectedcolumn;
+    item.row = state.SelectedRow;
+    item.position = position
+    item.style.top = (parseFloat(item.style.top.replace('px','')) + 50 )+'px'
+    item.style.border = border
+    item.position.y = item.position.y + 50
+    item.style = style
+
+    this.commit('addItem',item)
+  },
+  setPageIndex:function(state,{val}){
+    state.pageIndex = val
+  },
   setSelectedElement:function(state,id){
     state.SelectedElement = id
   },
@@ -587,8 +615,9 @@ export default {
         }
     },
     bindingPosition:function(state,{id,val}){
+      var grid = ['section','row','column']
       state.elements.item = state.elements.item.filter(item =>{
-        if(item.id == id){
+        if(item.id == id&& !grid.includes(item.type)){
           item.position.x = val.x
           item.position.y = val.y
           item.position.w = val.w
@@ -599,9 +628,10 @@ export default {
       })
     },
     updatePositionElement:function(state,{id,val}){
+      var grid = ['section','row','column']
       // this.commit('enableUndo')
       state.elements.item = state.elements.item.filter(item =>{
-        if(item.id == id){
+        if(item.id == id && !grid.includes(item.type)){
           item.style.top = val.top,
           item.style.left = val.left
           item.style.width  =val.width
@@ -722,7 +752,9 @@ export default {
         indexSection : state.indexSection,
         idSlideshow : null,
         swapSlide: false,
-        indexSlide: null
+        indexSlide: null,
+        pageIndex : state.pageIndex
+
       }
       state.selectId = state.indexItem
       state.Selectedcolumn = 1
@@ -742,7 +774,7 @@ export default {
                 column : state.Selectedcolumn,
                 row : state.SelectedRow,
                 position :ObjectText.position,
-                value : ObjectText.value
+                value : ObjectText.value,
               }
               this.commit('addItem',item)
             }
@@ -758,7 +790,8 @@ export default {
                 column : state.Selectedcolumn,
                 row : state.SelectedRow,
                 position: ObjectImg.position,
-                url : ObjectImg.url
+                url : ObjectImg.url,
+
               }    
               this.commit('addItem',item)
             }
@@ -774,7 +807,7 @@ export default {
                 column :state.Selectedcolumn,
                 row : state.SelectedRow,
                 position : ObjectButton.position,
-                text  : ObjectButton.text
+
               } 
               this.commit('addItem',item)     
             }
@@ -790,6 +823,7 @@ export default {
               column :state.Selectedcolumn,
               row : state.SelectedRow,
               position : ObjectLine.position,
+
             }    
             this.commit('addItem',item) 
           }
@@ -805,6 +839,7 @@ export default {
               column :state.Selectedcolumn,
               row : state.SelectedRow,
               position : ObjectLineVertical.position,
+
             }    
             this.commit('addItem',item) 
           }
@@ -823,7 +858,9 @@ export default {
             row : ObjectSection.row,
             indexSection : state.indexSection,
             idSlideshow : null,
-            swapSlide:true
+            swapSlide:true,
+            pageIndex : state.pageIndex
+
           }
           state.selectId = state.indexItem
           state.Selectedcolumn = 1
@@ -852,7 +889,9 @@ export default {
               indexSection : state.indexSection,
               idSlideshow : idSlide,
               swapSlide:false,
-              indexSlide : index+1
+              indexSlide : index+1,
+              pageIndex : state.pageIndex
+
             }
             this.commit('addItem',item)
           })
@@ -870,6 +909,7 @@ export default {
             column : state.Selectedcolumn,
             row : state.SelectedRow,
             position : ObjectBox.position,
+
           }
           this.commit('addItem',item)
         }
@@ -885,6 +925,7 @@ export default {
             column : state.Selectedcolumn,
             row : state.SelectedRow,
             position : ObjectField.position,
+
           }
           this.commit('addItem',item)
         }
@@ -900,6 +941,7 @@ export default {
             column : state.Selectedcolumn,
             row : state.SelectedRow,
             position : ObjectVideo.position,
+
           }
           this.commit('addItem',item)
         }
@@ -1057,7 +1099,6 @@ export default {
     addColumn:function(state){
       this.commit('enableUndo')
 
-      console.log(this.getters.getNumColumn)
       if(this.getters.getNumColumn < 5){
         var size = parseInt(100 / (this.getters.getNumColumn + 1))
         

@@ -74,7 +74,7 @@ export default {
         return this.$store.getters.getElementItems
       },
       getSections:function(){
-        return this.getElements.filter( item => item.type === 'section' && item.idSlideshow == null)
+        return this.getElements.filter( item => item.type === 'section' && item.idSlideshow == null && item.pageIndex == this.$store.getters.getPageIndex)
       },
 
     }, 

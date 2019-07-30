@@ -104,5 +104,11 @@ export default {
     },
     getAutoAlignBlockId:state=>{
       return state.autoAlignBlockId
+    },
+    getPageIndex:state =>{
+      return state.pageIndex
+    },
+    getClipboard:state=>{
+      return state.clipboard
     }
   }

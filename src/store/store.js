@@ -25,7 +25,9 @@ export default new Vuex.Store({
       item :[]
     },
     canUndo : false,
-    canRedo : false
+    canRedo : false,
+    pageIndex: 'home',
+    clipboard : null
   },  
   mutations,
   getters,

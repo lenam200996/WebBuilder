@@ -14,6 +14,7 @@
             :selected="isActive"
             :style="getStyleWrap"
             :class="{autoAlign : isAutoAlign}"
+            :typeName="name"
             >
         <md-input :type="getType" :placeholder="properties.styleInput.placeholder" :class="'md-elevation-'+properties.styleInput.shadow" :required="properties.styleInput.required" :style="getStyle" class="re-field"></md-input>
 <transition name="bounce">      

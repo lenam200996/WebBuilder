@@ -15,6 +15,7 @@
             :style="getStyleWrap"
             :class="{autoAlign : isAutoAlign}"
             :aspectRatio="properties.styleImg.keepProportion"
+            :typeName="name"
             >
         <div class="wrap-img">
             <img :src="properties.url" :style="getStyleImage" :class="'md-image md-elevation-'+properties.styleImg.shadow">

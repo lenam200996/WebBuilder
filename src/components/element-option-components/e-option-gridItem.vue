@@ -45,15 +45,17 @@ import ClickOutside from 'vue-click-outside'
         margin-bottom: 30px;
         
     }
+
+    
     .grid-item{
         height: 100%;
-        border-right: 2px solid #c8e5f7;
+        border-right: 2px solid rgba(208, 208, 208, 0.68);
         display: flex;
-        background-color:rgb(127,204,247);
+        background-color:#EB6641;
         margin-bottom: 10px;
-        border-left: 2px solid #c8e5f7;
-        
+        border-left: 2px solid rgba(208, 208, 208, 0.68);
     }
+
     .grid{
         height: 55px;
         width: 100%;
@@ -61,15 +63,21 @@ import ClickOutside from 'vue-click-outside'
         display: flex;
         margin: 0;
         text-align: center;
-        border: 10px solid #c8e5f7;
+        border: 10px solid rgba(235, 102, 65, 0.507);
         border-radius: 10px;
         cursor: pointer;
     }
     .grid:hover,.grid.active{
-        border: 10px solid #3899ec;
+        border: 10px solid #EB6641;
+       
     }
+    .grid-item:hover{
+        background-color: rgba(235, 102, 65, 0.507);
+    }
+
     .grid:hover>.grid-item,.grid.active>.grid-item{
-        border-left: 2px solid #3899ec;
-        border-right: 2px solid #3899ec;
+        border-left: 2px solid rgba(235, 102, 65, 0.507);
+        border-right: 2px solid rgba(235, 102, 65, 0.507);
+        background-color: rgba(235, 102, 65, 0.507);
     }
 </style>

@@ -14,6 +14,7 @@
             :selected="isActive"
             :style="getStyleWrap"
             :class="{autoAlign : isAutoAlign}"
+            :typeName="name"
 
             >
     <div :style="getStyle" class="re-line-v" :class="'md-elevation-'+properties.styleLine.shadow">

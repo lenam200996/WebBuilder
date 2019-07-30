@@ -14,7 +14,7 @@
             :selected="isActive"
             :style="getStyleWrap"
             :class="{autoAlign : isAutoAlign}"
-
+            :typeName="name"
             >
         <iframe :class="'md-elevation-'+properties.styleVideo.shadow" class="re-iframe-video" :src="getUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <transition name="bounce">    

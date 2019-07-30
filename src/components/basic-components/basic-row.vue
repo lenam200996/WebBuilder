@@ -5,6 +5,9 @@
             @select="select"
             @deselect="deselect"
             :style="{zindex :isActive? 99999 :1}"
+            :resizable="false"
+            :rotatable="false"
+            :draggable="false"
             style="width:100%;position:relative"
             >
     <div :style="getStyle"  class="row" style="width:100%;position:relative">

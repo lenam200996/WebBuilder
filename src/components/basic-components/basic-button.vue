@@ -14,6 +14,7 @@
             :selected="isActive"
             :style="getStyleWrap"
             :class="{autoAlign : isAutoAlign}"
+            :typeName="name"
             >
       <div class="button" @active="onActive()" @mouseover="isHover = true" @mouseleave="isHover = false" >
           <button :style="getStyle" :class="'md-elevation-'+properties.styleButton.shadow">

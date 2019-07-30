@@ -11,6 +11,7 @@
     @deselect="deselect"
     :style ="getStyle"
     style="width:100%;margin:0;z-index:1"
+    :typeName="'SECTION'"
     >
     <div :class="getStretched"> 
             <slot></slot>
