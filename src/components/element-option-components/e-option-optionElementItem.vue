@@ -1,40 +1,68 @@
 <template>
-    <div>
+    <div class="wrap-option-content">
         <ul class="ul-wrap">
             <li v-for="(itemOption) in item" :key="itemOption.name+itemOption.ref" :class="{classItemDiv : itemOption.ref == 'sectionGrid' || itemOption.ref == 'sectionColumnManagement'}">
                 <span>{{$t('style.'+itemOption.ref)}}</span>
                 <slider v-if="itemOption.ref == 'opacity'" :min="0.1" :max="1" :step="0.1" v-model="style.opacity"></slider>
+                <div v-if="itemOption.ref == 'opacity'" class="value">{{style.opacity}}</div>
                 <slider v-if="itemOption.ref == 'fontSize'"  v-model="style.fontSize" :min="8"></slider>
+                <div v-if="itemOption.ref == 'fontSize'" class="value">{{style.fontSize}}</div>
                 <slider v-if="itemOption.ref == 'fontWeight'"  v-model="style.fontWeight" :min="500" :max="900" :step="100"></slider>
+                <div v-if="itemOption.ref == 'fontWeight'" class="value">{{style.fontWeight}}</div>
                 <slider v-if="itemOption.ref == 'lineHeight'"  v-model="style.lineHeight"></slider>
+                <div v-if="itemOption.ref == 'lineHeight'" class="value">{{style.lineHeight}}</div>
                 <slider v-if="itemOption.ref == 'letterSpacing'"  v-model="style.letterSpacing"></slider>
+                <div v-if="itemOption.ref == 'letterSpacing'" class="value">{{style.letterSpacing}}</div>
                 <slider v-if="itemOption.ref == 'shadow'"  v-model="style.shadow" :min="0" :step="1" :max="24"></slider>
+                <div v-if="itemOption.ref == 'shadow'" class="value">{{style.shadow}}</div>
                 <slider v-if="itemOption.ref == 'wordSpacing'"  v-model="style.wordSpacing"></slider>
+                <div v-if="itemOption.ref == 'wordSpacing'"  class="value">{{style.wordSpacing}}</div>
                 <slider v-if="itemOption.ref == 'borderWidth'"  v-model="style.border.width"></slider>
+                <div v-if="itemOption.ref == 'borderWidth'" class="value">{{style.border.width}}</div>
                 <slider v-if="itemOption.ref == 'sizeLine'" v-model="style.size"></slider>
+                <div v-if="itemOption.ref == 'sizeLine'"  class="value">{{style.sizeLine}}</div>
                 <slider v-if="itemOption.ref == 'borderRadius'"  v-model="style.borderRadius" :max="parseInt(style.height.replace('px',''))/2"></slider>
+                <div v-if="itemOption.ref == 'borderRadius'" class="value">{{style.borderRadius}}</div>
+                <slider v-if="itemOption.ref == 'paddingLeft' " v-model="style.paddingLeft" :disabled="style.textAlign != 'left'"></slider>
+                <div v-if="itemOption.ref == 'paddingLeft'" class="value">{{style.paddingLeft}}</div>
+                <slider v-if="itemOption.ref == 'paddingRight' " v-model="style.paddingRight" :disabled="style.textAlign != 'right'"></slider>
+                <div v-if="itemOption.ref == 'paddingRight'" class="value">{{style.paddingRight}}</div>
                 <i-input v-if="itemOption.ref == 'videoUrl'" type="text" v-model="style.url"/>
                 <i-switch v-if="itemOption.ref == 'autoPlay'" v-model="style.autoPlay"/>
                 <i-switch v-if="itemOption.ref == 'loop'" v-model="style.loop"/>
                 <i-switch v-if="itemOption.ref == 'required'" v-model="style.required"/>
-                <slider v-if="itemOption.ref == 'paddingLeft' " v-model="style.paddingLeft" :disabled="style.textAlign != 'left'"></slider>
-                <slider v-if="itemOption.ref == 'paddingRight' " v-model="style.paddingRight" :disabled="style.textAlign != 'right'"></slider>
                 <i-input v-if="itemOption.ref == 'textValue'" type="text" v-model="style.text"/>
                 <i-input v-if="itemOption.ref == 'placeholder'" type="text" v-model="style.placeholder"/>
                 <ColorPicker  v-if="itemOption.ref == 'color'" type="color" v-model="style.color" alpha />
-                <input class="bg" v-if="backgroundColor == 1 && itemOption.ref == 'Columnbackground'"  type="color" :value="getColorColumn" @change="updateColor($event)" />
                 <ColorPicker v-if="itemOption.ref == 'colorHover'" type="color" v-model="style.colorHover" alpha />
                 <ColorPicker v-if="itemOption.ref == 'borderColorHover'" type="color" v-model="style.borderColorHover" alpha />
                 <ColorPicker v-if="itemOption.ref == 'backgroundColorHover'" type="color" v-model="style.backgroundColorHover" alpha />
                 <ColorPicker v-if="itemOption.ref == 'borderColor'" type="color" v-model="style.border.color" alpha />
                 <ColorPicker v-if="itemOption.ref == 'backgroundColor'" type="color" v-model="style.backgroundColor" alpha />
                 <InputNumber  v-if="itemOption.ref == 'height'" type="number" v-model="style.height" :min="10" :max="1000" :step="50"></InputNumber>
-                <input type="radio" v-if="itemOption.ref == 'Columnbackground'" name="bgColor" v-model="backgroundColor" value="1"><i v-if="itemOption.ref == 'Columnbackground'">{{$t('option.color')}}</i> 
-                <input type="radio" v-if="itemOption.ref == 'Columnbackground'" name="bgColor" v-model="backgroundColor" value="2"><i v-if="itemOption.ref == 'Columnbackground'">{{$t('option.image')}}</i>
+                <RadioGroup v-if="itemOption.ref == 'Columnbackground'" v-model="backgroundColor" type="button">
+                    <Radio label="1">
+                        <Tooltip placement="top">
+                            <i class="material-icons">color_lens</i>
+                            <div slot="content">
+                                <p><i>Color</i></p>
+                            </div>
+                        </Tooltip>
+                    </Radio>
+                    <Radio label="2">
+                        <Tooltip placement="top">
+                            <i class="material-icons">collections</i>
+                            <div slot="content">
+                                <p><i>Image</i></p>
+                            </div>
+                        </Tooltip>
+                    </Radio>
+                </RadioGroup>
+                <input class="bg" v-if="backgroundColor == 1 && itemOption.ref == 'Columnbackground'"  type="color" :value="getColorColumn" @change="updateColor($event)" />                
                 <input v-if="backgroundColor == 2 && itemOption.ref == 'Columnbackground'" type="file" id="files" @change="onFileChange($event,'bg')" class="hidden">
                 <label v-if="backgroundColor == 2 && itemOption.ref == 'Columnbackground'" class="inputFile bg" style="line-height: 30px; color:red;cursor:pointer;user-select:none;"   for="files">{{$t('option.select')}}</label>
                 <input type="file" id="files" @change="onFileChange($event,'url')" class="hidden">
-                <label v-if="itemOption.ref == 'imgUrl'" class="inputFile" style="line-height: 30px; color:red;cursor:pointer;user-select:none;"   for="files">{{$t('option.select')}}</label>
+                <label v-if="itemOption.ref == 'imgUrl'" class="inputFile" style="line-height: 30px; color:#EB6641;cursor:pointer;user-select:none;"   for="files">{{$t('option.select')}}</label>
                 <RadioGroup v-if="itemOption.ref == 'borderPosition'" v-model="style.borderPosition" type="button">
                     <Radio label="All" checked>
                         <span>{{$t('style.all')}}</span>
@@ -43,12 +71,30 @@
                         <span>{{$t('style.bottom')}}</span>
                     </Radio>
                 </RadioGroup>
-                <i-select v-if="itemOption.ref == 'alignBlock'" v-model="style.alignBlock">
-                    <i-option v-for="option in itemOption.item" :key="option.name" :value="option.value">{{option.name}}</i-option>
-                </i-select> 
-                <i-select v-if="itemOption.ref == 'textAlign'" v-model="style.textAlign">
-                    <i-option v-for="option in itemOption.item" :key="option.name" :value="option.value">{{option.name}}</i-option>
-                </i-select> 
+                <div class="wrap-select-radio" v-if="itemOption.ref == 'alignBlock'">
+                    <RadioGroup v-model="style.alignBlock" type="button" checked>
+                        <Radio :label="option.value"  v-for="option in itemOption.item" :key="option.name">
+                            <Tooltip placement="top">
+                                <span :class="'icon-'+option.name"></span>
+                                <div slot="content">
+                                    <p><i>{{option.name}}</i></p>
+                                </div>
+                            </Tooltip>
+                        </Radio>
+                    </RadioGroup>
+                </div>
+                <div class="wrap-select-radio" v-if="itemOption.ref == 'textAlign'">
+                    <RadioGroup v-model="style.textAlign" type="button" checked>
+                        <Radio :label="option.value" v-for="option in itemOption.item" :key="option.name" >
+                            <Tooltip placement="top">
+                                <span :class="'icon-'+option.name"></span>
+                                <div slot="content">
+                                    <p><i>{{option.name}}</i></p>
+                                </div>
+                            </Tooltip>
+                        </Radio>
+                    </RadioGroup>
+                </div>
                 <i-select v-if="itemOption.ref == 'fontFamily'" v-model="style.fontFamily">
                     <i-option v-for="option in itemOption.item" :key="option.name" :value="option.value">{{option.name}}</i-option>
                 </i-select>
@@ -110,7 +156,7 @@ import Grid from '../../api/static-data.json'
             return {
                 item :[],
                 common : [],
-                backgroundColor: 1,
+                backgroundColor: "1",
                 enableOptionColumn : false,
                 arrayGridManager : [],
                 enableOptionRow: false
@@ -260,35 +306,59 @@ import Grid from '../../api/static-data.json'
     ul.ul-wrap{
         height: 400px;
     }
-    ul>li{
+    ul.ul-wrap>li{
         width: 100%;
-        height: 30px;
         position: relative;
         margin-bottom: 10px;
+        height: 70px;
+    }
+    ul.ul-wrap>li::after{
+        position: absolute;
+        top:0;
+        content: "";
+        left: 0;
+        height: 1px;
+        width: 100%;
+        background-color: #EB6641;
+        opacity: 0.4;
+    }
+    ul.ul-wrap>li:first-child:after{
+        background-color: #ffffff;
     }
 
-    ul>li>span{
+    ul.ul-wrap>li>span{
         position: absolute;
-        left: 5px;
-        
+        left: 10px;
+        top: 5px;
+        font-size: 14px;
     }
     
-    ul>li>input[type=range] ,.ivu-radio-group.ivu-radio-group-default.ivu-radio-default, .ivu-input-wrapper.ivu-input-wrapper-default.ivu-input-type,ul>li>input[type=color], ul>li>select,ul>li>label,ul>li>input[type=number],.ivu-select.ivu-select-single.ivu-select-default{
+    ul>li>input[type=range] ,.ivu-radio-group.ivu-radio-group-default.ivu-radio-default, .ivu-input-wrapper.ivu-input-wrapper-default.ivu-input-type,ul>li>input[type=color], ul>li>select,ul>li>label,ul>li>input[type=number],.ivu-select.ivu-select-single.ivu-select-default,span.ivu-switch.ivu-switch-default,div.ivu-slider,div.ivu-color-picker,div.wrap-select-radio{
         position: absolute;
         width: 200px;
         height: 30px;
         border-radius: 9px;
-        right: 10px;
-        /* border: 1px solid cornflowerblue; */
         outline: none;
+        left: 15px;
+        bottom: 5px;
     }
-    span.ivu-switch.ivu-switch-default,div.ivu-slider{
+    ul>li>div.value{
         position: absolute;
-        right: 10px !important;
-        left: auto !important;
+        bottom: 5px;
+        right: 20px;
+        color: #EB6641;
+        height: 30px;
+        font-size: 14px;
+        line-height: 30px;
     }
-    div.ivu-slider{
-        width: 200px;
+    div.ivu-color-picker{
+        width: auto !important;
+
+    }
+    span.ivu-switch.ivu-switch-default{
+        width: 45px !important;
+        height: 21px !important;
+        top: auto !important;
     }
     
     .bg{
@@ -326,14 +396,14 @@ import Grid from '../../api/static-data.json'
          width: 16.2%;
          height: 60px;
          display: inline-flex;
-         background-color: green;
+         background-color: #EB6641;
          margin-right: 2px;
          position: relative;
          cursor: pointer;
      }
     
      .div-column-manager>ul>li:hover{
-         background-color: red;
+         background-color:#374355;
      }
     .div-column-manager>ul>li.active{
         background-color: yellow;
@@ -346,12 +416,16 @@ import Grid from '../../api/static-data.json'
         width: 30px;
         height: 30px;
         background: none;
-        border:1px solid green;
+        border:1px solid #EB6641;
         margin: 5px;    
     }
     .ivu-color-picker>.ivu-select-dropdown{
         transform: scale(0.7,0.7) !important;
     }
-    
+    .wrap-option-content{
+        height: 460px;
+        overflow-y: scroll;
+        width: 100%;
+    }
 
 </style>

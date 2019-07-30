@@ -10,6 +10,10 @@
     font-family: Gotham-Ultra;
     src: url("../fonts/Gotham-Ultra.woff");
 }
+@font-face {
+  font-family: SVN-Gotham;
+  src: url("../fonts/SVN-Gotham-Regular.woff");
+}
 
 @font-face {
     font-family: 'icomoon';

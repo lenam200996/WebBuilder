@@ -26,7 +26,7 @@ import { setTimeout } from 'timers';
             },
             x:{
                 type:Number,
-                default:0
+                default:window.innerWidth/2
             }
         },
         computed:{

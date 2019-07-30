@@ -9,33 +9,33 @@
     "static_option_select":{
         "align_block" : [
             {
-                "name" : "Custom",
+                "name" : "none",
                 "value" : "none"
             },
             {
-                "name" : "Center",
+                "name" : "align-center",
                 "value" : "center"
             },
             {
-                "name" : "Left",
+                "name" : "align-left",
                 "value" : "left"
             },
             {
-                "name" : "Right",
+                "name" : "align-right",
                 "value" : "right"
             }
         ],
         "text_align" :[
             {
-                "name" : "Center",
+                "name" : "align-center",
                 "value" : "center"
             },
             {
-                "name" : "Left",
+                "name" : "align-left",
                 "value" : "left"
             },
             {
-                "name" : "Right",
+                "name" : "align-right",
                 "value" : "right"
             }
         ],

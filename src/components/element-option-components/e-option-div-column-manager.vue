@@ -71,14 +71,14 @@
          width: 16.2%;
          height: 60px;
          display: inline-flex;
-         background-color: green;
+         background-color: #374355;
          margin-right: 2px;
          position: relative;
          cursor: pointer;
      }
     
      .div-column-manager>ul>li:hover{
-         background-color: red;
+         background-color: #EB6641;
      }
     .div-column-manager>ul>li.active{
         background-color: yellow;
@@ -91,7 +91,7 @@
         width: 30px;
         height: 30px;
         background: none;
-        border:1px solid green;
+        border:1px solid #EB6641;
         margin: 5px;    
     }
 </style>

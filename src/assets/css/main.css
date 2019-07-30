@@ -22,7 +22,7 @@
 
 body {
   margin: 0;
-  font-family: Gotham-Medium !important;
+  font-family: SVN-Gotham !important;
 }
 
 /**
@@ -1038,6 +1038,9 @@ i.ivu-icon.ivu-icon-ios-arrow-down.ivu-select-arrow{
     font-size: 18px;
     border-bottom: 1px solid transparent;
 }
+label.ivu-radio-wrapper.ivu-radio-group-item.ivu-radio-wrapper-checked.ivu-radio-default>div>div>i{
+  color: #EB6641 !important;
+}
 .wrap-responsive>div>.ivu-radio-wrapper-checked>span::before{
   color: #EB6641;
 }
@@ -1057,6 +1060,7 @@ i.ivu-icon.ivu-icon-ios-arrow-down.ivu-select-arrow{
   width: 15%;
   cursor: pointer;
   user-select: none;
+  font-size: 14px;
 }
 .wrap-sub-menu{
   width: 250px;
@@ -1074,6 +1078,16 @@ i.ivu-icon.ivu-icon-ios-arrow-down.ivu-select-arrow{
 }
 .ivu-switch-checked{
   background-color: #EB6641 !important;
+  border-color: #EB6641 !important;
+}
+.ivu-select-dropdown.ivu-transfer-no-max-height{
+  left: auto !important;
+}
+.ivu-input-small{
+  width: 150px !important;
+}
+.ivu-select-dropdown-list>li{
+  height: 40px !important;
 }
 .activeSub{
   transform: scale(1,1);
@@ -1252,4 +1266,19 @@ i.ivu-icon.ivu-icon-ios-arrow-down.ivu-select-arrow{
   left: 0px;
   color: #ffffff;
   font-size: 50px;
+}
+
+.ivu-slider-button{
+  border: 2px solid #EB6641 !important;
+}
+.ivu-slider-bar{
+  background: #EB6641 !important;
+}
+.ivu-btn-success{
+  background-color: #EB6641 !important;
+  border-color: #EB6641 !important;
+}
+.ivu-btn-success:hover{
+  background-color: #374355 !important;
+  border-color: #374355 !important;
 }

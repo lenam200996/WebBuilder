@@ -2,6 +2,10 @@ import Static from './static-data.json'
 var Default = {
     "TEXT" : [ 
                 {
+                    ref : 'alignBlock',
+                    item :Static.static_option_select.align_block
+                },
+                {
                 ref: "lineHeight"
                 },
                 {
@@ -13,10 +17,6 @@ var Default = {
                 },
                 {
                 ref: "wordSpacing"
-                },
-                {
-                    ref : 'alignBlock',
-                    item :Static.static_option_select.align_block
                 },
                 {
                     ref:'shadow'
@@ -38,6 +38,10 @@ var Default = {
         ],
         'IMAGE':[
             {
+                ref : 'alignBlock',
+                item :Static.static_option_select.align_block
+            },
+            {
                 ref : 'imgUrl'
             },
             {
@@ -55,10 +59,6 @@ var Default = {
             },
             {
                 ref : 'keepProportion'
-            },
-            {
-                ref : 'alignBlock',
-                item :Static.static_option_select.align_block
             },
             {
                 ref:'shadow'

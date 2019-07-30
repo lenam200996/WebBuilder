@@ -1,6 +1,8 @@
 <template>
         <div class="wrap-option" :style="{top: top+'px', left:left+'px'}">
-            <div class="close" @click="closeOptionElement"><Icon type="ios-close-circle" /></div>
+            <div class="close" @click="closeOptionElement">
+                <span class="icon-close"></span>
+            </div>
             <h2  @mousedown="enableDrag" @mouseup="isDrag =false" @mousemove="drag">{{name}} - {{$t('public.setting')}}</h2>
             <e-option-option-element-item :name="name" :id="id" :index="index"></e-option-option-element-item>
         </div>
@@ -61,44 +63,41 @@ import {bus} from '../../main'
     .wrap-option{
         position: fixed;
         z-index: 99999;
-        height: 400px;
-        overflow-y: scroll;
-        width : 400px;
-        background: linear-gradient(
-            to bottom,
-            rgba(255, 255, 255, 0.96) 0%,
-            rgba(238, 238, 238, 0.96) 100%
-        );
-        box-shadow: 0 2px 5px 0 rgba(22, 45, 61, 0.58);
-        border-radius: 10px 10px 0 0;
+        height: 500px;
+        /* overflow-y: scroll; */
+        width : 330px;
+        background: #ffffff;
+        box-shadow: 0px 3px 15px rgba(55, 67, 85, 0.15);
         opacity : 1;
+        color: #374355;
+        border-radius: 5px;
     }
     ::-webkit-scrollbar {
         display: none;
         }
-
     .wrap-option > h2 {
         cursor: all-scroll;
-        height: 50px;
-        line-height: 50px;
+        height: 40px;
+        line-height: 40px;
         text-align: center;
         width: 100%;
-        background-color: cornflowerblue;
-        padding: 5px 0;
-        font-size: 20px;
+        background-color: #EB6641;
+        font-size: 18px;
         color: #ffffff;
-        text-transform: uppercase;
-        border-radius: 10px 10px 0 0;
         margin: 0 !important;
+        border-radius: 5px;
+
     }
     .close{
         position: relative;
         cursor: pointer;
     }
-    .close>i{
-        color: red;
-        opacity: 1;
-        text-shadow: none;
+    .close>span{
+        font-size: 16px;
+        margin: 5px;
+    }
+    .close>span::before{
+        color: #ffffff;
     }
     
     
