@@ -61,7 +61,9 @@
                 </span>
             </li>
             <li class="wrap-btn-save">
-                <span @click="saveState">Save</span>
+                <span @click="saveState" v-if="statusSave == 'ready'" class="btn-save-ready">Save</span>
+                <span v-if="statusSave == 'loading'" class="btn-save-loading"><md-icon>autorenew</md-icon></span>
+                <span v-if="statusSave == 'done'" class="btn-save-done"><md-icon>done</md-icon></span>
             </li>
             <li class="wrap-btn-preview">
                 <span @click="preview">{{isPreview ? $t('public.back') :$t('top_menu_editor.preview_site')}}</span>
@@ -76,7 +78,7 @@
 
 <script>
 import { bus } from "../../main";
-import { setTimeout } from 'timers';
+import { setTimeout, clearTimeout } from 'timers';
     export default {
         props:{
             openedToolbar :{
@@ -90,12 +92,23 @@ import { setTimeout } from 'timers';
                 responsive : 'desktop',
                 openedSubMenu:false,
                 name: '',
-                x : 0
+                x : 0,
+                statusSave: 'ready'
             }
         },
         methods:{
         saveState(){
-            this.$store.commit('saveState')
+            setTimeout(()=>{
+                this.statusSave = 'loading' 
+                setTimeout(()=>{
+                    this.statusSave = 'done'
+                },2000)
+                setTimeout(()=>{
+                    this.statusSave = 'ready'
+                },4000)
+                    this.$store.commit('saveState')
+            },1000)
+           clearTimeout()
         },
         openSubMenu(ev,name){
             if(this.openedSubMenu){
