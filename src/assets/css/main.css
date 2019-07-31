@@ -909,7 +909,7 @@ li.wrap-select{
 }
 .ivu-radio-wrapper.ivu-radio-group-item{
     padding: 0 !important;
-    margin: 0 5px 0 5px !important;
+    margin: 0 3px 0 3px !important;
     border:none !important;
     border-left: none !important;
     border-bottom: 1px solid transparent;
@@ -1117,6 +1117,7 @@ label.ivu-radio-wrapper.ivu-radio-group-item.ivu-radio-wrapper-checked.ivu-radio
 .wrap-btn-save,.wrap-btn-preview,.wrap-publish{
     position: relative;
     width: 6%;
+    cursor: pointer;
 }
 .wrap-btn-save>span,.wrap-btn-preview>span,.wrap-publish>span{
     position: absolute;

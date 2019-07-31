@@ -1,7 +1,6 @@
 <template>
     <divDragResize
     :id="id"
-    
     class="row"
     :class="classS"
     :resizable="false"

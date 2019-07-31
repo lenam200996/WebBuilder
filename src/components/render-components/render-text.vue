@@ -1,93 +1,125 @@
 <template>
-      <div class="text" :style="getStyleWrap">
-          <span v-html="Value" :style="getStyle"></span>
-      </div>    
+    <div :style="getStyleWrap">
+        <div class="text">
+            <span v-html="Value" :style="getStyle" :class="'md-elevation-'+properties.styleText.shadow"></span>
+        </div>
+    </div>
 </template>
+
 <script>
   export default {
     props:{
-      position : {
-        type : Object,
-        required :true
+      properties:{
+        type:Object,
+        required : true
       },
-      text: {
-        type :String,
-        required: true,
-      },
-      styleText :{
-        type :Object,
-      }
       
     },
-
     computed:{
-      Value : function(){
-          return this.text
+      Value :{
+        get : function(){ 
+          return this.properties.text
+        }
       },
+      
       getStyle: function(){
+        
         return {
-          fontFamily : this.styleText.fontFamily,
-          letterSpacing : this.styleText.letterSpacing+'px',
-          wordSpacing : this.styleText.wordSpacing+'px',
-          lineHeight : this.styleText.lineHeight+'px',
+          fontFamily : this.properties.styleText.fontFamily,
+          letterSpacing : this.properties.styleText.letterSpacing+'px',
+          wordSpacing : this.properties.styleText.wordSpacing+'px',
+          lineHeight : this.properties.styleText.lineHeight+'px',
+
         }
       },
       getStyleWrap:function(){
-        if(this.styleText.alignBlock == 'center'){
+        if(this.properties.styleText.alignBlock == 'center'){
           var style = {
-            top: this.styleText.top,
-            width: this.styleText.width ,
-            height: this.styleText.height ,
-            transform: 'rotate(' + this.styleText.rotation + 'deg)',
+            top: this.properties.styleText.top,
+            transform: 'rotate(' + this.properties.styleText.rotation + 'deg)',
             left : '50%',
             transform : 'translateX(-50%)',
             maxWidth : '90%',
-            zIndex : 1,
+            zIndex : this.properties.id,
+            position:"absolute",
+            height: this.properties.styleText.height,
+            width : this.properties.styleText.width
           }
-        }else if( this.styleText.alignBlock == 'left'){
+        }else if( this.properties.styleText.alignBlock == 'left'){
           var style = {
-            top: this.styleText.top,
-            width: this.styleText.width ,
-            height: this.styleText.height ,
-            transform: 'rotate(' + this.styleText.rotation + 'deg)',
+            top: this.properties.styleText.top,
+            transform: 'rotate(' + this.properties.styleText.rotation + 'deg)',
             left : 0,
             transform :'none',
             right : 'auto',
             maxWidth : '90%',
-            zIndex :  1
+            zIndex : this.properties.id,
+            position:"absolute",
+            height: this.properties.styleText.height,
+            width : this.properties.styleText.width
           }
-        }else if( this.styleText.alignBlock == 'right'){
+        }else if( this.properties.styleText.alignBlock == 'right'){
           var style = {
-            top: this.styleText.top,
-            width: this.styleText.width ,
-            height: this.styleText.height ,
-            transform: 'rotate(' + this.styleText.rotation + 'deg)',
+            top: this.properties.styleText.top,
+            transform: 'rotate(' + this.properties.styleText.rotation + 'deg)',
             right : 0,
             transform :'none',
             left : 'auto',
-            zIndex :  1,
             maxWidth : '90%',
+            zIndex : this.properties.id,
+            position:"absolute",
+            height: this.properties.styleText.height,
+            width : this.properties.styleText.width
           }
         }else{
-          var style = {
-            left: this.styleText.left,
-            top: this.styleText.top,
-            width: this.styleText.width ,
-            height: this.styleText.height ,
-            transform: 'rotate(' + this.styleText.rotation + 'deg)',
-            zIndex : 1,
+          return {
+            left: this.properties.styleText.left,
+            top: this.properties.styleText.top,
+            transform: 'rotate(' + this.properties.styleText.rotation + 'deg)',
             maxWidth : '90%',
+            position:"absolute",
+            height: this.properties.styleText.height,
+            width : this.properties.styleText.width
           };
         }
         return style
       }
     },
-
   }
 </script>
 
 <style>
-  .text{
-    position: absolute;
+  .text {
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid lightgrey; */
+    
   }
+  .textarea {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 99999999999;
+  }
+  .edit{
+      position: relative;
+      height: 100%;
+  }
+  .edit>div{
+    height: 100%;
+  }
+  .btn-save-edit-text{
+    position: absolute;
+    width: 80px;
+    height: 30px;
+    right: -40px;
+    top: -15px;
+    z-index: 99999;
+    background-color: #EB6641;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    letter-spacing: 2px;
+}
+
 </style>

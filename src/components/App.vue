@@ -1,6 +1,7 @@
 <template>    
 <keep-alive v-if="!isPreview">
   <div id="app" class="container-fluid" >
+    <basic-menu></basic-menu>
     <main-option-top-menu :openedToolbar="openToolbar"></main-option-top-menu>
     <main-option-menu-add></main-option-menu-add>
     <main-option-toolbar :open="openToolbar"></main-option-toolbar>
@@ -46,7 +47,7 @@
 </keep-alive>
 <keep-alive v-else>
   <div id="app" class="container-fluid" >
-    <top-menu></top-menu>
+    <main-option-top-menu :openedToolbar="openToolbar"></main-option-top-menu>
     <router-view/>      
   </div>  
 </keep-alive>
@@ -112,8 +113,15 @@ export default {
       }
 
     },
-    
+    created(){
+      // console.log(localStorage.length)
+      if(localStorage.length>1){
+        this.$store.commit('readStateStorage')
+      }
+      this.$store.commit('fisrtLoad')
+    },
     mounted(){
+
       bus.$on('openOption',({name,id,index,x})=>{
         this.option.is = true
         this.option.name = name
@@ -144,6 +152,7 @@ export default {
       window.addEventListener('resize',(ev)=>{
       this.$store.commit('setWindowSize',{height :  ev.currentTarget.innerHeight , width :  ev.currentTarget.innerWidth})
       })
+     
     },  
   }
 </script>

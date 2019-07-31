@@ -78,13 +78,7 @@ import { bus } from "../../main";
             swapSection:function(ev){
                 this.$store.commit('swapSection',{toIndex : ev})
             },
-             next() {
-            this.$refs.slick.next();
-            },
-    
-            prev() {
-                this.$refs.slick.prev();
-            },
+
         }
     }
 </script>

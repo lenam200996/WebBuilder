@@ -4,6 +4,22 @@ import {bus} from '../main.js'
 let snapshotState  = []
 let snapShotStateRedo = []
 export default {
+  saveState:function(state){
+    localStorage.setItem('states',JSON.stringify(state))
+   
+  },
+  readStateStorage:function(state){
+    
+    this.replaceState(JSON.parse(localStorage.getItem('states')))
+   
+    
+  },
+  fisrtLoad:function(state){
+    state.canUndo = false
+    state.canRedo = false
+    snapshotState  = []
+    snapShotStateRedo = []
+  },
   copyElement:function(state){
     state.clipboard = new Object()
     Object.assign(state.clipboard, state.elements.item.find(item => item.id === state.SelectedElement))

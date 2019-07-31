@@ -9,6 +9,8 @@
                 <i-select v-model="pageIndex" :class="'select-single-page'">
                     <i-option :value="'home'">Trang chủ</i-option>
                     <i-option :value="'about'">Giới thiệu</i-option>
+                    <i-option :value="'shop'">Shop</i-option>
+                    <i-option :value="'member'">Thành Viên</i-option>
                     <i-option :value="'contact'">Liên hệ</i-option>
                 </i-select>
             </li>
@@ -59,10 +61,10 @@
                 </span>
             </li>
             <li class="wrap-btn-save">
-                <span>Save</span>
+                <span @click="saveState">Save</span>
             </li>
             <li class="wrap-btn-preview">
-                <span>{{isPreview ? $t('public.back') :$t('top_menu_editor.preview_site')}}</span>
+                <span @click="preview">{{isPreview ? $t('public.back') :$t('top_menu_editor.preview_site')}}</span>
             </li>
             <li class="wrap-publish">
                 <span>{{isPreview ? $t('public.back') : $t('top_menu_editor.publish')}}</span>
@@ -92,6 +94,9 @@ import { setTimeout } from 'timers';
             }
         },
         methods:{
+        saveState(){
+            this.$store.commit('saveState')
+        },
         openSubMenu(ev,name){
             if(this.openedSubMenu){
                 if(this.name == name){
@@ -115,13 +120,13 @@ import { setTimeout } from 'timers';
         },
         preview:function(){
             if(this.isPreview){
+                this.isPreview = false
                 this.$router.push({ path: '/' })
                 bus.$emit('backEditor',true)
-                this.isPreview = false
             }else{
+                this.isPreview = true
                 this.$router.push({ path: 'preview' })
                 bus.$emit('preview',true)
-                this.isPreview = true
             }
             
         },
