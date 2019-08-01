@@ -107,7 +107,7 @@ import { setTimeout, clearTimeout } from 'timers';
                     this.statusSave = 'ready'
                 },4000)
                     this.$store.commit('saveState')
-            },1000)
+            },500)
            clearTimeout()
         },
         openSubMenu(ev,name){
