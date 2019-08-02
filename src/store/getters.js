@@ -110,5 +110,15 @@ export default {
     },
     getClipboard:state=>{
       return state.clipboard
-    }
+    },
+    getMenu:state=>{
+      return state.elements.menu
+    },
+    // getMenuAttribute:state=>name=>{
+    //   var menuitem =  state.elements.menu.find(item => item.name == name)
+    //   return {
+    //     name : menuitem.name,
+    //     title : menuitem.title
+    //   }
+    // }
   }

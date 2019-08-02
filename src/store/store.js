@@ -7,6 +7,7 @@ import actions from './actions'
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+
   state: {
     window : {
       height : window.innerHeight,
@@ -22,7 +23,29 @@ export default new Vuex.Store({
     SelectedRow : null,
     SelectedElement: null,
     elements : {
-      item :[]
+      item:[],
+      menu:[
+        {
+          name : 'home',  
+          title:'Trang chủ'      
+        },
+        {
+          name : 'about',   
+          title:'Giới thiệu'       
+        },
+        {
+          name : 'shop',     
+          title:'Shop'     
+        },
+        {
+          name : 'member',   
+          title:'Thành Viên'       
+        },
+        {
+          name : 'contact',  
+          title:'Liên hệ'        
+        },
+      ]
     },
     canUndo : false,
     canRedo : false,

@@ -293,7 +293,7 @@ class TextParagraph{
             fontFamily : 'Roboto',
             letterSpacing : 10, /** (number) px */
             wordSpacing :5 , /** (number) px */
-            lineHeight : 20 , /** (number) px */
+            lineHeight :12 , /** (number) px */
             alignBlock : 'none',
             top: 0,
             left : 0,

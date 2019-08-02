@@ -2,11 +2,7 @@
     <div class="row menu-container" :style="getStyleContainer">
         <basic-logo :height="height" :width="100 - width"></basic-logo>
         <ul :style="getStyle">
-            <basic-menu-item :item="'home'" :title="'Home'" :size="15" :height="height"></basic-menu-item>
-            <basic-menu-item :item="'about'" :title="'About'" :size="15" :height="height"></basic-menu-item>
-            <basic-menu-item :item="'shop'" :title="'Shop'" :size="15" :height="height"></basic-menu-item>
-            <basic-menu-item :item="'member'" :title="'Member'" :size="15" :height="height"></basic-menu-item>
-            <basic-menu-item :item="'contact'" :title="'Contact'" :size="15" :height="height"></basic-menu-item>
+            <basic-menu-item v-for="item in getMenu" :key="item.name" :item="item.name" :title="item.title" :size="size" :height="height"></basic-menu-item>
         </ul>
     </div>
 </template>
@@ -16,7 +12,7 @@
         data:function(){
             return{
                 height : 60,
-                width : 80
+                width : 80,
             }
         },
         computed:{
@@ -31,6 +27,12 @@
                 return {
                     backgroundColor: '#ffffff'
                 }
+            },
+            getMenu:function(){
+                return this.$store.getters.getMenu
+            },
+            size:function(){
+                return  80/this.getMenu.length
             }
         }
     }

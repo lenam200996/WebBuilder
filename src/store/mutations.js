@@ -4,19 +4,59 @@ import {bus} from '../main.js'
 let snapshotState  = []
 let snapShotStateRedo = []
 export default {
+  deleteItemMenu(state,{name}){
+    this.commit('enableUndo')
+    state.elements.menu = state.elements.menu.filter(item => item.name != name)
+  },
+  sortingMenu(state,payload){
+    this.commit('enableUndo')
+    var itemSort = state.elements.menu[payload.removedIndex]
+    state.elements.menu.splice(payload.removedIndex,1)
+    state.elements.menu.splice(payload.addedIndex, 0,itemSort);
+  },
+  addNewItemMenu:function(state){
+    this.commit('enableUndo')
+    state.elements.menu.push({
+      name : 'new menu'+state.elements.menu.length,
+      title : 'new menu'
+    })
+  },
+  changeTitleMenu:function(state,{val,name}){
+    state.elements.menu.filter(item =>{
+      if(item.name == name){
+        item.title = val
+      }
+      return item
+    })
+  },
+  changeNameMenu:function(state,{val,name}){
+    if(state.pageIndex == name){
+      state.pageIndex = val
+    }
+    state.elements.item.filter(item=>{
+      if(item.type == 'section' && item.pageIndex == name){
+        item.pageIndex = val
+      }
+      return item
+    })
+    state.elements.menu.filter(item =>{
+      if(item.name == name){
+        item.name = val
+      }
+      return item
+    })
+  },
   saveState:function(state){
     localStorage.setItem('states',JSON.stringify(state))
    
   },
   readStateStorage:function(state){
-    
     this.replaceState(JSON.parse(localStorage.getItem('states')))
-   
-    
   },
   fisrtLoad:function(state){
     state.canUndo = false
     state.canRedo = false
+    // this.commit('status/fisrtLoad',null,{root:true})
     snapshotState  = []
     snapShotStateRedo = []
   },

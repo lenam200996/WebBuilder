@@ -7,11 +7,11 @@
             <li class="wrap-select">
                 <span>Page</span>
                 <i-select v-model="pageIndex" :class="'select-single-page'">
-                    <i-option :value="'home'">Trang chủ</i-option>
-                    <i-option :value="'about'">Giới thiệu</i-option>
+                    <i-option v-for="option in getMenu" :key="option.name" :value="option.name">{{option.title}}</i-option>
+                    <!-- <i-option :value="'about'">Giới thiệu</i-option>
                     <i-option :value="'shop'">Shop</i-option>
                     <i-option :value="'member'">Thành Viên</i-option>
-                    <i-option :value="'contact'">Liên hệ</i-option>
+                    <i-option :value="'contact'">Liên hệ</i-option> -->
                 </i-select>
             </li>
             <li class="wrap-responsive">
@@ -167,12 +167,12 @@ import { setTimeout, clearTimeout } from 'timers';
                 set(val){
                     this.$store.commit('setPageIndex',{val})
                 }
+            },
+            getMenu:function(){
+                return this.$store.getters.getMenu
             }
         }
         ,
-        mounted(){
-           
-        },
         watch:{
         // locale:function(val){
         //     this.$i18n.locale = val

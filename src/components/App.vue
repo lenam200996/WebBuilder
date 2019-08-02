@@ -42,7 +42,7 @@
         </basic-column>
       </basic-row>
     </basic-section>
-    
+    <basic-footer></basic-footer>
    </div>
 </keep-alive>
 <keep-alive v-else>

@@ -24,6 +24,7 @@ import {bus} from '../../main.js'
             bus.$on('close',()=>{
                 this.isOpenOption = false
             })
+        
         },
         methods:{
 

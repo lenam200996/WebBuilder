@@ -166,6 +166,7 @@ import mixins from '../mixins.js'
   .text {
     width: 100%;
     height: 100%;
+    text-align: left;
     /* border: 1px solid lightgrey; */
     
   }
