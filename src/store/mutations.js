@@ -4,25 +4,72 @@ import {bus} from '../main.js'
 let snapshotState  = []
 let snapShotStateRedo = []
 export default {
+  setFooterText(state,{val}){
+    state.elements.footer.text = val
+    console.log("set text"+val)
+  },
+  setFooterBackground(state,{val}){
+    state.elements.footer.background = val
+  },
+  setFooterColor(state,{val}){
+    state.elements.footer.color =val
+  },
+  setFooterFontSize(state,{val}){
+    state.elements.footer.fontSize = val
+  },
+  setFooterTextAlign(state,{val}){
+    state.elements.footer.textAlign = val
+  },
+  setFooterPadding(state,{val}){
+    state.elements.footer.padding = val
+  },
+  setFooterHeight(state,{val}){
+    state.elements.footer.height = val
+  },
+  
+  setMenuFill(state,{val}){
+    state.elements.menu.fill = val
+  },
+  setMenuColor(state,{val}){
+    state.elements.menu.color = val
+  },
+  setMenuColorActive(state,{val}){
+    state.elements.menu.colorActive = val
+  },
+  setLogoDisplay(state,{val}){
+    state.elements.logo.display = val
+  },
+  setLogoImage(state,{uri}){
+    state.elements.logo.data = uri
+  },
   deleteItemMenu(state,{name}){
     this.commit('enableUndo')
-    state.elements.menu = state.elements.menu.filter(item => item.name != name)
+    state.elements.menu.item = state.elements.menu.item.filter(item => item.name != name)
   },
   sortingMenu(state,payload){
     this.commit('enableUndo')
-    var itemSort = state.elements.menu[payload.removedIndex]
-    state.elements.menu.splice(payload.removedIndex,1)
-    state.elements.menu.splice(payload.addedIndex, 0,itemSort);
+    var itemSort = state.elements.menu.item[payload.removedIndex]
+    state.elements.menu.item.splice(payload.removedIndex,1)
+    state.elements.menu.item.splice(payload.addedIndex, 0,itemSort);
   },
   addNewItemMenu:function(state){
     this.commit('enableUndo')
-    state.elements.menu.push({
-      name : 'new menu'+state.elements.menu.length,
-      title : 'new menu'
+    state.elements.menu.item.push({
+      name : 'new menu'+state.elements.menu.item.length,
+      title : 'new menu',
+      display: true
+    })
+  },
+  changeDisplayMenu:function(state,{val,name}){
+    state.elements.menu.item.filter(item =>{
+      if(item.name == name){
+        item.display = val
+      }
+      return item
     })
   },
   changeTitleMenu:function(state,{val,name}){
-    state.elements.menu.filter(item =>{
+    state.elements.menu.item.filter(item =>{
       if(item.name == name){
         item.title = val
       }
@@ -39,7 +86,7 @@ export default {
       }
       return item
     })
-    state.elements.menu.filter(item =>{
+    state.elements.menu.item.filter(item =>{
       if(item.name == name){
         item.name = val
       }

@@ -1,6 +1,6 @@
 <template>
     <div class="logo-container" :style="getStyle">
-        <img class="md-image" src="../../assets/logo.png" :height="height">
+        <img class="md-image" v-if="displayLogo" :src="getLogo.dataUrl" :height="height/2">
     </div>
 </template>
 
@@ -22,6 +22,12 @@
                     height : this.height + 'px',
                     width :this.width + '%'
                 }
+            },
+            getLogo:function(){
+                return this.$store.getters.getLogoImage
+            },
+            displayLogo:function(){
+                return this.$store.getters.getLogoDisplay
             }
         }
     }
@@ -35,5 +41,7 @@
 .logo-container>img{
     position: absolute;
     right: 0;
+    top: 50%;
+    transform: translateY(-50%);
 }
 </style>

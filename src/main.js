@@ -29,7 +29,8 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import vClickOutside from 'v-click-outside'
 // require styles
 import 'swiper/dist/css/swiper.css'
-
+import ImageUploader from 'vue-image-upload-resize'
+Vue.use(ImageUploader);
 Vue.use(vClickOutside)
 Vue.use(VueAwesomeSwiper, /* { default global options } */)
 Vue.use(FlagIcon);
@@ -42,6 +43,7 @@ iView.locale(lang)
 Vue.component('tinymceText',tinymce)
 Vue.component('divDragResize',divDragResize) 
 Vue.component('slick',Slick) 
+
 Vue.config.productionTip = false;
 export const bus = new Vue();
 

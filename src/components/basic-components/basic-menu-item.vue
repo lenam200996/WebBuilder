@@ -60,11 +60,14 @@
                   width :this.size + '%',
                   lineHeight: this.height + 'px',
                   fontWeight : 600,
-                  color: this.ishover||this.isActive? '#eb6641' : '#374355',
+                  color: this.ishover||this.isActive? this.getMenuStyle.colorActive : this.getMenuStyle.color,
               }
           },
           getPageIndex:function(){
               return this.$store.getters.getPageIndex
+          },
+          getMenuStyle:function(){
+              return this.$store.getters.getMenuStyle
           }
 
         },

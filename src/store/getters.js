@@ -112,13 +112,19 @@ export default {
       return state.clipboard
     },
     getMenu:state=>{
+      return state.elements.menu.item
+    },
+    getLogoImage:state=>{
+      return state.elements.logo.data
+    },
+    getLogoDisplay:state=>{
+      return state.elements.logo.display
+    },
+    getMenuStyle:state=>{
       return state.elements.menu
     },
-    // getMenuAttribute:state=>name=>{
-    //   var menuitem =  state.elements.menu.find(item => item.name == name)
-    //   return {
-    //     name : menuitem.name,
-    //     title : menuitem.title
-    //   }
-    // }
+    getFooterStyle:state=>{
+      return state.elements.footer
+    }
+   
   }

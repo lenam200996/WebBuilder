@@ -35,7 +35,7 @@
         </render-column>
       </render-row>
     </render-section>
-    
+    <render-footer></render-footer>
    </div>
 
 </template>
