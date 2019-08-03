@@ -2,8 +2,10 @@ import Vue from "vue";
 import App from "./components/App.vue";
 import router from "./router";
 import store from "./store/store";
-import divDragResize from '@minogin/vue-drag-resize-rotate'
+// import divDragResize from '@minogin/vue-drag-resize-rotate'
+import divDragResize from 'vue-drag-resize-rotate-gobuilder'
 import tinymce from 'vue-tinymce-editor'
+// import tinymce from 'godream-editor'
 import VueTabs from 'vue-nav-tabs/dist/vue-tabs.js'
 import VueI18n from 'vue-i18n'
 import VueMaterial from 'vue-material'
@@ -29,7 +31,8 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import vClickOutside from 'v-click-outside'
 // require styles
 import 'swiper/dist/css/swiper.css'
-import ImageUploader from 'vue-image-upload-resize'
+// import ImageUploader from 'vue-image-upload-resize'
+import ImageUploader from 'godream-image-upload'
 Vue.use(ImageUploader);
 Vue.use(vClickOutside)
 Vue.use(VueAwesomeSwiper, /* { default global options } */)
