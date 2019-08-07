@@ -2,25 +2,27 @@
      <divDragResize
             :id="properties.id"
             :column="properties.columnIndex"
+            :parentId="properties.parentId"
             :x ="properties.position.x"
             :y ="properties.position.y"
-            :parentId="properties.parentId"
             :angle="properties.position.angle"
-            :w="properties.position.w"
+            :w="properties.styleLine.size"
             :h="properties.position.h"
             @select="select"
             @deselect="deselect"
-            v-click-outside="deselect"
+             v-click-outside="deselect"
             :selected="isActive"
             :style="getStyleWrap"
             :class="{autoAlign : isAutoAlign}"
             :typeName="name"
+            @drag="draging" 
+            @dragstop="dragStop"
             >
-    <div :style="getStyle" class="re-line-h" :class="'md-elevation-'+properties.styleLine.shadow">
+    <div :style="getStyle" class="re-line-v" :class="'md-elevation-'+properties.styleLine.shadow">
         
     </div>
 <transition name="bounce">
-        <e-option-button-option v-if="isActive"
+        <e-option-button-option v-if="isActive&&showButton"
         :isGrid="false" 
         @edit="editOption" 
         @disableEdit="onBlur"
@@ -53,7 +55,7 @@ import mixins from '../mixins.js'
     computed:{
         getStyle: function(){
         return {
-         height : this.properties.styleLine.size +'px',
+         width : this.properties.styleLine.size +'px',
          backgroundColor : this.properties.styleLine.backgroundColor
         }
         },
@@ -103,7 +105,7 @@ import mixins from '../mixins.js'
 </script>
 
 <style  scoped>
-    .re-line-h{
-        width: 100%;
+    .re-line-v{
+        height: 100%;
     }
 </style>

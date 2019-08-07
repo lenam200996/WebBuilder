@@ -8,9 +8,11 @@
     :draggable="false"
     @select="select"
     @deselect="deselect"
+    v-click-outside="deselect"
     :style ="getStyle"
     style="width:100%;margin:0;z-index:1"
     :typeName="'SECTION'"
+    isGrid
     >
     <div :class="getStretched"> 
             <slot></slot>
@@ -63,12 +65,12 @@ import {bus} from '../../main'
             return {
                 isActive : false,
                 styleBtn:{
-                    width : this.$props.isItemSlide?(145 +'px'):(245 +'px'),
-                    height: 45 +'px',
+                    width : this.$props.isItemSlide?(145 +'px'):('auto'),
+                    height: 30 +'px',
                     position: 'absolute',
-                    zIndex: '99999',
+                    zIndex: '9999999999999',
                     bottom: 0 + '!important',
-                    // right: -10 +'px !important',
+                    right: 0 +'px !important',
                     top : 'auto'
                 },
                
@@ -78,10 +80,11 @@ import {bus} from '../../main'
            
             getStyle :function(){
                 return{
-                    backgroundColor :this.styleSec.backgroundColor,
+                    // backgroundColor :this.styleSec.backgroundColor,
                     margin : this.styleSec.margin, 
                     left:0,
-                    position : this.isItemSlide ? 'static' : 'relative'
+                    position : this.isItemSlide ? 'static' : 'relative',
+                    zIndex: this.isActive?99:1
                 }
             },
             getStretched:function(){

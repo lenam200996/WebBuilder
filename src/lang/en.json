@@ -67,6 +67,12 @@
         "itemSlideManager":"",
         "sectionColumnManagement" :"",
         "sectionGrid" :"",
-        "rowManager" :""
+        "rowManager" :"",
+        "rowGrid" :"",
+        "marginTop":"Margin Top",
+        "marginLeft":"Margin Left",
+        "marginRight":"Margin Right",
+        "marginBottom":"Margin Bottom"
+
     }
 }

@@ -54,6 +54,10 @@ class Field {
             fontWeight: 500,
             backgroundColor : '#cccccc',
             alignBlock:'none',
+            marginLeft: 0,
+            marginRight : 0,
+            marginTop : 0,
+            marginBottom : 0,
             top: 0,
             left : 0,
             width: '300px',
@@ -291,8 +295,8 @@ class TextParagraph{
     constructor(){
         this.style = {
             fontFamily : 'Roboto',
-            letterSpacing : 10, /** (number) px */
-            wordSpacing :5 , /** (number) px */
+            letterSpacing : 0, /** (number) px */
+            wordSpacing :0 , /** (number) px */
             lineHeight :12 , /** (number) px */
             alignBlock : 'none',
             top: 0,
@@ -508,7 +512,7 @@ class Section {
         }
         this.position = {
             x :200,
-            y : 320,
+            y : 250,
             angle:0,
             w:400,
             h:500
@@ -615,5 +619,23 @@ class Section {
 }
 
 
+class Form{
+    constructor(){
+        this.style = {
+            // width: 500,
+            // height : 500
+            backgroundColor : 'red'
+        }
+        this.position = {
+            x : 250,
+            y : 250,
+            angle: 0,
+            w : 500,
+            h:500
+        }
+    }
 
-export default {TextParagraph,Button,Section,Image,LineHorizontal,LineVertical,SlideShow,Box,Field,Video}
+}
+
+
+export default {TextParagraph,Button,Section,Image,LineHorizontal,LineVertical,SlideShow,Box,Field,Video,Form}

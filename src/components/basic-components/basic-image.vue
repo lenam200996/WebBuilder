@@ -16,12 +16,14 @@
             :class="{autoAlign : isAutoAlign}"
             :aspectRatio="properties.styleImg.keepProportion"
             :typeName="name"
+             @drag="draging" 
+            @dragstop="dragStop"
             >
         <div class="wrap-img">
             <img :src="properties.url" :style="getStyleImage" :class="'md-image md-elevation-'+properties.styleImg.shadow">
         </div>
 <transition name="bounce">    
-        <e-option-button-option v-if="isActive"
+        <e-option-button-option v-if="isActive&&showButton"
             :isGrid="false" 
             @edit="editOption" 
             @disableEdit="onBlur"

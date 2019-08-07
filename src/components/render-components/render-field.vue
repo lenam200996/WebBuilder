@@ -1,6 +1,6 @@
 <template>
      <div :style="getStyleWrap">
-        <md-input :type="getType" :placeholder="properties.styleInput.placeholder" :class="'md-elevation-'+properties.styleInput.shadow" :required="properties.styleInput.required" :style="getStyle" class="re-field"></md-input>
+        <mdb-input :type="getType" :label="properties.styleInput.placeholder"  :class="'md-elevation-'+properties.styleInput.shadow" :required="properties.styleInput.required" :style="getStyle" class="re-field"></mdb-input>
      </div>
 </template>
 

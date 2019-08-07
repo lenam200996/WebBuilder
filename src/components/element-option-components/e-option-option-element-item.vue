@@ -1,7 +1,7 @@
 <template>
     <div class="wrap-option-content">
         <ul class="ul-wrap">
-            <li v-for="(itemOption) in item" :key="itemOption.name+itemOption.ref" :class="{classItemDiv : itemOption.ref == 'sectionGrid' || itemOption.ref == 'sectionColumnManagement'}">
+            <li v-for="(itemOption) in item" :key="itemOption.name+itemOption.ref" :class="{classItemDiv : itemOption.ref == 'sectionGrid' || itemOption.ref == 'sectionColumnManagement'||itemOption.ref == 'rowManager'}">
                 <span>{{$t('style.'+itemOption.ref)}}</span>
                 <slider v-if="itemOption.ref == 'opacity'" :min="0.1" :max="1" :step="0.1" v-model="style.opacity"></slider>
                 <div v-if="itemOption.ref == 'opacity'" class="value">{{style.opacity}}</div>
@@ -11,6 +11,14 @@
                 <div v-if="itemOption.ref == 'fontWeight'" class="value">{{style.fontWeight}}</div>
                 <slider v-if="itemOption.ref == 'lineHeight'"  v-model="style.lineHeight"></slider>
                 <div v-if="itemOption.ref == 'lineHeight'" class="value">{{style.lineHeight}}</div>
+                <slider v-if="itemOption.ref == 'marginLeft'"  v-model="style.marginLeft"></slider>
+                <div v-if="itemOption.ref == 'marginLeft'" class="value">{{style.marginLeft}}</div>
+                <slider v-if="itemOption.ref == 'marginRight'"  v-model="style.marginRight"></slider>
+                <div v-if="itemOption.ref == 'marginRight'" class="value">{{style.marginRight}}</div>
+                <slider v-if="itemOption.ref == 'marginTop'"  v-model="style.marginTop"></slider>
+                <div v-if="itemOption.ref == 'marginTop'" class="value">{{style.marginTop}}</div>
+                <slider v-if="itemOption.ref == 'marginBottom'"  v-model="style.marginBottom"></slider>
+                <div v-if="itemOption.ref == 'marginBottom'" class="value">{{style.marginBottom}}</div>
                 <slider v-if="itemOption.ref == 'letterSpacing'"  v-model="style.letterSpacing"></slider>
                 <div v-if="itemOption.ref == 'letterSpacing'" class="value">{{style.letterSpacing}}</div>
                 <slider v-if="itemOption.ref == 'shadow'"  v-model="style.shadow" :min="0" :step="1" :max="24"></slider>
@@ -124,7 +132,14 @@
                 <div v-if="itemOption.ref == 'sectionGrid'" class="div-grid-manager">
                     <h2>{{$t('option.grid_manager')}}</h2>
                     <ul class="ul-grid" >
-                        <e-option-grid-item v-for="(grid,index) in arrayGridManager" :key="index" :grid="grid"></e-option-grid-item>
+                        <e-option-grid-item isRow v-for="(grid,index) in arrayGridRowManager" :key="index" :grid="grid"></e-option-grid-item>
+                    </ul>
+                    
+                </div>
+                <div v-if="itemOption.ref == 'rowGrid'" class="div-grid-manager">
+                    <h2>{{$t('option.grid_manager')}}</h2>
+                    <ul class="ul-grid" >
+                        <e-option-grid-item :isRow="false" v-for="(grid,index) in arrayGridColumnManager" :key="index" :grid="grid"></e-option-grid-item>
                     </ul>
                     
                 </div>
@@ -158,7 +173,7 @@ import Grid from '../../api/static-data.json'
                 common : [],
                 backgroundColor: "1",
                 enableOptionColumn : false,
-                arrayGridManager : [],
+                arrayGridColumnManager : [],
                 enableOptionRow: false
             }
         },
@@ -273,7 +288,8 @@ import Grid from '../../api/static-data.json'
             })
            
             this.item = Default.Default[this.name]
-            this.arrayGridManager = Grid.grid_manager[this.getNumColumn]
+            this.arrayGridColumnManager = Grid.grid_manager[this.getNumColumn]
+            this.arrayGridRowManager = Grid.grid_manager[this.getNumRow]
         },
         watch:{
             getNumColumn:function(val){
@@ -286,6 +302,8 @@ import Grid from '../../api/static-data.json'
                  if(val == 1){
                     this.enableOptionRow = false
                 }
+                this.arrayGridRowManager = Grid.grid_manager[val]
+
             }
         }
 

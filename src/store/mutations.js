@@ -4,6 +4,18 @@ import {bus} from '../main.js'
 let snapshotState  = []
 let snapShotStateRedo = []
 export default {
+
+  setSizeRowGrid(state,grid){
+    state.elements.item = state.elements.item.filter(item =>{
+      if(item.id == state.selectId ){
+        item.row = item.row.filter(itemLayout =>{
+            itemLayout.size = grid[itemLayout.index - 1]
+          return itemLayout
+        })
+      }
+      return item
+    })
+  },
   setFooterText(state,{val}){
     state.elements.footer.text = val
     console.log("set text"+val)
@@ -116,21 +128,32 @@ export default {
     var border = {}
     var style = {}
     var item = {}
+    Object.assign(item,state.clipboard)
     Object.assign(position,state.clipboard.position)
     Object.assign(style,state.clipboard.style)
     Object.assign(border,state.clipboard.style.border)
-    Object.assign(item,state.clipboard)
     item.id = state.indexItem;
     item.parentId = state.selectId;
     item.column = state.Selectedcolumn;
     item.row = state.SelectedRow;
     item.position = position
-    item.style.top = (parseFloat(item.style.top.replace('px','')) + 50 )+'px'
-    item.style.border = border
-    item.position.y = item.position.y + 50
     item.style = style
+    item.style.border = border
+    item.position.y = item.position.y + 20
+    item.style.top = (parseFloat(item.style.top.replace('px','')) + 20 )+'px'
+    item.position.x = item.position.x + 20
+    item.style.left = (parseFloat(item.style.left.replace('px','')) + 20 )+'px'
 
+    // Object.assign(item.style.border,border)
+    // Object.assign(item.position,position)
+    // Object.assign(item.style,style)
     this.commit('addItem',item)
+    this.commit('updatePositionElement',{id: item.id,val: item.style})
+
+  },
+  duplicateElement:function(){
+    this.commit('copyElement')
+    this.commit('pasteElement')
   },
   setPageIndex:function(state,{val}){
     state.pageIndex = val
@@ -164,6 +187,7 @@ export default {
   enableUndo:function(state){
     snapshotState.push(JSON.stringify(state))
     snapShotStateRedo = []
+    state.canRedo = false
     state.canUndo = true
   },
   enableRedo:function(state){
@@ -730,6 +754,12 @@ export default {
         return item
       })
     },
+    bindingMenuPosition:function(state,{val}){
+      state.elements.menu.position.x = val.x
+      state.elements.menu.position.y = val.y
+      state.elements.menu.position.w = val.w
+      state.elements.menu.position.h = val.h
+    },
     updatePositionElement:function(state,{id,val}){
       var grid = ['section','row','column']
       // this.commit('enableUndo')
@@ -837,7 +867,6 @@ export default {
     },
     addItem:function(state,item){
       bus.$emit('close',true)
-      this.commit('enableUndo')
       state.elements.item.push(item)
       state.indexItem++
     },
@@ -856,7 +885,8 @@ export default {
         idSlideshow : null,
         swapSlide: false,
         indexSlide: null,
-        pageIndex : state.pageIndex
+        pageIndex : state.pageIndex,
+        form : state.SelectedElement
 
       }
       state.selectId = state.indexItem
@@ -865,6 +895,7 @@ export default {
       this.commit('addItem',item)
     },
     addElement:function(state,{type, name}){
+      this.commit('enableUndo')
       switch (type) {
         case 'text':
             {
@@ -1049,6 +1080,42 @@ export default {
           this.commit('addItem',item)
         }
         break;
+        case 'form':
+        {
+          var ObjectForm = new Element.Form()
+          var item = {
+            id : state.indexItem,
+            type: 'form',
+            style: ObjectForm.style,
+            parentId : state.selectId != null ? state.selectId : null,
+            column : state.Selectedcolumn,
+            row : state.SelectedRow,
+            position : ObjectForm.position,
+          }
+          this.commit('addItem',item)
+          var ObjectSection = new Element.Section();
+          var item = {
+            id : state.indexItem,
+            type : 'section',
+            style: ObjectSection.style,
+            parentId : -1,
+            layout:ObjectSection.layout,
+            position :ObjectSection.position,
+            row : ObjectSection.row,
+            indexSection : state.indexSection,
+            idSlideshow : null,
+            swapSlide: false,
+            indexSlide: null,
+            pageIndex : state.pageIndex,
+            form : state.indexItem-1
+
+          }
+          state.selectId = state.indexItem
+          state.Selectedcolumn = 1
+          state.indexSection++
+          this.commit('addItem',item)
+        }
+        break;
         default:
           break;
       }
@@ -1096,11 +1163,15 @@ export default {
     },
     deleteRow:function(state){
       this.commit('enableUndo')
-
+      state.elements.item = state.elements.item.filter(item =>{
+        if(item.row != state.SelectedRow || item.parentId != state.selectId){
+          return item
+        }
+      }) // xoa item con
       if(this.getters.getNumRow == 1){
         this.commit('deleteSection',state.selectId)
         return
-      }
+      } // xoa section
       state.elements.item = state.elements.item.filter(item =>{
         if(item.id == state.selectId ){
           var sizeOld = 0;
@@ -1110,12 +1181,13 @@ export default {
             }else{
               sizeOld = itemRow.size
             }
-          })
+          }) // xoa row va lay size old
+
           item.layout = item.layout.filter(itemLayout =>{
             if(itemLayout.row != state.SelectedRow){
               return itemLayout
             }
-          })
+          }) 
           var index = 1;
           item.row = item.row.filter(itemRow =>{
             item.layout = item.layout.filter(itemLayout =>{
@@ -1124,6 +1196,13 @@ export default {
               }
               return itemLayout
             })
+            state.elements.item = state.elements.item.filter(itemC =>{
+              if(itemC.row == itemRow.index && itemC.parentId == state.selectId){
+                itemC.row = index
+              }
+              return itemC
+            })
+
             itemRow.index = index
             index == 1 ? itemRow.size += sizeOld : null
             index++
@@ -1135,7 +1214,11 @@ export default {
     },
     deleteColumn:function(state ,{index, id,row}){
       this.commit('enableUndo')
-
+      state.elements.item = state.elements.item.filter(item =>{
+        if(item.column != index || item.row != row || item.parentId != id){
+          return item
+        }
+      })
       // state.elements.item = state.elements.item.filter(item => {
       //   if(item.id != id || item.column != index || item.row != row){
       //     return item
@@ -1146,7 +1229,6 @@ export default {
         return
       }
       if(state.elements.item.find(item => item.id == id ).layout.filter(itemLayout => itemLayout.row == row).length == 1){
-        console.log('delete Row')
         this.commit('deleteRow')
         return
       }
@@ -1167,12 +1249,10 @@ export default {
                 return itemLayout //edited
               }
             }) 
-            console.log(itemLayoutNew)
             itemLayoutNew.forEach(itemNew =>{
               itemNew.size = size
               item.layout.push(itemNew)     
             })
-            console.log(item.layout)
             
           }
         } 
@@ -1187,8 +1267,9 @@ export default {
                 state.elements.item = state.elements.item.filter(itemChild =>{
                   if(itemChild.parentId == id && itemChild.column == itemLayout.index && itemChild.row == row){
                     itemChild.column = indexColumn
+                  }else{
+                    return itemChild
                   }
-                  return itemChild
                 })
                 itemLayout.index = indexColumn
                 indexColumn++
@@ -1226,7 +1307,7 @@ export default {
         var size = parseInt(100/(this.getters.getNumRow + 1))
         state.elements.item = state.elements.item.filter(item =>{
           if(item.id == state.selectId){
-            item.row.push({index: -1,size : size })
+            item.row.push({index: -1,size : size,bg:'none' })
             item.layout.push({index: 1,row: (this.getters.getNumRow),size: 100,bg:'none'})
             var index  = 1
             item.row = item.row.filter(itemRow =>{

@@ -1,6 +1,6 @@
 <template>    
   <div class="container-fluid" >
-    <basic-menu></basic-menu>
+    <render-menu-container></render-menu-container>
     <render-section  v-for="section in getSections" :id="section.id" :key="section.id" :styleSec="section.style" :position="section.position" :swapSlide="section.swapSlide">
       <render-row v-for="row in section.row" :key="row.index" :id="section.id" :height="row.size" :bg="row.bg" :rowIndex="row.index" :swapSlide="section.swapSlide">
          <render-column v-for="col in section.layout.filter(itemCol => itemCol.row == row.index)" :key="col.index" :properties="getPropertiesColumn(section,row,col)"  :swapSlide="section.swapSlide">
@@ -80,7 +80,7 @@ export default {
         return {id:box.id,styleBox:box.style,position:box.position,parentId:box.parentId,columnIndex : box.column}
       },
       getPropertiesField:function(field){
-        return {id:field.id,styleInput:field.style,position:field.position,parentId:field.parentId,columnIndex : v.column}
+        return {id:field.id,styleInput:field.style,position:field.position,parentId:field.parentId,columnIndex : field.column}
       },
       getPropertiesVideo:function(video){
         return {id:video.id,styleVideo:video.style,position:video.position,parentId:video.parentId,columnIndex : video.column}

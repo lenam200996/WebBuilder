@@ -22,6 +22,7 @@ export default new Vuex.Store({
     Selectedcolumn : null,
     SelectedRow : null,
     SelectedElement: null,
+    selectForm : null,
     elements : {
       item:[],
       menu:{
@@ -54,7 +55,14 @@ export default new Vuex.Store({
           ],
         color: "#374355",
         colorActive : "#eb6641",
-        fill : "#ffffff"
+        fill : "#ffffff",
+        position :{
+          x : 500,
+          y : 25,
+          angle : 0,
+          w: 1000,
+          h : 50
+        }
       }
       ,
       logo: {
@@ -69,7 +77,7 @@ export default new Vuex.Store({
           
       },
       footer:{
-        text :'&copy; Copyright',
+        text :'&copy; Copyright - 2019 - Le Van Nam',
         background : '#000000',
         color: '#ffffff',
         fontSize : 14,

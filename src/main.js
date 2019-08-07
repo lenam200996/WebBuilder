@@ -26,9 +26,12 @@ import './assets/css/animated.css'
 import 'vue-material/dist/vue-material.min.css'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'bootstrap-css-only/css/bootstrap.min.css'; 
+import 'mdbvue/build/css/mdb.css';
 import FlagIcon from 'vue-flag-icon'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import vClickOutside from 'v-click-outside'
+import {mdbInput} from 'mdbvue'
 // require styles
 import 'swiper/dist/css/swiper.css'
 // import ImageUploader from 'vue-image-upload-resize'
@@ -46,6 +49,8 @@ iView.locale(lang)
 Vue.component('tinymceText',tinymce)
 Vue.component('divDragResize',divDragResize) 
 Vue.component('slick',Slick) 
+Vue.component('mdb-input',mdbInput) 
+
 
 Vue.config.productionTip = false;
 export const bus = new Vue();

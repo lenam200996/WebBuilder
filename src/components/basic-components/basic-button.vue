@@ -15,6 +15,8 @@
             :style="getStyleWrap"
             :class="{autoAlign : isAutoAlign}"
             :typeName="name"
+             @drag="draging" 
+            @dragstop="dragStop"
             >
       <div class="button" @active="onActive()" @mouseover="isHover = true" @mouseleave="isHover = false" >
           <button :style="getStyle" :class="'md-elevation-'+properties.styleButton.shadow">
@@ -22,7 +24,7 @@
           </button>
       </div>
 <transition name="bounce">
-      <e-option-button-option v-if="isActive"
+      <e-option-button-option v-if="isActive&&showButton"
         :isGrid="false" 
         @edit="editOption" 
         @disableEdit="onBlur"

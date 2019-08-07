@@ -14,6 +14,10 @@ import ClickOutside from 'vue-click-outside'
             {
                 type:Array,
                 required:true
+            },
+            isRow:{
+                type:Boolean,
+                required : true
             }
         },
         data:function(){
@@ -24,7 +28,11 @@ import ClickOutside from 'vue-click-outside'
         methods:{
             setSizeColumnGrid:function(grid){
                 this.isActive = true
-                this.$store.commit('setSizeColumnGrid',grid)
+                if(!this.isRow){
+                    this.$store.commit('setSizeColumnGrid',grid)
+                }else{
+                    this.$store.commit('setSizeRowGrid',grid)
+                }
             },
             deActive:function(){
                 this.isActive = false

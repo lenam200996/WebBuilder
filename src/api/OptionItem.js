@@ -73,6 +73,9 @@ var Default = {
             },
            {
                ref:'rowManager'
+           },
+           {
+               ref:'sectionGrid'
            }
             
         ],
@@ -220,7 +223,19 @@ var Default = {
             },
             {
                 ref:'shadow'
-            }
+            },
+            {
+                ref : 'marginLeft'
+            },
+            {
+                ref : 'marginRight'
+            },
+            {
+                ref : 'marginTop'
+            },
+            {
+                ref : 'marginBottom'
+            },
 
         ],
         'VIDEO':[
@@ -276,7 +291,7 @@ var Default = {
                 ref : 'sectionColumnManagement'
             },
             {
-                ref:'sectionGrid'
+                ref:'rowGrid'
             }
         ],
         'SLIDE':[

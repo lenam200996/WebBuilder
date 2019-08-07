@@ -16,6 +16,8 @@
                 <li :class="[tab === 'slideshow'?'active' : '']" @click="setTab('slideshow')">Slideshow</li>
                 <li :class="[tab === 'boxandfield'?'active' : '']" @click="setTab('boxandfield')">Box & Field</li>
                 <li :class="[tab === 'video'?'active' : '']" @click="setTab('video')">Video</li>
+                <li :class="[tab === 'form'?'active' : '']" @click="setTab('form')">Form</li>
+
             </ul>
         </div>
         <div v-if="typeOption == 'menu'" class="wrap-option-content">
@@ -173,6 +175,7 @@
                     <li v-if="tab === 'boxandfield'" @click="$store.commit('addElement',{type : 'box'})">Box</li>
                     <li v-if="tab === 'boxandfield'" @click="$store.commit('addElement',{type : 'field'})">Field</li>
                     <li v-if="tab === 'video'" @click="$store.commit('addElement',{type : 'video'})">Video</li>
+                    <li v-if="tab === 'form'" @click="$store.commit('addElement',{type : 'form'})">Form</li>
                     
                 </ul>
             </div>

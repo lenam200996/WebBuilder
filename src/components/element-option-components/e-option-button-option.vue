@@ -98,26 +98,27 @@
 <style scoped>
     div{ 
         width : 248px;
-        height: 40px;
+        height: 30px;
         position: absolute;
         z-index: 99999999;
-        bottom: -42px;
-        right: 0px;
-        opacity: 0.8;
+        bottom: 0px;
+        right: 5px;
+        opacity: 1;
         border-radius: 5px;
     }
     ul{
         list-style-type: none;
         width: 100%;
         height: 100%;
+        box-shadow: 0 2px 5px 0 rgba(22, 45, 61, 0.58);
     }
     ul > li {
         width : 37px;
-        height: 40px;
+        height: 30px;
         float: left;
         /* border-radius: 50%; */
         /* margin-right: 5px; */
-        background: #374355;
+        /* background: #3743553f; */
         position: relative;
         /* box-shadow: 0 2px 5px 0 rgba(22, 45, 61, 0.58); */
     }
@@ -127,35 +128,30 @@
     ul>li:last-child{
         border-radius: 0 5px 5px 0;
     }
-    ul > li::after{
-        position: absolute;
-        content: "";
-        right: 0;
-        top: 0;
-        height: 100%;
-        width: 1px;
-        background-color: #ffffff;
-    }
+
     ul > li >button {
         width: 100%;
-        height:40px;
+        height:30px;
         /* border-radius: 50%; */
         border:none;
-        background-color: #374355;
-        color: #ffffff;
+        background-color: #3743553f;
+        color: #EB6641;
     }
 
     button > li {
         width: 100%;
         height: 100%;
     }
+    button > span::before{
+        color: #EB6641;
+    }
 
     li.name, li.name>button{
         width : 100px;
-        height: 40px;
-        border-radius: 10px;
+        height: 30px;
+        /* border-radius: 10px; */
         user-select: none;
-        letter-spacing: 2px;    
+        /* letter-spacing: 2px;     */
     }
     
     .name>button{

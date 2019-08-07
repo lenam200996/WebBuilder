@@ -15,10 +15,12 @@
             :style="getStyleWrap"
             :class="{autoAlign : isAutoAlign}"
             :typeName="name"
+             @drag="draging" 
+            @dragstop="dragStop"
             >
-        <md-input :type="getType" :placeholder="properties.styleInput.placeholder" :class="'md-elevation-'+properties.styleInput.shadow" :required="properties.styleInput.required" :style="getStyle" class="re-field"></md-input>
+        <mdb-input :type="getType" :label="properties.styleInput.placeholder"  :class="'md-elevation-'+properties.styleInput.shadow" :required="properties.styleInput.required" :style="getStyle" class="re-field"></mdb-input>
 <transition name="bounce">      
-        <e-option-button-option v-if="isActive" 
+        <e-option-button-option v-if="isActive&&showButton" 
         :isGrid="false" 
         @edit="editOption" 
         @disableEdit="onBlur"
@@ -68,7 +70,8 @@ import mixins from '../mixins.js'
                 fontStyle: this.properties.styleInput.fontStyle,
                 fontSize:this.properties.styleInput.fontSize+'px',
                 fontWeight: this.properties.styleInput.fontWeight,
-                color:this.properties.styleInput.color
+                color:this.properties.styleInput.color,
+                
             }
         },
         getStyleWrap:function(){
@@ -80,6 +83,10 @@ import mixins from '../mixins.js'
                 transform : 'translateX(-50%)',
                 maxWidth : '90%',
                 zIndex : this.isActive ? 99999 : 1,
+                marginTop : this.properties.styleInput.marginTop + 'px',
+                marginLeft : this.properties.styleInput.marginLeft + 'px',
+                marginRight : this.properties.styleInput.marginRight + 'px',
+                marginBottom : this.properties.styleInput.marginBottom + 'px',
             }
             }else if( this.properties.styleInput.alignBlock == 'left'){
             var style = {
@@ -90,6 +97,10 @@ import mixins from '../mixins.js'
                 right : 'auto',
                 maxWidth : '90%',
                 zIndex : this.isActive ? 99999 : 1,
+                marginTop : this.properties.styleInput.marginTop + 'px',
+                marginLeft : this.properties.styleInput.marginLeft + 'px',
+                marginRight : this.properties.styleInput.marginRight + 'px',
+                marginBottom : this.properties.styleInput.marginBottom + 'px',
             }
             }else if( this.properties.styleInput.alignBlock == 'right'){
             var style = {
@@ -100,6 +111,10 @@ import mixins from '../mixins.js'
                 left : 'auto',
                 maxWidth : '90%',
                 zIndex : this.isActive ? 99999 : 1,
+                marginTop : this.properties.styleInput.marginTop + 'px',
+                marginLeft : this.properties.styleInput.marginLeft + 'px',
+                marginRight : this.properties.styleInput.marginRight + 'px',
+                marginBottom : this.properties.styleInput.marginBottom + 'px',
             }
             }else{
             return {
@@ -108,6 +123,10 @@ import mixins from '../mixins.js'
                 transform: 'rotate(' + this.properties.styleInput.rotation + 'deg)',
                 maxWidth : '90%',
                 zIndex : this.isActive ? 99999 : 1,
+                marginTop : this.properties.styleInput.marginTop + 'px',
+                marginLeft : this.properties.styleInput.marginLeft + 'px',
+                marginRight : this.properties.styleInput.marginRight + 'px',
+                marginBottom : this.properties.styleInput.marginBottom + 'px',
             };
             }
             return style

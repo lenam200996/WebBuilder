@@ -1,4 +1,5 @@
 export default {
+    
     getStyleSelectedElement:(state)=>(val) =>{
       var style;
       state.elements.item.map(item=>{

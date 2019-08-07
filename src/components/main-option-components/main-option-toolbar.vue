@@ -171,7 +171,7 @@ import { bus } from "../../main";
             },
             deleteElement:function(){
                 this.selected = false
-                this.$store.commit('deleteItemById',this.getSelectedElement)
+                this.$store.dispatch('deleteItemByIdAction',{id:this.getSelectedElement})
                 this.style = {
                     rotation: 0,
                     top : "0",
@@ -226,6 +226,24 @@ import { bus } from "../../main";
             window.addEventListener('mouseup',(ev)=>{
                 this.denableDrag()
             })
+             if(!this.open){
+                    this.right = -999
+                }else{
+                    this.right = 20
+                }
+            if(this.getSelectedElement == null) {
+                this.selected = false
+                this.style ={
+                    rotation: 0,
+                    top : "0",
+                    left: "0",
+                    width : "0",
+                    height: "0"
+                }
+            }else{
+                this.selected = true
+                this.style = this.$store.getters.getStyleSelectedElement(this.getSelectedElement)
+            }
             
         },
         watch:{

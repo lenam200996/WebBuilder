@@ -18,6 +18,8 @@
             :rotatable="!textActive"
             :draggable="!textActive"
             :typeName="name"
+             @drag="draging" 
+            @dragstop="dragStop"
         >
       <div class="text" @active="onActive()" v-if="!textActive"  >
           <span v-html="Value" :style="getStyle" :class="'md-elevation-'+properties.styleText.shadow"></span>
@@ -31,7 +33,7 @@
           <tinymceText ref="area" id="d1"  v-model="Value" @editorInit="initEdit" :style="getStyle"></tinymceText>
       </div>
 <transition name="bounce">
-      <e-option-button-option v-if="isActive"
+      <e-option-button-option v-if="isActive&&showButton"
         :isGrid="false" 
         @editText="edit"
         @edit="editOption" 
@@ -114,7 +116,7 @@ import mixins from '../mixins.js'
           letterSpacing : this.properties.styleText.letterSpacing+'px',
           wordSpacing : this.properties.styleText.wordSpacing+'px',
           lineHeight : this.properties.styleText.lineHeight+'px',
-
+          zIndex : this.isActive?9999999:1
         }
       },
       getStyleWrap:function(){

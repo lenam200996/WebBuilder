@@ -7,6 +7,7 @@
     :class="' md-layout-item '+classResponsive" 
     @select="select"
     @deselect="deselect"
+    isGrid
     v-click-outside="deselect"
     :selected="isActive"
     :style="{
@@ -14,7 +15,7 @@
         backgroundPosition: properties.bgPos,
         backgroundSize:  properties.bgSize,
         backgroundRepeat:' no-repeat',
-        zIndex : isActive? 9999 : 1,
+        zIndex : isActive||getColumnSelected==properties.columnIndex? 9: 1,
         width : '100%',
         height: properties.height*properties.sizeRow/100 + 'px',
         margin : 0,
@@ -54,12 +55,12 @@ import {bus} from '../../main'
             return{
                 isActive : false,
                 styleBtn:{
-                    width : 275 +'px',
-                    height: 25 +'px',
+                    width : 'auto',
+                    height:30+'px',
                     position: 'absolute',
                     zIndex: '99999',
                     top: 0,
-                    right:-60 +'px' 
+                    right:0 +'px' 
                 },
                     classResponsive : ''
             }
@@ -105,7 +106,8 @@ import {bus} from '../../main'
                 else{
                     this.classResponsive = 'md-large-size-'+val+' md-medium-size-'+val+' md-small-size-50 md-xsmall-size-100'
                 }
-            }
+            },
+            
         },
         methods:{
             select : function(){

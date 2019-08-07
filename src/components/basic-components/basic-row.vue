@@ -4,10 +4,12 @@
             class="row md-layout"
             @select="select"
             @deselect="deselect"
-            :style="{zindex :isActive? 99999 :1}"
+            :style="{zIndex :isActive? 99999999 :1}"
             :resizable="false"
             :rotatable="false"
             :draggable="false"
+            v-click-outside="deselect"
+            isGrid
             style="width:100%;position:relative"
             >
     <div :style="getStyle"  class="row" style="width:100%;position:relative">
@@ -53,13 +55,13 @@ import {bus} from '../../main'
       return {
         isActive : false,
         styleBtn:{
-                    width : 215 +'px',
-                    height: 45 +'px',
+                    width : 'auto',
+                    height: 30 +'px',
                     position: 'absolute',
                     zIndex: '99999',
                     bottom: 0 + '!important',
-                    left: 50 +'% !important',
-                    transform : 'translateX(-50%)',
+                    right: 50 +'% !important',
+                    // transform : 'translateX(-50%)',
                     top : 'auto'
                 },
       }
@@ -93,7 +95,8 @@ import {bus} from '../../main'
     computed:{
         getStyle: function(){
             return {
-                backgroundColor : this.bg,
+                // backgroundColor : this.bg,
+                height: this.height +'%',
             }
         },
         getActiveRow:function(){
@@ -102,7 +105,6 @@ import {bus} from '../../main'
     },
     watch:{
         getActiveRow:function(val){
-            console.log(val)
             if(this.rowIndex == val){
                 this.select()
             }else{

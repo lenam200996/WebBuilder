@@ -15,10 +15,12 @@
             :style="getStyleWrap"
             :class="{autoAlign : isAutoAlign}"
             :typeName="name"
+             @drag="draging" 
+            @dragstop="dragStop"
             >
         <iframe :class="'md-elevation-'+properties.styleVideo.shadow" class="re-iframe-video" :src="getUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <transition name="bounce">    
-        <e-option-button-option v-if="isActive"
+        <e-option-button-option v-if="isActive&&showButton"
         :isGrid="false" 
         @edit="editOption" 
         @disableEdit="onBlur"

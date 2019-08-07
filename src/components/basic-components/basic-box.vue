@@ -15,12 +15,14 @@
             :style="getStyleWrap"
             :class="{autoAlign : isAutoAlign}"
             :typeName="name"
+            @drag="draging" 
+            @dragstop="dragStop"
             >
     <div :style="getStyle" class="re-box" :class="'md-elevation-'+properties.styleBox.shadow" >
         <slot></slot>
     </div>
 <transition name="bounce">
-        <e-option-button-option v-if="isActive"
+        <e-option-button-option v-if="isActive&&showButton"
         :isGrid="false" 
         @edit="editOption" 
         @disableEdit="onBlur"
