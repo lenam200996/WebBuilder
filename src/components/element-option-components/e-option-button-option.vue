@@ -101,7 +101,7 @@
         height: 30px;
         position: absolute;
         z-index: 99999999;
-        bottom: 0px;
+        bottom: -30px;
         right: 5px;
         opacity: 1;
         border-radius: 5px;

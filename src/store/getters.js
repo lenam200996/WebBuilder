@@ -86,6 +86,23 @@ export default {
       return state.canRedo
     },
     getArrayGridElement:state=>({id,parentId,column})=>{
+      // var arrayGrid = []
+      // state.elements.item.forEach(item =>{
+      //   if(item.id != id && item.type != 'section' && item.parentId == parentId ){
+      //     var gridItem = {
+      //       id : item.id,
+      //       x_left : ((typeof item.style.left)=='string'?parseInt(item.style.left.replace('px','')):item.style.left),
+      //       y_top : ((typeof item.style.top)=='string'?parseInt(item.style.top.replace('px','')):item.style.top ),
+      //       x_right : ((typeof item.style.left)=='string'?parseInt(item.style.left.replace('px','')):item.style.left) +((typeof item.style.width)=='string'?parseInt(item.style.width.replace('px','')):item.style.width),
+      //       y_bottom : ((typeof item.style.top)=='string'?parseInt(item.style.top.replace('px','')):item.style.top )+((typeof item.style.height)=='string'?parseInt(item.style.height.replace('px','')):item.style.height),
+      //       x_center : (typeof item.style.width)=='string'?(parseInt(item.style.width.replace('px',''))/2):(item.style.width/2),
+      //       y_center : (typeof item.style.height)=='string'?(parseInt(item.style.height.replace('px',''))/2):(item.style.height/2),
+      //     }
+      //     arrayGrid.push(gridItem)
+      //   }       
+      // })
+      // return arrayGrid
+
       var arrayGrid = []
       state.elements.item.forEach(item =>{
         if(item.id != id && item.type != 'section' && item.parentId == parentId ){
@@ -102,6 +119,11 @@ export default {
         }       
       })
       return arrayGrid
+    }, 
+    getGridAutoAlign:state =>payload=>{
+      var grid = {
+
+      }
     },
     getAutoAlignBlockId:state=>{
       return state.autoAlignBlockId
@@ -126,6 +148,9 @@ export default {
     },
     getFooterStyle:state=>{
       return state.elements.footer
+    },
+    getGridLineMinMax:state=>{
+      return state.gridLine
     }
    
   }

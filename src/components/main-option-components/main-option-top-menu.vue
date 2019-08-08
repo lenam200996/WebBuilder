@@ -195,7 +195,7 @@ import { setTimeout, clearTimeout } from 'timers';
             rgba(255, 255, 255, 0.96) 0%,
             rgba(238, 238, 238, 0.96) 100%
         );
-        box-shadow: 0 2px 5px 0 rgba(22, 45, 61, 0.58);
+        box-shadow: 0px 3px 15px rgb(55, 67, 85);
     }
 
     .preview-btn{

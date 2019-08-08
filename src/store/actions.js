@@ -23,5 +23,9 @@ export default {
     },
     setSelectRowAction:function(context,val){
         context.commit('setSelectRow',val)
+    },
+    setGridLineMinMaxAction:function(context,{min,max}){
+        
+        context.commit('setGridLineMinMax',{min:min,max:max})
     }
 }

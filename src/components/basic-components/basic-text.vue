@@ -23,7 +23,6 @@
         >
       <div class="text" @active="onActive()" v-if="!textActive"  >
           <span v-html="Value" :style="getStyle" :class="'md-elevation-'+properties.styleText.shadow"></span>
-          
       </div>
        <!-- v-click-outside="closeEditText" -->
       <div v-else class="edit" >
@@ -170,7 +169,9 @@ import mixins from '../mixins.js'
     height: 100%;
     text-align: left;
     /* border: 1px solid lightgrey; */
-    
+  }
+  .text>span{
+    word-wrap: break-word;
   }
   .textarea {
     position: absolute;
@@ -178,6 +179,7 @@ import mixins from '../mixins.js'
     height: 100%;
     z-index: 99999999999;
   }
+  
   .edit{
       position: relative;
       height: 100%;

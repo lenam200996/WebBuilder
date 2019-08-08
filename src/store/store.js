@@ -23,6 +23,10 @@ export default new Vuex.Store({
     SelectedRow : null,
     SelectedElement: null,
     selectForm : null,
+    gridLine:{
+      min : -1,
+      max : -1
+    },
     elements : {
       item:[],
       menu:{

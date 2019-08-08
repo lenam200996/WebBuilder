@@ -301,17 +301,17 @@ class TextParagraph{
             alignBlock : 'none',
             top: 0,
             left : 0,
-            width: '400px',
-            height :'50px',
+            width: '90px',
+            height :'24px',
             rotation : 0,
             shadow : 0,
         };
         this.position = {
-            x :200,
-            y : 25,
+            x :45,
+            y : 12,
             angle:0,
-            w:400,
-            h:50
+            w:90,
+            h:24
         };
         this.value = "this is a text";
         this.link = '';

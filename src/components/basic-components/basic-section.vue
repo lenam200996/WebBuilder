@@ -125,7 +125,13 @@ import {bus} from '../../main'
 
         },
         watch:{
-          
+          getStretched:function(val){
+              if(val == 'container'){
+                this.$store.dispatch('setGridLineMinMaxAction',{min: 0,max:980})
+              }else{
+                  bus.$emit('resetGridLineMinMax',true)
+              }
+          }
         }
     }
 </script>

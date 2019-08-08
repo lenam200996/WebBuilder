@@ -4,7 +4,12 @@ import {bus} from '../main.js'
 let snapshotState  = []
 let snapShotStateRedo = []
 export default {
-
+  setGridLineMinMax(state,{min,max}){
+    
+    state.gridLine.min = min
+    state.gridLine.max = max
+    console.log('min:'+state.gridLine.min+' - max:'+max)
+  },
   setSizeRowGrid(state,grid){
     state.elements.item = state.elements.item.filter(item =>{
       if(item.id == state.selectId ){
